@@ -1,4 +1,11 @@
+#### 20201119(목) 작업예정
+- index.html 더미데이터에 모바일용 CSS적용예정.
+- 메뉴 클릭에 대한 자바스크립트적용.
+- index.html 에 태블릿용 CSS적용예정.
+- index.html 에 PC용 CSS적용예정.
+
 #### 20201118(수)
+- 반응형 페이지를 위한 더미데이터 입력(index.html) 
 - html5(버전): Hyper Text Markup Language (링크기능)
 - html5 버전은 이전 버전과 무슨차이가 있는지 확인.
 - Tag태그로 구조화된 문서 Document 입니다.

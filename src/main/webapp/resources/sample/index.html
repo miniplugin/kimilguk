@@ -11,6 +11,7 @@ span {
 display:block;height:10px;width:50px;background-color:red;
 margin-bottom:10px;
 }
+#wrap .slider img {width:100%;}/* Cascade Style Sheet 특징 계단형 스타일지정 */
 /* 모바일용 스타일지정 끝 */
 </style>
 <script>
@@ -39,7 +40,12 @@ margin-bottom:10px;
 </header>
 <section><!-- division디비전이라는 div 영역표시 태그 대신에 사용 -->
 <!-- 본문 슬라이드 영역 시작 -->
-슬라이드이미지1
+<!-- 이미지를 불러오는 태그 img -->
+<!-- 경로:상대(./img/...),절대경로(/resources/sample/img/...) -->
+<!-- 태그안쪽에 지정한 스타일을 인라인스타일 -->
+<div class="slider">
+	<img src="/resources/sample/img/xmas.jpg" alt="크리스마스 이미지입니다.">
+</div>
 <!-- 본문 슬라이드 영역 끝 -->
 </section>
 <footer>
