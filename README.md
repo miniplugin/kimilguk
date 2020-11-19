@@ -1,4 +1,12 @@
 #### 20201119(목) 작업
+
+```
+*, :after, :before { /* :콜론의 의미 가상요소(선택자)
+    -webkit-box-sizing: border-box;/* 크롬,사파리용 크로스브라우징때문에 추가 */
+    -moz-box-sizing: border-box;/* 파이어폭스용 크로스브라우징때문에 추가 */
+    box-sizing: border-box;/* IE용 박스크기를 지정하는데 테두리포함하겠다는 의미 */
+}
+```
 - index.html 더미데이터에 모바일용 CSS적용예정.
 - html(jsp)영역지정방식: tag방식, class방식, id방식
 - id방식은 현재html문서에서 1개만 존재해야함.(로그인시 사용하는 아이디와 같은 기능)
