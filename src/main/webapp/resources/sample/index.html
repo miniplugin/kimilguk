@@ -29,13 +29,13 @@ text-indent:-9999%;/*들여쓰기*/
 display:block;
 height:80px;
 background:url(./img/ball.png) no-repeat;/*배경이미지 기본이 반복repeat*/
-background-size:80%;
+background-size:90%;
 background-position:0px center;/*배경위치는 0px(가로) center(세로)*/
 }
 .header .menu-toggle-btn { /*토글:똑딱이버튼*/
 float:right;
 width:20px;
-margin-top:15px;
+margin-top:28px;
 cursor:pointer;/*마우스커서모양을 손모양으로 변경*/
 }
 .menu-toggle-btn span {
@@ -62,6 +62,12 @@ border-bottom:0px;
 .header .gnb li:last-child {
 border-bottom:1px solid #303f9f;
 }
+.header .gnb li a {
+display:block;/* 1줄 1글자라도 전체 자리를 차지하는 영역 : ()inline-block 자리를 차지하지만, 본인크기만) */
+padding:14px 0 14px 5%;
+font-size:14px;
+color:#fff;
+}
 /* 헤더영역 끝 */
 /* 본문섹션 슬라이드영역 시작 */
 #wrap .slider img {width:100%;}/* Cascade Style Sheet 특징 계단형 스타일지정 */
@@ -70,7 +76,14 @@ border-bottom:1px solid #303f9f;
 </style>
 <script>
 /* 자바스크립트 시작 */
-
+//네이티브(오리지널-옛날부터)자바스크립트로 햄버거 메뉴액션 구현(아래)
+//document.getElementById("css 아이디영역");
+var toggle_menu = document.getElementByClassName("menu-toggle-btn")[0];
+toggle_menu.onClick = function() {//이름이 없는 함수를 콜백함수라고 합니다.
+    var ta = document.getElementsByClassName("stopButton")[0];
+    document['player'].stopMusicExt(ta.value);
+    ta.value = "";
+};
 /* 자바스크립트 끝 */
 </script>
 </head>
