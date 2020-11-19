@@ -20,18 +20,26 @@ padding:18px 5%;/*안쪽여백: 바깥쪽여백은 margin입니다. 18px(상하�
 .header .logo {
 float:left;/*플로트: 떠다니는 영역. 역할은 세로배치를 가로배치로 변경처리에 사용됨*/
 }
+.header .logo a {
+font-size:26px;/*글자크기*/
+color:#3f51b5;/*글자색상*/
+font-weight:normal;/*글자두께*/
+}
 .header .menu-toggle-btn { /*토글:똑딱이버튼*/
 float:right;
+width:20px;
 }
-.header span {
-display:block;height:10px;width:50px;background-color:red;
-margin-bottom:10px;
+.menu-toggle-btn span {
+display:block;height:2px;
+width:100%;/*여기서 100% .menu-toggle-btn영역의 가로20px 까지가 100%임*/
+background:#3f51b5;
+margin-bottom:5px;
 }
 .header .gnb {
 display:block;/*페이지로딩할때 숨겨야 하기 때문에 none으로 처리*/
 position:absolute;/*gnb영역의 위치를 절대위치로 지정 위치정보가 필요*/
-top:80px;
-left:0px;
+top:80px;/*화면상단에서 얼만큼 떨어지게 배치할 건지 지정*/
+left:0px;/*화면왼쪽에서 얼만큼 떨어지게 배치할지 저정*/
 width:100%;
 background:#3f51b5;
 z-index:21;/*화면에서 콘텐츠가 겹치는경우 z인덱스*/
@@ -52,7 +60,9 @@ z-index:21;/*화면에서 콘텐츠가 겹치는경우 z인덱스*/
 <div id="wrap"><!-- 랩핑시킨 영역 -->
 <header class="header">
 <!-- 상단 로고와 햄버거 메뉴영역 시작 -->
-<h1 class="logo">LOGO</h1><!-- 헤드라인 글자를 표시 h1~h6 -->
+<h1 class="logo">
+<a href="index.html">LOGO</a><!-- a태그는 페이지이동역할, href헤르프 속성값에 URL을 입력해서 이동 -->
+</h1><!-- 헤드라인 글자를 표시 h1~h6 -->
 <div class="menu-toggle-btn">
 <span></span>
 <span></span>
