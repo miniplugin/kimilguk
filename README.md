@@ -1,6 +1,20 @@
 #### 20201120(금) 작업예정
 - CDN(Contents Delivery Network): 콘텐츠를 네트워크로 전달받아서 사용하는 방식.
+- 어제 수업시 작동않되던 네이티브 자바스크립트 사용예시
+- document.getElementsByClassName는 배열값을 리턴
+- document.getElementById는 1개값를 리턴
+
+```
+window.onload = prepareButton;
+function prepareButton() {
+	var toggle_btn = document.getElementsByClassName("menu-toggle-btn");
+	toggle_btn[0].onclick = function(){
+		alert("햄버거메뉴를 클릭했습니다.");
+	}
+}
+```
 - CDN jQuery코어 받기 다시한번 강의.
+- $(".gnb").stop().slideToggle("fast"); j쿼리 토글메뉴 예시
 - 작업순서1: html만들고, 더미데이터 생성.
 - 작업순서2: body에서 레이아웃을 3가지 영역분리 header, section, footer. 
 - *작업순서3: header영역의 3가지영역(로고, 햄버거메뉴, 글로벌네비메뉴)를 배치작업.
