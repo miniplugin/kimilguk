@@ -11,8 +11,9 @@
 /* 모바일용 스타일지정 시작  */
 /* 헤더영역 시작 */
 .header {
+height:80px;
 position:relative;/*상대적인 위치 다른예는 absolute절대적인위치=fixed붙박이*/
-padding:18px 5%;/*안쪽여백: 바깥쪽여백은 margin입니다. 18px(상하여백) 5%(좌우여백)*/
+padding:0px 2%;/*안쪽여백: 바깥쪽여백은 margin입니다. 18px(상하여백) 5%(좌우여백)*/
 /*padding:18px 5% 18px 5%; 시계방향으로진행 시작 위쪽부터 시작 의 약자 위로 표시됩니다.
 만약 padding:18px 5% 18px; 3가지 모두 동일. 18px(상여백) 5%(좌우여백) 18px(하여백)
 */
@@ -24,10 +25,18 @@ float:left;/*플로트: 떠다니는 영역. 역할은 세로배치를 가로배
 font-size:26px;/*글자크기*/
 color:#3f51b5;/*글자색상*/
 font-weight:normal;/*글자두께*/
+text-indent:-9999%;/*들여쓰기*/
+display:block;
+height:80px;
+background:url(./img/ball.png) no-repeat;/*배경이미지 기본이 반복repeat*/
+background-size:80%;
+background-position:0px center;/*배경위치는 0px(가로) center(세로)*/
 }
 .header .menu-toggle-btn { /*토글:똑딱이버튼*/
 float:right;
 width:20px;
+margin-top:15px;
+cursor:pointer;/*마우스커서모양을 손모양으로 변경*/
 }
 .menu-toggle-btn span {
 display:block;height:2px;
@@ -43,6 +52,15 @@ left:0px;/*화면왼쪽에서 얼만큼 떨어지게 배치할지 저정*/
 width:100%;
 background:#3f51b5;
 z-index:21;/*화면에서 콘텐츠가 겹치는경우 z인덱스*/
+}
+.header .gnb li {
+/*border는 테두리 bottom:아래,top:위,left-right:좌-우 1px(두께),solid(실선),#16진수(색상) */
+border:1px solid #303f9f;
+border-bottom:0px;
+}
+/*가상선택자 : 사용*/
+.header .gnb li:last-child {
+border-bottom:1px solid #303f9f;
 }
 /* 헤더영역 끝 */
 /* 본문섹션 슬라이드영역 시작 */
@@ -72,11 +90,11 @@ z-index:21;/*화면에서 콘텐츠가 겹치는경우 z인덱스*/
 <nav class="gnb"><!-- gnb:글로벌네이게이션:전체영역메뉴  Global Navigagion -->
 <!-- 리스트를 모여주는 태그 ul(UnOrdered List *.~, *.~ ) , ol(Ordered List 1.~, 2.~ ) -->
 <ul>
-<li>HOME</li>
-<li>WE ARE</li>
-<li>WORK</li>
-<li>BLOG</li>
-<li>CONTACT US</li>
+<li><a href="index.html">HOME</a></li>
+<li><a href="weare.html">WE ARE</a></li>
+<li><a href="work.html">WORK</a></li>
+<li><a href="blog.html">BLOG</a></li>
+<li><a href="contact.html">CONTACT US</a></li>
 </ul>
 </nav>
 <!-- 상단 로고와 햄버거 메뉴영역 끝 -->
