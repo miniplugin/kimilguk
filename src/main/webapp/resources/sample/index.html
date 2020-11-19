@@ -9,11 +9,28 @@
 <!-- :콜론(속성:값, Key:Value), ;세미콜론(문장의 끝) -->
 <style>
 /* 모바일용 스타일지정 시작  */
-#header span {
+/* 헤더영역 시작 */
+.header {
+position:relative;/*상대적인 위치 다른예는 absolute절대적인위치=fixed붙박이*/
+padding:18px 5%;/*안쪽여백: 바깥쪽여백은 margin입니다. 18px(상하여백) 5%(좌우여백)*/
+/*padding:18px 5% 18px 5%; 시계방향으로진행 시작 위쪽부터 시작 의 약자 위로 표시됩니다.
+만약 padding:18px 5% 18px; 3가지 모두 동일. 18px(상여백) 5%(좌우여백) 18px(하여백)
+*/
+}
+.header .logo {
+float:left;/*프로트: 떠다니는 영역. 역할은 세로배치를 가로배치로 변경처리에 사용됨*/
+}
+.header .menu-toggle-btn { /*토글:똑딱이버튼*/
+float:right;
+}
+.header span {
 display:block;height:10px;width:50px;background-color:red;
 margin-bottom:10px;
 }
+/* 헤더영역 끝 */
+/* 본문섹션 슬라이드영역 시작 */
 #wrap .slider img {width:100%;}/* Cascade Style Sheet 특징 계단형 스타일지정 */
+/* 본분섹션 슬라이드영역 끝 */
 /* 모바일용 스타일지정 끝 */
 </style>
 <script>
@@ -24,12 +41,16 @@ margin-bottom:10px;
 </head>
 <body><!-- 문서내용이 들어가는 영역 -->
 <div id="wrap"><!-- 랩핑시킨 영역 -->
-<header id="header">
+<header class="header">
 <!-- 상단 로고와 햄버거 메뉴영역 시작 -->
-<h1>LOGO</h1><!-- 헤드라인 글자를 표시 h1~h6 -->
+<h1 class="logo">LOGO</h1><!-- 헤드라인 글자를 표시 h1~h6 -->
+<div class="menu-toggle-btn">
 <span></span>
 <span></span>
 <span></span>
+</div>
+<!-- html5 시만텍 웹 = 의미가 있는 태그를 사용하게 해서 AI가 인식하게 됩니다. nav태그 -->
+<nav class="gnb"><!-- gnb:글로벌네이게이션:전체영역메뉴  Global Navigagion -->
 <!-- 리스트를 모여주는 태그 ul(UnOrdered List *.~, *.~ ) , ol(Ordered List 1.~, 2.~ ) -->
 <ul>
 <li>HOME</li>
@@ -38,6 +59,7 @@ margin-bottom:10px;
 <li>BLOG</li>
 <li>CONTACT US</li>
 </ul>
+</nav>
 <!-- 상단 로고와 햄버거 메뉴영역 끝 -->
 </header>
 <section><!-- division디비전이라는 div 영역표시 태그 대신에 사용 -->
