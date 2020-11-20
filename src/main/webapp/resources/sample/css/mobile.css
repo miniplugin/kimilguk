@@ -60,9 +60,11 @@ font-size:14px;
 color:#fff;
 }
 /* 헤더영역 끝 */
+
 /* 본문섹션 슬라이드영역 시작 */
 #wrap .slider img {width:100%;}/* Cascade Style Sheet 특징 계단형 스타일지정 */
 /* 본분섹션 슬라이드영역 끝 */
+
 /* 푸터영역 시작 */
 .footer {
 margin-top:30px;
@@ -73,4 +75,41 @@ color:#3f51b5;
 text-align:center;/*문장내용을 가로 가운데 정렬*/
 }
 /* 푸터영역 끝 */
+
+/* we are페이지 영역 시작 */
+.weare-header {
+margin-top:30px;
+text-align:center;
+}
+.section-title {
+margin-bottom:30px;
+font-size:42px;
+color:#3f51b5;
+font-weight:normal;
+letter-spacing:5px;/*글자사이 간격주가*/
+}
+.weare-header p {
+color:#616161;
+line-height:1.9;/*줄간격 단위 1.9 글자크기의 1.9배수*/
+font-size:14px;
+}
+.weare-body {
+margin-top:68px;
+}
+.weare-body li {
+text-align:center;
+margin-top:50px;/*게시물사이 간격 li태그 4개 사이간격주기*/
+}
+.weare-body li img {
+height:220px;/*이미지는 가로든 세로든 1쪽 크기를 지정하면, 비율을 유지하면서 크기가 조정됩니다.*/
+}
+.weare-body li h2 {
+margin: 20px 0px;
+font-size:30px;
+font-weight:normal;
+color:#3f51b5;
+}
+.weare-body li p {font-size:14px;}
+/* we are페이지 영역 끝 */
+
 /* 모바일용 스타일지정 끝 */
