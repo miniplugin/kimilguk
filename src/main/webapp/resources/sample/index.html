@@ -89,11 +89,11 @@ function Add(a, b) {//a,b 받아서 구현(아래) 매개변수=인자=파라미
 //Add(3,5);//실행은 함수명을 호출하면 실행이 됩니다.
 
 //j쿼리 기본형식사용
-$(document).ready(function(){/*$제이쿼리시작하다는 의미(index.html).ready(자동콜백함수실행);*/
+/* $(document).ready(function(){//$제이쿼리시작하다는 의미(index.html).ready(자동콜백함수실행);
 	$(".menu-toggle-btn").click(function(){
 		alert('햄버거 메뉴를 클릭하였습니다.');
 	});
-});
+}); */
 
 /* 자바스크립트 끝 */
 </script>
@@ -110,6 +110,15 @@ $(document).ready(function(){/*$제이쿼리시작하다는 의미(index.html).r
 <span></span>
 <span></span>
 </div>
+<script>
+//네이티브 자바스크립트로 햄버거 메뉴 제어 하기: 위에서 부터 아래로 실행됩니다.
+//documnet.getElementById 는 1개의 값만 리턴(출력) 됩니다.
+//document.getElementsByClassName 는 배열값을 리턴(출력) 됩니다.
+var menu_toggle_btn = document.getElementsByClassName("menu-toggle-btn");
+menu_toggle_btn[0].onclick = function() {
+	alert('햄버거 메뉴를 클릭하였습니다.');
+}
+</script>
 <!-- html5 시만텍 웹 = 의미가 있는 태그를 사용하게 해서 AI가 인식하게 됩니다. nav태그 -->
 <nav class="gnb"><!-- gnb:글로벌네이게이션:전체영역메뉴  Global Navigagion -->
 <!-- 리스트를 모여주는 태그 ul(UnOrdered List *.~, *.~ ) , ol(Ordered List 1.~, 2.~ ) -->

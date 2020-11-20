@@ -1,6 +1,7 @@
 #### 20201120(금) 작업예정
 - CDN(Contents Delivery Network): 콘텐츠를 네트워크로 전달받아서 사용하는 방식.
 - 어제 수업시 작동않되던 네이티브 자바스크립트 사용예시
+- 어제 작동이 않되었던 이유: 위에서 아래로 순서를 가지고 실행이 됩니다.
 - document.getElementsByClassName는 배열값을 리턴
 - document.getElementById는 1개값를 리턴
 
