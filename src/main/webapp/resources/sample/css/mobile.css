@@ -112,4 +112,56 @@ color:#3f51b5;
 .weare-body li p {font-size:14px;}
 /* we are페이지 영역 끝 */
 
+/* work영역 시작 */
+.work-section {
+text-align:center;
+margin-top:30px;
+}
+.work-section li img {width:100%;}
+.work-section li a {/*이부분이 실제 a태그 영역*/
+/*a 태그가 자리를 차지하지 않는 영역이고, block을 이용해서 자리를 차지하는 영역으로 변경(아래)*/
+display:block;
+width:100%;
+height:100%;
+position:relative;/*a태그에서 위치를 상대위치로 지정*/
+}
+/*마우스를 롤오버했을때 나오는 배경색상 before가상요소 영역(아래)*/
+.work-section li a::before {
+display:block;
+background:#3f51b5;
+/*이 절대값 위치는 위 a태그에서 지정한 relative상대위치에 한정해서 절대위치로 지정됨(아래)*/
+position:absolute;
+width:100%;
+height:100%;
+top:0px;/*화면의 세로 위쪽으로 0px위치*/
+left:0px;/*화면가로로 0px위치*/
+content:"";
+opacity:0;/*투명도 0%로 지정*/
+}
+.work-section li a:hover::before {
+opacity:0.4;
+}
+.work-section .info {
+display:block;/*화면에서 자리를 차지하기 위해서 block을 지정합니다.*/
+position:absolute;
+left:10px;
+color:#fff;
+text-align:left;
+opacity:0;
+transition:all 0.3s;/*화면전환 옵션 transform 모양변화에대한 화면전환옵션, width, height등등 all... */
+}
+.work-section li a:hover .info{
+opacity:1;
+transform:translateY(20px);/*모양이 변화할때 Y세로축으로 20px 이동합니다.*/
+}
+.info h2 {
+font-size:26px;
+font-weight:normal;
+}
+.info p {
+font-size:14px;
+padding:10px 0px;
+}
+/* work영역 끝 */
+
 /* 모바일용 스타일지정 끝 */
