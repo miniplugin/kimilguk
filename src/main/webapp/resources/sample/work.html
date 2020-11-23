@@ -35,8 +35,16 @@ width:100%;
 height:100%;
 top:0px;/*화면의 세로 위쪽으로 0px위치*/
 left:0px;/*화면가로로 0px위치*/
-content:"abc";
-opacity:0.5;/*투명도 0%로 지정*/
+content:"";
+opacity:0;/*투명도 0%로 지정*/
+}
+.work-section li a:hover::before {
+opacity:0.3;
+}
+.work-section .info {
+display:block;/*화면에서 자리를 차지하기 위해서 block을 지정합니다.*/
+position:absolute;
+color:#fff;
 }
 /* work영역 끝 */
 </style>
