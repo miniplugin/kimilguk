@@ -164,4 +164,39 @@ padding:10px 0px;
 }
 /* work영역 끝 */
 
+/* blog 영역 시작 */
+.blog-section {
+margin-top:30px;
+}
+.blog-section h1 {
+text-align:center;
+font-size:30px;
+color:#3f51b5;
+}
+.blog-section .container {
+width:90%;
+margin:0 auto;
+}
+.blog-section li {
+margin-top:30px;
+}
+/*위에서 현재 영역을 가운데정렬시 margin:0 auto; 좌우로 5%가 자동으로 잡힘*/
+.blog-section li img {
+width:100%;
+}
+.blog-section li time {
+display:block;
+margin:10px 0px;
+font-size:12px;
+color:#888;
+}
+.blog-section li h2 {
+color:#424242;
+font-weight:normal;
+line-height:1.6;/*줄간격단위는 현재 글자크기의 배수*/
+}
+/* reset.css 에서 hr태그를 display:none;적용했기 때문에, 특별히 .blog영역에서만 hr 적용 */
+.blog-section hr {display:block; height:1px; background:#3f51b5;}
+/* blog 영역 끝 */
+
 /* 모바일용 스타일지정 끝 */
