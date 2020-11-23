@@ -12,7 +12,20 @@
 <!-- span태그 자리를 차지하지 않는 영역 = 한뼘 , px 픽셀 화면에 표시되는 크기의 단위 -->
 <!-- :콜론(속성:값, Key:Value), ;세미콜론(문장의 끝) -->
 <style>
-
+/* contact 영역 시작 */
+.contact-section {
+margin-top:30px;
+}
+.contact-section h1 {
+font-size:42px;
+text-align:center;
+color:#3f51b5;
+font-weight:normal;
+}
+.contact-section form {
+margin-top:30px;
+}
+/* contact 영역 끝 */
 </style>
 <script>
 /* 자바스크립트 시작 */
@@ -55,17 +68,17 @@
 <!-- label은 이름표, 입력태그와 라벨은 1:1매칭이 되는 관계 -->
 <form name="message_form" action="contact.html" method="get">
 <!-- 필드셋은 폼이 DB테이블의 필드와 1:1매칭되는 관계 -->
+<!-- 플레이스홀더:공간에 자리를 차지하지 않으면서 입력힌트를 보여주는 역할 -->
 <fieldset>
 <legend>현재폼의타이틀영역입니다.</legend>
 <label for="name">이름</label>
-<input name="name" id="name" type="text" value="김일국">
+<input name="name" id="name" type="text" placeholder="이름을 입력">
 <label for="phone">연락처</label>
-<input name="phone" id="phone" type="text" value="000-0000-0000">
+<input name="phone" id="phone" type="text" placeholder="연락처를 입력">
 <label for="email">이메일</label>
-<input name="email" id="email" type="email" value="abc@abc.com">
+<input name="email" id="email" type="email" placeholder="email을 입력">
 <label for="message">메세지</label>
-<textarea name="message" id="message">텍스트에어리어는 밸류값이 여기에
-들어가는 것이 특징입니다.</textarea>
+<textarea name="message" id="message" placeholder="내용을 입력"></textarea>
 </fieldset>
 <button type="submit">메세지보내기</button>
 </form>
