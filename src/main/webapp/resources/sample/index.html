@@ -17,11 +17,17 @@
 <!-- span태그 자리를 차지하지 않는 영역 = 한뼘 , px 픽셀 화면에 표시되는 크기의 단위 -->
 <!-- :콜론(속성:값, Key:Value), ;세미콜론(문장의 끝) -->
 <style>
-
+/*.carousel-item {height:500px;}*/
+.carousel-item img {height:500px;}
 </style>
 <script>
 /* 자바스크립트 시작 */
-
+$(document).ready(function(){
+	$(".carousel").carousel({
+		interval:1000,//이미지가 좌우로 움직이는 대기시간 지정. 1초, 크롬,IE작동OK, 파이어폭스X
+		pause:false
+	});
+});
 /* 자바스크립트 끝 */
 </script>
 </head>
