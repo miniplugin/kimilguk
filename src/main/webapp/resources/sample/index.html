@@ -26,7 +26,25 @@
 @media all and (min-width:768px) {
 
 /*헤더영역시작*/
-
+.menu-toggle-btn {display:none;}
+.header .gnb {
+display:block;
+position:static;/*absolute에서 static*/
+background:none;
+width:auto;
+float:right;/*가로위치를 오른쪽으로 변경*/
+margin-top:10px;
+}
+.header .gnb li {
+float:left;
+border:none;
+width:95px;
+}
+.header .gnb li:last-child {border-bottom:none;}
+.header .gnb li a {
+color:#3f51b5;
+}
+.header .gnb li a:hover {text-decoration:none;}
 /*헤더영역 끝*/
 /*슬라이드영역시작*/
 .carousel-item, .carousel-item img {height:500px;}
