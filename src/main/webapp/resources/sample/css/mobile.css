@@ -1,8 +1,9 @@
 @charset "UTF-8";
 /* 모바일용 스타일지정 시작  */
-body {/*reset에서 초기화 된것을 재 정의 할때*/
+body {/*부트스트랩css또는 reset.css에서 초기화 된것을 재 정의 할때*/
 font-size:14px;
 background:#fff;
+line-height:1.4;/*상속 바로전에 적용한 값을 초기화inherit, initial 시키는 역할*/
 }/*부트스트랩css영향을 받은것을 무효화시키고, 사용자css로 적용*/
 /* 헤더영역 시작 */
 .header {
@@ -177,6 +178,7 @@ margin-top:30px;
 text-align:center;
 font-size:30px;
 color:#3f51b5;
+font-weight:normal;
 }
 .blog-section .container {
 width:90%;
