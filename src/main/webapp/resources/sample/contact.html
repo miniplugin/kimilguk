@@ -2,17 +2,36 @@
 <html><!-- html문서는 태그열고 ~ 태그닫고 하는 영역확인 중요 -->
 <head><!-- 문서내용과는 관계없는 문서정보=메타데이터(데이터의데이터)가 존재 -->
 <meta charset="UTF-8"><!-- 문서의 언어 인코딩설정  지금은 유니코드로 됨 -->
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
 <title>반응형홈페이지</title><!-- 문서의 제목을 브라우저상단왼쪽에 표시 -->
 <!-- 외부 css파일 불러오는 태그(아래) -->
 <link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
 <link rel="stylesheet" href="/resources/sample/css/mobile.css" type="text/css">
+<link rel="stylesheet" href="/resources/sample/css/tablet.css" type="text/css">
 <!-- 외부 자바스크립트 불러오는 태그(아래) -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="/resources/sample/js/user.js"></script>
 <!-- span태그 자리를 차지하지 않는 영역 = 한뼘 , px 픽셀 화면에 표시되는 크기의 단위 -->
 <!-- :콜론(속성:값, Key:Value), ;세미콜론(문장의 끝) -->
 <style>
+/*태블릿 스타일 시작*/
+@media all and (min-width:768px) {
 
+/*contact영역 시작*/
+.input-class, .textarea-class {
+float:left;/*세로배치를 가로배치로 변경*/
+width:49%;/*2개로나누는 가로크기를 47% 지정*/
+}
+.input-class {
+margin-right:2%;
+}
+.contact-section form textarea {
+min-height: 120px;
+}
+/*contact영역 끝*/
+
+}
+/*태블릿 스타일 끝*/
 </style>
 <script>
 /* 자바스크립트 시작 */
@@ -58,14 +77,18 @@
 <!-- 플레이스홀더:공간에 자리를 차지하지 않으면서 입력힌트를 보여주는 역할 -->
 <fieldset>
 <legend>현재폼의타이틀영역입니다.</legend>
+<div class="input-class">
 <label for="name">이름</label>
 <input name="name" id="name" type="text" placeholder="이름을 입력">
 <label for="phone">연락처</label>
 <input name="phone" id="phone" type="text" placeholder="연락처를 입력">
 <label for="email">이메일</label>
 <input name="email" id="email" type="email" placeholder="email을 입력">
+</div>
+<div class="textarea-class">
 <label for="message">메세지</label>
 <textarea name="message" id="message" placeholder="내용을 입력"></textarea>
+</div>
 </fieldset>
 <div class="submit-btn">
 <button type="submit">메세지보내기</button>
