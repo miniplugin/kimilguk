@@ -1,6 +1,9 @@
 @charset "UTF-8";
 /* 모바일용 스타일지정 시작  */
-body {font-size:14px;}/*부트스트랩css영향을 받은것을 무효화시키고, 사용자css로 적용*/
+body {/*reset에서 초기화 된것을 재 정의 할때*/
+font-size:14px;
+background:#fff;
+}/*부트스트랩css영향을 받은것을 무효화시키고, 사용자css로 적용*/
 /* 헤더영역 시작 */
 .header {
 height:80px;

@@ -2,17 +2,23 @@
 <html><!-- html문서는 태그열고 ~ 태그닫고 하는 영역확인 중요 -->
 <head><!-- 문서내용과는 관계없는 문서정보=메타데이터(데이터의데이터)가 존재 -->
 <meta charset="UTF-8"><!-- 문서의 언어 인코딩설정  지금은 유니코드로 됨 -->
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
 <title>반응형홈페이지</title><!-- 문서의 제목을 브라우저상단왼쪽에 표시 -->
 <!-- 외부 css파일 불러오는 태그(아래) -->
 <link rel="stylesheet" href="/resources/sample/css/reset.css" type="text/css">
 <link rel="stylesheet" href="/resources/sample/css/mobile.css" type="text/css">
+<link rel="stylesheet" href="/resources/sample/css/tablet.css" type="text/css">
 <!-- 외부 자바스크립트 불러오는 태그(아래) -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="/resources/sample/js/user.js"></script>
 <!-- span태그 자리를 차지하지 않는 영역 = 한뼘 , px 픽셀 화면에 표시되는 크기의 단위 -->
 <!-- :콜론(속성:값, Key:Value), ;세미콜론(문장의 끝) -->
 <style>
+/*테블릿용 스타일 시작*/
+@media all and (min-width:768px) {
 
+}
+/*테블릿용 스타일 끝*/
 </style>
 <script>
 /* 자바스크립트 시작 */
@@ -125,7 +131,7 @@
 </ul>
 </section>
 
-<footer class="footer">
+<footer class="footer float-clear">
 <!-- 하단 로고 영역 시작 -->
 <p>LOGO</p><!-- 문장영역을 의미하는 Paragraph 태그입니다. -->
 <!-- 하단 로고 영역 끝 -->
