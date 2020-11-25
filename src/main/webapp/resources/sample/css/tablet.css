@@ -27,5 +27,20 @@ color:#3f51b5;
 /*슬라이드영역시작*/
 .carousel-item, .carousel-item img {height:500px;}
 /*슬아이드영역 끝*/
+
+/* we are 영역시작*/
+.float-clear {clear:both;}/*clear속성은 float작동을 없애는 역할 7.812498 + 94.4166 = 102.xx */
+.weare-body li {
+float:left;/*세로정렬을 가로정렬로 변경 부트스트랩의 그리드시스템 col-12(100%),col-3,col-3,col-3,col-3)의 원형 */
+width:23.046875%;/*(177포토샵레이아웃의가로값 / 768)x100 = 몇%*/
+margin-left:2.604166%;/*(20포토샵레이아웃의여백값/768)x100 = 몇%*/
+overflow:hidden;/*반응형list박스에서 가로크기를 벗어나는 이미지 내용은 숨김처리*/
+}
+.weare-body li img {width:100%;height:auto;}
+.weare-body {margin:10px 3%;}/*가운데 정렬, 10px상하, 3%좌우여백*/
+.weare-body li:first-child {
+margin-left:0px;
+}
+/* we are 영역 끝*/
 	
 }

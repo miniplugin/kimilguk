@@ -69,7 +69,7 @@ color:#fff;
 
 /* 푸터영역 시작 */
 .footer {
-margin-top:30px;
+padding-top:30px;/*margin-top 작동을 하지 않아서 padding-top으로 변경*/
 }
 .footer p {
 margin: 21px 0px;
