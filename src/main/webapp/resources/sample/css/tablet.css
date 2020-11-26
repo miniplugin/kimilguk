@@ -55,6 +55,14 @@ width:50%;
 float:left;/*세로배치가 3개 가로배치로 변함*/
 width:31.59722222222%; /*3개중 1개의가로크기 (242px/768px)*100 = 31.59722222222% */
 margin-left:2.60416666666%; /*1개여백구하기 (20px/768px)*100= 2.60416666666% */
+height:300px;
+border:1px solid #ccc;
+}
+.blog-section li div {
+height:200px;
+overflow:hidden;
+/*min-height:200px;이미지 최소높이를 지정*/
+/*max-height:200px;이미지 초대높이를 지정*/
 }
 .blog-section li:first-child {/*마지막 li가 아래로 떨어지는 것을 방지역할*/
 margin-left:0px;
