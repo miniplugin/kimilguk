@@ -61,6 +61,7 @@ border:1px solid #ccc;
 .blog-section li div {
 height:200px;
 overflow:hidden;
+border:1px solid red;
 /*min-height:200px;이미지 최소높이를 지정*/
 /*max-height:200px;이미지 초대높이를 지정*/
 }
