@@ -63,6 +63,7 @@ margin-left:0px;
 /* 1,4,7,10,13...위치에 해당되는 것만 적용 
 n번째 인덱스값이기 때문에 0부터 시작합니다. 3n-2 = 3x0-2 = -2 결과가 이상함. 3n+1=3x0+1=1
 */
+/*디버그용코드 border:1px solid red;*/
 margin-left:0px;
 }
 .blog-section hr {display:none;}
