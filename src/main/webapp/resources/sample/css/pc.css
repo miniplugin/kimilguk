@@ -33,6 +33,14 @@ background:#ccc;/*짝대기 색상*/
 content:"";/*짝대기만 만들고, 내용은 비공간으로 처리*/
 }
 /*weare영역 끝*/
-	
+
+/*work영역 시작*/
+.work-section .section-title {
+text-align:left;
+margin-left:3%;
+}
+.work-section li {width:25%;}/*전체100%/4개 = 25%*/
+/*work영역 끝*/
+
 }
 /*PC용 스타일 끝*/
