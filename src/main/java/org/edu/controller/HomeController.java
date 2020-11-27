@@ -28,7 +28,8 @@ public class HomeController {
 	 */
 	@RequestMapping(value="/contact",method=RequestMethod.POST)//포스트방식은 데이터를 전송하는역할
 	public String contact_send() {
-		//데이터 전송후에 다른 페이지이동이 필요합니다. 새로고침을 방지하기 위해서.
+		//데이터 전송후에 다른 페이지이동이 필요합니다. 새로고침=자동등록을 방지하기 위해서(게시판테러방지용)
+		return "redirect:/blog";//URL경로를 사용.
 	}
 	@RequestMapping(value="/contact",method=RequestMethod.GET)//겟방식은 폼페이지를 보여주는 역할
 	public String contact() {

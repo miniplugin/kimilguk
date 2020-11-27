@@ -23,6 +23,7 @@
 <input name="phone" id="phone" type="text" placeholder="연락처를 입력">
 <label for="email">이메일</label>
 <input name="email" id="email" type="email" placeholder="email을 입력">
+<!-- 입력 제약조건 html5에서 지원하는 기능 type에 꼭 email라고 형식을 지정해야지만 제약조건 작동이 됨. -->
 </div>
 <div class="textarea-class">
 <label for="message">메세지</label>
