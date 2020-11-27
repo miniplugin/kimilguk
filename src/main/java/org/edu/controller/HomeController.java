@@ -26,6 +26,18 @@ public class HomeController {
 	 * 그래서, 저장시 콘솔에 보시면, Reloading Context with... is completed 재실행 되었다고 나옵니다.
 	 * 그래서, .java 클래스는 수정 후 약간 기다린 후 Reloading... 메시지 후 결과 확인이 가능합니다.
 	 */
+	@RequestMapping(value="/contact",method=RequestMethod.GET)
+	public String contact() {
+		return "sample/contact";
+	}
+	@RequestMapping(value="/blog",method=RequestMethod.GET)
+	public String blog() {
+		return "sample/blog";
+	}
+	@RequestMapping(value="/work",method=RequestMethod.GET)
+	public String work() {
+		return "sample/work";
+	}
 	@RequestMapping(value="/weare",method=RequestMethod.GET)
 	public String weare() {
 		//외부에서 /weare경로로 접근했을때, sample/weare.jsp와 매핑시키라는 의미.
