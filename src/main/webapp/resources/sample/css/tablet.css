@@ -47,6 +47,8 @@ margin-left:0px;
 .work-section li {
 float:left;/*세로배치를 가로배치로 변경*/
 width:50%;
+max-height:300px;/*높이가 들쑥 날쑥하면 이빨빠지는 부분이 생겨서 이미지 보이는 공간의 최고 높이를 300px로 고정*/
+overflow:hidden;/*만약에 300px 높은 이미지는 숨김처리가 됩니다.
 }
 /*work영역 끝*/
 
