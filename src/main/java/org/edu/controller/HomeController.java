@@ -21,12 +21,20 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
-	 * 루트 / 라는 이름으로 요청 받으면, home.jsp파일에 화면출력(렌더링)이 됩니다.(아래)
+	 * 외부(웹브라우저)에서 루트 / 라는 이름으로 요청 받으면, home.jsp파일에 화면출력(렌더링)이 됩니다.(아래)
 	 * HomeController.java 를 저장하면, 이클립스에서는 HomeController.class 실행가능한 파일을 생성
 	 * 그래서, 저장시 콘솔에 보시면, Reloading Context with... is completed 재실행 되었다고 나옵니다.
 	 * 그래서, .java 클래스는 수정 후 약간 기다린 후 Reloading... 메시지 후 결과 확인이 가능합니다.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value="/",method=RequestMethod.GET)
+	public String index() { //메서드(함수)구성: 리턴(반환값출력)형태지정 메서드명(매개변수) {구현내용} String index(){}
+		//해석:상단 리퀘스트매핑에서 지정한 경로로 접근을 하게되면, 아래에 있는 index()메서드를 실행해라.
+		//메서드명 제일 앞에있는 public는 접근권한에 대한 키워드인데요, public(공공-다른 클래스에서 접근가능)
+		//, private(내부-현재 HomeController클래스에서만 접근가능)
+		//리턴반환값으로 사용한 String 클래스는 문자열을 반환하고, 여기서는 index.jsp와 매칭되는 문자열을 반환.
+		return "";
+	}
+	/*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("개발자들이 변수값 확인용으로 사용하는 것이 로그 입니다. 현재 여러분 컴퓨터언어는 {} 입니다.", locale);
 		logger.info("환영합니다. 현재 여러분의 컴퓨터 언어는 " + locale + " 입니다..");
@@ -44,6 +52,6 @@ public class HomeController {
 		System.out.println("현재 서버의 시간은 " + formattedDate + " 입니다.");
 		return "home";//결과적으로 return 출력값이 home(생락 .jsp)에 연동됩니다.
 		//스프링에서 뷰단으로 데이터 이동(전송)에 대해서 살펴 보았습니다.
-	}
+	}*/
 	
 }
