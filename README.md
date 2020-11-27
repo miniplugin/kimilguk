@@ -2,7 +2,12 @@
 - /resources/sample/반응형페이지 : 실제서비스되는 내용은 아닙니다. 퍼블리셔가 만들어서 준것을 개발자가 여기다 배치 하는 공간 입니다.
 - 실제 개발은 위에서 만든 퍼블리셔 결과물을 이용해서 WEB-INF/views 폴더에 개발한 결과를 배치하게 됩니다.
 - 헤로쿠 클라우드에서 서비스 되는 페이지가 WEB-INF/views 폴더에 위치하게 됩니다.
-- WEB-INF/views/sample폴더 생성.
+- WEB-INF/views/sample폴더 생성 후 index.jsp
+- 컨트롤러 자바클래스에서 외부에서 /접근시 index.jsp로 매핑시킨 후 확인.
+- 퍼블리셔가 만든 index.html 복사해서 index.jsp 붙여넣기 후 확인.
+- jsp분리작업: include폴더 생성후 그안에 header.jsp, footer.jsp 2개만듭니다.
+- index.jsp 에서 header.jsp에 들어갈 영역 Cut해서 붙여넣기.
+- index.jsp 에서 footer.jsp에 들어갈 영역 Cut해서 붙여넣기. 후 확인.
 - -------------------------------------------------------------
 - 반응형 웹페이지 작업 결과를 스프링MVC프로젝트에서 home.jsp로 변환.
 - http://localhost:8080/ 새로만든 home.jsp가 나오도록 하겠습니다.
