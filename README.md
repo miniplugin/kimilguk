@@ -1,4 +1,6 @@
 #### 20201130(월) 작업
+- AdminLTE로 만드는 스프링 관리자 메인화면 구현 샘플(아래)
+![ex_screenshot](./git_img/admin_home.jpg)
 - AdminLTE다운받은 압축파일을 풀어서, 폴더(dist,pages,plugins), index(1,2).html
 - 위 6개를 resoureces폴더에 붙여 넣습니다.
 - 프로트엔드단 대세중 2가지 플러그인(자바스크립트템플릿) 위에 포함되어 있습니다.
