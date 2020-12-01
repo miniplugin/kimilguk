@@ -2,6 +2,7 @@
 - member_view.html 마무리
 - member_write.html 화면작업: 부트스트랩참조URL(아래)
 - http://localhost:8080/resources/pages/forms/general.html
+- 이것이 자바다 4번째 과목 교재수령 방법 한번 더 공지(수,목 오후 6시~8시까지 학원방문수령)
 
 #### 20201201(화) 작업
 - html lang="en" 이부분은 여러분PC가 영문 윈도면 정상.
