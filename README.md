@@ -1,3 +1,8 @@
+#### 20201202(수) 작업예정
+- member_view.html 마무리
+- member_write.html 화면작업: 부트스트랩참조URL(아래)
+- http://localhost:8080/resources/pages/forms/general.html
+
 #### 20201201(화) 작업
 - html lang="en" 이부분은 여러분PC가 영문 윈도면 정상.
 - 그런데, 우리PC는 한글윈도우 이기 때문에, html lang="ko"로 변경하시면 편리합니다.
