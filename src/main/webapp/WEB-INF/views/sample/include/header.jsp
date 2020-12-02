@@ -63,7 +63,7 @@ $(document).ready(function(){
 <li><a href="/work">WORK</a></li>
 <li><a href="/blog">BLOG</a></li>
 <li><a href="/contact">CONTACT US</a></li>
-<li><a href="javascript:alert('관리자단 준비중 입니다.');">AdminLTE</a></li>
+<li><a href="/admin">AdminLTE</a></li>
 </ul>
 </nav>
 <!-- 상단 로고와 햄버거 메뉴영역 끝 -->
