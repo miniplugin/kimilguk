@@ -1,4 +1,5 @@
-#### 20201202(수) 작업예정
+#### 20201202(수) 작업
+- 저장소이름: 변수(내용에 변하는 값을 java로 불러옴)  / 상수(내용에 정해진 값을 불러옴)
 - member_view.html 마무리
 - member_write.html 화면작업: 부트스트랩참조URL(아래)
 - http://localhost:8080/resources/pages/forms/general.html
