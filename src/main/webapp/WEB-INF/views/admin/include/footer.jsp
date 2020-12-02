@@ -52,6 +52,21 @@
 <script src="/resources/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/resources/dist/js/pages/dashboard.js"></script>
+<!-- 왼쪽메뉴 선택된 부분 active클래스 주는 j쿼리 명려어 추가(아래) -->
+<script>
+$(document).ready(function(){
+	//현재 선택된 URL 값을 가져오는 명령(아래)
+	var current = location.pathname;
+	var current_2 = current.split("/",3)[1];//split함수로 current에있는 문자를 분리
+	alert(current_2);
+	//alert(current);//admin(관리자홈),admin/member_list(관리자관리),
+	//admin/board_list(게시물관리)
+	//active클래스명을 동적으로 추가할 영역은 nav-item 안쪽의 a 태그의 클래스명을 추가하면 됨.
+	$(".nav-treeview li a").each(function(){
+		
+	});//each함수로 a태그 2개를 찾는 명령.
+});
+</script>
 </body>
 </html>
 <!-- 관리자단 푸터 끝 -->
