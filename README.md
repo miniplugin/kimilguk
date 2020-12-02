@@ -1,6 +1,13 @@
 #### 20201202(수) 작업
+- admin폴더에는 크게 2가지기능: 관리자관리(member폴더에), 게시물관리(board폴더에)
+- 상대경로: ./(현재폴더위치), ../(상위폴더위치), 파일위치를 지정할때 사용.return(스프링 반환값)
+- 절대경로: URL경로(웹브라우저로 접근가능한경로)를 사용할때. @RequestMapping에서(스프링)
+- 게시판 html화면 구현하기 전, 관리자관리 부분 제어용 컨트롤러 클래스 만들고 있습니다.
+- admin/include/header.jsp의 메뉴링크를 html상대경로에서 Admin컨트롤러의 절대경로로 변경처리.(아래)
+- /admin/member_list(관리자관리 메뉴와바인딩), /admin/board_list(게시물관리 메뉴와 바인딩)
+- 데이터를 전송/수신하는 관계는 나중에 진행됩니다. 오늘은 URL과 jsp만 바인딩만 시킵니다. 
 - 저장소이름: 변수(내용에 변하는 값을 java로 불러옴)  / 상수(내용에 정해진 값을 불러옴)
-- member_view.html 마무리
+- member_view.html 마무리.
 - member_write.html 화면작업: 부트스트랩참조URL(아래)
 - http://localhost:8080/resources/pages/forms/general.html
 - 이것이 자바다 4번째 과목 교재수령 방법 한번 더 공지(수,목 오후 6시~8시까지 학원방문수령)

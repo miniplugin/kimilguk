@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ include file="" %>
+<%@ include file="./include/header.jsp" %>
+
   <!-- 대시보드 본문 Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- 본문헤더 Content Header (Page header) -->
@@ -32,3 +33,4 @@
   </div>
   <!-- /.content-wrapper -->
   
+<%@ include file="./include/footer.jsp" %>
