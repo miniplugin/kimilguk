@@ -36,7 +36,8 @@ public class AdminController {
 		//그 요청을 컨트롤러에서 받은건가요?
 		//위에서 수신한 user_id를 개발자가 만든 user_id2이름으로 member_view.jsp 보냅니다.(아래)
 		//member_view.jsp에서 model로 수신한 데이터 user_id2 를 출력하는 방법은 점심 이후에...
-		model.addAttribute("user_id2", user_id);
+		
+		model.addAttribute("user_id2", user_id + "<script>alert('메롱');</script> 님");
 		return "admin/member/member_view";
 	}
 	
