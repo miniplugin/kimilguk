@@ -22,12 +22,32 @@ public class ClassApp {
 		Employee employee = new Employee();
 		Salesman salesman = new Salesman();
 		Development development = new Development();
-		employee.doJob();
-		salesman.doJob();
-		development.doJob();
+		//employee.doJob();
+		//salesman.doJob();
+		//development.doJob();
+		GraphicObject graphicObject = new Triangle();
+		graphicObject.draw();//클래스형 변수명을 지정할때, 카멜표기(낙타등)를 적용.
 	}
 
 }
+//추상클래스에 대한 연습(아래)
+//추상클래스또는 인터페이스를 사용하는 목적은 두꺼운책에서 목차를 만드는 것과 똑같은 역할.
+abstract class GraphicObject {
+	int x, y;//그래픽오브젝트 클래스 멤버번수 선언
+	abstract void draw();//명세표만 있고 구현내용이 없는(인터페이스) 추상메서드 선언
+	//다른 해석하면, 책에서 목차만 있고, 내용이 없는 구조. 내용은 별도의 클래스에 있음.
+}
+class Triangle extends GraphicObject {
+
+	@Override
+	void draw() {
+		System.out.println("  *");
+		System.out.println(" * * ");
+		System.out.println("*****");
+	}
+	
+}
+
 //클래스 상속에 대한 연습(아래)
 class Employee {//회사의 모든직원들 클래스
 	int nSalary;//회사직원 봉급 멤버변수
