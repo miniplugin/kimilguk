@@ -47,7 +47,7 @@ public class AdminController {
 				{"admin","찐관리자","admin@abc.com","true","2020-12-04","ROLE_ADMIN"},
 				{"user","일반사용자","user@abc.com","false","2020-12-04","ROLE_USER"}
 		};
-		//{"user_id":"admin","user_name":"관리자",...} 해시데이터(그물-낚시)
+		//{"user_id":"admin","user_name":"관리자",...} 해시#데이터(그물-낚시)
 		model.addAttribute("members", members);
 		return "admin/member/member_list";//member_list.jsp 로 members변수명으로 데이터를 전송
 	}
