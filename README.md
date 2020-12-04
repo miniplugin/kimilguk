@@ -3,7 +3,7 @@
 - 회원멤버클래스를 만들기 실습: 회원 상태정보를 저장하는 필드(멤버변수:user_id, user_name, email,...)생성.VO(Value Object)클래스
 - 회원멤버클래스를 만들기 실습: 회원 맴버변수의 행동양식을 규정한는 메소드(함수)를 생성.
 - abstract(추상)클래스/메서드 예: abstract class calc { add(){}; minus(){}; multi(){}, sub(){}; }
-- 객체지향프로그래밍: Object Oriented Programming 인스턴스(실행가능한클래스)를 사용하는 프로그램.
+- 객체지향프로그래밍(OOP)-Object Oriented Programming 인스턴스(실행가능한클래스)를 사용하는 프로그램.
 - new 키워드로 만드는 오브젝트를 사용하는 방식이 필수.(한 물 간 방식)
 - 참조형변수: 객체가 위치해 있는 주소 값을 저장한다. = 실행가능한 변수 = 인스턴스변수 = 메모리에 로딩된 변수
 - 참조형변수예1: String s3 = new String(); //인스턴스 변수=오브젝트 를 이런방식 만들어서 사용함.
