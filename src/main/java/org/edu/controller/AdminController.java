@@ -15,8 +15,9 @@ public class AdminController {
 		return "admin/board/board_list";
 	}
 	
+	//메서드 오버로딩(예, 동영상 로딩중..., 로딩된 매개변수가 다르면, 메서드이름을 중복가능합니다.)
 	@RequestMapping(value="/admin/member/member_write",method=RequestMethod.POST)
-	public String member_write_do() {
+	public String member_write(@RequestParam("user_name") String user_name) {
 		//아래 GET방식의 폼 출력화면에서 데이터 전송받은 내용을 처리하는 바인딩.
 		//DB베이스 입력/출력/삭제/수정 처리-다음에...
 		return "redirect:/admin/member/member_list";//절대경로로 처리된 이후에 이동할 URL주소를 여기에 반환

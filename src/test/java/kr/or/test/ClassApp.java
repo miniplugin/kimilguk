@@ -30,6 +30,9 @@ public class ClassApp {
 	}
 
 }
+
+//메서드 오버로드(한개의 클래스에서 메서드이름은 고유값이라서 중복해서 사용할 수 없어요, 단, 매개변수(인자값)가 다르면 가능합니다.
+
 //추상클래스에 대한 연습(아래)
 //추상클래스또는 인터페이스를 사용하는 목적은 두꺼운책에서 목차를 만드는 것과 똑같은 역할.
 abstract class GraphicObject {
@@ -38,7 +41,7 @@ abstract class GraphicObject {
 	//다른 해석하면, 책에서 목차만 있고, 내용이 없는 구조. 내용은 별도의 클래스에 있음.
 }
 class Triangle extends GraphicObject {
-
+	//메서드 오버라이드(메서드이름이 같은 것을 상속관계에서 실행) 
 	@Override
 	void draw() {
 		System.out.println("  *");

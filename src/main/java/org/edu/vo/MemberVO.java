@@ -20,6 +20,7 @@ public class MemberVO {
 	private Date reg_date;//Date클래스형 변수를 사용할때 java.util패키지를 임포트한다.
 	private Date update_date;//회원정보 수정일 필드.
 	//get,set 메서드가 필요한 이유는 member_list(wirite,update).jsp<-겟셋메서드->컨트롤러<-겟셋메서드->DB
+		
 	public String getUser_id() {
 		return user_id;
 	}
