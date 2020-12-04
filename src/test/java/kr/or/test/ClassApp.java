@@ -15,13 +15,43 @@ public class ClassApp {
 		//자바프로그램의 특징은 OOP프로그래밍의 대표적인 사례, Object=위 에서 new키워드로 생성한 c 오브젝트,
 		//자바에서 OOP 를 사용방식을 설명하는 예, 스프링에서는 new키워드대신 @Inject를 주로 사용.
 		double print_result = c.getKimilguk();
-		System.out.println("첫번째 원의 넓이는 " + print_result + " 입니다.");
+		//System.out.println("첫번째 원의 넓이는 " + print_result + " 입니다.");
 		double print_result2 = c2.getKimilguk();
-		System.out.println("두번째 원의 넓이는 " + print_result2 + " 입니다.");
+		//System.out.println("두번째 원의 넓이는 " + print_result2 + " 입니다.");
+		//아래 new 키워드 생성자를 이용해서 오브젝트를 2개 만들었음. 
+		Employee employee = new Employee();
+		Salesman salesman = new Salesman();
+		Development development = new Development();
+		employee.doJob();
+		salesman.doJob();
+		development.doJob();
 	}
 
 }
+//클래스 상속에 대한 연습(아래)
+class Employee {//회사의 모든직원들 클래스
+	int nSalary;//회사직원 봉급 멤버변수
+	String szDept;//회사직원의 부서명 멤버변수
+	public void doJob() {
+		System.out.println("환영합니다. 직원분들!");
+	}
+}
+class Salesman extends Employee {
+	public Salesman() {//클래스명과 똑같은 메서드를 생성자 메서드 입니다.
+		szDept = "판매 부서";//부모클래스 Employee의 szDept멤버변수를 자식 클래스에서도 사용가능
+	}
+	public void doJob() {
+		System.out.println("환영합니다. " + szDept +" 입니다!");
+	}
+}
+class Development extends Employee {
+	public Development() {szDept="개발 부서";}
+	public void doJob() {
+		System.out.println("환영합니다. " + szDept + " 입니다.!");
+	}
+}
 
+//오브젝트생성과 new키워드사용 연습(아래)
 class Circle {
 	private int r;//멤버변수 반지름 이클래스에서 전연변수
 	public Circle(int a) {//생성자매서드 a인자=매개변수=파라미터 값은 new키워드로 오브젝트 만들어질때 발생
