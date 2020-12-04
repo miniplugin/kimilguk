@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../include/header.jsp" %>
 
   <!-- 대시보드 본문 Content Wrapper. Contains page content -->
@@ -71,24 +72,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr onclick="javascript:location.href='/admin/member/member_view?user_id=admin';" style="cursor:pointer;">
-                      <td><a href="/admin/member/member_view?user_id=admin">admin</a></td>
+                  <c:forEach items="${members}" var="member">
+                  	<tr>
+                      <td><a href="/admin/member/member_view?user_id=${member[0]}">${member[0]}</a></td>
                       <!-- 위에 a링크값은 리스트가 늘어날 수록 동적으로 user_id값이 변하게 됩니다. 개발자가 jsp처리 -->
-                      <td>관리자</td>
-                      <td>admin@abc.com</td>
-                      <td>true</td>
-                      <td>2020-12-01</td>
-                      <td><span class="badge bg-danger">ROLE_ADMIN</span></td>
+                      <td>${member[1]}</td>
+                      <td>${member[2]}</td>
+                      <td>${member[3]}</td>
+                      <td>${member[4]}</td>
+                      <td><span class="badge bg-danger">${member[5]}</span></td>
                       <!-- 권한표시는 부트스트랩 뺏지 클래스 사용 -->
                     </tr>
-                    <tr>
-                      <td><a href="/admin/member/member_view?user_id=user">user</a></td>
-                      <td>사용자</td>
-                      <td>user@abc.com</td>
-                      <td>false</td>
-                      <td>2020-12-01</td>
-                      <td><span class="badge bg-danger">ROLE_USER</span></td>
-                    </tr>
+                  </c:forEach>
                   </tbody>
                 </table>
               </div>
