@@ -1,6 +1,32 @@
 #### 20201208(화) 작업예정
 - 파일 입출력 처리 마무리 예정.
-- member_list.jsp에서 MemberVO 클래스 테스트 사용 예정.
+- member_list.jsp에서 MemberVO 클래스 테스트 사용 예정(아래).
+- 데이터 타입에 대해서 배열타입과 리스트타입 그리고, 해시타입
+
+```
+Date toDay = new Date();
+MemberVO m1 = new MemberVO();
+// setter 메서드를 이용해 해당 인스턴스 변수에 값을 넣는다.
+m1.setUser_id("kimilguk");
+m1.setUser_name("김일국");
+m1.setEmail("kimilguk@abc.com");
+m1.setEnabled(true);
+m1.setReg_date(toDay);
+m1.setLevels("ROLE_ADMIN");
+MemberVO[] members_array = new MemberVO[2];
+members_array[0] = m1;
+members_array[1] = m1;
+System.out.println("Array 배열 데이터 타입은 " + members_array.toString());
+//=====================================================================
+List<MemberVO> members_list = Arrays.asList(members_array);//실제 DB에서는 출력을 List 데이터타입 으로 반환받는다
+System.out.println("List 데이터 타입은 " + members_list.toString());
+//=====================================================================
+Map<String, Object> paramMap = new HashMap<String, Object>();
+paramMap.put("bno", 2);
+paramMap.put("fullname", "abc.jpg");
+System.out.println("해시맵 데이터 타입은 " + paramMap);
+System.out.println("해시맵 일부만 출력은 " + paramMap.get("bno"));
+```
 
 #### 20201207(월) 작업
 - 목표: 자바(스프링)벡엔드단부분에 이력서(포트폴리오)+면접에서 일할수 인력으로 평가받는게 목적.
