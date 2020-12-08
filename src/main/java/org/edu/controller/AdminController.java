@@ -1,5 +1,7 @@
 package org.edu.controller;
 
+import java.util.Date;
+
 import org.edu.vo.MemberVO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,9 +58,17 @@ public class AdminController {
 		members_input.setUser_id("admin");
 		members_input.setUser_name("찐찐관리자");
 		members_input.setEmail("admin@abc.com");
-		members_input.setEnabled(true);
-		
-		model.addAttribute("members", members);
+		members_input.setEnabled(true);//enabled 데이터형(타입)이 boolean형 이기 때문에 true, false
+		Date toDay = new Date();//자바의 Date클래스를 이용해서 현재 날짜(시간)을 가진 toDay변수를 생성.
+		members_input.setReg_date(toDay);//reg_date 데이터타입이 Date형 이기 때문에 java의 날짜 데이터를 입력
+		members_input.setLevels("ROLE_ADMIN");
+		members_input.setPoint(10);//point 데이터타입이 Integer형 이기 때문에 숫자를 입력.
+		// 위 members_input 오브젝트에는 1개의 라인(레코드)만 입력 되어 있어서, 이 오브젝트를 배열오브젝트에 저장(아래)
+		MemberVO[] members_array = new MemberVO[2];//클래스형 배열 오브젝트 생성[2]는 배열의 크기=레코드갯수 입니다.
+		members_array[0] = members_input;
+		members_array[1] = members_input;
+		//---------------------------------------------------------------------
+		model.addAttribute("members", members_array);//members-2차원배열을 members_array클래스오브젝트로 변경
 		return "admin/member/member_list";//member_list.jsp 로 members변수명으로 데이터를 전송
 	}
 	
