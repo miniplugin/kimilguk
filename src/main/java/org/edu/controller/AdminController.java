@@ -1,6 +1,10 @@
 package org.edu.controller;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.edu.vo.MemberVO;
 import org.springframework.stereotype.Controller;
@@ -51,7 +55,14 @@ public class AdminController {
 				{"admin","찐관리자","admin@abc.com","true","2020-12-04","ROLE_ADMIN"},
 				{"user","일반사용자","user@abc.com","false","2020-12-04","ROLE_USER"}
 		};
-		//{"user_id":"admin","user_name":"관리자",...} 해시#데이터(그물-낚시)
+		//{"user_id":"admin","user_name":"관리자",...} 해시#데이터 타입<키(key),값(value)>(그물-낚시)
+		//Map 타입이 부모, HashMap타입 자식클래스, 관례적으로 사용, paramMap오브젝트의 확장하기 편하도록 하기 위해서 상속.
+		//Map타입을 상속받아서, HashMap타입의 오브젝트를 생성하는 방식.
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("user_id", "admin");
+		paramMap.put("user_name", "관리자");
+		paramMap.put("age", 40);
+		System.out.println("해시데이터타입 출력 " + paramMap);
 		
 		//members 2차원배열 변수를 MemberVO 클래스형 오브젝트로 members_array 변경(아래)
 		MemberVO members_input = new MemberVO();
@@ -68,7 +79,12 @@ public class AdminController {
 		members_array[0] = members_input;
 		members_array[1] = members_input;
 		//---------------------------------------------------------------------
-		model.addAttribute("members", members_array);//members-2차원배열을 members_array클래스오브젝트로 변경
+		//실제 코딩에서는 배열타입으로 보내지 않고, List타입(목록)으로 model이용해서 jsp로 보냅니다.
+		List<MemberVO> members_list = Arrays.asList(members_array);
+		//위에서 만든 members_array배열오브젝트를 Arrays.asList메서드로 List타입으로 변경해서 jsp 보냅니다.
+		//위에서 테이터타입연습으로 총 3가지 테이터 타입을 확인했음.
+		System.out.println("List타입의 오브젝트 클래스내용을 출력 " + members_list.toString());
+		model.addAttribute("members", members_list);//members-2차원배열을 members_array클래스오브젝트로 변경
 		return "admin/member/member_list";//member_list.jsp 로 members변수명으로 데이터를 전송
 	}
 	
