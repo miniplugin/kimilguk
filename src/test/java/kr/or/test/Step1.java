@@ -34,6 +34,7 @@ public class Step1 {
 		// member를 출력하는데 배열값을 받아서 구현(아래)
 		int dataLength = names.length;//이름배열에 있는 사람의 명수를 구하기 목적은 아래 for반복의 끝값을 구함.
 		System.out.println("매개변수로 받은 names 의 사람의 명수는 : "+ names.length);
+		//고전for문의 반복문형식은 for(초기값;끝값=반복의조건cnt<2;증가값){구현내용}
 		for(int cnt=0;cnt<dataLength;cnt++) {
 			System.out.println("배열의 이름은: "+names[cnt]+" | 나이는: "+ages[cnt]+" | 연락처는: "+phoneNums[cnt]);
 		}
