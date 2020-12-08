@@ -1,4 +1,8 @@
 #### 20201208(화) 작업
+- Step2.java클래스 파일1개를 src/test/java폴더안에 kr.or.member패키지를 만들어서 3개 클래스파일로 분리.
+- 3개의 자바클래스 모여서 1개의프로그램이 됨. 진입점 main메서드 1개만필요
+- erd보고 MemberVO.java 클래스만드시는것  1.
+- 데이터베이스자료를 가공하는(비지니스로직) 서비스클래스 만들기 2.
 - 조건문: if, switch(조건)~case문
 - 반복문: for, forEach(제일많이 사용), while(많이안쓰는 이유, 무한루프로 빠지는 오류가 발생), forEach예,향상된for(member:member_list){구현내용}
 - 연산자: +-x/,=(대입연산자)예, int sum = 3+5;
