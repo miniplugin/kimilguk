@@ -7,7 +7,8 @@ public class LambdaApp {
 	public static int method(int x, int y) {
 		//IntSupplier 계산된 결과값을 반환할때 int타입으로 반환하는 명세가 모여있는 인터페이스
 		//위 IntSupplier는 인터페이스로 메서드명만 있고, 구현내용이 없는 영역.
-		//람다식 적용전(아래)
+		
+		//람다식 적용전 코드(아래)
 		IntSupplier intSupplier = new IntSupplier() {//구현내용시작
 			@Override
 			public int getAsInt() {
@@ -18,7 +19,8 @@ public class LambdaApp {
 		
 		//위 intSupplier오브젝트를 호출해야만 실행이 됩니다.
 		int result = intSupplier.getAsInt();
-		//람다식 적용후(아래)
+		
+		//람다식 적용후 코드(아래)
 		IntSupplier intSupplier2 = () -> {//구현내용시작:->new생략, 애로우함수추가, 메서드명생략됨. @오버라이드 생략
 				int sum = x+y;
 				return sum;		
