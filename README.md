@@ -1,4 +1,5 @@
 #### 20201209(수) 작업
+- 스프링관리자 AdminLTE템플릿 폰트어썸아이콘: 아래 템플릿에서 icon메뉴에서 fontAswesome 항목 클릭
 - 스프링관리자 AdminLTE템플릿 샘플: https://adminlte.io/themes/v3/pages/forms/general.html
 - 오후에는 스프링 관리자단에서 [게시물 관리] 메뉴 webapp/resources/html만들고, -> jsp변환 작업이어서 합니다.
 - prefix(jstl), suffix(servlet-context.xml)

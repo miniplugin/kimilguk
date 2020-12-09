@@ -127,7 +127,7 @@
     </div>
     <!-- /.sidebar -->
   </aside>
-<!-- 관리자단 헤더 끝 header.jsp -->
+<!-- 관리자단 헤더 끝 -->
 
   <!-- 대시보드 본문 Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -136,12 +136,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">게시글등록</h1>
+            <h1 class="m-0">글상세보기</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">게시글등록</li>
+              <li class="breadcrumb-item active">글상세보기</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -156,53 +156,50 @@
         <div class="row"><!-- 부트스트랩의 디자인 클래스 row -->
           <div class="col-12"><!-- 그리드시스템중 12가로칼럼 width:100% -->
           
-          <!-- form start -->
-          <form name="write_form" action="board_list.html" method="post">
-          
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">CREATE Board</h3>
+                <h3 class="card-title">READ Board</h3>
               </div>
               <!-- /.card-header -->
-              
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="user_id">title</label>
-                    <input type="text" class="form-control" name="user_id" id="user_id" placeholder="제목을 입력해 주세요." required>
-                    <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
-                    	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 user_id 입니다. -->
-                  </div>
-                  <div class="form-group">
-                  	<label for="content">Content</label>
-                  	<textarea rows="5" name="content" id="content" class="form-control"></textarea>
-                  	<!-- 필수입력 값은 html5에서 지원하는 유효성 검사중 required 속성을 사용해서 빈(null)값체크(유효성검사)를 합니다. -->
-                  </div>
-                  <div class="form-group">
-                  	<label for="email">writer</label>
-                  	<input type="text" class="form-control" name="email" id="email" placeholder="작성자를 입력해 주세요" required>
-                  </div>
-                  <div class="form-group" style="margin-bottom:0px;">
-                  <label>attach</label>
-                  </div>
-                  <div class="custom-file">
-                    <input type="file" name="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile" style="color:#999;">파일첨부</label>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              
-           </div>
+              <div class="card-body">
+                <strong><i class="fas fa-book mr-1"></i> title</strong>
+                <p class="text-muted">첫번째 게시물 제목</p>
+
+                <hr><!-- horizontal 수평선 태그 -->
+                <strong><i class="fas fa-map-marker-alt mr-1"></i> content</strong>
+                <p class="text-muted">
+                	첫번째 게시물 내용<br>
+                	줄바꿈 테스트
+                </p>
+				<!-- 부트스트랩 오른쪽여백주기클래스명mr-1:(margin-right: .25rem!important;) -->
+                <hr>
+                <strong><i class="fas fa-pencil-alt mr-1"></i> 작성자</strong>
+                <p class="text-muted">admin</p>
+                
+                <hr>
+                <strong><i class="far fa-save mr-1"></i> 첨부파일</strong>
+                <p class="text-muted"><a href="#">파일다운로드</a></p>
+                
+              </div>
+              <!-- /.card-body -->
+            </div>
           
           <!-- 버튼영역 시작 -->
             <div class="card-body">
-            	<a href="board_list.html" class="btn btn-primary float-right mr-1">LIST ALL</a>
-              	<button type="submit" class="btn btn-danger float-right mr-1">SUBMIT</button>              	
-              	<!-- a태그는 링크이동은 되지만, post값을 전송하지는 못합니다. 그래서, button태그를 사용. -->
-            </div>
+            	<a href="member_list.html" class="btn btn-primary float-right mr-1">LIST ALL</a>
+              	<a href="member_list.html" class="btn btn-danger float-right mr-1">DELETE</a>
+				<a href="member_write.html" class="btn btn-warning float-right mr-1 text-white">UPDATE</a>              	
+              	<!-- 부트스트랩 디자인 버튼클래스를 이용해서 a태그를 버튼모양 만들기(위) -->
+              	<!-- btn클래스명이 버튼모양으로 변경, btn-primary클래스명은 버튼색상을 변경하는역할 -->
+              	<!-- 
+              	어떻게 스타일이 아닌 클래스에다가 넣어줌으로서 모양과 위치과 바뀌는건가요?
+              	... 생각하는 부트스트랩은 html과 css를 모아놓은 집합체라고 생각하는데 
+              	거기에 float-right클라스로 정해놓은곳에 오른쪽으로 가게하는 스타일이 지정되어있어서 = 부트스트랩
+              	클래스 이름만 지정해줘도 그 클래스로 지정된 스타일이 적용되어서 
+              	클래스 이름 지정만으로도 스타일이 적용된다고 보면...          	
+              	 -->
+              </div>
           <!-- 버튼영역 끝 -->
-          
-          </form>
-          <!-- 폼내부에 버튼이 있어야지만, 전송버튼이 작동 됩니다. -->
           
           </div>
         </div>
@@ -265,14 +262,6 @@
 <script src="/resources/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/resources/dist/js/pages/dashboard.js"></script>
-<!-- 첨부파일 부트스트랩 디자인 JS -->
-<script src="/resources/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- 첨부파일 선택한 내용 출력 실행 -->
-<script>
-$(document).ready(function () {
-  bsCustomFileInput.init();
-});
-</script>
 </body>
 </html>
 <!-- 관리자단 푸터 끝 -->
