@@ -1,17 +1,23 @@
 package kr.or.member;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.TimeInfo;
 
 import kr.or.member.MemberService;
 import kr.or.member.MemberVO;
 
 public class MainController {
 
-	public static void main(String[] args) throws SocketException, UnknownHostException {
+	public static void main(String[] args) throws IOException {
 		// 실행 메서드
 		MemberVO memberVO = new MemberVO();// 자바 오브젝트 생성하는 방법
 		memberVO.setName("홍길동");
@@ -40,9 +46,23 @@ public class MainController {
 		timeClient.setDefaultTimeout(1000);
 		//네트워크로 서버시간을 가져올때, 응답이 1초를 넘기면, 재 접속해라.
 		timeClient.open();
-		//pool.ntp.org는 서버시간보내줄 실제 서버 주소.
+		//http://pool.ntp.org/는 서버시간보내줄 실제 서버 주소.
 		InetAddress address = InetAddress.getByName("pool.ntp.org");
-		//TimeInfo timeinfo
+		TimeInfo timeInfo = timeClient.getTime(address);
+		//서버시간을 담은 timeInfo 객체변수를 사용(아래) 변수는 카메표기법(낙타등표기법)
+		//TimeStamp 1970년부터 초단위로 계단된 현재까지의 초를 합친결과값(아래) 534533536236초
+		long returnTime = timeInfo.getMessage().getTransmitTimeStamp().getTime();
+		//위 반환받은 타임스탬프 초 값을 사람이 알아볼 수 있는 시간으로 변환(아래)
+		Date nowDate = new Date(returnTime);
+		//System.out.println("현재 서버시간은-영어버전 " + nowDate);
+		//Wed Dec 09 11:24:03 KST 2020 -> 2020-12-09 11:24:03
+		//SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		//System.out.println("현재 서버시간은-한국버전 " + formatDate.format(nowDate));
+		LocalDateTime localDateTime = nowDate.toInstant()
+				.atZone(ZoneId.systemDefault())
+				.toLocalDateTime();
+		System.out.println("Server 시간: " + localDateTime);
+		System.out.println("로컬PC 시간 : " + localDateTime.now());
 	}
 
 }
