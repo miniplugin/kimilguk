@@ -1,11 +1,17 @@
 package kr.or.member;
 
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
+import org.apache.commons.net.ntp.NTPUDPClient;
+
 import kr.or.member.MemberService;
 import kr.or.member.MemberVO;
 
 public class MainController {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SocketException, UnknownHostException {
 		// 실행 메서드
 		MemberVO memberVO = new MemberVO();// 자바 오브젝트 생성하는 방법
 		memberVO.setName("홍길동");
@@ -27,6 +33,16 @@ public class MainController {
 		// 전에 사용했던 출력보다는 개선된 방식으로 출력(아래) MemberService 서비스전용 클래스만들어서 처리.
 		MemberService memberService = new MemberService();// 자바 오브젝트객체 생성하는 방법\
 		memberService.printMember(members);// 서비스클래스의 메서드호출
+		
+		//서버시간 가져오기 코딩(아래)
+		//서버시간을 가져올 수 있는 commons-net 메이븐 디펜던시 사용 라이브러리를 추가.
+		NTPUDPClient timeClient = new NTPUDPClient();
+		timeClient.setDefaultTimeout(1000);
+		//네트워크로 서버시간을 가져올때, 응답이 1초를 넘기면, 재 접속해라.
+		timeClient.open();
+		//pool.ntp.org는 서버시간보내줄 실제 서버 주소.
+		InetAddress address = InetAddress.getByName("pool.ntp.org");
+		//TimeInfo timeinfo
 	}
 
 }
