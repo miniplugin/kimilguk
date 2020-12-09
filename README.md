@@ -1,4 +1,8 @@
 #### 20201209(수) 작업
+- Rest API방식으로 화면을 처리것이 트렌드 입니다.(빅데이터를 시각화하는 데 RestAPI+Ajax 기술사용)
+- Rest: Representation 기존데이터를 가지고, 화면 깜빡임 없이 데이터를 재가공하는 처리.
+- REST API사용되는 기술: 데이터 전송/수신 Ajax기술(프론트-개발자)로 처리. API(서버단기술)
+- Ajax: Asyncronized Javascript and Xml 비동기 통신으로 자바스크립트로 Json(text자료)를 재처리하는 기술. 
 - 스프링관리자 AdminLTE템플릿 폰트어썸아이콘: 아래 템플릿에서 icon메뉴에서 fontAswesome 항목 클릭
 - 스프링관리자 AdminLTE템플릿 샘플: https://adminlte.io/themes/v3/pages/forms/general.html
 - 오후에는 스프링 관리자단에서 [게시물 관리] 메뉴 webapp/resources/html만들고, -> jsp변환 작업이어서 합니다.
