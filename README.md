@@ -1,10 +1,96 @@
+### 기본정보
+- 스프링관리자 AdminLTE템플릿 샘플: https://adminlte.io/themes/v3/pages/forms/general.html
+
+#### 20201210(목) 작업예정
+- 댓글 관련 디자인 추가 후 Ajax 적용
+
+```
+<!-- 댓글 관련 자바스크립트 시작 -->
+<!-- 댓글 리스트 반복문용 JQuery라이브러리 == jstl의 향상된for문 같은 역할 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+<!-- 댓글 템플릿(빵틀) 만들기(아래) -->
+<script id="template" type="text/x-handlebars-template">
+{{#each .}}
+	<div class="replyLi" data-rno={{rno}}>
+		<i class="fas fa-comments bg-blue"></i>
+		<div class="timeline-item">
+			<h3 class="timeline-header">{{replyer}}</h3>
+			<div class="timeline-body">{{replytext}}</div>
+			<div class="timeline-footer">
+				<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modifyModal">Modify</a>
+			</div>
+		</div>
+	</div>
+{{/each}}
+</script>
+<!-- 댓글 템플릿(빵틀) 출력(아래)  -->
+<script>
+var printReplyList = function(replyArr, target, templateObject){
+	var template = Handlebars.compile(templateObject.html());
+	var html = template(replyArr);
+	$(".replyLi").remove();
+	target.after(html);
+}
+</script>
+<script>
+$(document).ready(function(){
+	$("#insertApplyBtn").on("click",function(){
+		$.ajax({
+			type:'get',
+			url:'/resources/board_view.html',
+			dataType:'text',
+			success:function(result){
+				var replyList = [
+					{rno: 1, bno: 15, replytext: "test1", replyer: "test1", regdate: 1607504648000},
+					{rno: 2, bno: 15, replytext: "test2", replyer: "test2", regdate: 1607504648000}
+					];
+				printReplyList(replyList, $(".time-label"), $("#template"));
+			}
+		});
+	});
+});
+</script>
+<!-- 댓글 수정/삭제용 모달팝업창(아래) -->
+<div id="modifyModal" class="modal modal-primary fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="display:block;">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body" data-rno>
+       <input type="hidden" id="rno" class="form-control">
+	<p><input type="text" id="replytext" class="form-control"></p>
+      </div>
+      <div class="modal-footer">
+	<button type="button" class="btn btn-info" id="replyModBtn">Modify</button>
+	<button type="button" class="btn btn-danger" id="replyDelBtn">DELETE</button>
+	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+//댓글 리스트에서 댓글 수정버튼 클릭시 모달창 내용에 바인딩 시키는 코딩(아래)
+$(document).ready(function(){
+	//선택한 댓글(template:빵틀)의 데이터를 모달창의 id,클래스에 데이터 바인딩
+	$(".timeline").on("click", ".replyLi", function(event) {
+		var reply = $(this);
+		$("#rno").val(reply.attr("data-rno"));
+		$(".modal-title").html(reply.find(".timeline-header").text());
+		$("#replytext").val(reply.find(".timeline-body").text());
+	});
+});
+</script>
+<!-- 댓글 관련 자바스크립트 끝 -->
+```
 #### 20201209(수) 작업
 - Rest API방식으로 화면을 처리것이 트렌드 입니다.(빅데이터를 시각화하는 데 RestAPI+Ajax 기술사용)
 - Rest: Representation 기존데이터를 가지고, 화면 깜빡임 없이 데이터를 재가공하는 처리.
 - REST API사용되는 기술: 데이터 전송/수신 Ajax기술(프론트-개발자)로 처리. API(서버단기술)
 - Ajax: Asyncronized Javascript and Xml 비동기 통신으로 자바스크립트로 Json(text자료)를 재처리하는 기술. 
 - 스프링관리자 AdminLTE템플릿 폰트어썸아이콘: 아래 템플릿에서 icon메뉴에서 fontAswesome 항목 클릭
-- 스프링관리자 AdminLTE템플릿 샘플: https://adminlte.io/themes/v3/pages/forms/general.html
 - 오후에는 스프링 관리자단에서 [게시물 관리] 메뉴 webapp/resources/html만들고, -> jsp변환 작업이어서 합니다.
 - prefix(jstl), suffix(servlet-context.xml)
 - prefix ,suffix 그냥 경로의 앞부분 뒷부분 생략가능하게 만드는 역할
