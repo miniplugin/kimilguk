@@ -1,4 +1,5 @@
 #### 20201209(수) 작업
+- 스프링관리자 AdminLTE템플릿 샘플: https://adminlte.io/themes/v3/pages/forms/general.html
 - 오후에는 스프링 관리자단에서 [게시물 관리] 메뉴 webapp/resources/html만들고, -> jsp변환 작업이어서 합니다.
 - prefix(jstl), suffix(servlet-context.xml)
 - prefix ,suffix 그냥 경로의 앞부분 뒷부분 생략가능하게 만드는 역할
