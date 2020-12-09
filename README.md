@@ -1,4 +1,15 @@
 #### 20201209(수) 작업
+- 오후에는 스프링 관리자단에서 [게시물 관리] 메뉴 webapp/resources/html만들고, -> jsp변환 작업이어서 합니다.
+- prefix(jstl), suffix(servlet-context.xml)
+- prefix ,suffix 그냥 경로의 앞부분 뒷부분 생략가능하게 만드는 역할
+- @RequestMapping...반환값에서 prefix(/WEB-INF/views/)가 사용, suffix(.jsp)
+-	...
+-		return "{prefix}admin/board/board_list{suffix}";
+-	...
+- 아래에서 사용된 prefix는 생략가능하다.
+- <beans:property name="prefix" value="/WEB-INF/views/" />
+- 아래에서 사용된 suffix는 생략가능하다.
+- <beans:property name="suffix" value=".jsp" />
 - 전체 틀(아래 읽으시면) : 자바이론 공부하신, 아래 데이터 흐름을 제어하는데 사용.
 - 여러명의 회원 정보(MemberVO-자료형클래스를이용부분)를
 - 전달주고받고(MainControler-메서드,URL호출부분), 
@@ -9,9 +20,7 @@
 - for (MemberVO member : members) {// members여러 레코드중 1개의 레코드를 member오브젝트객체로 대입
 - 1번째반복-> members[0]레코드데이터=>MemberVO member객체벼수 =>출력시 member.toString();
 - 2번째반복-> members[1]레코드데이터=>MemberVO member객체변수 =>출력시 member.toString();
-- 3번째반복-> members[2]레코드데이터=>MemberVO member객체변수 =>출력시 member.toString();
-
-- 오후에는 스프링 관리자단에서 [게시물 관리] 메뉴 html만들고, -> jsp변환 작업이어서 합니다. 
+- 3번째반복-> members[2]레코드데이터=>MemberVO member객체변수 =>출력시 member.toString(); 
 - 개인 카톡 면담 12월 화두,(아래 2가지 중 최소 1가지 글을 남겨 주세요, 2개 다 도 가능합니다.^^)
 - 1). 11월9일 부터 시작 이후 1달 가까이 지났으니, 현재 수업 대해서 어떤 분야든 의견 있으신분 말씀해 주세요, 수업에 반영 하도록 하겠습니다.
 - 2). 사람인 취업사이트에서 학생 본인이 일 하고 싶은 회사 1개를 골라서 URL을 남겨 주세요.
