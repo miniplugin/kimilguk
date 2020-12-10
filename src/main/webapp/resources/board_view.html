@@ -336,9 +336,7 @@ jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가�
  <i class="fas fa-envelope bg-blue"></i>
  <div class="timeline-item">
    <h3 class="timeline-header">{{replyer}}</h3>
-   <div class="timeline-body">
-     	{{replytext}}
-   </div>
+   <div class="timeline-body">{{replytext}}</div>
    <div class="timeline-footer">
 	 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
   		수정
@@ -391,6 +389,7 @@ $(document).ready(function() {
 		$("#rno").val($(this).attr("data-rno"));
 		$(".modal-title").html($(this).find(".timeline-header").text());
 		$("#replytext").val($(this).find(".timeline-body").text());
+		//alert("디버그" + $(this).find(".timeline-body").text());
 		//마우스클릭으로 선택한 댓글의 .timeline-body영역의 text문자를 
 		//모달창의 #replaytext영역에 값으로 입력하겠다.
 	});
