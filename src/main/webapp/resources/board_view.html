@@ -332,7 +332,7 @@ jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가�
 <!-- jsp <c:forEach items="${members}" var="member"> 같은 역할 {{#each .}} -->
 <script id="template" type="text/x-handlebars-template">
 {{#each .}}
-<div>
+<div class="template-div">
  <i class="fas fa-envelope bg-blue"></i>
  <div class="timeline-item">
    <h3 class="timeline-header">{{replyer}}</h3>
@@ -353,7 +353,8 @@ jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가�
 <script>
 var printReplyList = function(data, target, templateObject) {
 	var template = Handlebars.compile(templateObject.html());//html태그로 변환
-	var html = template(data);//빅데이터를 리스트템플릿에 바인딩 결합시켜주는 역할.
+	var html = template(data);//빅데이터를 리스트템플릿에 바인딩 결합시켜주는 역할. 변수html에 저장되었음.
+	$(".tempalate-div").remove();//화면에 보이는 댓글리스트만 지우기.
 	target.after(html);//target은 .time-label 클래스영역을 가리킵니다.
 };
 </script>
