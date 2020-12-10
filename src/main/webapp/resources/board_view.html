@@ -220,9 +220,11 @@
 	          </div>
 	          </form>
 	          <div class="timeline">
+	          	  <!-- .time-label의 before 위치 -->
 		          <div class="time-label">
 	                <span class="bg-red">Reply List[1]&nbsp;&nbsp;</span>
 	              </div>
+	              <!-- .time-label의 after 위치 -->
 		          <div>
 	                <i class="fas fa-envelope bg-blue"></i>
 	                <div class="timeline-item">
@@ -333,12 +335,11 @@ jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가�
 <div>
  <i class="fas fa-envelope bg-blue"></i>
  <div class="timeline-item">
-   <h3 class="timeline-header">작성자</h3>
+   <h3 class="timeline-header">{{replyer}}</h3>
    <div class="timeline-body">
-     	댓글 입력 테스트
+     	{{replytext}}
    </div>
    <div class="timeline-footer">
-     <!-- Button trigger modal -->
 	 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
   		수정
 	 </button>
@@ -351,7 +352,9 @@ jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가�
 <!-- 화면을 재구현Representation하는 함수(아래) -->
 <script>
 var printReplyList = function(data, target, templateObject) {
-	
+	var template = Handlebars.compile(templateObject.html());//html태그로 변환
+	var html = template(data);//빅데이터를 리스트템플릿에 바인딩 결합시켜주는 역할.
+	target.after(html);//target은 .time-label 클래스영역을 가리킵니다.
 };
 </script>
 <!-- 댓글 등록 버튼 액션 처리(아래) -->
