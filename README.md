@@ -1,5 +1,7 @@
 ### 기본정보
-- 스프링관리자 AdminLTE템플릿 샘플: https://adminlte.io/themes/v3/pages/forms/general.html
+- 스프링관리자 AdminLTE템플릿 샘플: 
+- https://adminlte.io/themes/v3/pages/forms/general.html
+- https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
 #### 20201210(목) 작업예정
 - 댓글 관련 디자인 추가 후 Ajax 적용
