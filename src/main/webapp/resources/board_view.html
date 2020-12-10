@@ -326,7 +326,8 @@ jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가�
 자바스크립트에서도 외부 core를 가져와야 합니다.(아래)
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<!-- 댓글템플릿(빵틀) 만들기(아래) -->
+<!-- 댓글리스트 템플릿(빵틀) 만들기(아래) -->
+<!-- jsp <c:forEach items="${members}" var="member"> 같은 역할 {{#each .}} -->
 <script id="template" type="text/x-handlebars-template">
 {{#each .}}
 <div>
