@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminController {
 	
 	@RequestMapping(value="/admin/board/board_list",method=RequestMethod.GET)
-	public String board_list() throws Exception {
+	public String board_list(Model model) throws Exception {
+		
 		return "admin/board/board_list";
 	}
 	
