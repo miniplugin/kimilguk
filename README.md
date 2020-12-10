@@ -3,6 +3,30 @@
 - https://adminlte.io/themes/v3/pages/forms/general.html
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
+#### 20201211(금) 작업예정
+- BoardVO 클래스 만들기
+- AdminController 에서 board_list, board_view, board_write 바인드 매핑만들기
+- board_list.jsp, board_view.jsp, board_write.jsp 만들기
+- 앞으로 작업예정 내용 정리(아래)
+- 스프링 테스트 pom.xml 디펜던시 의존성 추가
+- junit 테스트 설정 후 기본 unit유닛(단위)테스트
+- jdbc사용 pom.xml 의존성 추가.
+- Hsql사용 pom.xml 의존성 추가.
+- 마이바티스 사용 pom.xml 의존성 추가.
+- DB 디버그용 드라이버 사용 pom.xml 의존성 추가.
+- junit으로 DB접근 후 관리자단 회원관리 CRUD unit테스트.
+- 스프링 AOP기능으로 개발용 디버그출력환경 만들기.
+- 실제 회원관리 화면 CRUD 적용.
+- 실제 게시판 화면 CRUD 적용.
+- 파일업로드 라이브러리 사용 pom.xml 의존성 추가.
+- 게시판 업로드 화면 구현.
+- Json데이터 사용 pom.xml 의존성 추가.
+- 실제 댓글 화면CRUD적용.
+- 사용자단 화면 html 소스를 jsp로 만들기.
+- 스프링시큐리티 로그인 구현 pom.xml 의존성 추가.
+- 사용자단 CRUD 구현.
+- 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인 사용 등등. pom.xml 의존성 추가.
+
 #### 20201210(목) 작업
 - html게시판 소스를 jsp로 변환.
 - 리버스 엔지니어링: reverse 반대말 : 일반 erd만들고 -> 물리DB : 반대 물리DB -> erd를만든다
