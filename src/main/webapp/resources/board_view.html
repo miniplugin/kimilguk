@@ -203,7 +203,7 @@
 	          <div class="card-header">
 	            <h5 class="card-title">Add New Reply</h5>
 	          </div>
-	          <form action="#" name="reply_form" method="post">
+	          <form action="board_view.html" name="reply_form" method="post">
 	          <div class="card-body">
 	          	<div class="form-group">
                    <label for="writer">Writer</label>
@@ -216,7 +216,7 @@
                    <input type="text" class="form-control" name="reply_text" id="reply_text" placeholder="내용을 입력해 주세요." required>
                    <!-- 아래 게시판에서는 폼을 전송할때 submit 타입을 사용 하지만, 댓글은 Ajax로 전송하기 때문에, button타입으로 지정함. -->
                 </div>
-                <button type="button" class="btn btn-warning float-left mr-1 text-white">댓글등록</button>
+                <button type="button" class="btn btn-warning float-left mr-1 text-white" id="insertReplyBtn">댓글등록</button>
 	          </div>
 	          </form>
 	          <div class="timeline">
@@ -238,21 +238,7 @@
 	                  </div>
 	                </div>
 	              </div>
-	              <div>
-	                <i class="fas fa-envelope bg-blue"></i>
-	                <div class="timeline-item">
-	                  <h3 class="timeline-header">작성자2</h3>
-	                  <div class="timeline-body">
-	                    	댓글 입력 테스트2
-	                  </div>
-	                  <div class="timeline-footer">
-	                    <!-- Button trigger modal -->
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
-						  수정
-						</button>
-	                  </div>
-	                </div>
-	              </div>
+	              
 	          </div><!-- //.timeline -->
 	          <!-- 페이징처리 시작 -->
 	          <div class="pagination justify-content-center">
@@ -334,7 +320,29 @@
 <script src="/resources/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/resources/dist/js/pages/dashboard.js"></script>
-
+<!-- 댓글 등록 버튼 액션 처리(아래) -->
+<script>
+$(document).ready(function() {
+	$("#insertReplyBtn").on("click", function() {//댓글등록버튼을 클릭했을 때 구현내용(아래)
+		//alert("디버그");
+		//Ajax를 이용해서, 화면을 Representation (REST-API방식) 부분 화면을 재구현(아래)
+		$.ajax({//통신프로그램
+			//여기서부터는 프론트 엔드 개발자 영역
+			type:'get',//지금은 html이라서 get방식이지만, jsp로가면, post방식으로 바꿔야 합니다.
+			url:'board_view.html',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
+			dataType:'text',//ReplyController에서 받은 데이터의 형식은 text형식으로 받겠다고 명시.
+			success:function(result) {//응답이 성공하면(상태값200)위경로에서 반환받은 result(json데이터)를 이용해서 화면을 재구현
+				//지금은 html이라서 result값을 이용할 수가 없어서 댓글 더미데이터를 만듭니다.(아래)
+				result = [
+					//{rno:댓글번호,bn}
+					{},//첫번째 댓글 데이터
+					{}//두번째 댓글 데이터
+				];
+			} 
+		});
+	} );
+});
+</script>
 <!-- Modal -->
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
