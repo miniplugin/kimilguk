@@ -3,7 +3,9 @@
 - https://adminlte.io/themes/v3/pages/forms/general.html
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
-#### 20201210(목) 작업예정
+#### 20201210(목) 작업
+- 첨부파일 등록에 사용되는 form 태그에는 특별한 속성이 추가 되어야만, 파일 전송이 가능합니다.
+- 그속성은: encType="multipart/form-data" 필수. 파일전송이 포함된 폼에서는 엔코딩타입속성에서 파일분할로 전송해라.
 - 모달(Modal): 이용자가 팝업대화상자 내용을 종료하기 전에는 다른 화면으로 이동하지 못하는 방식 팝업창. 
 - 모달리스(Modeless): : 이용자가 팝업대화상자 내용을 종료하기 전이라도, 현재 팝업창을 띄운상태에서 다른 창으로 이동가능. 
 - 댓글 관련 디자인 추가 후 Ajax 적용
