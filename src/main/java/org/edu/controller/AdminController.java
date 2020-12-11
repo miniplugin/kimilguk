@@ -18,6 +18,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AdminController {
 	
+	@RequestMapping(value="/admin/board/board_view", method=RequestMethod.GET)
+	public String board_view(Model model) throws Exception {
+		//jsp로 보낼 더미 데이터 boardVO에 담아서 보낸다.
+		BoardVO boardVO = new BoardVO();
+		boardVO.setBno(1);
+		boardVO.setTitle("첫번째 게시물 입니다.");
+		boardVO.setContent("첫번째 내용 입니다.<br>줄바꿈 처리입니다.");
+		boardVO.setWriter("admin");
+		Date regdate = new Date();
+		boardVO.setRegdate(regdate);
+		boardVO.setView_count(2);
+		boardVO.setReply_count(0);
+		model.addAttribute("boardVO", boardVO);
+		return "admin/board/board_view";
+	}
 	@RequestMapping(value="/admin/board/board_list",method=RequestMethod.GET)
 	public String board_list(Model model) throws Exception {
 		//테스트용 더미 게시판 데이터 만들기(아래)
