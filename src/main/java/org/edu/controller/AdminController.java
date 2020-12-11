@@ -26,9 +26,9 @@ public class AdminController {
 	@Inject
 	SecurityCode securityCode;
 	
-	@RequestMapping(value="/admin/board/board_write",method=RequestMethod.GET)
+	@RequestMapping(value="/admin/board/board_write",method=RequestMethod.GET)//URL경로
 	public String board_write() throws Exception {
-		return "admin/board/board_write";
+		return "admin/board/board_write";//파일경로
 	}
 	@RequestMapping(value="/admin/board/board_write",method=RequestMethod.POST)
 	public String board_write(MultipartFile file, BoardVO boardVO) throws Exception {

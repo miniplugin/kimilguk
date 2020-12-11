@@ -4,6 +4,8 @@
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
 #### 20201211(금) 작업
+- 첨부파일 설정: servlet-context.xml에 파일업로드경로, 업로드용량제한 설정.
+- 위에 더해서 외부 의존성추가: pom.xml 메이븐 설정파일 내용 추가. fileupload~.jar
 - RestAPI 댓글컨트롤러 1개 만듭니다.-네이버에서 RestAPI로그인서버를 1개 만드는 것과 같습니다.
 - 게시판 로직에서 핵심: CRUD기본, 검색기능, 페이징처리로직, 첨부파일기능
 - 게시판 로직확장 : 댓글기능(Rest-API대세).
