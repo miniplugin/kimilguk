@@ -98,7 +98,7 @@
             
             <!-- 버튼영역 시작 -->
               <div class="card-body">
-              	<a href="board_write.html" class="btn btn-primary float-right">CREATE</a>
+              	<a href="/admin/board/board_write" class="btn btn-primary float-right">CREATE</a>
               	<!-- 부트스트랩 디자인 버튼클래스를 이용해서 a태그를 버튼모양 만들기(위) -->
               	<!-- btn클래스명이 버튼모양으로 변경, btn-primary클래스명은 버튼색상을 변경하는역할 -->
               	<!-- 
