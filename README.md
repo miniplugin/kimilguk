@@ -3,6 +3,11 @@
 - https://adminlte.io/themes/v3/pages/forms/general.html
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
+#### 20201214(월) 작업예정
+- [수업공지]: 앞으로는 수업종료 10분 전에 질문/답변 시간을 갖는것이 어떨까 합니다. 
+- 이유는 수업진행 중간에 질문/답변 하기엔 약간 부담스러운 내용이 있을 수 있기 때문에, ^^
+- 질문 내용이 무엇이 되었든, 종료 10분 전에 답변을 들으실 수 있는 시간을 갖도록 하겠습니다.
+
 #### 20201211(금) 작업
 - 첨부파일 설정: servlet-context.xml에 파일업로드경로, 업로드용량제한 설정.
 - 위에 더해서 외부 의존성추가: pom.xml 메이븐 설정파일 내용 추가. fileupload~.jar
