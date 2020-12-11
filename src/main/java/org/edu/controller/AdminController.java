@@ -33,9 +33,18 @@ public class AdminController {
 		BoardVO[] board_array = new BoardVO[2];
 		//input_board = {1,"첫번째 게시물 입니다.","첫번째 내용 입니다.<br>줄바꿈했습니다.","admin",now(),2,0};
 		board_array[0] = input_board;
-		input_board.setBno(2);//게시물번호만 2로 변경해서 나머지값들은 변경없이 아래 1레코드 저장
-		//input_board = {2,"첫번째 게시물 입니다.","첫번째 내용 입니다.<br>줄바꿈했습니다.","admin",now(),2,0};
-		board_array[1] = input_board;
+		//------------------------------------
+		BoardVO input_board2 = new BoardVO();
+		input_board2.setBno(2);
+		input_board2.setTitle("두번째 게시물 입니다.");
+		input_board2.setContent("두번째 내용 입니다.<br>줄바꿈했습니다.");
+		input_board2.setWriter("user02");
+		input_board2.setRegdate(regdate);
+		input_board2.setView_count(2);
+		input_board2.setReply_count(0);
+		//input_board2 = {2,"두번째 게시물 입니다.","두번째 내용 입니다.<br>줄바꿈했습니다.","user02",now(),2,0};
+		board_array[1] = input_board2;
+		//-------------------------------------
 		List<BoardVO> board_list = Arrays.asList(board_array);//배열타입을 List타입으로 변경절차.
 		model.addAttribute("board_list", board_list);
 		return "admin/board/board_list";
