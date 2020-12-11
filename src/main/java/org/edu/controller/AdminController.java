@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.inject.Inject;
+
+import org.edu.util.SecurityCode;
 import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 //스프링에서 사용가능한 클래스를 빈(커피Bean)이라고 하고, @Contorller 클래스를 사용하면 됨.
 @Controller
 public class AdminController {
+	//@Inject == @Autowired 의존성 주입방식 DI(Dependency Inject)으로 외부 라이브러리 모듈 클래스 인스턴스 갖다쓰기(아래)
+	@Inject
+	SecurityCode secCode;
 	
 	@RequestMapping(value="/admin/board/board_view", method=RequestMethod.GET)
 	public String board_view(Model model) throws Exception {
@@ -24,7 +30,8 @@ public class AdminController {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setBno(1);
 		boardVO.setTitle("첫번째 게시물 입니다.");
-		boardVO.setContent("첫번째 내용 입니다.<br>줄바꿈 처리입니다.");
+		String xss_data = "첫번째 내용 입니다.<br><br><br>줄바꿈 처리입니다. <script>location.href('http://naver.com');</script>";
+		boardVO.setContent(secCode.unscript(xss_data));
 		boardVO.setWriter("admin");
 		Date regdate = new Date();
 		boardVO.setRegdate(regdate);
