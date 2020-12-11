@@ -194,10 +194,11 @@ $(document).ready(function() {
 		//Ajax를 이용해서, 화면을 Representation (REST-API방식) 부분 화면을 재구현(아래)
 		$.ajax({//통신프로그램
 			//여기서부터는 프론트 엔드 개발자 영역
-			type:'get',//지금은 html이라서 get방식이지만, jsp로가면, post방식으로 바꿔야 합니다.
-			url:'board_view.html',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
+			type:'post',//지금은 html이라서 get방식이지만, jsp로가면, post방식으로 바꿔야 합니다.
+			url:'/reply/reply_write',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
 			dataType:'text',//ReplyController에서 받은 데이터의 형식은 text형식으로 받겠다고 명시.
 			success:function(result) {//응답이 성공하면(상태값200)위경로에서 반환받은 result(json데이터)를 이용해서 화면을 재구현
+				alert(result);
 				//지금은 html이라서 result값을 이용할 수가 없어서 댓글 더미데이터를 만듭니다.(아래)
 				result = [
 					//{rno:댓글번호,bno:게시물번호,replytext:"첫번째 댓글",replyer:"admin",regdate:타임스탬프}
@@ -241,8 +242,8 @@ $(document).ready(function() {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary">수정</button>
-        <button type="button" class="btn btn-danger">삭제</button>
+        <button type="button" class="btn btn-primary" id="updateReplyBtn">수정</button>
+        <button type="button" class="btn btn-danger" id="deleteReplyBtn">삭제</button>
       </div>
     </div>
   </div>
