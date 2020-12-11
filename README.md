@@ -3,7 +3,21 @@
 - https://adminlte.io/themes/v3/pages/forms/general.html
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
-#### 20201211(금) 작업예정
+#### 20201211(금) 작업
+- 스프링 빈(등록되어서 사용가능하게된 클래스) 이 등록되는 절차(아래)
+- 톰캣서버(WAS)가 실행될때, 로딩 실행되는 파일 순서(아래)
+- web.xml 최초 실행.
+- 1. root-context.xml 실행.
+- 2. servlet(server + let = 서버프로그램): servlet-context.xml 실행.
+- 위 서블렛콘텍스트 안에 있는 component-span 의 패키지에 존재하는 아래 @~클래스를 읽어 들여서 빈으로 등록합니다.(아래)
+- @Controller, @Servcie, @Repository, @RestController(Rest-API)
+- ------------------------------------------------------------------------------------
+- 자바에서 인스턴스 오브젝트를 만들때, ClassName className = new ClassName(); 오브젝트를 만들었음.
+- 스프링에서 오브젝트를 생성하지 않고, 오브젝트를 주입하다고 하고, 기술용어로 DI(Dependency Injection)의존성주입.
+- 의존성주입(DI,외부모듈)할때, @Inject=@Autowired 줄바꿈하고, ClassName className;
+- 위 DI방식으로 SecurityCode클래스를 주입받아서, unscript메서드를 사용하였습니다.
+- 쿼리스트링: 쿼리(질의)스트링(문자열) URL에서 쿼리스트링이라고 하면, URL?키1=값1&key2=value2
+- /admin/board/board_view?bno=${boardVO.bno}
 - BoardVO 클래스 만들기: Admin컨트롤러에서 Model클래스를 이용해서 jsp로 board_list 데이터셋를 보낼때 필요한 클래스 입니다.
 - AdminController 에서 board_list, board_view, board_write 바인드 매핑만들기
 - board_list.jsp, board_view.jsp, board_write.jsp 만들기
