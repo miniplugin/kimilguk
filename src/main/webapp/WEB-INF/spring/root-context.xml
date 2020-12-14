@@ -23,5 +23,15 @@
 	 	 <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
 	
+	<!-- 
+		MyBatis에서 DAO를 이용하는 경우, SqlSessionTemplate라는 것을 이용해서 DAO를 구현함.
+		DAO라는 것은 DataAccessObject 데이터핸들링(insert(),delete()등을 처리하는 클래스 DAO라고 합니다.
+		개발자들이 직접 DB 연결, 종료작업하는 것을 줄여줌.
+	 	sql세션템플릿을 호출할때 SqlSessionFactory를 생성자로 주입함.
+	 -->
+	 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+	  <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	 </bean>
+	
 	
 </beans>
