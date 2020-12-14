@@ -12,9 +12,19 @@
 - 데이터베이스 사용 라이브러리 추가(pom.xml)
 - 스프링 테스트 pom.xml 디펜던시 의존성 추가
 - 의존성추가1. jdbc(Java Database Connection)모듈추가 후 설정 필수.
-- 의존성추가2. Mysql 모듈추가 후 설정 필수.
+- 의존성추가2. Mysql 모듈추가 후 설정.
+- ====================================
+- 위 2가지로 스프링에서 데이터베이스 커넥션 처리 , DriverManagerDataSource (DB커넥션)
+- ====================================
 - 의존성추가3. jdbc와 Mysql데이터베이스 중간에 쿼리를 사용하는 역할 Mybatis 모듈추가 후 설정 필수.
-- 마이바티스에는 Select, Insert, Update, Delete쿼리를 수행하는 역할.
+- 위 의존성 마이바티스로 스프링에서 쿼리를 관리하는 처리 , sqlSessionFactory (쿼리생성)
+- ====================================
+- 마이바티스에는 Select, Insert, Update, Delete쿼리를 수행하는 메서드들.
+- 위 의존성 Mybatis로 스프링에서 쿼리를 호출하는 메서드명(인터페이스)을 처리, sqlSessionTemplate(쿼리호출메서드명)
+- ====================================
+
+DataSource(커넥션)-sqlSessionFactory(쿼리생성)-sqlSessionTemplate(쿼리호출메서드)
+
 - 서블렛버전을 2.5 -> 3.0.1로변경 필수(아래)
 
 ```

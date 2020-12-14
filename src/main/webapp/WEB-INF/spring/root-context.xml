@@ -10,7 +10,17 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/edu"></property>
 		<property name="username" value="root"></property>
-		<property name="password" value="1234"></property>
+		<property name="password" value="apmsetup"></property>
+	</bean>
+	
+	<!--
+		DataSource 설정으로 JDBC 연결후, MyBatis와 MySql을 연동시킴. 
+		SqlSessionFactory : myBatis와 스프링의 Connection 생성후 쿼리 위치지정.
+	 -->		 		
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	   
+	 	<property name="dataSource" ref="dataSource" />
+	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래 classpath경로 src/main/resources/쿼리xml) -->
+	 	 <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
 	
 	
