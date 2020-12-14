@@ -1,6 +1,13 @@
 package org.edu.test;
 
 import static org.junit.Assert.*;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import javax.inject.Inject;
+import javax.sql.DataSource;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,6 +29,13 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class DataSourceTest {
 
+	@Inject
+	DataSource dataSource;//자바에서처럼 new 오브젝트를 생성하지 않고, 스프링에서는 @Inject로 오브젝트 생성.
+	
+	@Test
+	public void dbConnectionTest() throws SQLException {
+		Connection connection = dataSource.getConnection();//DB커넥션 오브젝트 만드는 과정. new 노사용
+	}
 	@Test
 	public void test() {
 		//fail("Not yet implemented");

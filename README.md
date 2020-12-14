@@ -4,10 +4,17 @@
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
 #### 20201214(월) 작업
+- 지금하시는 작업은 개발시작전 준비단계....
+- 톰캣/JUnit 실행해야만, DB가 연동이 됩니다.
+- 톰캣이 종료되거나, JUnit테스트가 끝나면, DB연동이 끊어집니다.
 - JUnit테스트 준비OK.
 - 데이터베이스 접속 테스트.(아래)
 - 데이터베이스 사용 라이브러리 추가(pom.xml)
 - 스프링 테스트 pom.xml 디펜던시 의존성 추가
+- 의존성추가1. jdbc(Java Database Connection)모듈추가 후 설정 필수.
+- 의존성추가2. Mysql 모듈추가 후 설정 필수.
+- 의존성추가3. jdbc와 Mysql데이터베이스 중간에 쿼리를 사용하는 역할 Mybatis 모듈추가 후 설정 필수.
+- 마이바티스에는 Select, Insert, Update, Delete쿼리를 수행하는 역할.
 - 서블렛버전을 2.5 -> 3.0.1로변경 필수(아래)
 
 ```
