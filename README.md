@@ -3,6 +3,9 @@
 - https://adminlte.io/themes/v3/pages/forms/general.html
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
+#### 20201215(화) 작업예정
+- JUnit 자바단위테스트 Insert(), Update(), Delete() 회원관리부분 예정.
+
 #### 20201214(월) 작업
 - ibatis(아이바티스-쿼리생성이불편) -> mybatis(마이바티스-쿼리생성이편리)
 - 지금하시는 작업은 개발시작전 준비단계....
