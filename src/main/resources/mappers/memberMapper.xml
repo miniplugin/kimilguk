@@ -14,12 +14,4 @@ memberMapper.xml: 회원관리에대한 모든 쿼리를 모아서 관리하는 
 select * from tbl_member 
 </select>
 
-<insert id="">
-
-</insert>
-
-<delete id="">
-
-</delete>
-
 </mapper>
