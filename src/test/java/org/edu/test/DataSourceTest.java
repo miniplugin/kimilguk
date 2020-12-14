@@ -33,8 +33,15 @@ public class DataSourceTest {
 	DataSource dataSource;//자바에서처럼 new 오브젝트를 생성하지 않고, 스프링에서는 @Inject로 오브젝트 생성.
 	
 	@Test
-	public void dbConnectionTest() throws SQLException {
-		Connection connection = dataSource.getConnection();//DB커넥션 오브젝트 만드는 과정. new 노사용
+	public void dbConnectionTest() throws Exception {
+		try {//내부에서 {} 에러발생시 실행을 중지하고, catch{}구문이 실행 됩니다. 예외처리라고 합니다.
+			Connection connection = dataSource.getConnection();
+			System.out.println("데이터베이스 접속이 성공하였습니다.");
+		} catch (SQLException e) {
+			System.out.println("데이터베이스 접속에 실패햐였습니다. 왜냐하면 " + e);
+			//e.printStackTrace();
+		}//DB커넥션 오브젝트 만드는 과정. new 사용안함.
+		//try~catch는 테스트에서만 사용하고, 스프링에서는 throws Exception으로 예외를 스프링으로 보냅니다.
 	}
 	@Test
 	public void test() {
