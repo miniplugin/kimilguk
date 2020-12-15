@@ -40,12 +40,18 @@ public class DataSourceTest {
 	@Inject
 	IF_MemberDAO memberDAO;
 	
-	@Test
 	public String memberPrimaryKey() {
+		//사용자 프라이머리키 생성하는 메서드 년월일시분처 + 밀리초
 		Date primaryKey = new Date();
 		SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		System.out.println("프라이머리키 : " + newFormat.format(primaryKey));
 		return "user_" + newFormat.format(primaryKey);
+	}
+	
+	@Test
+	public void deleteMember() throws Exception {
+		//CRUD 중 Delete 테스트 구현(쿼리 -> DAO -> memberDAO주입받은 오브젝트사용)
+		
 	}
 	
 	@Test
@@ -54,8 +60,10 @@ public class DataSourceTest {
 		MemberVO memberVO = new MemberVO();
 		//사용자 생성 규칙: user_ 시작(prefix),suffix(접미사)는 년월일시분초 
 		//사용자 생성결과 예: user_20201215142132
-		memberVO.setUser_id(memberPrimaryKey());
+		String memberIdKey = memberPrimaryKey();
+		memberVO.setUser_id(memberIdKey);
 		memberVO.setUser_name("사용자03");
+		//패스워드 암호화 처리(필수이지만, 스프링 시큐리티 할때 처리 예정)
 		memberVO.setUser_pw("1234");
 		memberVO.setEmail("user03@abc.com");
 		memberVO.setPoint(100);

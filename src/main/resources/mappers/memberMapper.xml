@@ -36,4 +36,8 @@ INSERT INTO tbl_member (
 )
 </insert>
 
+<delete id="deleteMember">
+DELETE FROM tbl_member WHERE user_id=#{user_id}
+</delete>
+
 </mapper>
