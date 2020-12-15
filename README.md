@@ -3,7 +3,15 @@
 - https://adminlte.io/themes/v3/pages/forms/general.html
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
-#### 20201215(화) 작업예정
+#### 20201215(화) 작업
+- 자바에서 상속이라는 개념도 html css에서 나오는 상속이랑 비슷한 개념인가요?
+- html, css에서 사용되는 상속개념 - 자바(C#)언어에서 차용해서 쓰는 개념입니다.
+- 워크벤치쿼리실행참조->mapper쿼리->DAO클래스호출->Service클래스호출->[컨트롤러호출->jsp]=JUnit테스트
+- ->[DAO클래스호출->Service클래스호출]=1개의 클래스 사용 스프링BOOT방식(소규모프로젝트용)
+- DAO, Service를 2개 클래스로 나눈이유 1, 현업에서 사용되는 솔루션들이 2개로 클래스를 나눈 구조 입니다.
+- 위와 구조를 사용하는 근본적인 이유는, DB엑세스하는 부분은 최소화(1개) - DAO을 호출하는 서비스는 다수(10개)
+- 사용예, selectMember() DAO클래스에 메서드 1개.
+- DAO.selectMember() 호출하는 서비스는 관리자단서비스에서 호출, 사용자단서비스에서 호출 (1:2)
 - JUnit 자바단위테스트 Insert(), Update(), Delete() 회원관리부분 예정.
 
 #### 20201214(월) 작업
