@@ -40,8 +40,8 @@ public class DataSourceTest {
 	@Inject
 	IF_MemberDAO memberDAO;
 	
-	@Inject
-	MemberVO memberVO;//기존자바처럼 new MemberVO() 오브젝트를 생성하지않고, 주입해서사용.
+	//@Inject//사용하면 않되는 이유: 클래스상단에 @Controller, @Service, @Repository 이런내용만 @Inject합니다.
+	//MemberVO memberVO;//기존자바처럼 new MemberVO() 오브젝트를 생성하지않고, 주입해서사용. 
 	
 	public String memberPrimaryKey() {
 		//사용자 프라이머리키 생성하는 메서드 년월일시분처 + 밀리초
@@ -54,6 +54,7 @@ public class DataSourceTest {
 	@Test
 	public void updateMember() throws Exception {
 		//CRUD 중 Update 테스트 구현 특징, user_id는 프라이커리키 이기 때문에 수정대상이 아닙니다.
+		MemberVO memberVO = new MemberVO();
 		memberVO.setEmail("test@test.com");
 		memberVO.setUser_name("아무개");
 		memberVO.setUser_id("admin");
