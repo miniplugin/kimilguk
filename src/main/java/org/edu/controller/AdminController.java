@@ -8,6 +8,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.edu.service.IF_MemberService;
 import org.edu.util.SecurityCode;
 import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
@@ -25,6 +26,9 @@ public class AdminController {
 	//외부 라이브러리 = 컴포넌트 = 모듈  = 실행클래스 = 인스턴스 갖다쓰기(아래)
 	@Inject
 	SecurityCode securityCode;
+	
+	@Inject
+	IF_MemberService memberService;//멤버인터페이스를 주입받아서 memberService오브젝트 변수를 생성.
 	
 	@RequestMapping(value="/admin/board/board_write",method=RequestMethod.GET)//URL경로
 	public String board_write() throws Exception {
@@ -117,46 +121,40 @@ public class AdminController {
 	
 	@RequestMapping(value="/admin/member/member_list",method=RequestMethod.GET)
 	public String member_list(Model model) throws Exception {
-		String[][] members = {
-				{"admin","찐관리자","admin@abc.com","true","2020-12-04","ROLE_ADMIN"},
-				{"user","일반사용자","user@abc.com","false","2020-12-04","ROLE_USER"}
-		};
-		//{"user_id":"admin","user_name":"관리자",...} 해시#데이터 타입<키(key),값(value)>(그물-낚시)
-		//Map 타입이 부모, HashMap타입 자식클래스, 관례적으로 사용, paramMap오브젝트의 확장하기 편하도록 하기 위해서 상속.
-		//Map타입을 상속받아서, HashMap타입의 오브젝트를 생성하는 방식.
-		Map<String,Integer> mapTest = new HashMap<String, Integer>();
-		String ageValue = "40";
-		int ageValue2 = 40;
-		mapTest.put("ageValue2", ageValue2);
-		mapTest.put("age", Integer.parseInt(ageValue) );//제네릭타입을 사용하면, 여기처럼 parseInt형변환을 할 필요가 없기 때문에
-		//제네릭타입의 근본목적은 데이터타입에대해서 명시적인 코딩을 해서 코드를 단순화 시키기 위해서...
-		
-		Map<String, Object> paramMap = new HashMap<String, Object>();
-		paramMap.put("user_id", "admin");
-		paramMap.put("user_name", "관리자");
-		paramMap.put("age", 40);
-		System.out.println("해시데이터타입 출력 " + paramMap);
-		
-		//members 2차원배열 변수를 MemberVO 클래스형 오브젝트로 members_array 변경(아래)
-		MemberVO members_input = new MemberVO();
-		members_input.setUser_id("admin");
-		members_input.setUser_name("찐찐관리자");
-		members_input.setEmail("admin@abc.com");
-		members_input.setEnabled(true);//enabled 데이터형(타입)이 boolean형 이기 때문에 true, false
-		Date toDay = new Date();//자바의 Date클래스를 이용해서 현재 날짜(시간)을 가진 toDay변수를 생성.
-		members_input.setReg_date(toDay);//reg_date 데이터타입이 Date형 이기 때문에 java의 날짜 데이터를 입력
-		members_input.setLevels("ROLE_ADMIN");
-		members_input.setPoint(10);//point 데이터타입이 Integer형 이기 때문에 숫자를 입력.
-		// 위 members_input 오브젝트에는 1개의 라인(레코드)만 입력 되어 있어서, 이 오브젝트를 배열오브젝트에 저장(아래)
-		MemberVO[] members_array = new MemberVO[2];//클래스형 배열 오브젝트 생성[2]는 배열의 크기=레코드갯수 입니다.
-		members_array[0] = members_input;
-		members_array[1] = members_input;
-		//---------------------------------------------------------------------
-		//실제 코딩에서는 배열타입으로 보내지 않고, List타입(목록)으로 model이용해서 jsp로 보냅니다.
-		List<MemberVO> members_list = Arrays.asList(members_array);
-		//위에서 만든 members_array배열오브젝트를 Arrays.asList메서드로 List타입으로 변경해서 jsp 보냅니다.
-		//위에서 테이터타입연습으로 총 3가지 테이터 타입을 확인했음.
-		System.out.println("List타입의 오브젝트 클래스내용을 출력 " + members_list.toString());
+		/*
+		 * String[][] members = {
+		 * {"admin","찐관리자","admin@abc.com","true","2020-12-04","ROLE_ADMIN"},
+		 * {"user","일반사용자","user@abc.com","false","2020-12-04","ROLE_USER"} };
+		 * //{"user_id":"admin","user_name":"관리자",...} 해시#데이터 타입<키(key),값(value)>(그물-낚시)
+		 * //Map 타입이 부모, HashMap타입 자식클래스, 관례적으로 사용, paramMap오브젝트의 확장하기 편하도록 하기 위해서 상속.
+		 * //Map타입을 상속받아서, HashMap타입의 오브젝트를 생성하는 방식. Map<String,Integer> mapTest = new
+		 * HashMap<String, Integer>(); String ageValue = "40"; int ageValue2 = 40;
+		 * mapTest.put("ageValue2", ageValue2); mapTest.put("age",
+		 * Integer.parseInt(ageValue) );//제네릭타입을 사용하면, 여기처럼 parseInt형변환을 할 필요가 없기 때문에
+		 * //제네릭타입의 근본목적은 데이터타입에대해서 명시적인 코딩을 해서 코드를 단순화 시키기 위해서...
+		 * 
+		 * Map<String, Object> paramMap = new HashMap<String, Object>();
+		 * paramMap.put("user_id", "admin"); paramMap.put("user_name", "관리자");
+		 * paramMap.put("age", 40); System.out.println("해시데이터타입 출력 " + paramMap);
+		 * 
+		 * //members 2차원배열 변수를 MemberVO 클래스형 오브젝트로 members_array 변경(아래) MemberVO
+		 * members_input = new MemberVO(); members_input.setUser_id("admin");
+		 * members_input.setUser_name("찐찐관리자"); members_input.setEmail("admin@abc.com");
+		 * members_input.setEnabled(true);//enabled 데이터형(타입)이 boolean형 이기 때문에 true,
+		 * false Date toDay = new Date();//자바의 Date클래스를 이용해서 현재 날짜(시간)을 가진 toDay변수를 생성.
+		 * members_input.setReg_date(toDay);//reg_date 데이터타입이 Date형 이기 때문에 java의 날짜 데이터를
+		 * 입력 members_input.setLevels("ROLE_ADMIN"); members_input.setPoint(10);//point
+		 * 데이터타입이 Integer형 이기 때문에 숫자를 입력. // 위 members_input 오브젝트에는 1개의 라인(레코드)만 입력 되어
+		 * 있어서, 이 오브젝트를 배열오브젝트에 저장(아래) MemberVO[] members_array = new MemberVO[2];//클래스형
+		 * 배열 오브젝트 생성[2]는 배열의 크기=레코드갯수 입니다. members_array[0] = members_input;
+		 * members_array[1] = members_input;
+		 * //--------------------------------------------------------------------- //실제
+		 * 코딩에서는 배열타입으로 보내지 않고, List타입(목록)으로 model이용해서 jsp로 보냅니다. List<MemberVO>
+		 * members_list = Arrays.asList(members_array); //위에서 만든 members_array배열오브젝트를
+		 * Arrays.asList메서드로 List타입으로 변경해서 jsp 보냅니다. //위에서 테이터타입연습으로 총 3가지 테이터 타입을 확인했음.
+		 * System.out.println("List타입의 오브젝트 클래스내용을 출력 " + members_list.toString());
+		 */
+		List<MemberVO> members_list = memberService.selectMember();
 		model.addAttribute("members", members_list);//members-2차원배열을 members_array클래스오브젝트로 변경
 		return "admin/member/member_list";//member_list.jsp 로 members변수명으로 데이터를 전송
 	}
