@@ -49,9 +49,15 @@ public class DataSourceTest {
 	}
 	
 	@Test
+	public void readMember() throws Exception {
+		//CRUD 중 Read 테스트 구현
+		
+	}
+	
+	@Test
 	public void deleteMember() throws Exception {
 		//CRUD 중 Delete 테스트 구현(쿼리 -> DAO -> memberDAO주입받은 오브젝트사용)
-		memberDAO.deleteMember("user_20201215145633381");//삭제메서드 -> 쿼리 호출
+		memberDAO.deleteMember("user_20201215145621755");//삭제메서드 -> 쿼리 호출
 	}
 	
 	@Test
