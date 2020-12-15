@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -40,10 +41,20 @@ public class DataSourceTest {
 	IF_MemberDAO memberDAO;
 	
 	@Test
+	public String memberPrimaryKey() {
+		Date primaryKey = new Date();
+		SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+		System.out.println("프라이머리키 : " + newFormat.format(primaryKey));
+		return "user_" + newFormat.format(primaryKey);
+	}
+	
+	@Test
 	public void insertMember() throws Exception {
 		//CRUD 중 Create 테스트
 		MemberVO memberVO = new MemberVO();
-		memberVO.setUser_id("user03");
+		//사용자 생성 규칙: user_ 시작(prefix),suffix(접미사)는 년월일시분초 
+		//사용자 생성결과 예: user_20201215142132
+		memberVO.setUser_id(memberPrimaryKey());
 		memberVO.setUser_name("사용자03");
 		memberVO.setUser_pw("1234");
 		memberVO.setEmail("user03@abc.com");

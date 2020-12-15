@@ -4,6 +4,29 @@
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
 #### 20201215(화) 작업
+- 멘토수업신청자리스트(누락되신분은 나중에라도 말씀해 주세요.)
+
+```
+강민우
+김범주
+김수연
+김진아
+박정수
+배경득
+신승만
+양희망
+유우식
+이규혁
+이병현
+이시은
+이용오
+이찬홍
+이현진
+이현진
+정도영
+정동규
+황초희
+```
 - 이클립스에서 입력힌트 나오지 않을때 조치
 window> preference> java > editor > content Assist > advanced > 체크 java Non-Type Proposals > Apply버튼클릭.
 - 자바에서 상속이라는 개념도 html css에서 나오는 상속이랑 비슷한 개념인가요?
