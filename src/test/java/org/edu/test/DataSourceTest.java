@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -37,6 +38,21 @@ public class DataSourceTest {
 	
 	@Inject
 	IF_MemberDAO memberDAO;
+	
+	@Test
+	public void insertMember() throws Exception {
+		//CRUD 중 Create 테스트
+		MemberVO memberVO = new MemberVO();
+		memberVO.setUser_id("user03");
+		memberVO.setUser_name("사용자03");
+		memberVO.setUser_pw("1234");
+		memberVO.setEmail("user03@abc.com");
+		memberVO.setPoint(100);
+		memberVO.setEnabled(true);
+		memberVO.setLevels("ROLE_USER");
+		Date reg_date = new Date();
+		memberVO.setReg_date(reg_date);
+	}
 	
 	@Test
 	public void selectMember() throws Exception {

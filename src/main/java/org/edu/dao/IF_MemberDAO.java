@@ -10,5 +10,6 @@ import org.edu.vo.MemberVO;
  *
  */
 public interface IF_MemberDAO {
-	public List<MemberVO> selectMember() throws Exception; 
+	public List<MemberVO> selectMember() throws Exception;
+	public void insertMember(MemberVO memberVO) throws Exception;
 }

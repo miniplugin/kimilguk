@@ -4,6 +4,8 @@
 - https://kimilguk-mysql.herokuapp.com/ (아이디/암호:admin/user02)
 
 #### 20201215(화) 작업
+- 이클립스에서 입력힌트 나오지 않을때 조치
+window> preference> java > editor > content Assist > advanced > 체크 java Non-Type Proposals > Apply버튼클릭.
 - 자바에서 상속이라는 개념도 html css에서 나오는 상속이랑 비슷한 개념인가요?
 - html, css에서 사용되는 상속개념 - 자바(C#)언어에서 차용해서 쓰는 개념입니다.
 - 워크벤치쿼리실행참조->mapper쿼리->DAO클래스호출->Service클래스호출->[컨트롤러호출->jsp]=JUnit테스트
