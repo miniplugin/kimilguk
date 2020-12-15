@@ -35,6 +35,21 @@ INSERT INTO tbl_member (
 	now()
 )
 </insert>
+<!-- jsp에서 변수표현 EL표기법 ${변수명}, 마이바티스에서는 변수표현을 #{변수명} -->
+<!-- 마이바티스의 장점, 쿼리안쪽에 조건을 달 수 가 있습니다.(내일작업) -->
+<update id="updateMember">
+UPDATE tbl_member 
+SET 
+    user_name = #{user_name},
+    user_pw = #{user_pw},
+    email = #{email},
+    point = #{point},
+    enabled = #{enabled},
+    levels = #{levels},
+    update_date = now()
+WHERE
+    user_id = #{user_id}
+</update>
 
 <delete id="deleteMember">
 DELETE FROM tbl_member WHERE user_id=#{user_id}

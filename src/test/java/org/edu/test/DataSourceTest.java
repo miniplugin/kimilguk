@@ -40,12 +40,25 @@ public class DataSourceTest {
 	@Inject
 	IF_MemberDAO memberDAO;
 	
+	@Inject
+	MemberVO memberVO;//기존자바처럼 new MemberVO() 오브젝트를 생성하지않고, 주입해서사용.
+	
 	public String memberPrimaryKey() {
 		//사용자 프라이머리키 생성하는 메서드 년월일시분처 + 밀리초
 		Date primaryKey = new Date();
 		SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		System.out.println("프라이머리키 : " + newFormat.format(primaryKey));
 		return "user_" + newFormat.format(primaryKey);
+	}
+	
+	@Test
+	public void updateMember() throws Exception {
+		//CRUD 중 Update 테스트 구현 특징, user_id는 프라이커리키 이기 때문에 수정대상이 아닙니다.
+		memberVO.setEmail("test@test.com");
+		memberVO.setUser_name("아무개");
+		memberVO.setUser_id("admin");
+		String user_id = memberVO.getUser_id();//memberVO의 오브젝트의 데이터는 1개의 레코드이기때문에 반환값이 1개만
+		
 	}
 	
 	@Test
