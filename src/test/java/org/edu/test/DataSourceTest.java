@@ -40,8 +40,8 @@ public class DataSourceTest {
 	@Inject
 	IF_MemberDAO memberDAO;
 	
-	//@Inject//사용하면 않되는 이유: 클래스상단에 @Controller, @Service, @Repository, @Component 이런내용만 @Inject합니다.
-	//MemberVO memberVO;//기존자바처럼 new MemberVO() 오브젝트를 생성하지않고, 주입해서사용. 
+	@Inject//사용하면 않되는 이유: 클래스상단에 @Controller, @Service, @Repository, @Component 이런내용만 @Inject합니다.
+	MemberVO memberVO;//기존자바처럼 new MemberVO() 오브젝트를 생성하지않고, 주입해서사용. 
 	
 	public String memberPrimaryKey() {
 		//사용자 프라이머리키 생성하는 메서드 년월일시분처 + 밀리초
@@ -54,9 +54,9 @@ public class DataSourceTest {
 	@Test
 	public void updateMember() throws Exception {
 		//CRUD 중 Update 테스트 구현 특징, user_id는 프라이커리키 이기 때문에 수정대상이 아닙니다.
-		MemberVO memberVO = new MemberVO();
+		//MemberVO memberVO = new MemberVO();
 		memberVO.setUser_id("admin");
-		memberVO.setUser_name("아무개");
+		memberVO.setUser_name("홍길동");
 		memberVO.setUser_pw("");//암호를 수정하지 않는 사람을 가정...
 		memberVO.setEmail("test@test.com");
 		memberVO.setPoint(100);
@@ -69,7 +69,7 @@ public class DataSourceTest {
 	@Test
 	public void readMember() throws Exception {
 		//CRUD 중 Read 테스트 구현
-		MemberVO memberVO = new MemberVO();
+		//MemberVO memberVO = new MemberVO();
 		memberVO = memberDAO.readMember("admin");
 		System.out.println("admin 에 대한 상세정보 입니다.");
 		System.out.println(memberVO.toString());
@@ -84,7 +84,7 @@ public class DataSourceTest {
 	@Test
 	public void insertMember() throws Exception {
 		//CRUD 중 Create 테스트
-		MemberVO memberVO = new MemberVO();
+		//MemberVO memberVO = new MemberVO();
 		//사용자 생성 규칙: user_ 시작(prefix),suffix(접미사)는 년월일시분초 
 		//사용자 생성결과 예: user_20201215142132
 		String memberIdKey = memberPrimaryKey();
