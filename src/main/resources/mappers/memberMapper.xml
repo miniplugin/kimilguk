@@ -11,7 +11,10 @@ memberMapper.xml: 회원관리에대한 모든 쿼리를 모아서 관리하는 
 단, 멤버클래스의 멤버변수 값이 tbl_member 테이블의 필드명과 일치하게 만들어야 하는 조건.
 -->
 <select id="selectMember" resultType="org.edu.vo.MemberVO">
-select * from tbl_member 
+select * from tbl_member
+<if test="search_type !=''">
+ where 
+ </if>
 </select>
 
 <insert id="insertMember">
