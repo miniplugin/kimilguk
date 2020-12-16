@@ -40,7 +40,7 @@ public class DataSourceTest {
 	@Inject
 	IF_MemberDAO memberDAO;
 	
-	//@Inject//사용하면 않되는 이유: 클래스상단에 @Controller, @Service, @Repository 이런내용만 @Inject합니다.
+	//@Inject//사용하면 않되는 이유: 클래스상단에 @Controller, @Service, @Repository, @Component 이런내용만 @Inject합니다.
 	//MemberVO memberVO;//기존자바처럼 new MemberVO() 오브젝트를 생성하지않고, 주입해서사용. 
 	
 	public String memberPrimaryKey() {
@@ -55,11 +55,15 @@ public class DataSourceTest {
 	public void updateMember() throws Exception {
 		//CRUD 중 Update 테스트 구현 특징, user_id는 프라이커리키 이기 때문에 수정대상이 아닙니다.
 		MemberVO memberVO = new MemberVO();
-		memberVO.setEmail("test@test.com");
-		memberVO.setUser_name("아무개");
 		memberVO.setUser_id("admin");
+		memberVO.setUser_name("아무개");
+		memberVO.setUser_pw("");//암호를 수정하지 않는 사람을 가정...
+		memberVO.setEmail("test@test.com");
+		memberVO.setPoint(100);
+		memberVO.setEnabled(true);
+		memberVO.setLevels("ROLE_ADMIN");
 		String user_id = memberVO.getUser_id();//memberVO의 오브젝트의 데이터는 1개의 레코드이기때문에 반환값이 1개만
-		
+		memberDAO.updateMember(memberVO);
 	}
 	
 	@Test

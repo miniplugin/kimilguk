@@ -36,12 +36,14 @@ INSERT INTO tbl_member (
 )
 </insert>
 <!-- jsp에서 변수표현 EL표기법 ${변수명}, 마이바티스에서는 변수표현을 #{변수명} -->
-<!-- 마이바티스의 장점, 쿼리안쪽에 조건을 달 수 가 있습니다.(내일작업) -->
+<!-- 마이바티스의 장점, 쿼리안쪽에 조건을 달 수 가 있습니다. -->
 <update id="updateMember">
 UPDATE tbl_member 
 SET 
     user_name = #{user_name},
+    <if test="user_pw !=''">
     user_pw = #{user_pw},
+    </if>
     email = #{email},
     point = #{point},
     enabled = #{enabled},
