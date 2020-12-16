@@ -12,9 +12,20 @@ memberMapper.xml: 회원관리에대한 모든 쿼리를 모아서 관리하는 
 -->
 <select id="selectMember" resultType="org.edu.vo.MemberVO">
 select * from tbl_member
-<if test="search_type !=''">
- where 
- </if>
+<if test="search_type != ''">
+	where
+	<if test="search_type == 'all'.toString()">
+			user_id = #{search_keyword}
+			or
+			user_name = #{search_keyword}
+	</if>
+	<if test="search_type == 'user_id'.toString()">
+ 			user_id = #{search_keyword}
+ 	</if>
+ 	<if test="search_type == 'user_name'.toString()">
+ 			user_name = #{search_keyword}
+ 	</if>
+</if>
 </select>
 
 <insert id="insertMember">

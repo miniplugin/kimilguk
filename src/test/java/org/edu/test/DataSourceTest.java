@@ -103,7 +103,7 @@ public class DataSourceTest {
 	
 	@Test
 	public void selectMember() throws Exception {
-		List<MemberVO> memberList =	memberDAO.selectMember();
+		List<MemberVO> memberList =	memberDAO.selectMember("user_name","홍길동");
 		System.out.println("회원리스트 테스트 입니다.");
 		System.out.println(memberList.toString());
 	}
