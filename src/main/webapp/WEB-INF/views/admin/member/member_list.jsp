@@ -72,6 +72,9 @@
                     </tr>
                   </thead>
                   <tbody>
+                  <c:if test="${empty members}">
+                  	<tr><td colspan="6" class="text-center">조회된 데이터가 없습니다.</td></tr>
+                  </c:if>
                   <!-- jstl표준 core태그사용 반복문으로 Admin컨트롤러에서 가져온 members 오브젝트클래스 값을 출력 -->
                   <c:forEach items="${members}" var="member">
                   	<tr>
