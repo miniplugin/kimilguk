@@ -18,7 +18,7 @@ memberMapper.xml: 회원관리에대한 모든 쿼리를 모아서 관리하는 
 -->
 <select id="selectMember" resultType="org.edu.vo.MemberVO">
 select * from tbl_member
-<if test="search_type != ''">
+<if test="search_type != '' and search_type !=null">
 	where
 	<if test="search_type == 'all'.toString()">
 			user_id like concat('%',#{search_keyword},'%')
