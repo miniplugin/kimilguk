@@ -10,20 +10,26 @@ memberMapper.xml: 회원관리에대한 모든 쿼리를 모아서 관리하는 
 <!-- 아래 반환값이 MemberVO클래스형이면, select * from 쿼리에서 결과값에 [자동바인딩]됩니다. 
 단, 멤버클래스의 멤버변수 값이 tbl_member 테이블의 필드명과 일치하게 만들어야 하는 조건.
 -->
+<!-- 
+ user_id = 'admin' where 조건에서 완전일치 = 이퀄입니다.
+ 일부분 일치는 라이크쿼리 like(LIKE) + 검색어% 사용합니다.
+ 앞뒤로 일치하는 LIKE쿼리를 사용할 때는 %검색어%
+ user_id like '%user_2020%'
+-->
 <select id="selectMember" resultType="org.edu.vo.MemberVO">
 select * from tbl_member
 <if test="search_type != ''">
 	where
 	<if test="search_type == 'all'.toString()">
-			user_id = #{search_keyword}
+			user_id like concat('%',#{search_keyword},'%')
 			or
-			user_name = #{search_keyword}
+			user_name like concat('%',#{search_keyword},'%')
 	</if>
 	<if test="search_type == 'user_id'.toString()">
- 			user_id = #{search_keyword}
+ 			user_id like concat('%',#{search_keyword},'%')
  	</if>
  	<if test="search_type == 'user_name'.toString()">
- 			user_name = #{search_keyword}
+ 			user_name like concat('%',#{search_keyword},'%')
  	</if>
 </if>
 </select>
