@@ -33,6 +33,6 @@ public class MemberVO {
 
 	@Override
 	public String toString() {
-		return "디버그용 MemberVO [name=" + name + ", age=" + age + ", phoneNum=" + phoneNum + "]";
+		return "디버그용 MemberVO [name=" + name + ", age=" + age + "(세), phoneNum=" + phoneNum + "]";
 	}
 }
