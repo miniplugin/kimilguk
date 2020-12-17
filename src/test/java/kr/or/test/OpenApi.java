@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * OpenApi클래스로 HRD-Net에서 제공하는 구직훈련과정API 목록을 출력하는 자바앱
@@ -45,6 +47,10 @@ public class OpenApi {
 		} catch (MalformedURLException e) {
 			// 외부연계 URL주소형식이 잘못되었을때 에러상황발생
 			System.out.println("URL주소형식이 잘못되었습니다. 왜냐하면 " + e.toString());
+		} finally {
+			//콘솔화면에 현재 PC시간을 표시해서 진짜 5초단위로 스케줄대로 작동되는지 확인
+			Calendar calendar = Calendar.getInstance();
+			System.out.println(calendar.getTime());
 		}
 	}
 	//스태틱 메서드는 new키워드로 객체오브젝트 생성없이 바로 접근이 기능한 메서드를 말합니다.
@@ -55,8 +61,12 @@ public class OpenApi {
 		//주기적인 스레드작업(Concurrent동시작업)을위한 코딩:new키워드로 실행가능한 오브젝트 변수인 exec변수 생성.
 		//final 인 현재클래스에서만 사용하겠다는 명시적인 의미
 		final ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
+		exec.scheduleAtFixedRate(new Runnable() {//스레드를 이용해서 5초단위로 메서드 반복실행
+			public void run( ) {
+				serviceApi();
+			}
+		}, 0, sleepSec, TimeUnit.SECONDS);
 		
-		serviceApi();
 		// 일반메서드와 스태틱 메서드의 호출차이
 		//StaticTest staticTest = new StaticTest();
 		//staticTest.test2();//노스태틱은 오브젝트생성후 접근이 가능
