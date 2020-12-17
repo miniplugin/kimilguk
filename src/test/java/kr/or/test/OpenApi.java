@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**
  * OpenApi클래스로 HRD-Net에서 제공하는 구직훈련과정API 목록을 출력하는 자바앱
@@ -48,6 +49,13 @@ public class OpenApi {
 	}
 	//스태틱 메서드는 new키워드로 객체오브젝트 생성없이 바로 접근이 기능한 메서드를 말합니다.
 	public static void main(String[] args) {
+		//메인스레드는 1개 다른스레드를 추가로 실행할때, Runnable메서드를 사용합니다.(아래)
+		//추가스레드를 스케줄로 실행할때 실행간격 변수(5초)
+		int sleepSec = 5;
+		//주기적인 스레드작업(Concurrent동시작업)을위한 코딩:new키워드로 실행가능한 오브젝트 변수인 exec변수 생성.
+		//final 인 현재클래스에서만 사용하겠다는 명시적인 의미
+		final ScheduledThreadPoolExecutor exec = new ScheduledThreadPoolExecutor(1);
+		
 		serviceApi();
 		// 일반메서드와 스태틱 메서드의 호출차이
 		//StaticTest staticTest = new StaticTest();
