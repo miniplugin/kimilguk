@@ -2,6 +2,7 @@ package kr.or.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,23 +22,45 @@ public class OpenApi {
 			try {
 				HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 				urlConnection.setRequestMethod("GET");//URL쿼리스트링으로 파라미터를 보낸다.
-				bufferedReader = new BufferedReader(new InputStreamReader());
+				bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(),"euc-kr"));
+				String result="";
+				String line;
+				int cnt = 0;
+				//while반복문 시작
+				while( (line=bufferedReader.readLine()) !=null ) {
+					cnt = cnt + 1;
+					result = result + line + "\n";// \n == Newline나타내는 기호 결과는 엔터
+				}
+				System.out.println("버퍼리더로 읽어들인 최종 결과값은 아래 입니다. while반복회수는 " + cnt);
+				//System.out.println(result);//2줄로 읽어서 끝
+				//XmlUtils.java클래스를 이용해서 xml태그내용을 이쁘게 출력(아래)
+				String result_xmlUtils = XmlUtils.formatXml(result);
+				System.out.println(result_xmlUtils);
+						
 			} catch (IOException e) {
 				// Http 웹접근에러상황발생
 				System.out.println("Http 웹접근 에러입니다. 왜냐하면 " + e.toString());
 			}
 		} catch (MalformedURLException e) {
-			// 외부연계 URL에 접근하지 못했을때 에러상황발생
-			System.out.println("URL접근에 실패했습니다. 왜냐하면 " + e.toString());
+			// 외부연계 URL주소형식이 잘못되었을때 에러상황발생
+			System.out.println("URL주소형식이 잘못되었습니다. 왜냐하면 " + e.toString());
 		}
 	}
 	//스태틱 메서드는 new키워드로 객체오브젝트 생성없이 바로 접근이 기능한 메서드를 말합니다.
 	public static void main(String[] args) {
+		serviceApi();
 		// 일반메서드와 스태틱 메서드의 호출차이
 		//StaticTest staticTest = new StaticTest();
 		//staticTest.test2();//노스태틱은 오브젝트생성후 접근이 가능
 		//StaticTest.test();//스태틱메서는 오브젝트생성없이 클래스로 바로 접근이 가능 메서드, 변수도 가능.
-		
+		/*
+		int sum = 0;
+		while(sum < 10) {
+			sum = sum + 1;//sum = sum + 1 누적로직을 확인
+			//System.out.println("지금까지 누적된 값은 " + sum);
+		}
+		System.out.println("지금까지 누적된 값은 " + sum);
+		*/
 	}
 
 }
