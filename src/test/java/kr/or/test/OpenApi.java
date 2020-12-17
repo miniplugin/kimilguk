@@ -19,7 +19,7 @@ public class OpenApi {
 	//외부연계 역할 메서드(아래)
 	public static void serviceApi() {
 		BufferedReader bufferedReader = null;//HRD넷에서 전송받은 데이터를 임시 저장하는 공간.자동차범퍼.
-		String urlStr = "http://www.hrd.go.kr/hrdp/api/apipo/APIPO0101T.do?srchTraEndDt=20210317&pageSize=10&srchTraArea2=44133&srchTraArea1=44&srchTraOrganNm=%ED%9C%B4%EB%A8%BC&srchTraStDt=20201108&sortCol=TR_STT_DT&authKey=인증키위치&sort=ASC&returnType=XML&outType=1&pageNum=1&srchTraPattern=N1&srchPart=-99&apiRequstPageUrlAdres=/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp&apiRequstIp=58.74.90.6";
+		String urlStr = "http://www.hrd.go.kr/hrdp/api/apipo/APIPO0101T.do?srchTraEndDt=20210317&pageSize=10&srchTraArea2=44133&srchTraArea1=44&srchTraOrganNm=%ED%9C%B4%EB%A8%BC&srchTraStDt=20201108&sortCol=TR_STT_DT&authKey=인증키입력해주세요&sort=ASC&returnType=XML&outType=1&pageNum=1&srchTraPattern=N1&srchPart=-99&apiRequstPageUrlAdres=/jsp/HRDP/HRDPO00/HRDPOA60/HRDPOA60_1.jsp&apiRequstIp=58.74.90.6";
 		try {
 			URL url = new URL(urlStr);
 			try {
