@@ -165,7 +165,8 @@ public class AdminController {
 		if(pageVO.getPage() == null) {//int 일때 null체크에러가 나와서 pageVO의 page변수형 Integer로벼경.
 			pageVO.setPage(1);
 		}
-		pageVO.setPerPageNum(10);//1페이지당 보여줄 회원수 10명으로 입력 놓았습니다.
+		pageVO.setPerPageNum(5);//리스트하단에 보이는 페이징번호의 개수
+		pageVO.setPerQueryPageNum(10);//1페이지당 보여줄 회원수 10명으로 입력 놓았습니다.
 		pageVO.setTotalCount(110);//전체 회원의 수를 구한 변수 값 매개변수로 입력하는 순간 calcPage()메서드실행.
 		model.addAttribute("pageVO", pageVO);
 		//System.out.println("디버그 스타트페이지는 : " + pageVO.getStartPage());

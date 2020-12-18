@@ -50,6 +50,8 @@
 - (idx==pageVO.page)?'active':'';//전체 3개의 항(부분)으로 만들어져서 삼항연사자라고 합니다.
 - 위 삼항연사자를 풀면 다음과 같음: if(idx==pageVO.page) {'active'}else{''};
 - @ModelAttribute("pageVO")
+- < 1 2 3 4 5 6 7 8 9 10 > 에서 PC에서는
+- < 1 2 3 4 5 > 로 나오는데 모바일에서는 이렇게 표시하는 것이 좋습니다.
 - PageVO클래스 적용하는 순서: 1. PageVO클래스생성 
 - MemberMapper쿼리수정 -> MemberDAO클래스수정 -> MemberService클래스수정 ->
 - -> AdminController클래스수정 -> jsp 화면단 수정.
