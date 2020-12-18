@@ -162,9 +162,9 @@ public class AdminController {
 		model.addAttribute("members", members_list);//members-2차원배열을 members_array클래스오브젝트로 변경
 		
 		// null/10 = 에러처리(아래)
-		pageVO.setPage(1);
+		pageVO.setPage(11);
 		pageVO.setPerPageNum(10);//1페이지당 보여줄 회원수 10명으로 입력 놓았습니다.
-		pageVO.setTotalCount(100);//전체 회원의 수를 구한 변수 값 매개변수로 입력하는 순간 calcPage()메서드실행.
+		pageVO.setTotalCount(110);//전체 회원의 수를 구한 변수 값 매개변수로 입력하는 순간 calcPage()메서드실행.
 		model.addAttribute("pageVO", pageVO);
 		System.out.println("디버그 스타트페이지는 : " + pageVO.getStartPage());
 		System.out.println("디버그 엔드페이지는 : " + pageVO.getEndPage());
