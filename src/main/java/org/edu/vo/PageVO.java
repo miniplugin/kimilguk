@@ -29,12 +29,27 @@ public class PageVO {
 	private String search_type;//검색조건
 	private String search_keyword;//검색어
 	
-	//전체 클래스에서 [계산식]이 4개 필요합니다. 개발자가 만들어야 합니다.
+	//전체 클래스에서 [계산식]이 4개 필요합니다. 개발자가 만들어야 합니다.(아래)
+	private void calcPage() {
+		//page변수는 현재 jsp에서 클릭한 페이지번호 예로 1 를 받아서 아래 계산식에서 사용
+		//(int)형변환 : 2.1, 2.8 다 2로 반환이 됩니다.
+		//ceil메서드: 천장값을 반환   1.1 => 2, 2.3 => 3
+		//floor메서드: 바닥값을 반환 1.1 => 1, 2.3 => 2
+		//ceil(1/10) =>1.0 0.9 0.8 ...0.1 0.0 -0.1 -0.2 => 1
+		//ceil(1/10)*10 => 10페이지
+		int tempEnd = (int)(Math.ceil(
+				(page/(double)this.perPageNum)*this.perPageNum
+				));
+		//jsp에서 클릭한 페이지번호 예로 1 을 기준으로 끝 페이지를 계산한다(위)
+		this.startPage = (tempEnd - this.perPageNum) + 1;
+		//
+	}
 	
 	public Integer getPerPageNum() {
 		return perPageNum;
 	}
 	public void setPerPageNum(Integer perPageNum) {
+		perPageNum = 10;//강제로 1페이지당 보여줄 개수값을 10개로 지정
 		this.perPageNum = perPageNum;
 	}
 	public Integer getPage() {
