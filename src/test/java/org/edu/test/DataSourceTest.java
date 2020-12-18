@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 
 import org.edu.dao.IF_MemberDAO;
 import org.edu.vo.MemberVO;
+import org.edu.vo.PageVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -103,7 +104,11 @@ public class DataSourceTest {
 	
 	@Test
 	public void selectMember() throws Exception {
-		List<MemberVO> memberList =	memberDAO.selectMember("user_name","홍길동");
+		//"user_name","홍길동"
+		PageVO pageVO = new PageVO();
+		pageVO.setSearch_type("user_name");
+		pageVO.setSearch_keyword("홍길동");
+		List<MemberVO> memberList =	memberDAO.selectMember(pageVO);
 		System.out.println("회원리스트 테스트 입니다.");
 		System.out.println(memberList.toString());
 	}
