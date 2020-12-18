@@ -14,7 +14,7 @@ package org.edu.vo;
 public class PageVO {
 	//예를 들면 변수 중에 boolean(일반형테이터형변수) / boolean(대문자로시작-클래스형변수-Null로 입력되었을때 처리하는 로직이 들어 있습니다)
 	private int perPageNum;//1페이지당 출력할 개수값이 들어가는 변수
-	private int page;//jsp에서 선택한 페이지 번호값이 들어가는 변수
+	private Integer page;//jsp에서 선택한 페이지 번호값이 들어가는 변수
 	private int startNo;//[계산식]을 이용해서 나오는 값을 쿼리에서 사용될 시작번호값이 들어가는 변수
 	private boolean prev;//[계산식]페이징에서 이전 번호가 있을때 표시값이 들어가는 변수
 	private boolean next;//[계산식]페이징에서 이후 번호가 있을때 표시값이 들어가는 변수
@@ -75,10 +75,10 @@ public class PageVO {
 		//perPageNum = 10;//강제로 1페이지당 보여줄 개수값을 10개로 지정
 		this.perPageNum = perPageNum;
 	}
-	public int getPage() {
+	public Integer getPage() {
 		return page;
 	}
-	public void setPage(int page) {
+	public void setPage(Integer page) {
 		this.page = page;
 	}
 	public int getStartNo() {
