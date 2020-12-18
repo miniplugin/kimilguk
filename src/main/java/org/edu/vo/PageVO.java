@@ -12,12 +12,12 @@ package org.edu.vo;
  *
  */
 public class PageVO {
-	//예를 들면 변수 중에 boolean(일반형테이터형변수) / Boolean(대문자로시작-클래스형변수-Null로 입력되었을때 처리하는 로직이 들어 있습니다)
-	private Integer perPageNum;//1페이지당 출력할 개수값이 들어가는 변수
-	private Integer page;//jsp에서 선택한 페이지 번호값이 들어가는 변수
-	private Integer startNo;//[계산식]을 이용해서 나오는 값을 쿼리에서 사용될 시작번호값이 들어가는 변수
-	private Boolean prev;//[계산식]페이징에서 이전 번호가 있을때 표시값이 들어가는 변수
-	private Boolean next;//[계산식]페이징에서 이후 번호가 있을때 표시값이 들어가는 변수
+	//예를 들면 변수 중에 boolean(일반형테이터형변수) / boolean(대문자로시작-클래스형변수-Null로 입력되었을때 처리하는 로직이 들어 있습니다)
+	private int perPageNum;//1페이지당 출력할 개수값이 들어가는 변수
+	private int page;//jsp에서 선택한 페이지 번호값이 들어가는 변수
+	private int startNo;//[계산식]을 이용해서 나오는 값을 쿼리에서 사용될 시작번호값이 들어가는 변수
+	private boolean prev;//[계산식]페이징에서 이전 번호가 있을때 표시값이 들어가는 변수
+	private boolean next;//[계산식]페이징에서 이후 번호가 있을때 표시값이 들어가는 변수
 	//위에 생성 프리뷰, 넥스트 변수값이 있는지 없는지 확인하려면, [계산식]이 필요합니다. 계산할 때 필요한 변수 3개가 필요(아래)
 	private int totalCount;//회원[게시물] 전체의 갯수값이 들어가는 변수
 	private int startPage;//jsp화면에서 보여주는 페이징 리스트의 시작번호
@@ -39,9 +39,9 @@ public class PageVO {
 		//ceil(1/10) =>1.0 0.9 0.8...0.1 0.0 -0.1 -0.2 => 1
 		//2 1.9 1.8 ... 1.2 1.1 => 2
 		//ceil(11/10)*10 => 20페이지
-		int tempEnd = (int)(Math.ceil(
-				(page/(double)this.perPageNum)*this.perPageNum
-				));
+		int tempEnd = (int)(
+				Math.ceil(page/(double)this.perPageNum)*this.perPageNum
+				);
 		//jsp에서 클릭한 페이지번호 예로 1 을 기준으로 끝 페이지를 계산한다(위)
 		//예) < 1 2 3 4 5 6 7 8 9 10(tempEnd) > 페이징 리스트의 시작1 과 끝10 값이 바뀌게 됩니다.
 		//예) < 11 12 13 14 15 16 17 18 19 20(tempEnd) > 시작 11 과 끝 20
@@ -68,20 +68,20 @@ public class PageVO {
 		//예) < 11 12 13 14 15 16 17 18 19 20(tempEnd)  시작 11 과 끝 20
 	}
 	
-	public Integer getPerPageNum() {
+	public int getPerPageNum() {
 		return perPageNum;
 	}
-	public void setPerPageNum(Integer perPageNum) {
+	public void setPerPageNum(int perPageNum) {
 		//perPageNum = 10;//강제로 1페이지당 보여줄 개수값을 10개로 지정
 		this.perPageNum = perPageNum;
 	}
-	public Integer getPage() {
+	public int getPage() {
 		return page;
 	}
-	public void setPage(Integer page) {
+	public void setPage(int page) {
 		this.page = page;
 	}
-	public Integer getStartNo() {
+	public int getStartNo() {
 		//DB쿼리에서 사용 결과값은 시작 인덱스번호(0)를 구하는 계산식(아래)
 		//계산식 = (jsp에서 클릭한페이지번호-1)*페이지당 보여지는 개수
 		//1페이지계산 10[1페이지당출력할개수]x(1[몇번째페이지번호]-1) = 0 1페이지일때
@@ -89,19 +89,19 @@ public class PageVO {
 		startNo = perPageNum*(this.page-1);//개발자가 추가한 계산식
 		return startNo;
 	}
-	public void setStartNo(Integer startNo) {
+	public void setStartNo(int startNo) {
 		this.startNo = startNo;
 	}
-	public Boolean getPrev() {
+	public boolean getPrev() {
 		return prev;
 	}
-	public void setPrev(Boolean prev) {
+	public void setPrev(boolean prev) {
 		this.prev = prev;
 	}
-	public Boolean getNext() {
+	public boolean getNext() {
 		return next;
 	}
-	public void setNext(Boolean next) {
+	public void setNext(boolean next) {
 		this.next = next;
 	}
 	public int getTotalCount() {

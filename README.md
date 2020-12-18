@@ -46,7 +46,10 @@
 - 통합구현 NCS학습모듈 이론 2-1단원.
 
 #### 20201218(금) 작업
-- PageVO클래스 적용하는 순서: 
+- @ModelAttribute("pageVO"
+- PageVO클래스 적용하는 순서: 1. PageVO클래스생성 
+- MemberMapper쿼리수정 -> MemberDAO클래스수정 -> MemberService클래스수정 ->
+- -> AdminController클래스수정 -> jsp 화면단 수정.
 - 1페이지계산 5x(1-1) = 0 1페이지일때
 - 2페이지계산 5x(2-1) = 5 2페이지일때
 - SELECT * FROM tbl_board order by bno desc limit 0, 5;# 0-시작인덱스,5-출력할 개수
