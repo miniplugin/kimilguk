@@ -111,7 +111,7 @@ public class AdminController {
 	//현재컨트롤러 클래스에서 member_view.jsp로 데이터를 보내는 역할 Model 클래스 사용.
 	//member_list.jsp -> @RequestParam("user_id")수신, Model송신 -> member_view.jsp
 	@RequestMapping(value="/admin/member/member_view",method=RequestMethod.GET)
-	public String member_view(@RequestParam("user_id") String user_id, Model model) throws Exception {
+	public String member_view(@ModelAttribute("pageVO") PageVO pageVO, @RequestParam("user_id") String user_id, Model model) throws Exception {
 		//내가 멤버 리스트가 보고 싶어서 리스트 클릭한거 자체가 "1명멤버내용 주세요"하고 요청을 한거고 
 		//그 요청을 컨트롤러에서 받은건가요?
 		//위에서 수신한 user_id를 개발자가 만든 user_id2이름으로 member_view.jsp 보냅니다.(아래)
@@ -172,8 +172,9 @@ public class AdminController {
 		
 		List<MemberVO> members_list = memberService.selectMember(pageVO);
 		model.addAttribute("members", members_list);//members-2차원배열을 members_array클래스오브젝트로 변경
-		
-		model.addAttribute("pageVO", pageVO);
+		//상단의 @ModelAttribute("pageVO")는 jsp로 PageVO클래스 결과를 보내주는 역할.
+		//만약에 위 @ModelAttribute를 사용한다면, 아래 model.~("pageVO",~)없어도 됨.
+		//*** model.addAttribute("pageVO", pageVO);
 		//System.out.println("디버그 스타트페이지는 : " + pageVO.getStartPage());
 		//System.out.println("디버그 엔드페이지는 : " + pageVO.getEndPage());
 		return "admin/member/member_list";//member_list.jsp 로 members변수명으로 데이터를 전송
