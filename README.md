@@ -25,9 +25,9 @@
 - junit으로 DB접근 후 관리자단 회원관리 CRUD unit테스트 마무리OK.
 - @Component애노테이션사용으로 MemberVO 인젝션사용 가능OK.
 - DB 디버그용 드라이버 사용 pom.xml 의존성 추가 후, log4jdbc.log4j2.properties 추가 OK.
+- 실제 회원관리 화면 CRUD 적용 중 jsp중 member_list(select+검색)처리 후 페이징처리 OK.
 - --------------- 여기까지 ------------------
-- 실제 회원관리 화면 CRUD 적용 중 jsp중 member_list(select+검색)처리 후 페이징처리 예정.
-- member_write, member_update, member_delete 만들기.
+- member_write, member_update, member_delete(OK) 만들기 작업중.
 - 스프링 AOP(관점지향프로그래밍-OOP의 확장기능)기능으로 개발용 디버그출력환경 만들기.
 - 실제 게시판 화면 CRUD 적용.
 - 파일업로드 라이브러리 사용 pom.xml 의존성 추가.

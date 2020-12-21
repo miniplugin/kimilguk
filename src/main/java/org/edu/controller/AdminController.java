@@ -172,7 +172,7 @@ public class AdminController {
 		if(pageVO.getPage() == null) {//int 일때 null체크에러가 나와서 pageVO의 page변수형 Integer로벼경.
 			pageVO.setPage(1);
 		}
-		pageVO.setPerPageNum(5);//리스트하단에 보이는 페이징번호의 개수
+		pageVO.setPerPageNum(8);//리스트하단에 보이는 페이징번호의 개수
 		pageVO.setQueryPerPageNum(10);//쿼리에서 1페이지당 보여줄 회원수 10명으로 입력 놓았습니다.
 		//검색된 전체 회원 명수 구하기 서비스 호출
 		int countMember = 0;

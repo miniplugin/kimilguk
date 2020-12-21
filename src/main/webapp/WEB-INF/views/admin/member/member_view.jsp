@@ -67,12 +67,12 @@
               <!-- /.card-body -->
             </div>
           
-          <form name="delete_form" action="/admin/member/member_delete" method="post">
+          <form name="action_form" id="action_form" action="">
           <!-- 버튼영역 시작 -->
             <div class="card-body">
             	<a href="/admin/member/member_list?page=${pageVO.page}" class="btn btn-primary float-right mr-1">LIST ALL</a>
-              	<button type="submit" class="btn btn-danger float-right mr-1">DELETE</button>
-				<button type="button" class="btn btn-warning float-right mr-1 text-white">UPDATE</button>        	
+              	<button type="button" id="deleteBtn" class="btn btn-danger float-right mr-1">DELETE</button>
+				<button type="button" id="updateBtn" class="btn btn-warning float-right mr-1 text-white">UPDATE</button>        	
               	<!-- 부트스트랩 디자인 버튼클래스를 이용해서 a태그를 버튼모양 만들기(위) -->
               	<!-- btn클래스명이 버튼모양으로 변경, btn-primary클래스명은 버튼색상을 변경하는역할 -->
               	<!-- 
@@ -96,3 +96,20 @@
   <!-- /.content-wrapper -->
  
 <%@ include file="../include/footer.jsp" %>
+<script>
+$(document).ready(function(){
+	$("#deleteBtn").bind("click", function(){
+		if(confirm("정말 삭제 하시겠습니까?")) {
+			$("#action_form").attr("action","/admin/member/member_delete");
+			$("#action_form").attr("method","post");
+			$("#action_form").submit();
+		}//confirm()자바스크립트 함수의 반환값은 true, false
+	});
+	
+	$("#updateBtn").bind("click", function(){
+		$("#action_form").attr("action","/admin/member/member_update");
+		$("#action_form").attr("method","get");
+		$("#action_form").submit();
+	});
+});
+</script>
