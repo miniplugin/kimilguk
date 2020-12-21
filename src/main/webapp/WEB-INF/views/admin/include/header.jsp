@@ -5,6 +5,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<script>
+if('${msg}' != '') {
+	alert(${msg} + "가(이) 성공하였습니다.");
+}
+</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>관리자 | Dashboard</title>

@@ -38,4 +38,10 @@ public class MemberServiceImpl implements IF_MemberService {
 		return memberDAO.readMember(user_id);
 	}
 
+	@Override
+	public void deleteMember(String user_id) throws Exception {
+		// 선택한 회원정보를 삭제 하기
+		memberDAO.deleteMember(user_id);
+	}
+
 }

@@ -14,4 +14,5 @@ public interface IF_MemberService {
 	public int countMember(PageVO pageVO) throws Exception;
 	public List<MemberVO> selectMember(PageVO pageVO) throws Exception;
 	public MemberVO readMember(String user_id) throws Exception;
+	public void deleteMember(String user_id) throws Exception;
 }
