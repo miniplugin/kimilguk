@@ -32,6 +32,7 @@ select * from tbl_member
  			user_name like concat('%',#{search_keyword},'%')
  	</if>
 </if>
+limit #{queryStartNo}, #{queryPerPageNum}
 </select>
 
 <insert id="insertMember">

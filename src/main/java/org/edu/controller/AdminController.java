@@ -158,16 +158,18 @@ public class AdminController {
 		 * Arrays.asList메서드로 List타입으로 변경해서 jsp 보냅니다. //위에서 테이터타입연습으로 총 3가지 테이터 타입을 확인했음.
 		 * System.out.println("List타입의 오브젝트 클래스내용을 출력 " + members_list.toString());
 		 */
-		List<MemberVO> members_list = memberService.selectMember(pageVO);
-		model.addAttribute("members", members_list);//members-2차원배열을 members_array클래스오브젝트로 변경
 		
-		// null/10 = 에러처리(아래)
+		// selectMember마이바티스쿼리를 실행하기전에 set이 발생해야 변수값이 할당됩니다.(아래)
 		if(pageVO.getPage() == null) {//int 일때 null체크에러가 나와서 pageVO의 page변수형 Integer로벼경.
 			pageVO.setPage(1);
 		}
 		pageVO.setPerPageNum(5);//리스트하단에 보이는 페이징번호의 개수
-		pageVO.setPerQueryPageNum(10);//1페이지당 보여줄 회원수 10명으로 입력 놓았습니다.
+		pageVO.setQueryPerPageNum(10);//쿼리에서 1페이지당 보여줄 회원수 10명으로 입력 놓았습니다.
 		pageVO.setTotalCount(110);//전체 회원의 수를 구한 변수 값 매개변수로 입력하는 순간 calcPage()메서드실행.
+		
+		List<MemberVO> members_list = memberService.selectMember(pageVO);
+		model.addAttribute("members", members_list);//members-2차원배열을 members_array클래스오브젝트로 변경
+		
 		model.addAttribute("pageVO", pageVO);
 		//System.out.println("디버그 스타트페이지는 : " + pageVO.getStartPage());
 		//System.out.println("디버그 엔드페이지는 : " + pageVO.getEndPage());

@@ -43,8 +43,9 @@
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
 #### 20201221(월) 작업예정
+- 마리아DB실행(만세아이콘)->워크벤치실행->이클립스실행
 - 통합구현 NCS학습모듈 이론 2-1단원.
-- 변수변경1: 쿼리에서 사용되는 시작인덱스 perPageNum 변수를 queryPerPageNum 으로 변경예정
+- 변수변경1: 쿼리에서 사용되는 시작인덱스 startNo 변수를 queryStartNo 으로 변경예정
 - 변수변경2: 쿼리에서 사용되는 1페이지당출력할개수 perQueryPageNum 변수를 queryPerPageNum 으로 변경예정
 - totalCount가 들어가는 계산식 변경(아래)
 - tempEnd*this.perQueryPageNum > this.totalCount (임시끝페이지x쿼리에서1페이지당출력할개수 > 실제전체개수)
