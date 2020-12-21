@@ -165,7 +165,7 @@ public class AdminController {
 		}
 		pageVO.setPerPageNum(5);//리스트하단에 보이는 페이징번호의 개수
 		pageVO.setQueryPerPageNum(10);//쿼리에서 1페이지당 보여줄 회원수 10명으로 입력 놓았습니다.
-		pageVO.setTotalCount(110);//전체 회원의 수를 구한 변수 값 매개변수로 입력하는 순간 calcPage()메서드실행.
+		pageVO.setTotalCount(115);//전체 회원의 수를 구한 변수 값 매개변수로 입력하는 순간 calcPage()메서드실행.
 		
 		List<MemberVO> members_list = memberService.selectMember(pageVO);
 		model.addAttribute("members", members_list);//members-2차원배열을 members_array클래스오브젝트로 변경
