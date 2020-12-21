@@ -11,5 +11,6 @@ import org.edu.vo.PageVO;
  *
  */
 public interface IF_MemberService {
+	public int countMember(PageVO pageVO) throws Exception;
 	public List<MemberVO> selectMember(PageVO pageVO) throws Exception;
 }

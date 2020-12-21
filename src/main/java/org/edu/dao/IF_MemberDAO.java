@@ -11,6 +11,7 @@ import org.edu.vo.PageVO;
  *
  */
 public interface IF_MemberDAO {
+	public int countMember(PageVO pageVO) throws Exception;
 	public List<MemberVO> selectMember(PageVO pageVO) throws Exception;//jsp 향상된 forEach문 사용 jstl태그
 	public void insertMember(MemberVO memberVO) throws Exception;
 	public void deleteMember(String user_id) throws Exception;
