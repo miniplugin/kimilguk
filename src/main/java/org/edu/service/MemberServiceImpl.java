@@ -32,4 +32,10 @@ public class MemberServiceImpl implements IF_MemberService {
 		return memberDAO.countMember(pageVO);
 	}
 
+	@Override
+	public MemberVO readMember(String user_id) throws Exception {
+		// 선택한 회원의 상세 정보 구하기
+		return memberDAO.readMember(user_id);
+	}
+
 }
