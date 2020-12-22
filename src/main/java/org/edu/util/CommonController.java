@@ -22,7 +22,7 @@ public class CommonController {
 	IF_MemberService memberService;
 	
 	//REST-API서비스로 사용할때 @ResponseBody애노테이션으로 json텍스트데이터를 반환함(아래)
-	//아래는 RestAPI백엔드단, Ajax(jsp) Rest-API의 프론트엔드단.
+	//아래는 RestAPI백엔드단, Ajax(jsp)부분은 Rest-API의 프론트엔드단.
 	@RequestMapping(value="/id_check",method=RequestMethod.GET)
 	@ResponseBody
 	public String id_check(@RequestParam("user_id") String user_id) {
