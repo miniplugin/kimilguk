@@ -112,7 +112,7 @@ $(document).ready(function() {
 			url:'/id_check?user_id='+p_user_id,
 			dataType:'text',
 			success:function(result){
-				alert('디버그' + result);
+				//alert('디버그' + result);
 				if(result == '0'){
 					alert('사용 가능한 아이디 입니다.');
 					$(".btn-danger").attr("disabled",false);
@@ -121,7 +121,8 @@ $(document).ready(function() {
 					$(".btn-danger").attr("disabled",true);
 				}else{
 					//에러메세지출력
-					alert(result);
+					//alert(result);//개발자용
+					alert('API서버에 문제가 발생했습니다. 나중에 이용해 주세요');
 				}
 			}
 		});
