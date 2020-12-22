@@ -26,8 +26,8 @@
 - @Component애노테이션사용으로 MemberVO 인젝션사용 가능OK.
 - DB 디버그용 드라이버 사용 pom.xml 의존성 추가 후, log4jdbc.log4j2.properties 추가 OK.
 - 실제 회원관리 화면 CRUD 적용 중 jsp중 member_list(select+검색)처리 후 페이징처리 OK.
+- member_write, member_update, member_delete 만들기 작업OK.
 - --------------- 여기까지 ------------------
-- member_write, member_update, member_delete(OK) 만들기 작업중.
 - 스프링 AOP(관점지향프로그래밍-OOP의 확장기능)기능으로 개발용 디버그출력환경 만들기.
 - 실제 게시판 화면 CRUD 적용.
 - 파일업로드 라이브러리 사용 pom.xml 의존성 추가.
@@ -42,7 +42,13 @@
 - 오라클로 마이그레이션 작업.
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
+#### 20201223(수) 작업예정
+- 스프링에서 작업시 순서: DataBase > 쿼리 > DAO > Service > Controller > jsp
+- 지금 진행하는 스프링웹프로젝트 워크벤치로 ERD만들고, 
+- 물리DB생성 후 프로지서 사용 더미데이터 입력(게시물관련) 연습예정.(더 자세히는 7번째과목 SQL활용에서 다룹니다.)
+
 #### 20201222(화) 작업
+- 회원관리 CRUD마무리 OK.
 - 오후 문제점: 2가지(ID수정방지기능OK, enalbed값 jsp바인딩-(true|false-enabled)처리 확인) 업데이트 마무리.
 - 회원등록(CRUD중 C) 작업예정.
 - 중복아이디체크(Ajax로 간단한 RestAPI컨트롤러 구성): 중복아이디가 존재한다면, SUBMIT버튼을 비활성화(disabled)
@@ -65,9 +71,7 @@
 	  <url-pattern>/*</url-pattern>
 	</filter-mapping>
 ```
-- 회원관리 CRUD는 마무리하고,
-- 지금 진행하는 스프링웹프로젝트 워크벤치로 ERD만들고, 
-- 물리DB생성 후 프로지서 사용 더미데이터 입력(게시물관련) 연습예정.(더 자세히는 7번째과목 SQL활용에서 다룹니다.)
+- 회원관리 CRUD는 마무리OK,
 
 #### 20201221(월) 작업
 - 신규페이지 작업시 순서: 쿼리 > DAO > Service > Controller > jsp
