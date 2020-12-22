@@ -108,6 +108,20 @@ public class AdminController {
 		return "admin/member/member_write";
 	}
 	
+	@RequestMapping(value="/admin/member/member_update",method=RequestMethod.GET)
+	public String member_update(@RequestParam("user_id") String user_id, @ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
+		//GET방식으로 업데이트 폼파일만 보여줍니다.
+		MemberVO memberVO = memberService.readMember(user_id);
+		model.addAttribute("memberVO", memberVO);
+		return "admin/member/member_update";
+	}
+	
+	@RequestMapping(value="/admin/member/member_update",method=RequestMethod.POST)
+	public String member_update() {
+		
+		return null;
+	}
+	
 	@RequestMapping(value="/admin/member/member_delete",method=RequestMethod.POST)
 	public String member_delete(RedirectAttributes rdat, @RequestParam("user_id") String user_id) throws Exception {
 		memberService.deleteMember(user_id);
