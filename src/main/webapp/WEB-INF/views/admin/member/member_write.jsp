@@ -84,7 +84,7 @@
           <!-- 버튼영역 시작 -->
             <div class="card-body">
             	<a href="/admin/member/member_list" class="btn btn-primary float-right mr-1">LIST ALL</a>
-              	<button type="submit" class="btn btn-danger float-right mr-1">SUBMIT</button>              	
+              	<button type="submit" class="btn btn-danger float-right mr-1" disabled>SUBMIT</button>              	
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지는 못합니다. 그래서, button태그를 사용. -->
             </div>
           <!-- 버튼영역 끝 -->
