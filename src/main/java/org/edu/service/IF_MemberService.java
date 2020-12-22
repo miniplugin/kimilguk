@@ -17,4 +17,5 @@ public interface IF_MemberService {
 	public void deleteMember(String user_id) throws Exception;
 	//업데이트 후 member_view.jsp 이동(아래)
 	public void updateMember(MemberVO memberVO) throws Exception;
+	public void insertMember(MemberVO memberVO) throws Exception;
 }

@@ -60,7 +60,7 @@
                   </div>
                   <div class="form-group">
                   	<label for="point">point</label>
-                  	<input type="text" class="form-control" name="point" id="point" placeholder="포인트를 입력해 주세요" required>
+                  	<input type="number" class="form-control" name="point" id="point" placeholder="포인트를 입력해 주세요" required>
                   </div>
                   <div class="form-group">
                   	<label for="enabled">enabled</label>
@@ -102,3 +102,29 @@
   <!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>
+<script>
+$(document).ready(function() {
+	$("#user_id").bind("blur", function() {
+		//alert("여기까지" + $(this).val());//디버그용
+		var p_user_id = $(this).val();
+		$.ajax({
+			type:'get',
+			url:'/id_check?user_id='+p_user_id,
+			dataType:'text',
+			success:function(result){
+				alert('디버그' + result);
+				if(result == '0'){
+					alert('사용 가능한 아이디 입니다.');
+					$(".btn-danger").attr("disabled",false);
+				}else if(result == '1') {
+					alert('중복 아이디가 존재 합니다.');
+					$(".btn-danger").attr("disabled",true);
+				}else{
+					//에러메세지출력
+					alert(result);
+				}
+			}
+		});
+	});
+});
+</script>
