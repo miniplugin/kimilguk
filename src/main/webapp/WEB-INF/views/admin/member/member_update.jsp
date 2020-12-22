@@ -42,13 +42,15 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="user_id">user_id</label>
-                    <input value="${memberVO.user_id}" type="text" class="form-control" name="user_id" id="user_id" placeholder="ID를 입력해 주세요." required>
+                    <input value="${memberVO.user_id}" type="text" class="form-control" name="user_id" id="user_id" placeholder="ID를 입력해 주세요." required readonly>
                     <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
                     	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 user_id 입니다. -->
                   </div>
                   <div class="form-group">
                     <label for="user_pw">Password</label>
-                    <input value="${memberVO.user_pw}" type="password" class="form-control" name="user_pw" id="user_pw" placeholder="암호를 입력해 주세요." required>
+                    <!-- html5에서 지원되는 유효성검사 maxlength,minlength,required,type="email" -->
+                    <!-- html5지원 브라우저에서만 사용가능 그래서, jquery.validator라는 자바스크립트를 사용.  -->
+                    <input maxlength="10" minlength="5" value="" type="password" class="form-control" name="user_pw" id="user_pw" placeholder="암호를 입력해 주세요.">
                   </div>
                   <div class="form-group">
                   	<label for="user_name">user_name</label>
@@ -66,8 +68,8 @@
                   <div class="form-group">
                   	<label for="enabled">enabled</label>
                   	<select class="form-control" name="enabled" id="enabled">
-                  		<option value="0" <c:out value="${(memberVO.enabled=='0')?'selected':''}" /> >false</option>
-                  		<option value="1" <c:out value="${(memberVO.enabled=='1')?'selected':''}" /> >true</option>
+                  		<option value="0" <c:out value="${(memberVO.enabled=='false')?'selected':''}" /> >false</option>
+                  		<option value="1" <c:out value="${(memberVO.enabled=='true')?'selected':''}" /> >true</option>
                   	</select>
                   </div>
                   <div class="form-group">
@@ -85,6 +87,7 @@
           <!-- 버튼영역 시작 -->
             <div class="card-body">
             	<a href="/admin/member/member_list?page=${pageVO.page}" class="btn btn-primary float-right mr-1">LIST ALL</a>
+            	<a href="/admin/member/member_view?page=${pageVO.page}&user_id=${memberVO.user_id}" class="btn btn-info float-right mr-1">뒤로가기</a>
               	<button type="submit" class="btn btn-danger float-right mr-1">수정</button>              	
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지는 못합니다. 그래서, button태그를 사용. -->
             </div>
