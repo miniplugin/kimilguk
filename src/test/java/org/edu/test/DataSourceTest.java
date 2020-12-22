@@ -56,7 +56,7 @@ public class DataSourceTest {
 	public void updateMember() throws Exception {
 		//CRUD 중 Update 테스트 구현 특징, user_id는 프라이커리키 이기 때문에 수정대상이 아닙니다.
 		//MemberVO memberVO = new MemberVO();
-		memberVO.setUser_id("admin");
+		memberVO.setUser_id("dummy_1");
 		memberVO.setUser_name("홍길동");
 		memberVO.setUser_pw("");//암호를 수정하지 않는 사람을 가정...
 		memberVO.setEmail("test@test.com");
