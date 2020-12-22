@@ -42,7 +42,26 @@
 - 오라클로 마이그레이션 작업.
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
-#### 20201222(화) 작업예정
+#### 20201222(화) 작업
+- 오후 문제점: 2가지(ID수정방지기능, enalbed값 jsp바인딩처리 확인) 업데이트 마무리.
+- 회원등록(CRUD중 C) 작업예정.
+- 한글이 POST시 깨지는 문제: web.xml 에서 한글처리를 위한 UTF-8필터 추가(필수)
+
+```
+<!--  ...한글처리를 위한 UTF-8 필터 추가 -->
+	<filter>
+	  <filter-name>encoding</filter-name>
+	  <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+	  <init-param>
+	   <param-name>encoding</param-name>
+	   <param-value>UTF-8</param-value>
+	  </init-param>
+	</filter>	
+	<filter-mapping>
+	  <filter-name>encoding</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+```
 - 회원관리 CRUD는 마무리하고,
 - 지금 진행하는 스프링웹프로젝트 워크벤치로 ERD만들고, 
 - 물리DB생성 후 프로지서 사용 더미데이터 입력(게시물관련) 연습예정.(더 자세히는 7번째과목 SQL활용에서 다룹니다.)
