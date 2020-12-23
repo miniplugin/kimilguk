@@ -32,8 +32,8 @@ public class DebugAdvice {
 	 * 어느 메서드에서 시간 얼만큼 소요되는지 확인해야지만, 트러블 슈팅이 가능합니다.
 	 * 아래 @Around()애노테이션 클래스의 ()는 디버그할 영역지정. 
 	 */
-	//@Around("execution(* org.edu.controller.AdminController.*(..))")
-	@Around("execution(* org.edu.service.MemberService*.*(..))")
+	//@Around("execution(* org.edu.service.MemberService*.*(..))")
+	@Around("execution(* org.edu.controller.AdminController.*(..))")//컨트롤러의 메서드는 실행않됨
 	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable {
 		logger.debug("AOP 디버그 시작=========================");
 		long startTime = System.currentTimeMillis();//현재 컴퓨터시간을 저장하는 변수
