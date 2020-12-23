@@ -56,8 +56,8 @@ public class AdminController {
 		String xss_data = "첫번째 내용 입니다.<br><br><br>줄바꿈 처리입니다. <script>location.href('http://naver.com');</script>";
 		boardVO.setContent(securityCode.unscript(xss_data));
 		boardVO.setWriter("admin");
-		Date regdate = new Date();
-		boardVO.setRegdate(regdate);
+		Date reg_date = new Date();
+		boardVO.setReg_date(reg_date);
 		boardVO.setView_count(2);
 		boardVO.setReply_count(0);
 		model.addAttribute("boardVO", boardVO);
@@ -71,8 +71,8 @@ public class AdminController {
 		input_board.setTitle("첫번째 게시물 입니다.");
 		input_board.setContent("첫번째 내용 입니다.<br>줄바꿈했습니다.");
 		input_board.setWriter("admin");
-		Date regdate = new Date();
-		input_board.setRegdate(regdate);
+		Date reg_date = new Date();
+		input_board.setReg_date(reg_date);
 		input_board.setView_count(2);
 		input_board.setReply_count(0);
 		BoardVO[] board_array = new BoardVO[2];
@@ -84,7 +84,7 @@ public class AdminController {
 		input_board2.setTitle("두번째 게시물 입니다.");
 		input_board2.setContent("두번째 내용 입니다.<br>줄바꿈했습니다.");
 		input_board2.setWriter("user02");
-		input_board2.setRegdate(regdate);
+		input_board2.setReg_date(reg_date);
 		input_board2.setView_count(2);
 		input_board2.setReply_count(0);
 		//input_board2 = {2,"두번째 게시물 입니다.","두번째 내용 입니다.<br>줄바꿈했습니다.","user02",now(),2,0};
