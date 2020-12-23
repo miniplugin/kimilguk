@@ -28,6 +28,8 @@
 - 실제 회원관리 화면 CRUD 적용 중 jsp중 member_list(select+검색)처리 후 페이징처리 OK.
 - member_write, member_update, member_delete 만들기 작업OK.
 - 스프링 AOP(관점지향프로그래밍-OOP의 확장기능)기능으로 개발용 디버그출력환경 만들기 시작.
+- pom.xml에 AOP모듈 추가 필수
+- root-context.xml에서 aop태그 추가
 - --------------- 여기까지 ------------------
 - 실제 게시판 화면 CRUD 적용.
 - 파일업로드 라이브러리 사용 pom.xml 의존성 추가.
