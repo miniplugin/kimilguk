@@ -44,7 +44,7 @@
 - 오라클로 마이그레이션 작업.
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
-#### 20201224(목) 작업예정
+#### 20201224(목) 작업
 - AOP 작동않되었던문제점 2가지처리예정(아래)
 - 1. Controller클래스가 빈으로 등록되는 servlet-context.xml 에도 aop태그 추가
 - 2. DebugAdvice클래스의 logger.debug를 logger.info로 변경 또는, log4.xml설정 debug로 변경
