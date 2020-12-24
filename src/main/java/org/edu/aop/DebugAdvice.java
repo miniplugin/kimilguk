@@ -35,14 +35,14 @@ public class DebugAdvice {
 	//@Around("execution(* org.edu.service.MemberService*.*(..))")
 	@Around("execution(* org.edu.controller.AdminController.*(..))")//컨트롤러의 메서드는 실행않됨
 	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable {
-		logger.debug("AOP 디버그 시작=========================");
+		logger.info("AOP 디버그 시작=========================");
 		long startTime = System.currentTimeMillis();//현재 컴퓨터시간을 저장하는 변수
-		logger.debug(Arrays.toString(pjp.getArgs()));//pjp클래스 매개변수 값 GET으로 가져와서 toString형변환 출력
+		logger.info(Arrays.toString(pjp.getArgs()));//pjp클래스 매개변수 값 GET으로 가져와서 toString형변환 출력
 		//위는 현재 시간체크하는 메서드가 어떤메서드인지 눈으로 확인하려고 logger.debug로 출력
 		Object result = pjp.proceed();//AdminController에 있는 메서드가 실행됩니다.(시간이 소요됨)
 		long endTime = System.currentTimeMillis();//현재 컴퓨터 시간을 저장하는 변수
-		logger.debug(pjp.getSignature().getName() + "메서드명의 실행시간은:" + (endTime-startTime));
-		logger.debug("AOP 디버그 끝 ==========================");
+		logger.info(pjp.getSignature().getName() + "메서드명의 실행시간은:" + (endTime-startTime));
+		logger.info("AOP 디버그 끝 ==========================");
 		return result;
 	}
 }
