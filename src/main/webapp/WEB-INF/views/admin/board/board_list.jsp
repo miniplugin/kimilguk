@@ -77,7 +77,7 @@
                   	<tr>
                       <td>${boardVO.bno}</td>
                       <!-- 아래 a링크값은 리스트가 늘어날 수록 동적으로 bno값이 변하게 됩니다. 개발자가 jsp처리 -->
-                      <td><a href="/admin/board/board_view?bno=${boardVO.bno}">
+                      <td><a href="/admin/board/board_view?page=${pageVO.page}&bno=${boardVO.bno}">
                       <!-- c:out 사용하는 이유는 메롱을 방지하기 위해서 시큐어코딩처리 -->
                       <c:out value="${boardVO.title}"></c:out>[<c:out value="${boardVO.reply_count}"></c:out>]
                       </a></td>
