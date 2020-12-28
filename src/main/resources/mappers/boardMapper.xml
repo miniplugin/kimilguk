@@ -18,6 +18,10 @@
 	</if>
 </sql>
 
+<select id="readBoard" resultType="org.edu.vo.BoardVO">
+select * from tbl_board where bno = #{bno}
+</select>
+
 <select id="countBoard" resultType="int">
 select count(*) from tbl_board
 <include refid="sqlWhere"></include>
