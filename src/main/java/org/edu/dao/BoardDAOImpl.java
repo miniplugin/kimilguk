@@ -23,4 +23,10 @@ public class BoardDAOImpl implements IF_BoardDAO {
 		return sqlSession.selectList("boardMapper.selectBoard", pageVO);
 	}
 
+	@Override
+	public int countBoard(PageVO pageVO) throws Exception {
+		// sql세션템플릿 사용해서 게시물개수 구하기 매퍼쿼리 연결(아래)
+		return sqlSession.selectOne("boardMapper.countBoard", pageVO);
+	}
+
 }
