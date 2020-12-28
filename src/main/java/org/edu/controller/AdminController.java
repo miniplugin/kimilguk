@@ -64,6 +64,10 @@ public class AdminController {
 		 * boardVO.setReply_count(0);
 		 */
 		BoardVO boardVO = boardService.readBoard(bno);
+		//시큐어코딩 시작
+		String xss_data = boardVO.getContent();
+		boardVO.setContent(securityCode.unscript(xss_data));
+		//시큐어코딩 끝
 		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_view";
 	}

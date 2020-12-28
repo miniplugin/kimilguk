@@ -32,6 +32,7 @@
 - root-context.xml에서 aop태그 추가
 - --------------- 여기까지 ------------------
 - 실제 게시판 화면 CRUD 적용.
+- 트랜잭션 @Tansactional추가: root-context.xml에서 dataSource에 트랜잭션 설정추가필수
 - 파일업로드 라이브러리 사용 pom.xml 의존성 추가.
 - 게시판 업로드 화면 구현.
 - Json데이터 사용 pom.xml 의존성 추가.(댓글 Rest-Api에서필요)
