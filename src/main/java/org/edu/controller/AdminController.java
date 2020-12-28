@@ -66,31 +66,25 @@ public class AdminController {
 	@RequestMapping(value="/admin/board/board_list",method=RequestMethod.GET)
 	public String board_list(Model model) throws Exception {
 		//테스트용 더미 게시판 데이터 만들기(아래)
-		BoardVO input_board = new BoardVO();
-		input_board.setBno(1);
-		input_board.setTitle("첫번째 게시물 입니다.");
-		input_board.setContent("첫번째 내용 입니다.<br>줄바꿈했습니다.");
-		input_board.setWriter("admin");
-		Date reg_date = new Date();
-		input_board.setReg_date(reg_date);
-		input_board.setView_count(2);
-		input_board.setReply_count(0);
-		BoardVO[] board_array = new BoardVO[2];
-		//input_board = {1,"첫번째 게시물 입니다.","첫번째 내용 입니다.<br>줄바꿈했습니다.","admin",now(),2,0};
-		board_array[0] = input_board;
-		//------------------------------------
-		BoardVO input_board2 = new BoardVO();
-		input_board2.setBno(2);
-		input_board2.setTitle("두번째 게시물 입니다.");
-		input_board2.setContent("두번째 내용 입니다.<br>줄바꿈했습니다.");
-		input_board2.setWriter("user02");
-		input_board2.setReg_date(reg_date);
-		input_board2.setView_count(2);
-		input_board2.setReply_count(0);
-		//input_board2 = {2,"두번째 게시물 입니다.","두번째 내용 입니다.<br>줄바꿈했습니다.","user02",now(),2,0};
-		board_array[1] = input_board2;
-		//-------------------------------------
-		List<BoardVO> board_list = Arrays.asList(board_array);//배열타입을 List타입으로 변경절차.
+		/*
+		 * BoardVO input_board = new BoardVO(); input_board.setBno(1);
+		 * input_board.setTitle("첫번째 게시물 입니다.");
+		 * input_board.setContent("첫번째 내용 입니다.<br>줄바꿈했습니다.");
+		 * input_board.setWriter("admin"); Date reg_date = new Date();
+		 * input_board.setReg_date(reg_date); input_board.setView_count(2);
+		 * input_board.setReply_count(0); BoardVO[] board_array = new BoardVO[2];
+		 * //input_board =
+		 * {1,"첫번째 게시물 입니다.","첫번째 내용 입니다.<br>줄바꿈했습니다.","admin",now(),2,0};
+		 * board_array[0] = input_board; //------------------------------------ BoardVO
+		 * input_board2 = new BoardVO(); input_board2.setBno(2);
+		 * input_board2.setTitle("두번째 게시물 입니다.");
+		 * input_board2.setContent("두번째 내용 입니다.<br>줄바꿈했습니다.");
+		 * input_board2.setWriter("user02"); input_board2.setReg_date(reg_date);
+		 * input_board2.setView_count(2); input_board2.setReply_count(0); //input_board2
+		 * = {2,"두번째 게시물 입니다.","두번째 내용 입니다.<br>줄바꿈했습니다.","user02",now(),2,0};
+		 * board_array[1] = input_board2; //-------------------------------------
+		 * List<BoardVO> board_list = Arrays.asList(board_array);//배열타입을 List타입으로 변경절차.
+		 */		
 		model.addAttribute("board_list", board_list);
 		return "admin/board/board_list";
 	}
