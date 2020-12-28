@@ -68,6 +68,25 @@ public class AdminController {
 		String xss_data = boardVO.getContent();
 		boardVO.setContent(securityCode.unscript(xss_data));
 		//시큐어코딩 끝
+		//첨부파일 리스트 값을 가져와서 세로데이터(jsp에서는 forEach문사용)를 가로데이터(jsp에서 배열사용)로 바꾸기
+		//첨부파일을 1개만 올리기 때문에 리스트형 데이터를 배열데이터로 변경
+		// 리스트형 입력값(세로) [
+		// {'save_file_name0'},
+		// {'save_file_name1'},
+		// ..
+		//]
+		List<String> files = boardService.readAttach(bno);
+		String[] save_file_names = new String[files.size()];
+		int cnt = 0;
+		for(String save_file_name:files) {//세로데이터를 가로데이터로 변경하는 로직
+			save_file_names[cnt] = save_file_name;
+			cnt = cnt + 1;
+		}
+		//배열형출력값(가로) {'save_file_name0','save_file_name1',...}
+		boardVO.setSave_file_names(save_file_names);
+		//위처럼 첨부파일을 세로베치->가로배치로 바꾸고, get/set하는 이유는 attachVO를 만들지 않아서 입니다.
+		//만약 위처럼 복잡하게 세로배치->가로배치로 바꾸는 것이 이상하면, 아래처럼처리
+		//model.addAttribute("save_file_names", files);
 		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_view";
 	}
