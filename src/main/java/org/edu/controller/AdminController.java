@@ -99,7 +99,7 @@ public class AdminController {
 		//검색된 전체 게시물수 구하기 서비스 호출
 		int countBoard = 0;
 		countBoard = boardService.countBoard(pageVO);
-		pageVO.setTotalCount(countBoard);//115전체 게시물 수를 구한 변수 값 매개변수로 입력하는 순간 calcPage()메서드실행.
+		pageVO.setTotalCount(countBoard);//11x개 전체 게시물 수를 구한 변수 값 매개변수로 입력하는 순간 calcPage()메서드실행.
 		
 		List<BoardVO> board_list = boardService.selectBoard(pageVO);
 		model.addAttribute("board_list", board_list);

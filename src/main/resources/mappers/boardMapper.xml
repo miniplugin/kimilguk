@@ -18,14 +18,15 @@
 	</if>
 </sql>
 
-<select id="countBoard">
+<select id="countBoard" resultType="int">
 select count(*) from tbl_board
 <include refid="sqlWhere"></include>
 </select>
 
-<select id="selectBoard">
+<select id="selectBoard" resultType="org.edu.vo.BoardVO">
 select * from tbl_board
 <include refid="sqlWhere"></include>
+order by reg_date desc
 limit #{queryStartNo}, #{queryPerPageNum}
 </select>
 
