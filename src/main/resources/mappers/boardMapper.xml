@@ -18,9 +18,16 @@
 	</if>
 </sql>
 
+<select id="readAttach" resultType="string">
+select save_file_name from tbl_attach where bno = #{bno} order by reg_date desc
+</select>
 <select id="readBoard" resultType="org.edu.vo.BoardVO">
 select * from tbl_board where bno = #{bno}
 </select>
+<update id="updateViewCount">
+update tbl_board set view_count = view_count + 1
+where bno = #{bno}
+</update>
 
 <select id="countBoard" resultType="int">
 select count(*) from tbl_board

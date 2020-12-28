@@ -51,6 +51,18 @@
 - 위 작업은 관리자단 게시판 CRUD작업 후 진행예정.
 - AdminLTE관리자단 게시판CRUD작업시작.
 - 리스트작업OK. -> 뷰단작업 진행.
+- DAO는 3개, 서비스는 1개 묶어줄수 있습니다.
+- 자료구조: List<BoardVO>, List<String>
+- List<BoardVO>: [
+	{bno1, 'title1', 'content1', ... },
+	{bno2, 'title2', 'content2', ... },
+	...
+- ]
+- List<String>: [
+	{'file_name1'},
+	{'file_name2'},
+	...
+- ]
 - 작업순서: DB -> 매퍼쿼리 <-> DAO클래스 <-> Service클래스 <-> Controller클래스 -> jsp
 - 프로그램에서 조건문의 and(교집합 결과), or(합집합 결과).
 - 코딩 틈틈히 이론수업(IT강의저장소의 스프링내용)
