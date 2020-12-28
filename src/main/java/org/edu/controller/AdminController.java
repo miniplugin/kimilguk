@@ -48,27 +48,27 @@ public class AdminController {
 		return "redirect:/admin/board/board_list";
 	}
 	@RequestMapping(value="/admin/board/board_view", method=RequestMethod.GET)
-	public String board_view(@RequestParam("bno") Integer bno, Model model) throws Exception {
+	public String board_view(@ModelAttribute("pageVO") PageVO pageVO, @RequestParam("bno") Integer bno, Model model) throws Exception {
 		//jsp로 보낼 더미 데이터 boardVO에 담아서 보낸다.
 		//실제로는 아래처럼 더미데이터를 만드것이 아닌
 		//쿼리스트링(질의문자열)로 받아온 bno(게시물 고유번호)를 이용해서 DB에서
 		//select * from tbl_boarad where bno = ? 마이바티스 실행이 된 결과값이 BoardVO형으로 받아서 jsp보내줌.
 		//'3', '새로운 글을 넣습니다. ', '새로운 글을 넣습니다. ', 'user00', '2019-10-10 12:25:36', '2019-10-10 12:25:36', '0', '0'
-		BoardVO boardVO = new BoardVO();
-		boardVO.setBno(1);
-		boardVO.setTitle("첫번째 게시물 입니다.");
-		String xss_data = "첫번째 내용 입니다.<br><br><br>줄바꿈 처리입니다. <script>location.href('http://naver.com');</script>";
-		boardVO.setContent(securityCode.unscript(xss_data));
-		boardVO.setWriter("admin");
-		Date reg_date = new Date();
-		boardVO.setReg_date(reg_date);
-		boardVO.setView_count(2);
-		boardVO.setReply_count(0);
+		/*
+		 * BoardVO boardVO = new BoardVO(); boardVO.setBno(1);
+		 * boardVO.setTitle("첫번째 게시물 입니다."); String xss_data =
+		 * "첫번째 내용 입니다.<br><br><br>줄바꿈 처리입니다. <script>location.href('http://naver.com');</script>"
+		 * ; boardVO.setContent(securityCode.unscript(xss_data));
+		 * boardVO.setWriter("admin"); Date reg_date = new Date();
+		 * boardVO.setReg_date(reg_date); boardVO.setView_count(2);
+		 * boardVO.setReply_count(0);
+		 */
+		BoardVO boardVO = boardService.readBoard(bno);
 		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_view";
 	}
 	@RequestMapping(value="/admin/board/board_list",method=RequestMethod.GET)
-	public String board_list(PageVO pageVO, Model model) throws Exception {
+	public String board_list(@ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
 		//테스트용 더미 게시판 데이터 만들기(아래)
 		/*
 		 * BoardVO input_board = new BoardVO(); input_board.setBno(1);
@@ -103,7 +103,7 @@ public class AdminController {
 		
 		List<BoardVO> board_list = boardService.selectBoard(pageVO);
 		model.addAttribute("board_list", board_list);
-		model.addAttribute("pageVO", pageVO);
+		//model.addAttribute("pageVO", pageVO);//@ModelAttribute 애노테이션으로 대체
 		return "admin/board/board_list";
 	}
 	
