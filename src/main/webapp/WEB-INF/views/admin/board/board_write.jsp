@@ -98,3 +98,14 @@ $(document).ready(function () {
   bsCustomFileInput.init();
 });
 </script>
+<link rel="stylesheet" href="/resources/plugins/summernote/summernote.css">
+<script src="/resources/plugins/summernote/summernote.js"></script>
+<script>
+$(document).ready(function(){
+	$('#content').summernote({
+		height:150,
+		lang:"ko-KR",
+		placeholder:'글 내용을 입력해 주세요'
+	});
+});//textarea 중 content아이디영역을 섬머노트에디터로 변경처리 함수실행
+</script>

@@ -47,6 +47,11 @@
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
 #### 20201229(화) 작업
+- input type="file" name="file" 바로 DB테이블에 저장할 수 없습니다.
+- save_file_name, real_file_name 이런 테이블필드에 저장하기전에 전처리 과정이 필요합니다.
+- 첨부파일 등록시 전처리 과정: (아래)
+- 전처리 과정 1. 서버에 저장공간(폴더)에 save_file_name이름으로 .jpg, .hwp, .xls 저장되는 기능필요
+- 전처리 과정 2. 물리DB테이블에 save_file_name필드, real_file_name필드, bno게시물번호필드 에 저장되는 기능필요
 - 데이터흐름: 물리DB(필드명) - DAO - Service - Controller - JSP(input태그의 name속성)
 -          BoardVO(멤버변수명와 위 5군데 Get/Set 이 가능하려면, 이름이 동일해야함. 필수조건)
 - 관리자단 게시판 CRUD작업 중 어제 Read작업 확인(첨부파일 다운로드는 아래 insert작업 후 다시 확인)
