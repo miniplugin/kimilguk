@@ -75,7 +75,8 @@
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지는 못합니다. 그래서, button태그를 사용. -->
             </div>
           <!-- 버튼영역 끝 -->
-          <input type="hidden" name="bno" value="boardVO.bno">
+          <input type="hidden" name="bno" value="${boardVO.bno}">
+          <input type="hidden" name="page" value="${pageVO.page}">
           </form>
           <!-- 폼내부에 버튼이 있어야지만, 전송버튼이 작동 됩니다. -->
           

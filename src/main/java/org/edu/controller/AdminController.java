@@ -47,7 +47,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/board/board_update",method=RequestMethod.GET)
-	public String board_update(@RequestParam("bno") Integer bno,PageVO pageVO) throws Exception {
+	public String board_update(@RequestParam("bno") Integer bno,@ModelAttribute("pageVO") PageVO pageVO,Model model) throws Exception {
+		BoardVO boardVO = boardService.readBoard(bno);
+		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_update";//파일경로
 	}
 	@RequestMapping(value="/admin/board/board_update",method=RequestMethod.POST)
