@@ -262,9 +262,11 @@ $(document).ready(function() {
 $(document).ready(function(){
 	$("#btn_board_delete").on("click",function(){
 		//alert("디버그");
-		$('form[name="action_form"]').attr("method","post");
-		$('form[name="action_form"]').attr("action","/admin/board/board_delete");
-		$('form[name="action_form"]').submit();
+		if(confirm("정말로 삭제 하시겠습니까?")) {
+			$('form[name="action_form"]').attr("method","post");
+			$('form[name="action_form"]').attr("action","/admin/board/board_delete");
+			$('form[name="action_form"]').submit();
+		}
 	});
 });
 </script>

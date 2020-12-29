@@ -11,12 +11,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">게시글등록</h1>
+            <h1 class="m-0">게시글수정</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">게시글등록</li>
+              <li class="breadcrumb-item active">게시글수정</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -32,29 +32,29 @@
           <div class="col-12"><!-- 그리드시스템중 12가로칼럼 width:100% -->
           
           <!-- form start -->
-          <form name="write_form" action="/admin/board/board_write" method="post" encType="multipart/form-data">
+          <form name="update_form" action="/admin/board/board_update" method="post" encType="multipart/form-data">
           
           <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">CREATE Board</h3>
+                <h3 class="card-title">UPDATE Board</h3>
               </div>
               <!-- /.card-header -->
               
                 <div class="card-body">
                   <div class="form-group">
                     <label for="title">title</label>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요." required>
+                    <input type="text" value="${boardVO.title}" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요." required>
                     <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
                     	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 user_id 입니다. -->
                   </div>
                   <div class="form-group">
                   	<label for="content">Content</label>
-                  	<textarea rows="5" name="content" id="content" class="form-control"></textarea>
+                  	<textarea rows="5" name="content" id="content" class="form-control">${boardVO.content}</textarea>
                   	<!-- 필수입력 값은 html5에서 지원하는 유효성 검사중 required 속성을 사용해서 빈(null)값체크(유효성검사)를 합니다. -->
                   </div>
                   <div class="form-group">
                   	<label for="writer">writer</label>
-                  	<input type="text" class="form-control" name="writer" id="writer" placeholder="작성자를 입력해 주세요" required>
+                  	<input type="text" value="${boardVO.writer}" class="form-control" name="writer" id="writer" placeholder="작성자를 입력해 주세요" required>
                   </div>
                   <div class="form-group" style="margin-bottom:0px;">
                   <label>attach</label>
@@ -70,12 +70,12 @@
           
           <!-- 버튼영역 시작 -->
             <div class="card-body">
-            	<a href="/admin/board/board_list" class="btn btn-primary float-right mr-1">LIST ALL</a>
+            	<a href="/admin/board/board_list?page=${pageVO.page}" class="btn btn-primary float-right mr-1">LIST ALL</a>
               	<button type="submit" class="btn btn-danger float-right mr-1">SUBMIT</button>              	
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지는 못합니다. 그래서, button태그를 사용. -->
             </div>
           <!-- 버튼영역 끝 -->
-          
+          <input type="hidden" name="bno" value="boardVO.bno">
           </form>
           <!-- 폼내부에 버튼이 있어야지만, 전송버튼이 작동 됩니다. -->
           
