@@ -53,4 +53,10 @@ public class BoardDAOImpl implements IF_BoardDAO {
 		sqlSession.insert("boardMapper.insertBoard", boardVO);
 	}
 
+	@Override
+	public void deleteBoard(Integer bno) throws Exception {
+		// 게시물 삭제 매퍼쿼리 연결(아래)
+		sqlSession.delete("boardMapper.deleteBoard", bno);
+	}
+
 }

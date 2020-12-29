@@ -14,4 +14,5 @@ public interface IF_BoardDAO {
 	public void updateViewCount(Integer bno) throws Exception;
 	// 게시물 상세조회 끝
 	public void insertBoard(BoardVO boardVO) throws Exception;
+	public void deleteBoard(Integer bno) throws Exception;
 }

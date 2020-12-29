@@ -17,6 +17,9 @@
 		</if>
 	</if>
 </sql>
+<delete id="deleteBoard">
+delete from tbl_board where bno = #{bno}
+</delete>
 <insert id="insertBoard">
 insert into tbl_board (title,content,writer,reg_date) 
 values(#{title},#{content},#{writer},now())

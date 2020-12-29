@@ -11,4 +11,5 @@ public interface IF_BoardService {
 	public BoardVO readBoard(Integer bno) throws Exception;
 	public List<String> readAttach(Integer bno) throws Exception;
 	public void insertBoard(BoardVO boardVO) throws Exception;
+	public void deleteBoard(Integer bno) throws Exception;
 }

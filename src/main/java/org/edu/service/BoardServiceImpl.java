@@ -49,4 +49,10 @@ public class BoardServiceImpl implements IF_BoardService {
 		boardDAO.insertBoard(boardVO);
 	}
 
+	@Override
+	public void deleteBoard(Integer bno) throws Exception {
+		// 게시물 삭제 DAO연결(아래)
+		boardDAO.deleteBoard(bno);
+	}
+
 }
