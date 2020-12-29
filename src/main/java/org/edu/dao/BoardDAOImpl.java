@@ -59,4 +59,10 @@ public class BoardDAOImpl implements IF_BoardDAO {
 		sqlSession.delete("boardMapper.deleteBoard", bno);
 	}
 
+	@Override
+	public void updateBoard(BoardVO boardVO) throws Exception {
+		// 게시물 수정 매퍼궈리 연결(아래)
+		sqlSession.update("boardMapper.updateBoard", boardVO);
+	}
+
 }

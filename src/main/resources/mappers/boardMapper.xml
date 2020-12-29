@@ -17,6 +17,13 @@
 		</if>
 	</if>
 </sql>
+<update id="updateBoard">
+update tbl_board set
+	title = #{title},
+	content = #{content},
+	update_date = now()
+where bno = #{bno}
+</update>
 <delete id="deleteBoard">
 delete from tbl_board where bno = #{bno}
 </delete>

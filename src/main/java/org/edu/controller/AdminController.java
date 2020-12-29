@@ -36,13 +36,28 @@ public class AdminController {
 	
 	@Inject
 	IF_MemberService memberService;//멤버인터페이스를 주입받아서 memberService오브젝트 변수를 생성.
+	
 	//GET은 URL전송방식(아무데서나 브라우저주소에 적으면 실행됨), POST는 폼전송방식(해당페이지에서만 작동가능)
 	@RequestMapping(value="/admin/board/board_delete",method=RequestMethod.POST)
 	public String board_delete(RedirectAttributes rdat,PageVO pageVO, @RequestParam("bno") Integer bno) throws Exception {
+		//첨부파일 삭제 미처리3 -추가예정:삭제할때 순서, 자식부터 삭제 후 부모가 삭제됩니다.
 		boardService.deleteBoard(bno);
 		rdat.addFlashAttribute("msg", "삭제");
 		return "redirect:/admin/board/board_list?page=" + pageVO.getPage();//삭제할 당시의 현재페이지를 가져가서 리스트로보줌
 	}
+	
+	@RequestMapping(value="/admin/board/board_update",method=RequestMethod.GET)
+	public String board_update(@RequestParam("bno") Integer bno,PageVO pageVO) throws Exception {
+		return "admin/board/board_update";//파일경로
+	}
+	@RequestMapping(value="/admin/board/board_update",method=RequestMethod.POST)
+	public String board_update(RedirectAttributes rdat,MultipartFile file, BoardVO boardVO, PageVO pageVO) throws Exception {
+		boardService.updateBoard(boardVO);
+		//첨부파일 수정 미처리2 - 추가예정:수정할때 순서, 부모부터 수정 후 자식이 수정됩니다.
+		rdat.addFlashAttribute("msg", "수정");
+		return "redirect:/admin/board/board_view?page="+pageVO.getPage()+"&bno="+boardVO.getBno();
+	}
+	
 	@RequestMapping(value="/admin/board/board_write",method=RequestMethod.GET)//URL경로
 	public String board_write() throws Exception {
 		return "admin/board/board_write";//파일경로
@@ -52,6 +67,7 @@ public class AdminController {
 		//post받은 boardVO내용을 DB서비스에 입력하면 됩니다.
 		//dB에 입력후 새로고침명령으로 게시물 테러를 당하지 않으려면, redirect로 이동처리 합니다.(아래)
 		boardService.insertBoard(boardVO);
+		//첨부파일 등록 미처리1 - 추가예정:등록순서, 부모부터 등록 후 자식이 생성이 됩니다.
 		rdat.addFlashAttribute("msg", "저장");
 		return "redirect:/admin/board/board_list";
 	}
