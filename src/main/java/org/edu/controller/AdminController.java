@@ -45,6 +45,7 @@ public class AdminController {
 	public String board_write(MultipartFile file, BoardVO boardVO) throws Exception {
 		//post받은 boardVO내용을 DB서비스에 입력하면 됩니다.
 		//dB에 입력후 새로고침명령으로 게시물 테러를 당하지 않으려면, redirect로 이동처리 합니다.(아래)
+		boardService.insertBoard(boardVO);
 		return "redirect:/admin/board/board_list";
 	}
 	@RequestMapping(value="/admin/board/board_view", method=RequestMethod.GET)

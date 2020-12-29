@@ -47,4 +47,10 @@ public class BoardDAOImpl implements IF_BoardDAO {
 		sqlSession.update("boardMapper.updateViewCount", bno);
 	}
 
+	@Override
+	public void insertBoard(BoardVO boardVO) throws Exception {
+		// 게시물 등록 매퍼쿼리 연결(아래)
+		sqlSession.insert("boardMapper.insertBoard", boardVO);
+	}
+
 }
