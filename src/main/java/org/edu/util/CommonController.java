@@ -29,8 +29,14 @@ public class CommonController {
 	@Inject
 	IF_MemberService memberService;
 	
-	//첨부파일의 확장자를 비교해서 이미지인지, 엑셀,한글과같은 일반파일인지 확인하는 List객체변수
-	//변수생성 후 바로 리스트3개 입력처리.
+	/**
+	 * 첨부파일의 확장자를 비교해서 이미지인지, 엑셀,한글과같은 일반파일인지 확인하는 List객체변수
+	 * 사용용도1: 게시물상세보기 첨부파일이 이미지면 미리보기이미지가 보이도록, 이미지가 아니면, 다운로드링크만 보이도록
+	 * 사용용도2: 메인페이지 최근 겔러리 게시물에서 첨부파일이 있으면, 미리보기 이미지가 나오게 되는데, 
+	 * 만약 첨부파일이 이미지가 아니면, 대체 이미지를 보이기 위해서 확장자 체크가 필요합니다.
+	 * 변수생성 후 바로 리스트3개 입력처리.
+	 */
+	@SuppressWarnings("serial")
 	private ArrayList<String> extNameArray = new ArrayList<String>() {
 		{
 			add("gif");
