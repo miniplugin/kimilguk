@@ -1,5 +1,7 @@
 package org.edu.util;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -9,6 +11,7 @@ import javax.inject.Inject;
 import org.edu.service.IF_MemberService;
 import org.edu.vo.MemberVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -46,12 +49,19 @@ public class CommonController {
 	public void setUploadPath(String uploadPath) {
 		this.uploadPath = uploadPath;
 	}
-	//파일 업로드= xml에서 지정한 폴더에 실제파일 저장: 메서드구현(아래)
-	public String[] fileUpload(MultipartFile file) {
-		String realFileName = file.getOriginalFilename();//jsp에서 전송한 파일명
+	//파일 업로드= xml에서 지정한 폴더에 실제파일 저장을 구현한 메서드(아래)
+	public String fileUpload(MultipartFile file) throws IOException {
+		String realFileName = file.getOriginalFilename();//jsp에서 전송한 파일명->확장자를 구하려고 사용
 		//폴더에 저장할 PK용 파일명 만들기(아래)
-		UUID uid = UUID.randomUUID();//유니크 아이디 생성 Unique ID
-		return null;
+		UUID uid = UUID.randomUUID();//유니크 아이디 생성 Unique ID: 폴더에 저장할 파일명으로 사용
+		String saveFileName = uid.toString() + "." + realFileName.split("\\.")[1];
+		//값.split("정규표현식");(Regular Expression):realFileName을 . 으로 분할해서 배열변수로 만드는 메서드
+		//예를 들면, abc.jpg -> realFileName[0] = abc, realFileName[1] = jpg 으로 결과가 나옵니다.
+		//String[] files = new String[] {saveFileName};//saveFileName 스트링형을 배열변수 files로 형변환 
+		byte[] fileData = file.getBytes();//jsp폼에서 전송된 파일이 fileData변수(메모리)에 저장됩니다.
+		File target = new File(uploadPath, saveFileName);//파일저장 하기 바로전 설정저장.
+		FileCopyUtils.copy(fileData, target);//실제로 target폴더에 파일로 저장되는 메서드=업로드 종료
+		return saveFileName;//첨부파일이 1개 이상일 수 있기 때문에 또는 BoardVO save_file_names멤버변수가 배열형이기때문에
 	}
 
 	//REST-API서비스로 사용할때 @ResponseBody애노테이션으로 json|텍스트데이터를 반환함(아래)
