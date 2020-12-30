@@ -43,6 +43,7 @@ public class BoardServiceImpl implements IF_BoardService {
 		return boardDAO.readAttach(bno);
 	}
 
+	@Transactional
 	@Override
 	public void insertBoard(BoardVO boardVO) throws Exception {
 		// 게시물 등록 DAO연결(아래)
