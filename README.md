@@ -53,6 +53,8 @@
 #### 20201230(수) 작업
 - 스프링 이론은 ch08까지 OK.
 - 관리자단 게시판 업로드 화면 구현.
+- 현재는 1개 업로드 되도록 구현이 되어있습니다.
+- 만약에 다중파일 업로드로 구현하실때 참조:https://ktko.tistory.com/entry/Spring-%EB%8B%A8%EC%9D%BC%ED%8C%8C%EC%9D%BC-%EB%8B%A4%EC%A4%91%ED%8C%8C%EC%9D%BC-%EC%97%85%EB%A1%9C%EB%93%9C%ED%95%98%EA%B8%B0
 - 저장할폴더지정: servlet-context.xml에서 지정(PC에저장위치설정, 헤로쿠/파스타에서 사용할 클라우드 저장위치는 별도로 지정예정)
 - 첨부파일저장 순서: jsp(file)->Controller(실제폴더에저장)->Service(게시판DB에저장->첨부파일DB에저장)
 - 스프링의 설정방식: 아래 2가지
