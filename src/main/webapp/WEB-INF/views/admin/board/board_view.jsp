@@ -62,6 +62,7 @@
 	                <a href="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}">
 	                ${boardVO.real_file_names[0]}-파일다운로드
 	                </a>
+	                <img src="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}">
 	                </p>
                 </c:if>
               </div>
