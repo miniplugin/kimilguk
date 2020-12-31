@@ -17,6 +17,10 @@
 		</if>
 	</if>
 </sql>
+<!-- 해당 게시물의 첨부파일 업데이트시키기 -->
+<insert id="updateAttach">
+
+</insert>
 <!-- 해당 게시물의 첨부파일 1개만 지우기(아래) PK프라이머리키=주키=기본키=>인덱스는 자동생성 -->
 <delete id="deleteAttach">
 delete from tbl_attach where save_file_name = #{save_file_name}
