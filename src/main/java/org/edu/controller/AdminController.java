@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.edu.dao.IF_BoardDAO;
 import org.edu.service.IF_BoardService;
 import org.edu.service.IF_MemberService;
 import org.edu.util.CommonController;
@@ -41,6 +42,9 @@ public class AdminController {
 	IF_BoardService boardService;//게시판인터페이스를 주입받아서 boardService오브젝트 생성.
 	
 	@Inject
+	IF_BoardDAO boardDAO;//jsp-Controller-Service-DAO-Mapper-DB
+	
+	@Inject
 	IF_MemberService memberService;//멤버인터페이스를 주입받아서 memberService오브젝트 변수를 생성.
 	
 	//GET은 URL전송방식(아무데서나 브라우저주소에 적으면 실행됨), POST는 폼전송방식(해당페이지에서만 작동가능)
@@ -54,7 +58,7 @@ public class AdminController {
 			//파일 삭제 로직(아래 File클래스(폴더경로,파일명)
 			File target = new File(commonController.getUploadPath(), (String) file_name.get("save_file_name"));
 			if(target.exists()) {
-				target.delete();//실제 지워짐.
+				target.delete();//실제 파일 지워짐.
 			}
 		}
 		rdat.addFlashAttribute("msg", "삭제");
@@ -64,6 +68,20 @@ public class AdminController {
 	@RequestMapping(value="/admin/board/board_update",method=RequestMethod.GET)
 	public String board_update(@RequestParam("bno") Integer bno,@ModelAttribute("pageVO") PageVO pageVO,Model model) throws Exception {
 		BoardVO boardVO = boardService.readBoard(bno);
+		
+		List<HashMap<String, Object>> files = boardService.readAttach(bno);
+		String[] save_file_names = new String[files.size()];
+		String[] real_file_names = new String[files.size()];
+		int cnt = 0;
+		for(HashMap<String, Object> file_name:files) {//세로데이터를 가로데이터로 변경하는 로직
+			save_file_names[cnt] = (String) file_name.get("save_file_name");//형변환 cast
+			real_file_names[cnt] = (String) file_name.get("real_file_name");
+			cnt = cnt + 1;
+		}
+		//배열형출력값(가로) {'save_file_name0','save_file_name1',...}
+		boardVO.setSave_file_names(save_file_names);
+		boardVO.setReal_file_names(real_file_names);
+		
 		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_update";//파일경로
 	}
@@ -78,6 +96,8 @@ public class AdminController {
 				File target = new File(commonController.getUploadPath(), (String) file_name.get("save_file_name"));
 				if(target.exists()) {
 					target.delete();//폴더에서 기존첨부파일 지우기
+					//서비스클래스에는 첨부파일DB를 지우는 메서드가 없음. DAO를 접근해서 tbl_attach를 지웁니다.
+					boardDAO.deleteAttach((String) file_name.get("save_file_name"));
 				}
 			}
 			//신규파일 폴더에 업로드 처리
