@@ -85,6 +85,7 @@ public class AdminController {
 		rdat.addFlashAttribute("msg", "저장");
 		return "redirect:/admin/board/board_list";
 	}
+	
 	@RequestMapping(value="/admin/board/board_view", method=RequestMethod.GET)
 	public String board_view(@ModelAttribute("pageVO") PageVO pageVO, @RequestParam("bno") Integer bno, Model model) throws Exception {
 		//jsp로 보낼 더미 데이터 boardVO에 담아서 보낸다.
@@ -113,21 +114,25 @@ public class AdminController {
 		// {'save_file_name1'},
 		// ..
 		//]
-		List<String> files = boardService.readAttach(bno);
+		List<HashMap<String, Object>> files = boardService.readAttach(bno);
 		String[] save_file_names = new String[files.size()];
+		String[] real_file_names = new String[files.size()];
 		int cnt = 0;
-		for(String save_file_name:files) {//세로데이터를 가로데이터로 변경하는 로직
-			save_file_names[cnt] = save_file_name;
+		for(HashMap<String, Object> file_name:files) {//세로데이터를 가로데이터로 변경하는 로직
+			save_file_names[cnt] = (String) file_name.get("save_file_name");//형변환 cast
+			real_file_names[cnt] = (String) file_name.get("real_file_name");
 			cnt = cnt + 1;
 		}
 		//배열형출력값(가로) {'save_file_name0','save_file_name1',...}
 		boardVO.setSave_file_names(save_file_names);
+		boardVO.setReal_file_names(real_file_names);
 		//위처럼 첨부파일을 세로베치->가로배치로 바꾸고, get/set하는 이유는 attachVO를 만들지 않아서 입니다.
 		//만약 위처럼 복잡하게 세로배치->가로배치로 바꾸는 것이 이상하면, 아래처럼처리
 		//model.addAttribute("save_file_names", files);
 		model.addAttribute("boardVO", boardVO);
 		return "admin/board/board_view";
 	}
+	
 	@RequestMapping(value="/admin/board/board_list",method=RequestMethod.GET)
 	public String board_list(@ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
 		//테스트용 더미 게시판 데이터 만들기(아래)
