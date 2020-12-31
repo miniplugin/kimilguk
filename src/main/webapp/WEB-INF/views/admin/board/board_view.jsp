@@ -73,6 +73,7 @@
 	                		<img style="width:100%;" src="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}">
 	                	</c:when>
 	                	<c:otherwise>
+	                		<c:out value="${checkImgArray}" />
 	                		<!-- 사용자홈페이지 메인 최근게시물 미리보기 이미지가 없을때 사용예정. -->
 	                	</c:otherwise>
 	                </c:choose>
