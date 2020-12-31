@@ -19,4 +19,6 @@ public interface IF_BoardDAO {
 	public void updateBoard(BoardVO boardVO) throws Exception;
 	// 첨부파일 관련(아래)
 	public void insertAttach(String save_file_name, String real_file_name) throws Exception;
+	public void deleteAttach(String save_file_name) throws Exception;
+	public void deleteAttchAll(Integer bno) throws Exception;
 }
