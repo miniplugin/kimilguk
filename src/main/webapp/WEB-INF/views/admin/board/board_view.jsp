@@ -69,7 +69,7 @@
 	                <!-- 첨부파일이 이미지 인지 아닌지 비교해서 img태그를 사용할 지 결정(아래) -->
 	                <!-- fn:contains함수({'jpg','gif','png'...}비교배열내용,JPG,jpg첨부파일확장자) -->
 	                <c:choose>
-	                	<c:when test="${fn:containsIgnoreCase(chkImgArray,extName)}">
+	                	<c:when test="${fn:containsIgnoreCase(checkImgArray,extName)}">
 	                		<img style="width:100%;" src="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}">
 	                	</c:when>
 	                	<c:otherwise>
