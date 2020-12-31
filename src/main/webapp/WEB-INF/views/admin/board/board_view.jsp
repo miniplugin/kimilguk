@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../include/header.jsp" %>
 
   <!-- 대시보드 본문 Content Wrapper. Contains page content -->
@@ -62,7 +63,16 @@
 	                <a href="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}">
 	                ${boardVO.real_file_names[0]}-파일다운로드
 	                </a>
-	                <img src="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}">
+	                <c:set var="fileNameArray" value="${fn:split(boardVO.save_file_names[0],'.')}" />
+	                <c:set var="extName" value="${fileNameArray[fn:length(fileNameArray)-1]}" />
+	                <!-- length결과는 2 - 1 = 배열의 인덱스1 -->
+	                <!-- 첨부파일이 이미지 인지 아닌지 비교해서 img태그를 사용할 지 결정(아래) -->
+	                <c:choose>
+	                	<c:when test="${fn:containsIgnoreCase(chkImgArray,extName)}">
+	                	
+	                	</c:when>
+	                </c:choose>
+	                <img style="width:100%;" src="/download?save_file_name=${boardVO.save_file_names[0]}&real_file_name=${boardVO.real_file_names[0]}">
 	                </p>
                 </c:if>
               </div>

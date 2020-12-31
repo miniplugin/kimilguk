@@ -41,11 +41,13 @@ public class CommonController {
 	 * 변수생성 후 바로 리스트3개 입력처리.
 	 */
 	@SuppressWarnings("serial")
-	private ArrayList<String> extNameArray = new ArrayList<String>() {
+	private ArrayList<String> checkImgArray = new ArrayList<String>() {
 		{
 			add("gif");
 			add("jpg");
+			add("jpeg");
 			add("png");
+			add("bmp");
 		}
 	};
 	//첨부파일 업로드할 경로를 변수값으로 가져옴 servlet-context.xml에 있는 내용
@@ -110,4 +112,13 @@ public class CommonController {
 		}
 		return result;//결과값 0, 1, 에러메세지
 	}
+
+	public ArrayList<String> getCheckImgArray() {
+		return checkImgArray;
+	}
+
+	public void setCheckImgArray(ArrayList<String> checkImgArray) {
+		this.checkImgArray = checkImgArray;
+	}
+
 }
