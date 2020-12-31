@@ -69,8 +69,24 @@ public class AdminController {
 	}
 	@RequestMapping(value="/admin/board/board_update",method=RequestMethod.POST)
 	public String board_update(RedirectAttributes rdat,MultipartFile file, BoardVO boardVO, PageVO pageVO) throws Exception {
-		boardService.updateBoard(boardVO);
-		//첨부파일 수정 미처리2 - 추가예정:수정할때 순서, 부모부터 수정 후 자식이 수정됩니다.
+		//기존 등록된 첨부파일 목록 구하기
+		List<HashMap<String,Object>> delFiles = boardService.readAttach(boardVO.getBno());
+		//첨부파일 수정: 기존첨부파일 삭제 후 신규파일 업로드
+		if(file.getOriginalFilename() != "") {//첨부파일명이 있으면
+			//기존파일 폴더에서 삭제 처리
+			for(HashMap<String,Object> file_name:delFiles) {
+				File target = new File(commonController.getUploadPath(), (String) file_name.get("save_file_name"));
+				if(target.exists()) {
+					target.delete();//폴더에서 기존첨부파일 지우기
+				}
+			}
+			//신규파일 폴더에 업로드 처리
+			String[] save_file_names = commonController.fileUpload(file);//폴더에 업로드저장완료
+			boardVO.setSave_file_names(save_file_names);//UUID로 생성된 유니크한 파일명
+			String[] real_file_names = new String[] {file.getOriginalFilename()};//"한글파일명.jpg"
+			boardVO.setReal_file_names(real_file_names);
+		}
+		boardService.updateBoard(boardVO);//DB에서 업데이트
 		rdat.addFlashAttribute("msg", "수정");
 		return "redirect:/admin/board/board_view?page="+pageVO.getPage()+"&bno="+boardVO.getBno();
 	}
