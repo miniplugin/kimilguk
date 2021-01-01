@@ -53,6 +53,64 @@
 #### 20210104(월) 작업예정.
 - 작년에 작업한 첨부파일 업로드 부분 1개 파일만 에서 다중파일 업로드로 구현예정(아래URL 에서확인).
 - 다중파일 업로드 구현내역 확인: https://github.com/miniplugin/kimilguk-spring5/commit/9a144dc4821714f4c4cfa3e228498ae1c3202129
+- 리스트 페이지의 게시글 번호 계산식 추가
+- ${boardVO.bno} 대신 카운트 계산식 적용(아래) ->
+- ${pageVO.totalCount-(pageVO.page*pageVO.queryPerPageNum)+pageVO.queryPerPageNum-status.index}
+- jstl반복문중 begin end 사용 해서 첨부파일 jsp부분 중복코드 처리 <c:forEach var="index" begin="0" end="1">
+- jstl반복에 대한 기술 참조: https://offbyone.tistory.com/368
+- 개별 첨부파일 삭제 기능 RestAPI컨트롤러 + Ajax로 구현(아래)
+
+```
+//REST-API서비스로 사용할때 @ResponseBody애노테이션으로 json|텍스트데이터를 반환함(아래)
+	//아래는 Rest-API백엔드단, Ajax(jsp)부분은 Rest-API의 프론트엔드단.
+	@RequestMapping(value="/delete_attach",method=RequestMethod.POST)
+	@ResponseBody
+	public String delete_attach(@RequestParam("save_file_name") String save_file_name) {
+		String result = "";//아이디 중복값을 체크하는 변수 초기값은 중복값 없음.
+		//Rest-API서비스에서는 스프링을 통해서 Ajax로 에러메세지를 받을수 없기 때문에 여기서 에러를 처리해야 합니다. 
+		try {
+			File target = new File(commonController.getUploadPath(), save_file_name);
+			if(target.exists()) {
+				target.delete();//폴더에서 기존첨부파일 지우기
+				//서비스클래스에는 첨부파일DB를 지우는 메서드가 없음. DAO를 접근해서 tbl_attach를 지웁니다.
+				boardDAO.deleteAttach(save_file_name);
+				result = "success";
+			}
+		} catch (Exception e) {
+			// 위 readMember메서드가 에러발생시
+			result = e.toString();
+		}
+		return result;//
+	}
+```
+```
+<script>
+$(document).ready(function() {
+	$(".btn_del_file").bind("click", function() {
+		//alert("여기까지" + $(this).val());//디버그용
+		var element = $(this);
+		var save_file_name = element.parent().find('input[name=save_file_name]').val();
+		//alert(save_file_name);return false;//디버그
+		$.ajax({
+			type:'post',
+			url:'/delete_attach?save_file_name='+save_file_name,
+			dataType:'text',
+			success:function(result){
+				//alert('디버그' + result);
+				if(result == 'success'){
+					alert('삭제에 성공하였습니다.');
+					element.parents('.div_delete_file').remove();
+				}else{
+					//에러메세지출력
+					//alert(result);//개발자용
+					alert('API서버에 문제가 발생했습니다' + result);
+				}
+			}
+		});
+	});
+});
+</script>
+```
 - 이론: Ch9 스프링컨테이너 설정부터 시작.
 - 파스타 로그인 않되시는분: 
 - 시도1. 플레이파크 신규 신청.(황초희,양희망,이희탁,이현진,정동규,이규혁,김수연,이찬홍,이병현,신승만)
