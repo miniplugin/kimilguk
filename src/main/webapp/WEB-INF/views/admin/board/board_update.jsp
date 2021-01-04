@@ -149,13 +149,19 @@ $(document).ready(function(){
 		//alert("디버그");
 		var click_element = $(this);//클릭한 현재 엘리먼트(삭제버튼)
 		var save_file_name = click_element.parent().find('input[name=save_file_name]').val();
-		alert("디버그: 삭제할 파일명은 " + save_file_name);return false;
+		//alert("디버그: 삭제할 파일명은 " + save_file_name);return false;
 		$.ajax({
 			type:"post",//get방식으로 지우면, 누구나 아래 URL입력시 지우는것이 가능함.
-			url:"/file_delete",
+			url:"/file_delete?save_file_name="+save_file_name,//RestAPI컨트롤러호출
 			dataType:"text",
 			success:function(result){
-				
+				if(result=="success") {//실제파일+DB테이블삭제 후 화면에서도 삭제처리(아래)
+					click_element.parents(".div_file_delete").remove();
+				}
+			},
+			error:function(result){
+				alert("RestAPI접근에 실패했습니다.");
+				//click_element.parents(".div_file_delete").remove();//디버그
 			}
 		});
 	});
