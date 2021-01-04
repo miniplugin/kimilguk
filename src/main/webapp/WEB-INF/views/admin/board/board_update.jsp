@@ -71,6 +71,7 @@
 			              ${boardVO.real_file_names[index]}-파일다운로드
 			              </a>
 			              </p>
+			              <button class="btn btn-info">삭제</button>
 		            </c:if>
 		            <hr>
                   </c:forEach>
