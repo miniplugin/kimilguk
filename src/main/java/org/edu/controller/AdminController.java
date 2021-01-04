@@ -113,11 +113,11 @@ public class AdminController {
 						File target = new File(commonController.getUploadPath(), (String) file_name.get("save_file_name"));
 						if(target.exists()) {
 							target.delete();//폴더에서 기존첨부파일 지우기
-							//서비스클래스에는 첨부파일DB를 지우는 메서드가 없음. DAO를 접근해서 tbl_attach를 지웁니다.
-							boardDAO.deleteAttach((String) file_name.get("save_file_name"));
-							sun = sun + 1;//개별삭제는 for문에서 딱 1번 뿐이기 때문에
 						}
 					}
+					//서비스클래스에는 첨부파일DB를 지우는 메서드가 없음. DAO를 접근해서 tbl_attach를 지웁니다.
+					boardDAO.deleteAttach((String) file_name.get("save_file_name"));
+					sun = sun + 1;//개별삭제는 for문에서 딱 1번 뿐이기 때문에
 				}
 				//신규파일 폴더에 업로드 처리
 				save_file_names[index] = commonController.fileUpload(file);//폴더에 업로드저장완료
