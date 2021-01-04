@@ -60,6 +60,7 @@
                   <label>attach</label>
                   </div>
                   <c:forEach var="index" begin="0" end="1">
+                  <div class="div_file_delete"><!-- 폴더삭제+DB삭제+화면삭제용 div영역지정 -->
                   	<div class="custom-file">
                     <input type="file" name="file" class="custom-file-input" id="customFile_${index}">
                     <label class="custom-file-label" for="customFile_${index}" style="color:#999;">파일첨부${index}</label>
@@ -70,10 +71,13 @@
 			              <a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}">
 			              ${boardVO.real_file_names[index]}-파일다운로드
 			              </a>
+			              &nbsp;
+			              <input type="hidden" name="save_file_name" value="${boardVO.save_file_names[index]}" >
+			              <button type="button" class="btn btn-info btn_file_delete">삭제</button>
 			              </p>
-			              <button class="btn btn-info">삭제</button>
 		            </c:if>
 		            <hr>
+		          </div>
                   </c:forEach>
                   
                 </div>
@@ -138,4 +142,22 @@ $(document).ready(function(){
 		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 	});
 });//textarea 중 content아이디영역을 섬머노트에디터로 변경처리 함수실행
+</script>
+<script>
+$(document).ready(function(){
+	$(".btn_file_delete").on("click",function(){
+		//alert("디버그");
+		var click_element = $(this);//클릭한 현재 엘리먼트(삭제버튼)
+		var save_file_name = click_element.parent().find('input[name=save_file_name]').val();
+		alert("디버그: 삭제할 파일명은 " + save_file_name);return false;
+		$.ajax({
+			type:"post",//get방식으로 지우면, 누구나 아래 URL입력시 지우는것이 가능함.
+			url:"/file_delete",
+			dataType:"text",
+			success:function(result){
+				
+			}
+		});
+	});
+});
 </script>
