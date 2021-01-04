@@ -89,8 +89,8 @@ public class BoardServiceImpl implements IF_BoardService {
 			if(save_file_name != null) {
 				real_file_name = real_file_names[index];
 				boardDAO.updateAttach(save_file_name, real_file_name, bno);
+				index = index + 1;
 			}
-			index = index + 1;
 		}
 	}
 

@@ -165,7 +165,7 @@ $(document).ready(function(){
 					//click_element.parents(".div_file_delete").remove();//디버그
 				}
 			});			
-		}
+		}//confirm끝
 		
 	});
 });
