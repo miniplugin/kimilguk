@@ -14,6 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ReplyController {
+	
+	//댓글 리스트 메서드(아래)
+	@RequestMapping(value="/reply/reply_list/{bno}", method=RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>>
+	
 	//댓글 입력 매서드(아래)
 	@RequestMapping(value="/reply/reply_write", method=RequestMethod.POST)
 	public ResponseEntity<String> reply_write() {
