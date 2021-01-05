@@ -214,16 +214,16 @@ var printReplyList = function(data, target, templateObject) {
 $(document).ready(function(){
 	$("#btn_reply_list").on("click", function(){
 		//alert('디버그');
-		$.ajax({
+		$.ajax({ //$.getJSON 으로 대체 해도 됩니다.
 			type:"get",
 			url:"/reply/reply_list/116",//116게시물번호에 대한 댓글목록을 가져오는 URL
-			dataType:"text",
+			dataType:"json",
 			success:function(result) {//result에는 댓글 목록을 json데이터로 받음.
 				//빵틀에 result데이터를 바인딩해서 출력합니다.
 				//console.log(result);
-				var jsonData = JSON.parse(result);//텍스트자료를 제이슨 자료로 변환.
+				//var jsonData = JSON.parse(result);//dataTayp:'text' 일때 실행 텍스트자료를 제이슨 자료로 변환.
 				//console.log("여기까지" + jsonData.replyList);//디버그용 
-				printReplyList(jsonData.replyList, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
+				printReplyList(result.replyList, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
 			},
 			error:function(result) {
 				alert("RestApi서버에 문제가 발생했습니다. 다음에 이용해 주세요!");

@@ -42,6 +42,7 @@ public class ReplyController {
 		dummyMapList.add(0, dummyMap1);
 		dummyMapList.add(1, dummyMap2);
 		//-----------------------------------------------
+		//dummyMapList대신 DB tbl_reply 테이블에서 조회된 결과값으로 대체.
 		resultMap.put("replyList", dummyMapList);//put메서드로 Key:Value 제이슨데이터 생성
 		//resultMap를 Json데이터로 반환하려면, jackson-databind 모듈이 필수(pom.xml)
 		result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.OK);
