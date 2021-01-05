@@ -56,7 +56,7 @@
 
 #### 20200105(화) 작업
 - 부메랑(크롬의 플러그인): JUnit(스프링-자바단위테스트=CRUD테스트)과 같은 역할. RestAPI의 단위테스트(CRUD테스트)를 할때 사용 한 이후 댓글 클래스 작업을 시작 합니다.
-- 댓글 DB -> VO -> 매퍼쿼리 -> DAO -> Service -> Controller -> JSP
+- 댓글 DB -> VO -> 매퍼쿼리 -> DAO(Service) -> Controller -> JSP
 - 특이사항: RestAPI에서 Select는 GET이 기본.
 - 게시판에서 GET으로 전송하는 방식1(고전방식): url:"/reply/reply_list?bno=" + bno,
 - 댓글에서 GET으로 전송하는 방식2(시만텍웹방식): url:"/reply/reply_list/" + bno,

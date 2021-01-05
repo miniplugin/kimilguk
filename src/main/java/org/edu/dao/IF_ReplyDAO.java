@@ -5,9 +5,9 @@ import java.util.List;
 import org.edu.vo.ReplyVO;
 
 public interface IF_ReplyDAO {
-	public List<ReplyVO> selectReply(Integer bno);
-	public int countReply(Integer bno);
-	public void insertReply(ReplyVO replyVO);
-	public void updateReply(ReplyVO replyVO);
-	public void deleteReply(Integer rno);
+	public List<ReplyVO> selectReply(Integer bno) throws Exception;
+	public int countReply(Integer bno) throws Exception;
+	public void insertReply(ReplyVO replyVO) throws Exception;
+	public void updateReply(ReplyVO replyVO) throws Exception;
+	public void deleteReply(Integer rno) throws Exception;
 }

@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="replyMapper">
 <select id="selectReply" resultType="org.edu.vo.ReplyVO">
-select * from tbl_reply order by rno desc
+select * from tbl_reply 
+where bno = #{bno}
+order by rno desc
 </select>
 
 <select id="countReply" resultType="int">
