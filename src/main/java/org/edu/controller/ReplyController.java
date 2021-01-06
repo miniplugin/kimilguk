@@ -71,6 +71,19 @@ public class ReplyController {
 		return result;
 	}
 	
+	//댓글 수정 메서드(아래) 전송방식 POST(전통방식)가 아니고, PATCH(최근방식RestAPI)를 사용
+	@RequestMapping(value="/reply/reply_update",method=RequestMethod.PATCH)
+	public ResponseEntity<String> reply_update(@RequestBody ReplyVO replyVO) {
+		ResponseEntity<String> result = null;
+		try {
+			replyDAO.updateReply(replyVO);
+			result = new ResponseEntity<String>("success",HttpStatus.OK);
+		} catch (Exception e) {
+			result = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
+	
 	//댓글 입력 매서드(아래)
 	@RequestMapping(value="/reply/reply_write", method=RequestMethod.POST)
 	public ResponseEntity<String> reply_write(@RequestBody ReplyVO replyVO) {
