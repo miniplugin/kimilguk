@@ -32,7 +32,7 @@ public class ReplyController {
 	
 	//댓글 리스트 메서드(아래)
 	@RequestMapping(value="/reply/reply_list/{bno}/{page}", method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> reply_list(@PathVariable("page") Integer page,@PathVariable("bno") Integer bno) throws Exception {
+	public ResponseEntity<Map<String,Object>> reply_list(@PathVariable("bno") Integer bno,@PathVariable("page") Integer page) throws Exception {
 		//페이징 계산식 처리 시작
 		PageVO pageVO = new PageVO();
 		pageVO.setPage(page);//조건은 Ajax로 호출시 page변수는 반드시 보내야 합니다.
@@ -64,7 +64,7 @@ public class ReplyController {
 		//-----------------------------------------------
 		//dummyMapList대신 DB tbl_reply 테이블에서 조회된 결과값으로 대체.
 		try {
-			List<ReplyVO> replyList = replyDAO.selectReply(bno);
+			List<ReplyVO> replyList = replyDAO.selectReply(bno,pageVO);
 			if(replyList.isEmpty()) {
 				//result = null;//jsp에서 받는 값이 text 일때 적용
 				result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.NO_CONTENT);//코드204
@@ -116,6 +116,7 @@ public class ReplyController {
 		try {//예외처리를 상위 메서드로 보내지않는 이유는 RestAPI에서 예외 메세지를 개발자가 제공하기 위해서
 			replyDAO.insertReply(replyVO);
 			result = new ResponseEntity<String>("success", HttpStatus.OK);
+			replyDAO.updateCountReply(replyVO.getBno());
 		} catch (Exception e) {
 			result = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}

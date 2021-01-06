@@ -8,9 +8,10 @@ order by rno desc
 limit #{queryStartNo}, #{queryPerPageNum}
 </select>
 
-<select id="countReply" resultType="int">
-select count(*) from tbl_reply where bno = #{bno}
-</select>
+<update id="updateCountReply">
+update tbl_board set reply_count = (select count(*) from tbl_reply where bno = #{bno})
+where bno = #{bno}
+</update>
 
 <insert id="insertReply">
 insert into tbl_reply (bno,reply_text,replyer,reg_date) 
