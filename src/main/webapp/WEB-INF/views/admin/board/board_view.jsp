@@ -149,19 +149,21 @@
 	          </div><!-- //.timeline -->
 	          <!-- 페이징처리 시작 -->
 	          <div class="pagination justify-content-center">
-	            	<ul class="pagination">
+	            <ul class="pagination pageVO">
+	            	<!-- 
 	            	 <li class="paginate_button page-item previous disabled" id="example2_previous">
 	            	 <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
 	            	 </li>
-	            	 <!-- 위 이전게시물링크 -->
+	            	 위 이전게시물링크
 	            	 <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
 	            	 <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
 	            	 <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-	            	 <!-- 아래 다음게시물링크 -->
+	            	 아래 다음게시물링크
 	            	 <li class="paginate_button page-item next" id="example2_next">
 	            	 <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
 	            	 </li>
-	            	 </ul>
+	            	 -->
+	            </ul>
 	          </div>
 		  	  <!-- 페이징처리 끝 -->     
 	      </div>
@@ -200,6 +202,27 @@ jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가�
 </div>
 {{/each}}
 </script>
+<!-- pageVO를 디자인에 프로그램 입히는 작업=파싱하는 함수(아래) -->
+<script>
+var printPageVO = function(pageVO, target) {
+	var paging = "";//출력변수(이전링크+페이지번호+다음링크에 대한 디자인이 저장되는 누적변수)
+	//이전 댓글 링크-pageVO.prev(아래)
+	if(true) {
+		paging = paging + 
+	'<li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>';
+	}  	
+	//pageVO를 target영역에 페이징 번호파싱-반복문사용(아래)
+		paging = paging +
+	'<li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>';
+	
+	if(true) {
+	//이후 댓글 링크-pageVO.next(아래)
+		paging = paging + 
+	'<li class="paginate_button page-item next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
+	}
+	target.html(paging);
+}
+</script>
 <!-- 화면을 재구현Representation하는 함수(아래) -->
 <script>
 var printReplyList = function(data, target, templateObject) {
@@ -216,7 +239,7 @@ $(document).ready(function(){
 		//alert('디버그');
 		$.ajax({ //$.getJSON 으로 대체 해도 됩니다.
 			type:"post",
-			url:"/reply/reply_list/${boardVO.bno}",//116게시물번호에 대한 댓글목록을 가져오는 URL
+			url:"/reply/reply_list/${boardVO.bno}/1",//116게시물번호에 대한 댓글목록을 가져오는 URL
 			dataType:"json",//받을때 json데이터를 받는다.
 			success:function(result) {//result에는 댓글 목록을 json데이터로 받음.
 				//alert("디버그" + result);
@@ -228,6 +251,7 @@ $(document).ready(function(){
 					//var result = JSON.parse(result);//dataTayp:'text' 일때 실행 텍스트자료를 제이슨 자료로 변환.
 					//console.log("여기까지" + result.replyList);//디버그용 
 					printReplyList(result.replyList, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
+					printPageVO(result.pageVO, $(".pageVO"));//result.pageVO데이터를 .pageVO클래스영역에 파싱합니다.
 				}
 			},
 			error:function(result) {

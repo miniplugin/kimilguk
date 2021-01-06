@@ -70,6 +70,7 @@ public class ReplyController {
 				result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.NO_CONTENT);//코드204
 			}else{
 				resultMap.put("replyList", replyList);
+				resultMap.put("pageVO", pageVO);//페이징처리때문에 추가
 				//resultMap를 Json데이터로 반환하려면, jackson-databind 모듈이 필수(pom.xml)
 				result = new ResponseEntity<Map<String,Object>>(resultMap,HttpStatus.OK);
 			}
@@ -87,7 +88,7 @@ public class ReplyController {
 		try {
 			replyDAO.deleteReply(rno);
 			result = new ResponseEntity<String>("success",HttpStatus.OK);
-			replyDAO.updateCountReply(bno);
+			replyDAO.updateCountReply(bno);//서브쿼리를 사용해서 tbl_board테이블 reply_count필드를 업데이트 합니다.
 		} catch (Exception e) {
 			result = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
