@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.edu.dao.IF_ReplyDAO;
+import org.edu.vo.PageVO;
 import org.edu.vo.ReplyVO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +31,16 @@ public class ReplyController {
 	private IF_ReplyDAO replyDAO;
 	
 	//댓글 리스트 메서드(아래)
-	@RequestMapping(value="/reply/reply_list/{bno}", method=RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> reply_list(@PathVariable("bno") Integer bno) {
+	@RequestMapping(value="/reply/reply_list/{bno}/{page}", method=RequestMethod.POST)
+	public ResponseEntity<Map<String,Object>> reply_list(@PathVariable("page") Integer page,@PathVariable("bno") Integer bno) throws Exception {
+		//페이징 계산식 처리 시작
+		PageVO pageVO = new PageVO();
+		pageVO.setPage(page);//조건은 Ajax로 호출시 page변수는 반드시 보내야 합니다.
+		pageVO.setPerPageNum(3);//페이지 하단에 보이는 페이징 번호의 개수
+		pageVO.setQueryPerPageNum(5);//댓글 1페이지당 보여줄 댓글 개수
+		//페이지 계산식 처리 끝
+		//현재 게시물에 달린 댓글 전체개수 구하기: 게시물 관리 테이블에 있는 reply_count를 가져다가 사용
+		
 		System.out.println("디버그 : 패스베리어블 변수 는 " + bno);
 		ResponseEntity<Map<String,Object>> result = null;
 		
@@ -71,6 +80,18 @@ public class ReplyController {
 		return result;
 	}
 	
+	//댓글 삭제 메서드(아래) 전송방식 POST(전통방식)가 아니고, DELETE(최근방식)를 사용
+	@RequestMapping(value="/reply/reply_delete/{rno}",method=RequestMethod.DELETE)
+	public ResponseEntity<String> reply_delete(@PathVariable("rno") Integer rno) {
+		ResponseEntity<String> result = null;
+		try {
+			replyDAO.deleteReply(rno);
+			result = new ResponseEntity<String>("success",HttpStatus.OK);
+		} catch (Exception e) {
+			result = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		}
+		return result;
+	}
 	//댓글 수정 메서드(아래) 전송방식 POST(전통방식)가 아니고, PATCH(최근방식RestAPI)를 사용
 	@RequestMapping(value="/reply/reply_update",method=RequestMethod.PATCH)
 	public ResponseEntity<String> reply_update(@RequestBody ReplyVO replyVO) {

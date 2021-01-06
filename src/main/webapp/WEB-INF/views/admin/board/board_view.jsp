@@ -127,7 +127,7 @@
 	          <div class="timeline">
 	          	  <!-- .time-label의 before 위치 -->
 		          <div class="time-label">
-	                <span class="bg-red" id="btn_reply_list" style="cursor:pointer;">Reply List[1]&nbsp;&nbsp;</span>
+	                <span class="bg-red" id="btn_reply_list" style="cursor:pointer;">Reply List[${boardVO.reply_count}]&nbsp;&nbsp;</span>
 	              </div>
 	              <!-- .time-label의 after 위치 -->
 		          <!-- <div>

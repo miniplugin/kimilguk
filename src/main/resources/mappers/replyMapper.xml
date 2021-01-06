@@ -5,6 +5,7 @@
 select * from tbl_reply 
 where bno = #{bno}
 order by rno desc
+limit #{queryStartNo}, #{queryPerPageNum}
 </select>
 
 <select id="countReply" resultType="int">
