@@ -207,7 +207,7 @@ jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가�
 var printPageVO = function(pageVO, target) {
 	var paging = "";//출력변수(이전링크+페이지번호+다음링크에 대한 디자인이 저장되는 누적변수)
 	//이전 댓글 링크-pageVO.prev(아래)
-	if(true) {
+	if(pageVO.prev) {
 		paging = paging + 
 	'<li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>';
 	}  	
@@ -215,7 +215,7 @@ var printPageVO = function(pageVO, target) {
 		paging = paging +
 	'<li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>';
 	
-	if(true) {
+	if(pageVO.next) {
 	//이후 댓글 링크-pageVO.next(아래)
 		paging = paging + 
 	'<li class="paginate_button page-item next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';

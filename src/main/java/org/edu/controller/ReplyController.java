@@ -38,6 +38,8 @@ public class ReplyController {
 		pageVO.setPage(page);//조건은 Ajax로 호출시 page변수는 반드시 보내야 합니다.
 		pageVO.setPerPageNum(3);//페이지 하단에 보이는 페이징 번호의 개수
 		pageVO.setQueryPerPageNum(5);//댓글 1페이지당 보여줄 댓글 개수
+		
+		pageVO.setTotalCount();//전체 댓글 개수 구해서 set하는 순간이 필수 countReply구하는 메서드 필요.
 		//페이지 계산식 처리 끝
 		//현재 게시물에 달린 댓글 전체개수 구하기: 게시물 관리 테이블에 있는 reply_count를 가져다가 사용
 		
