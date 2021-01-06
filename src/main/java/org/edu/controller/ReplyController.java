@@ -81,12 +81,13 @@ public class ReplyController {
 	}
 	
 	//댓글 삭제 메서드(아래) 전송방식 POST(전통방식)가 아니고, DELETE(최근방식)를 사용
-	@RequestMapping(value="/reply/reply_delete/{rno}",method=RequestMethod.DELETE)
-	public ResponseEntity<String> reply_delete(@PathVariable("rno") Integer rno) {
+	@RequestMapping(value="/reply/reply_delete/{bno}/{rno}",method=RequestMethod.DELETE)
+	public ResponseEntity<String> reply_delete(@PathVariable("bno") Integer bno,@PathVariable("rno") Integer rno) {
 		ResponseEntity<String> result = null;
 		try {
 			replyDAO.deleteReply(rno);
 			result = new ResponseEntity<String>("success",HttpStatus.OK);
+			replyDAO.updateCountReply(bno);
 		} catch (Exception e) {
 			result = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}

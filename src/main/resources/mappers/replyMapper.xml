@@ -5,7 +5,7 @@
 select * from tbl_reply 
 where bno = #{bno}
 order by rno desc
-limit #{queryStartNo}, #{queryPerPageNum}
+limit #{pageVO.queryStartNo}, #{pageVO.queryPerPageNum}
 </select>
 
 <update id="updateCountReply">
