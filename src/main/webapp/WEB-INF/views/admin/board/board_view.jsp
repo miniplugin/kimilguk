@@ -209,7 +209,7 @@ var printPageVO = function(pageVO, target) {
 	//이전 댓글 링크-pageVO.prev(아래)
 	if(pageVO.prev) {
 		paging = paging + 
-	'<li class="paginate_button page-item previous disabled" id="example2_previous"><a href="'+(pageVO.startPage-1)+'" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>';
+	'<li class="paginate_button page-item previous" id="example2_previous"><a href="'+(pageVO.startPage-1)+'" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>';
 	}  	
 	//pageVO를 target영역에 페이징 번호파싱-반복문사용(아래)
 	for(var cnt=pageVO.startPage;cnt<=pageVO.endPage;cnt++){
