@@ -209,19 +209,35 @@ var printPageVO = function(pageVO, target) {
 	//이전 댓글 링크-pageVO.prev(아래)
 	if(pageVO.prev) {
 		paging = paging + 
-	'<li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>';
+	'<li class="paginate_button page-item previous disabled" id="example2_previous"><a href="'+(pageVO.startPage-1)+'" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>';
 	}  	
 	//pageVO를 target영역에 페이징 번호파싱-반복문사용(아래)
+	for(var cnt=pageVO.startPage;cnt<=pageVO.endPage;cnt++){
+		//for(cnt초기값;cnt종료값;cnt증가값){반복내용} cnt=cnt+1;누적변수
+		var active = (cnt==pageVO.page)?"active":"";
 		paging = paging +
-	'<li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>';
-	
+		'<li class="paginate_button page-item '+active+'"><a href="'+cnt+'" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">'+cnt+'</a></li>';
+		//자바스크립트에서 +'변수'+문자의 결합, "클래스영역"
+	}
 	if(pageVO.next) {
 	//이후 댓글 링크-pageVO.next(아래)
 		paging = paging + 
-	'<li class="paginate_button page-item next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
+	'<li class="paginate_button page-item next" id="example2_next"><a href="'+(pageVO.endPage+1)+'" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
 	}
 	target.html(paging);
 }
+</script>
+<script>
+/* 위 댓글 페이징에서 링크 태그의 페이지 이동을 방지하고, btn_reply_list버튼을 클릭해서   
+   /reply/reply_list/${boardVO.bno}/{1}-> 링크한 페이지값이로 대체해서 실행하는 역할하는 코드(아래)
+*/
+$(document).ready(function(){
+	$(".pageVO").on("click", "li a", function(event){
+		event.preventDefault();//a태그의 기본기능인 이동기능을 막겠다는 명령.
+		var page = $(this).attr("href");//현재 클릭한 페이지 값을 저장.
+		alert(page);
+	});
+});
 </script>
 <!-- 화면을 재구현Representation하는 함수(아래) -->
 <script>
