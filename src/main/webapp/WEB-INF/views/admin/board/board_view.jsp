@@ -178,7 +178,7 @@
   <!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>
-
+<input type="hidden" id="reply_page" value="1"><!-- #btn_reply_list클릭할때 가져올 페이지값 -->
 <%-- 자바스트립트용 #template 엘리먼트 제작(아래) jstl 향상된 for문과 같은 역할 
 jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가져와서 사용한 것처럼
 자바스크립트에서도 외부 core를 가져와야 합니다.(아래)
@@ -235,7 +235,9 @@ $(document).ready(function(){
 	$(".pageVO").on("click", "li a", function(event){
 		event.preventDefault();//a태그의 기본기능인 이동기능을 막겠다는 명령.
 		var page = $(this).attr("href");//현재 클릭한 페이지 값을 저장.
-		alert(page);
+		//alert(page);//디버그
+		$("#reply_page").val(page);
+		$("#btn_reply_list").click();//페이징번호에서 해당되는 번호를 클릭했을때, btn_reply_list버튼을클릭
 	});
 });
 </script>
@@ -252,10 +254,11 @@ var printReplyList = function(data, target, templateObject) {
 <script>
 $(document).ready(function(){
 	$("#btn_reply_list").on("click", function(){
-		//alert('디버그');
+		var page = $("#reply_page").val();
+		//alert('선택한 페이지 값은 ' + page);//디버그
 		$.ajax({ //$.getJSON 으로 대체 해도 됩니다.
 			type:"post",
-			url:"/reply/reply_list/${boardVO.bno}/1",//116게시물번호에 대한 댓글목록을 가져오는 URL
+			url:"/reply/reply_list/${boardVO.bno}/"+page,//116게시물번호에 대한 댓글목록을 가져오는 URL
 			dataType:"json",//받을때 json데이터를 받는다.
 			success:function(result) {//result에는 댓글 목록을 json데이터로 받음.
 				//alert("디버그" + result);
