@@ -12,4 +12,5 @@ public interface IF_ReplyDAO {
 	public void updateReply(ReplyVO replyVO) throws Exception;
 	public void deleteReply(Integer rno) throws Exception;
 	public int selectReplyCount(Integer bno) throws Exception;
+	public void deleteReplyAll(Integer bno) throws Exception;
 }

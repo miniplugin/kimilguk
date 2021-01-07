@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.edu.dao.IF_BoardDAO;
+import org.edu.dao.IF_ReplyDAO;
 import org.edu.vo.BoardVO;
 import org.edu.vo.PageVO;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service //스프링빈으로 사용하기 위해서 애노테이션 명시
 public class BoardServiceImpl implements IF_BoardService {
 
+	@Inject //댓글 DAO클래스 주입
+	private IF_ReplyDAO replyDAO; 
+	
 	@Inject //DAO클래스를 주입받아서 사용변수 생성
 	private IF_BoardDAO boardDAO;
 	
@@ -70,6 +74,7 @@ public class BoardServiceImpl implements IF_BoardService {
 	public void deleteBoard(Integer bno) throws Exception {
 		// 첨부파일 삭제 후 게시물 삭제 DAO연결(아래)
 		boardDAO.deleteAttachAll(bno);
+		replyDAO.deleteReplyAll(bno);
 		boardDAO.deleteBoard(bno);
 	}
 
