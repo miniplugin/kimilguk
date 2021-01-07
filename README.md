@@ -58,6 +58,30 @@
 
 #### 20200108(금) 작업예정
 - 사용자단 html(https://miniplugin.github.io/) 소스를 커스터마이징 후 jsp로 만들기.
+- 부트스트랩과 AdminLTE라이브러리 가져오기(board_view[write].html 상단에 추가:아래)
+
+```
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
+<!-- Bootstrap 4 -->
+<link rel="stylesheet" href="/resources/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<script src="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLte -->
+<link rel="stylesheet" href="/resources/dist/css/adminlte.min.css">	
+<!-- write.html은 서머노트 웹에디터 부분 추가(아래) -->
+<link rel="stylesheet" href="/resources/plugins/summernote/summernote.css">
+<script src="/resources/plugins/summernote/summernote.js"></script>
+```
+- 기존 디자인 수정 2부분(home/css/main.css아래)
+
+```
+상단 body 부분에 !important 추가 후 바로 아래 1줄 추가
+a:hover {color: #fff !important;} <--여기도  임폴턴트 추가
+dl, ol, ul { margin-bottom:0 !important;}
+```
+- 게존 디자인 수정 1부분(home/css/board.css아래)
+- .app_list .tit_lbl { width: 20%; } 라벨 가로크기 기존 21% -> 20%변경
+
 - 인터셉터(가로채기-Interceptor)클래스를 이용해서, 예외처리를 공통 error.jsp 로 바인딩 처리.
 - 스프링시큐리티 로그인 구현 pom.xml 의존성 추가(회원가입시 패스워드 암호화 추가).
 
