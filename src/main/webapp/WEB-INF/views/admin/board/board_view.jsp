@@ -296,7 +296,21 @@ $(document).ready(function(){
 	});
 });
 </script>
-
+<!-- 댓글 삭제 버튼 액션 처리(아래) -->
+<script>
+$(document).ready(function(){
+	$("#deleteReplyBtn").on("click", function(){
+		var rno = $("#rno").val();//삭제할 댓글 번호값 변수
+		//alert("선택한 댓글 번호는 : " + rno);//디버그용
+		$.ajax({
+			type:"delete",
+			url:"/reply/reply_delete/${boardVO.bno}/"+rno,
+			dataType:"text"
+			
+		});
+	});
+});
+</script>
 <!-- 댓글 등록 버튼 액션 처리(아래) -->
 <script>
 $(document).ready(function() {
@@ -365,7 +379,7 @@ $(document).ready(function() {
 		//$(this);클릭한 댓글에 따라서 this는 첫번째 댓글일 수 도 있고, 두번째 댓글일 수도 있습니다.
 		$("#rno").val($(this).attr("data-rno"));
 		$(".modal-title").html($(this).find(".timeline-header").text());
-		$("#replytext").val($(this).find(".timeline-body").text());
+		$("#reply_text_modal").val($(this).find(".timeline-body").text());
 		//alert("디버그" + $(this).find(".timeline-body").text());
 		//마우스클릭으로 선택한 댓글의 .timeline-body영역의 text문자를 
 		//모달창의 #replaytext영역에 값으로 입력하겠다.
@@ -384,7 +398,7 @@ $(document).ready(function() {
       </div>
       <div class="modal-body">
       	<input type="hidden" name="rno" id="rno" value=""><!-- 상단 $(".timeline").on("click" 액션으로 value값이 채워집니다. -->
-        <input type="text" class="form-control" name="replytext" id="replytext" placeholder="내용을 입력해 주세요.">
+        <input type="text" class="form-control" name="reply_text_modal" id="reply_text_modal" placeholder="내용을 입력해 주세요.">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
