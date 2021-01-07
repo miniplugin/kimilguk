@@ -117,8 +117,8 @@
                    	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 writer 입니다. -->
                 </div>
                 <div class="form-group">
-                   <label for="replytext">Reply Text</label>
-                   <input type="text" class="form-control" name="replytext" id="replytext" placeholder="내용을 입력해 주세요." required>
+                   <label for="reply_text">Reply Text</label>
+                   <input type="text" class="form-control" name="reply_text" id="reply_text" placeholder="내용을 입력해 주세요." required>
                    <!-- 아래 게시판에서는 폼을 전송할때 submit 타입을 사용 하지만, 댓글은 Ajax로 전송하기 때문에, button타입으로 지정함. -->
                 </div>
                 <button type="button" class="btn btn-warning float-left mr-1 text-white" id="insertReplyBtn">댓글등록</button>
@@ -303,11 +303,32 @@ $(document).ready(function() {
 	$("#insertReplyBtn").on("click", function() {//댓글등록버튼을 클릭했을 때 구현내용(아래)
 		//alert("디버그");
 		//Ajax를 이용해서, 화면을 Representation (REST-API방식) 부분 화면을 재구현(아래)
+		//RestAPI서버단에 보낼 변수값 정의
+		var bno = "${boardVO.bno}";//자바 EL 변수값
+		var reply_text = $("#reply_text").val();//댓글폼 input 태그값
+		var replyer = $("#replyer").val();//댓글폼 input 태그값
+		//alert(bno + ":" + reply_text + ":" + replyer);//디버그
+		//return false;//디버그용 강제 중지
+		if(reply_text == "" || replyer == ""){
+			//불린boolean타입 1x0=0,1x1=1,0x1=0 (&& = and 두개다 true이어야 지만 모두 true)
+			//불린boolean타입 1+0=1,1+1=1,0+1=1 (|| = or 둘중에 하나라도 true이면 모두true)  
+			alert("댓글내용과 댓글작성자 입력은 필수 입니다.");
+			return false;
+		}
 		$.ajax({//통신프로그램
 			//여기서부터는 프론트 엔드 개발자 영역
 			type:'post',//지금은 html이라서 get방식이지만, jsp로가면, post방식으로 바꿔야 합니다.
-			url:'/reply/reply_list/10/1',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
+			url:'/reply/reply_write',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
 			dataType:'text',//ReplyController에서 받은 데이터의 형식은 text형식으로 받겠다고 명시.
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST"
+			},
+			data:JSON.stringify({
+				bno:bno,
+				reply_text:reply_text,
+				replyer:replyer
+			}),
 			success:function(result) {//응답이 성공하면(상태값200)위경로에서 반환받은 result(json데이터)를 이용해서 화면을 재구현
 				//alert(result);//디버그용
 				//지금은 html이라서 result값을 이용할 수가 없어서 댓글 더미데이터를 만듭니다.(아래)
@@ -322,10 +343,13 @@ $(document).ready(function() {
 				//printReplyList(빅데이터, 출력할 타켓위치, 빅데이터를 가지고 바인딩된-묶인 템플릿화면);
 				//printReplyList(result, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
 				//입력이 success된 후에 페이지는 댓글갯수1증가+1페이지로 가고+replyList()댓글 목록 호출
-				var reply_count = $("#reply_count").text();
-				alert(reply_count);
-				$("#reply_count").text(reply_count+1);
-				//replyList();
+				var reply_count = $("#reply_count").text();//$("영역").val(input데이터),
+				//alert(reply_count);//디버그
+				$("#reply_count").text(parseInt(reply_count)+1);//$("영역").text(영역안쪽의문자열)
+				$("#reply_page").val("1");
+				replyList();
+				$("#replyer").val("");
+				$("#reply_text").val("");
 			},
 			error:function(result) {
 				alert("RestAPI서버가 작동하지 않습니다.");
