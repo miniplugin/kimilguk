@@ -56,7 +56,8 @@
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
 #### 20200107(목) 작업
-- 어제 작업한 댓글 리스트 btn_reply_list 버튼id에 부트스트랩의 토글기능을 넣어서
+- prepend, append, after J쿼리 기능.
+- 어제 작업한 댓글 리스트 btn_reply_list 버튼id에 부트스트랩(J쿼리기반의 프레임워크)의 토글기능을 넣어서
 - 하단 댓글리스트(페이징포함)를 나타나고, 숨기는 기능을 넣게되겠습니다.
 - 위 작업: 1. 액션버튼부분 : data-toggle="collapse" data-target="#div_reply"
 - 2. 대상 타켓 부분 <div id="div_reply">토글영역</div>

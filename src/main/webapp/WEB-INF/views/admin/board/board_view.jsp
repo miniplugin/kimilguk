@@ -127,7 +127,7 @@
 	          <div class="timeline">
 	          	  <!-- .time-label의 before 위치 -->
 		          <div class="time-label">
-	                <span data-toggle="collapse" data-target="#div_reply" class="bg-red" id="btn_reply_list" style="cursor:pointer;">Reply List[${boardVO.reply_count}]&nbsp;&nbsp;</span>
+	                <span data-toggle="collapse" data-target="#div_reply" class="bg-red" id="btn_reply_list" style="cursor:pointer;">Reply List[<span id="reply_count">${boardVO.reply_count}</span>]&nbsp;&nbsp;</span>
 	              </div>
 	              <div id="div_reply" class="collapse timeline">
 	              	<!-- append 토글영역 -->
@@ -306,19 +306,30 @@ $(document).ready(function() {
 		$.ajax({//통신프로그램
 			//여기서부터는 프론트 엔드 개발자 영역
 			type:'post',//지금은 html이라서 get방식이지만, jsp로가면, post방식으로 바꿔야 합니다.
-			url:'/reply/reply_write',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
+			url:'/reply/reply_list/10/1',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
 			dataType:'text',//ReplyController에서 받은 데이터의 형식은 text형식으로 받겠다고 명시.
 			success:function(result) {//응답이 성공하면(상태값200)위경로에서 반환받은 result(json데이터)를 이용해서 화면을 재구현
-				alert(result);//디버그용
+				//alert(result);//디버그용
 				//지금은 html이라서 result값을 이용할 수가 없어서 댓글 더미데이터를 만듭니다.(아래)
+				/*
 				result = [
 					//{rno:댓글번호,bno:게시물번호,replytext:"첫번째 댓글",replyer:"admin",regdate:타임스탬프}
 					{rno:1,bno:15,reply_text:"첫번째 댓글",replyer:"admin",reg_date:1601234512345},//첫번째 댓글 데이터
 					{rno:2,bno:15,reply_text:"두번째 댓글",replyer:"admin",reg_date:1601234512345}//두번째 댓글 데이터
-				];//위 URL이 공공데이터생각하면,위 데이터를 화면에 구현하면, 빅데이터의 시각화로 불리게 됩니다.
+				];
+				*/
+				//위 URL이 공공데이터생각하면,위 데이터를 화면에 구현하면, 빅데이터의 시각화로 불리게 됩니다.
 				//printReplyList(빅데이터, 출력할 타켓위치, 빅데이터를 가지고 바인딩된-묶인 템플릿화면);
-				printReplyList(result, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
-			} 
+				//printReplyList(result, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
+				//입력이 success된 후에 페이지는 댓글갯수1증가+1페이지로 가고+replyList()댓글 목록 호출
+				var reply_count = $("#reply_count").text();
+				alert(reply_count);
+				$("#reply_count").text(reply_count+1);
+				//replyList();
+			},
+			error:function(result) {
+				alert("RestAPI서버가 작동하지 않습니다.");
+			}
 		});
 	} );
 });
