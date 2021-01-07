@@ -323,6 +323,38 @@ $(document).ready(function(){
 	});
 });
 </script>
+<!-- 댓글 수정 버튼 액션 처리(아래) -->
+<script>
+$(document).ready(function() {
+	$("#updateReplyBtn").on("click", function(){
+		var rno = $("#rno").val();//모달창의 input태그값 변수지정
+		var reply_text_modal = $("#reply_text_modal").val();//모달창의 input태그값 변수지정
+		$.ajax({
+			type:"patch",
+			url:"/reply/reply_update",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"PATCH"
+			},
+			data:JSON.stringify({//json데이터로 변환해서 RestAPI서버로 전송
+				reply_text:reply_text_modal,
+				rno:rno
+			}),
+			dataType:"text",//RestAPI에서 반환되는 값
+			success:function(result){
+				if(result=="success") {//=대입, ==비교, 1==='1'(비교+타입포함),
+					alert("수정에 성공하였습니다.");
+					$("#replyModal").modal("hide");
+					replyList();
+				}
+			},
+			error:function(result){
+				alert("RestAPI서버에 문제가 있습니다.");
+			}
+		});
+	});
+});
+</script>
 <!-- 댓글 등록 버튼 액션 처리(아래) -->
 <script>
 $(document).ready(function() {
