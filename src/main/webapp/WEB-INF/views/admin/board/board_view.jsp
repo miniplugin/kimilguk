@@ -255,6 +255,7 @@ var replyList = function() {
 		success:function(result) {//result에는 댓글 목록을 json데이터로 받음.
 			//alert("디버그" + result);
 			if(typeof result=="undefined" || result=="" || result==null) {
+				$("#div_reply").empty();//조회된 값이 없을때, 화면내용클리어.
 				alert('조회된 값이 없습니다.');
 			}else{
 				//빵틀에 result데이터를 바인딩해서 출력합니다.
@@ -305,8 +306,19 @@ $(document).ready(function(){
 		$.ajax({
 			type:"delete",
 			url:"/reply/reply_delete/${boardVO.bno}/"+rno,
-			dataType:"text"
-			
+			dataType:"text",//반환값 문자열
+			success:function(result){
+				if(result=="success") {
+					alert("삭제가 성공 되었습니다.");
+					var reply_count = $("#reply_count").text();//$("영역").val(input데이터),
+					$("#reply_count").text(parseInt(reply_count)-1);//$("영역").text(영역안쪽의문자열)
+					replyList();//댓글리스트 메서드호출 댓글영역 html재생성
+					$("#replyModal").modal("hide");//모달창(팝업창)숨기기
+				}
+			},
+			error:function(result){
+				alert("RestAPI서버오류로 삭제에 실패했습니다.");
+			}
 		});
 	});
 });
