@@ -20,11 +20,11 @@
 <script src="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLte -->
 <link rel="stylesheet" href="/resources/dist/css/adminlte.min.css">	
-<!-- write.html은 서머노트 웹에디터 부분 추가(아래) -->
+<!-- write.html은 섬머노트 웹에디터 부분 추가(아래) -->
 <link rel="stylesheet" href="/resources/plugins/summernote/summernote.css">
 <script src="/resources/plugins/summernote/summernote.js"></script>
 <style>
-
+.note-editor.note-frame.fullscreen{background:white;}
 </style>
 <script>
 $(document).ready(function() {
@@ -137,7 +137,6 @@ $(document).ready(function() {
 			                    <label class="custom-file-label" for="customFile" style="color:#999;">파일첨부</label>
 			                </div>
 		                </li>
-
 					</ul>
 					<p class="btn_line">
 					<button class="btn_baseColor">등록</button>
@@ -150,38 +149,38 @@ $(document).ready(function() {
 		<!-- //메인본문영역 -->
 	</div>
 	<!-- //메이콘텐츠영역 -->
-
-<!-- 첨부파일 부트스트랩 디자인 JS -->
-<script src="/resources/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
-<!-- 첨부파일 선택한 내용 출력 실행 -->
-<script>
-$(document).ready(function () {
-  bsCustomFileInput.init();
-});
-</script>
-<script>
-$(document).ready(function(){
-	$('#content_lbl').summernote({
-		height:150,
-		lang:"ko-KR",
-		placeholder:'글 내용을 입력해 주세요',
-		toolbar: [
-				    ['fontname', ['fontname']],
-				    ['fontsize', ['fontsize']],
-				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
-				    ['color', ['forecolor','color']],
-				    ['table', ['table']],
-				    ['para', ['ul', 'ol', 'paragraph']],
-				    ['height', ['height']],
-				    ['insert',['link','video']],//'picture',
-				    ['view', ['fullscreen', 'help']]
-				],
-		fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
-		fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+	
+	<!-- 첨부파일 부트스트랩 디자인 JS -->
+	<script src="/resources/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+	<!-- 첨부파일 선택한 내용 출력 실행 -->
+	<script>
+	$(document).ready(function () {
+	  bsCustomFileInput.init();
 	});
-});//textarea 중 content아이디영역을 섬머노트에디터로 변경처리 함수실행
-</script>
-
+	</script>
+	<script>
+	$(document).ready(function(){
+		$('#content_lbl').summernote({
+			height:150,
+			lang:"ko-KR",
+			placeholder:'글 내용을 입력해 주세요',
+			toolbar: [
+					    ['fontname', ['fontname']],
+					    ['fontsize', ['fontsize']],
+					    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+					    ['color', ['forecolor','color']],
+					    ['table', ['table']],
+					    ['para', ['ul', 'ol', 'paragraph']],
+					    ['height', ['height']],
+					    ['insert',['link','video']],//'picture',
+					    ['view', ['fullscreen', 'help']]
+					],
+			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+		});
+	});//textarea 중 content아이디영역을 섬머노트에디터로 변경처리 함수실행
+	</script>
+	
 	<!-- 푸터메뉴및사업자정보영역 -->
 	<footer>
 		<div class="foot_area box_inner">
@@ -206,10 +205,12 @@ $(document).ready(function(){
 	<!-- //푸터메뉴및주소영역 -->
 </div>
 <!-- //헤더에서푸터까지 -->
+
 <!-- 하단퀵메뉴영역 -->
 <div class="quick_area">
 	<p class="to_top"><a href="#wrap" class="s_point">TOP</a></p>
 </div>
 <!-- //하단퀵메뉴영역 -->
+
 </body>
 </html>
