@@ -42,10 +42,10 @@ $(document).ready(function() {
 			<div class="header_cont">
 				<ul class="util clear">
 					<li><a href="/login">로그인</a></li>
-					<li><a href="join.html">회원가입</a></li>
+					<li><a href="/join">회원가입</a></li>
 					<!-- 로그인 후 보이는 메뉴(아래) -->
 					<li><a href="#">OOO님 환영합니다.</a></li>
-					<li><a href="mypage.html">마이페이지</a></li>
+					<li><a href="/member/mypage">마이페이지</a></li>
 					<li><a href="/admin">AdminLTE</a></li>
 				</ul>	
 				<nav>

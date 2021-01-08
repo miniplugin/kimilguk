@@ -247,7 +247,7 @@ input::placeholder {
 	display: inline-block;
 	height: 45px;
 	padding: 0 10px;
-	background-color: #fff;
+	/*background-color: #fff; 이클립스 내장브라우저에서 나오지 않을때 조치사항 */
 	line-height: normal;
 	font-size: 15px;
 }
