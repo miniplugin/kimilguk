@@ -58,12 +58,12 @@ $(document).ready(function(){
 <nav class="gnb"><!-- gnb:글로벌네이게이션:전체영역메뉴  Global Navigagion -->
 <!-- 리스트를 모여주는 태그 ul(UnOrdered List *.~, *.~ ) , ol(Ordered List 1.~, 2.~ ) -->
 <ul>
+<li><a href="/sample">SampleHOME</a></li>
+<li><a href="/sample/weare">WE ARE</a></li>
+<li><a href="/sample/work">WORK</a></li>
+<li><a href="/sample/blog">BLOG</a></li>
+<li><a href="/sample/contact">CONTACT US</a></li>
 <li><a href="/">HOME</a></li>
-<li><a href="/weare">WE ARE</a></li>
-<li><a href="/work">WORK</a></li>
-<li><a href="/blog">BLOG</a></li>
-<li><a href="/contact">CONTACT US</a></li>
-<li><a href="/admin">AdminLTE</a></li>
 </ul>
 </nav>
 <!-- 상단 로고와 햄버거 메뉴영역 끝 -->

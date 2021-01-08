@@ -56,7 +56,9 @@
 - 오라클로 마이그레이션 작업.
 - 이후 유효성검사, 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 
-#### 20200108(금) 작업예정
+#### 20200108(금) 작업
+- 사용자단 html 소스를 jsp 로 변환하는 작업진행. views폴더안에 home폴더 생성 후 작업진행.
+- HomeController클래스 리퀘스트 매핑부분 추가/수정.
 - 사용자단 html(https://miniplugin.github.io/) 소스를 커스터마이징 후 jsp로 만들기.
 - 부트스트랩과 AdminLTE라이브러리 가져오기(board_view[write].html 상단에 추가:아래)
 
