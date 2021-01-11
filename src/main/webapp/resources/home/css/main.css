@@ -100,6 +100,7 @@ header {
 	width: 100%;
 	background: #31353d;
 	display: none;
+	margin-top:36px;
 }
 .closePop {
 	display: block;
