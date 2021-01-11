@@ -15,7 +15,7 @@ public class ControllerAdviceException {
 	@ExceptionHandler(Exception.class) //컨트롤러에서 예외(에러)가 발생했을때 아래 메서드를 자동실행
 	public ModelAndView errorModelAndView(Exception ex, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println("디버그: 예외처리 인터셉터");
+		//System.out.println("디버그: 예외처리 인터셉터");
 		//AdminController에서 사용한 Model클래스는 jsp로 값을 보낼때 변수.
 		//여기서 사용하는 ModelAndView클래스는 jsp로 값을 보내고 + model값을 보낼 jsp경로도 지정
 		//모델 값을 보낼 jsp경로지정하는 명령은 셋뷰네임 입니다.
