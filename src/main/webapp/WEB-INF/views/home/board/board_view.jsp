@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<link rel="stylesheet" href="css/board.css">
+<link rel="stylesheet" href="/resources/home/css/board.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
 <!-- Bootstrap 4 -->
@@ -53,7 +53,7 @@
 				</li>
 			</ul>
 			<p class="btn_line txt_right">
-				<a href="board_list.html" class="btn_bbs">목록</a>
+				<a href="/home/board/board_list" class="btn_bbs">목록</a>
 			</p>
 			
 		</div>
@@ -125,7 +125,7 @@
 	      </div>
 <!-- 댓글영역 끝 -->
 <!-- 자바스트립트용 #template 엘리먼트 제작(아래) jstl 향상된 for문과 같은 역할 
-jstl을 사용하려면, jsp에서 <%@ taglib uri=... 처럼 외부 core를 가져와서 사용한 것처럼
+jstl을 사용하려면, jsp에서 @taglib uri=... 처럼 외부 core를 가져와서 사용한 것처럼
 자바스크립트에서도 외부 core를 가져와야 합니다.(아래)
 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>

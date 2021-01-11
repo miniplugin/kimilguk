@@ -1,4 +1,6 @@
 @charset "UTF-8";
+/*공통영역*/
+.bbsListTbl a:hover {color:#000 !important;}/*a태그의 가상선택자로 hover마우스 오버시 색상 검은색으로 변경*/
 /* 메인상단 위치표시영역 */
 .location_area {
 	height: 260px;

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
-<link rel="stylesheet" href="css/board.css">
+<link rel="stylesheet" href="/resources/home/css/board.css">
 <!-- Font Awesome -->
 <link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
 <!-- Bootstrap 4 -->
@@ -34,7 +34,7 @@
 		<!-- 메인본문영역 -->
 		<div class="bodytext_area box_inner">
 			<!-- 폼영역 -->
-			<form method="POST" name="board_write" action="board_write.html" class="appForm">
+			<form method="POST" name="board_write" action="/home/board/board_write" class="appForm">
 				<fieldset>
 					<legend>상담문의 입력 양식</legend>
 					<p class="info_pilsoo pilsoo_item">필수입력</p>
@@ -62,7 +62,7 @@
 					</ul>
 					<p class="btn_line">
 					<button class="btn_baseColor">등록</button>
-					<a href="board_list.html" class="btn_baseColor">목록</a>
+					<a href="/home/board/board_list" class="btn_baseColor">목록</a>
 					</p>	
 				</fieldset>
 			</form>
