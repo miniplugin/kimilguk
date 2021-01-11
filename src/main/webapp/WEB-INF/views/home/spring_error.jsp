@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="./include/header.jsp" %>
 <link rel="stylesheet" href="/resources/home/css/board.css">
+
 <!-- 인터셉터로 가로챈 에러메시지 출력(아래) -->
 
 	<!-- 메인콘텐츠영역 -->
@@ -10,9 +12,9 @@
 		<div class="location_area customer">
 			<div class="box_inner">
 				<h2 class="tit_page">스프링 <span class="in">in</span> 자바</h2>
-				<p class="location">에러페이지 <span class="path">/</span> 변수-에러메시지</p>
+				<p class="location">에러페이지 <span class="path">/</span> ${exception.getMessage()}</p>
 				<ul class="page_menu clear">
-					<li><a href="#" class="on">변수-에러메시지</a></li>
+					<li><a href="#" class="on">${exception.getMessage()}</a></li>
 				</ul>
 			</div>
 		</div>	
@@ -20,7 +22,14 @@
 
 		<!-- 메인본문영역 -->
 		<div class="bodytext_area box_inner">
-			자바변수-출력할 에러메세지
+			<p><a href="${prevPage}">이전페이지 이동</a></p>
+			<p>에러 상세내역</p>
+			<ul>
+				<c:forEach items="${exception.getStackTrace()}" var="stack">
+					<li>${stack.toString()}</li>
+				</c:forEach>
+			</ul>
+			
 		</div>
 		<!-- //메인본문영역 -->
 	</div>

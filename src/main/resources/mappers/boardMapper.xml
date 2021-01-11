@@ -69,7 +69,7 @@ select count(*) from tbl_board
 </select>
 
 <select id="selectBoard" resultType="org.edu.vo.BoardVO">
-select * from tbl_board
+select * from tbl_boards
 <include refid="sqlWhere"></include>
 order by reg_date desc
 limit #{queryStartNo}, #{queryPerPageNum}
