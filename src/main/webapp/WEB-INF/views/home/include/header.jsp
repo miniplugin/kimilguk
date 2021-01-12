@@ -48,7 +48,9 @@ if('${msg}' != '') {//자바의 EL표기법 = 달라{변수명}
 						<li><a href="#">${session_username} 님 환영합니다.</a></li>
 						<li><a href="/member/mypage">마이페이지</a></li>
 						<li><a href="/logout">로그아웃</a>
-						<li><a href="/admin">AdminLTE</a></li>
+						<c:if test="${session_levels eq 'ROLE_ADMIN'}">
+							<li><a href="/admin">AdminLTE</a></li>
+						</c:if>
 					</c:when>
 					<c:otherwise>
 						<li><a href="/login">로그인</a></li>
