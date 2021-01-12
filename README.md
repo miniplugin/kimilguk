@@ -57,20 +57,28 @@
 - 웹프로젝트 소스를 스프링프레임워크 버전으로 5.2.5 마이그레이션(버전 업그레이드)
 - 오라클로 마이그레이션 작업.
 - 이후 유효성검사(객체검증), 파스타클라우드, 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
+- 시간이 여유가 되면, eGovFrame메뉴에서 Start > New TemplateProject 심플홈 템플릿 만들어서 커스터 마이징 예정.
 
 #### 20210113(수) 작업예정
+- 이론은 ch13 시작 예정.
 - 사용자단, 게시판/RestApi댓글 CRUD처리.
 - 사용자단, 유효성 검사 기능을 포함해서 마이페이지+회원가입 프로그램처리.
 - 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 실습.
 - 헤로쿠(URL)에 배포(HsqlDB로 배포, 메이븐 외부 라이브러리 추가필수 pom.xml수정)
 
 #### 20210112(화) 작업
+- 스프링 시큐리티 복습 순서
+- 1). pom.xml 에서 의존성 모듈 확인
+- 2). security-context.xml 에서 설정 내용 확인(인증패턴과 권한 sql쿼리)
+- 3). LoginController클래스 확인(/login_success 매핑부분에서 세션변수처리)
+- 4). JSP영역 사용자단 세션사용 header.jsp/footer.jsp(로그아웃)확인(사용자 상단메뉴/로그아웃처리)
+- 5). AdminController에서 BCryptPasswordEncoder로 해시데이터 회원정보추가/수정 부분 확인
+- 6). JSP영역 관리자단 회원정보추가/수정 부분 검증 
 - 메이븐 업데이트 하신 분들 프로젝트 context-root경로 / 로 변경해 주세요^^
 - 스프링시큐리티 설정(security-context.xml)내용 추가
 - 로그인 페이지 및 로그인 클래스 구현(세션처리)
 
 #### 20210111(월) 작업
-- 이론은 ch12 시작 예정.
 - ch11: DTO(DataTansperObject) = DAO(DataAccessObject)
 - 웹프로그램이 작동되는 순서: 
 - 톰캣(server,web,context 3개xml 순서대로 실행) 
