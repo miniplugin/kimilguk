@@ -96,7 +96,7 @@ public class CommonController {
 	fis.close();//고전 자바프로그램에서는 메모리 관리를 위해서 fis파일인풋스트림변수 생성후 소멸시키는 작업이 필수
 	baos.close();//스프링프레임워크 기반의 프로그램구조에서는 close와 같은 메모리관리가 할 필요없습니다. = 스프링에는 가비지컬렉트기능이 내장.
 	
-	final HttpHeaders headers = new HttpHeaders();
+	final HttpHeaders headers = new HttpHeaders();//크롬 개발자도구>네트워크>image_preview클릭>헤더탭확인
 	String ext = FilenameUtils.getExtension(save_file_name);//파일 확장자 구하기
 	switch(ext) {
 	case "png":
@@ -108,7 +108,8 @@ public class CommonController {
 	case "jpeg":
 		headers.setContentType(MediaType.IMAGE_JPEG);break;
 	case "bmp":
-		headers.setContentType(MediaType.parseMediaType("image/bmp"));break;
+		headers.setContentType(MediaType.parseMediaType("image/bmp"));
+		break;
 	default:break;
 	}
 
