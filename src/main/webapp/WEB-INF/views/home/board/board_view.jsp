@@ -29,27 +29,22 @@
 		<div class="bodytext_area box_inner">			
 			<ul class="bbsview_list">
 				<li class="bbs_title"><c:out value="${boardVO.title}" /></li>
-				<li class="bbs_hit">작성일 : <span>${boardVO.reg_date}</span></li>
-				<li class="bbs_date">조회수 : <span>235</span></li>
+				<!-- c:out태그는 jstl자바스탠다드태그라이브러리의 명령으로서 자바의 System.out.println() -->
+				<li class="bbs_hit">작성일 : <span><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.reg_date}" /></span></li>
+				<li class="bbs_date">조회수 : <span>${boardVO.view_count}</span></li>
 				<li class="bbs_content">
 					<div class="editer_content">
-					    안녕하세요. 믿을 수 있는 스프링정보, 스프링입니다.<br>
-                        박물관 미션투어에 관심과 참여 감사드립니다. <br>
-                        선정되신 분들도 진심으로 축하드립니다. <br>
-                        앞으로도 큰 관심 부탁드리며, 메일로도 안내 예정이니 참고하시기 바랍니다. <br>
-                        감사합니다. <br><br>
-                        [당첨자]<br>
-                        김용* kimyong***@naver.com <br>
-                        인봉* in2018a***@naver.com<br>
-                        예경* yyhong***@naver.com<br>
-                        한진* haha***@naver.com<br>
-                        박수* pky**@naver.com<br>
-                        명진* mma5**@nate.com<br>
-                        김영* rtfg6*@naver.com<br>
-                        서영* seo20**@gmail.com<br>
-                        윤소* yoon2***@naver.com<br>
-                        지은* ji***@daum.net
+					    ${boardVO.content}
                     </div>
+				</li>
+				<li class="bbs_title" style="height:inherit;">
+					첨부파일 다운로드
+					<c:forEach begin="0" end="1" var="index">
+						<c:if test="${boardVO.save_file_names[index] != null}">
+							<br>
+							<a href="/download?save_file_name=${boardVO.save_file_names[index]}&real_file_name=${boardVO.real_file_names[index]}" >파일 다운로드 링크[${index}]</a>
+						</c:if>
+					</c:forEach>
 				</li>
 			</ul>
 			<p class="btn_line txt_right">
