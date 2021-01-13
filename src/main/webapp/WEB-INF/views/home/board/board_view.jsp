@@ -28,8 +28,8 @@
 		<!-- 메인본문영역 -->
 		<div class="bodytext_area box_inner">			
 			<ul class="bbsview_list">
-				<li class="bbs_title">박물관 미션 투어 응모 당첨자 발표</li>
-				<li class="bbs_hit">작성일 : <span>2018.08.09</span></li>
+				<li class="bbs_title"><c:out value="${boardVO.title}" /></li>
+				<li class="bbs_hit">작성일 : <span>${boardVO.reg_date}</span></li>
 				<li class="bbs_date">조회수 : <span>235</span></li>
 				<li class="bbs_content">
 					<div class="editer_content">
