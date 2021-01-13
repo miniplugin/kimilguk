@@ -55,12 +55,18 @@ $(document).ready(function() {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td class="tit_notice"><a href="/home/board/board_view">이번 여름 휴가 제주 갈까? 미션 투어 (스프링경비 50만원 지원)</a> </td>
-						<td>123</td>
-						<td>2018-08-01</td>
-					</tr>					
+					<c:forEach items="${board_list}" var="boardVO" varStatus="status">
+						<tr>
+							<td>${boardVO.bno}</td>
+							<td class="tit_notice">
+							<a href="/home/board/board_view">
+								<c:out value="${boardVO.title}" />
+							</a> </td>
+							<td>${boardVO.view_count}</td>
+							<td>${boardVO.reg_date}</td>
+						</tr>
+					</c:forEach>
+										
 				</tbody>
 			</table>
 			<!-- //게시물리스트영역 -->

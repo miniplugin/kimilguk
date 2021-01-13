@@ -70,8 +70,8 @@ public class HomeController {
 		pageVO.setQueryPerPageNum(10);//1페이지당 보여줄 게시물 개수
 		int totalCount = boardService.countBoard(pageVO);//페이징의 게시물 전체개수 구하기 
 		pageVO.setTotalCount(totalCount);
-		List<BoardVO> boardVO = boardService.selectBoard(pageVO);
-		model.addAttribute("boardVO", boardVO);
+		List<BoardVO> board_list = boardService.selectBoard(pageVO);
+		model.addAttribute("board_list", board_list);
 		return "home/board/board_list";
 	}
 	
