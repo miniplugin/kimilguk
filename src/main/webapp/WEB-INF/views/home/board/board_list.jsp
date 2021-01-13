@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <link rel="stylesheet" href="/resources/home/css/board.css">
 <script>
 $(document).ready(function() {
 	//라이브러리 사용않하고, 오리지널 j쿼리로 만드는 유효성(아래)
+	/*
 	$("#search_form").submit(function(){ //검색버튼을 클릭=전송했을때.
 		var search_keyword = $("input[name=search_keyword]").val();
 		if(search_keyword == "") {
@@ -12,6 +15,7 @@ $(document).ready(function() {
 			return false;//조건이 맞으면, 전송중지.
 		}
 	});
+	*/
 });
 </script>
 
@@ -57,13 +61,18 @@ $(document).ready(function() {
 				<tbody>
 					<c:forEach items="${board_list}" var="boardVO" varStatus="status">
 						<tr>
-							<td>${boardVO.bno}</td>
+							<td>
+							<!-- 전체게시물-(현재페이지x1페이지당보여줄개수)+1페이지당보여줄개수-현재인덱스값 -->
+		                      ${pageVO.totalCount-(pageVO.page*pageVO.queryPerPageNum)+pageVO.queryPerPageNum-status.index}
+							</td>
 							<td class="tit_notice">
 							<a href="/home/board/board_view">
 								<c:out value="${boardVO.title}" />
 							</a> </td>
 							<td>${boardVO.view_count}</td>
-							<td>${boardVO.reg_date}</td>
+							<td>
+							<fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.reg_date}"/>
+							</td>
 						</tr>
 					</c:forEach>
 										
@@ -73,15 +82,17 @@ $(document).ready(function() {
 			
 			<!-- 페이징처리영역 -->
 			<div class="pagination">
-				<a href="javascript:;" class="firstpage  pbtn"><img src="/resources/home/img/btn_firstpage.png" alt="첫 페이지로 이동"></a>
-				<a href="javascript:;" class="prevpage  pbtn"><img src="/resources/home/img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
-				<a href="javascript:;"><span class="pagenum currentpage">1</span></a>
-				<a href="javascript:;"><span class="pagenum">2</span></a>
-				<a href="javascript:;"><span class="pagenum">3</span></a>
-				<a href="javascript:;"><span class="pagenum">4</span></a>
-				<a href="javascript:;"><span class="pagenum">5</span></a>
-				<a href="javascript:;" class="nextpage  pbtn"><img src="/resources/home/img/btn_nextpage.png" alt="다음 페이지로 이동"></a>
-				<a href="javascript:;" class="lastpage  pbtn"><img src="/resources/home/img/btn_lastpage.png" alt="마지막 페이지로 이동"></a>
+				<c:if test="${pageVO.prev}">
+					<a href="/home/board/board_list?page=${pageVO.startPage-1}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}" class="prevpage  pbtn"><img src="/resources/home/img/btn_prevpage.png" alt="이전 페이지로 이동"></a>
+				</c:if>
+				<c:forEach begin="${pageVO.startPage}" end="${pageVO.endPage}" var="idx">
+					<a href="/home/board/board_list?page=${idx}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}">
+					<span class='pagenum <c:out value="${(pageVO.page==idx)?'currentpage':'' }" />'>${idx}</span>
+					</a>
+				</c:forEach>
+				<c:if test="${pageVO.next}">
+					<a href="/home/board/board_list?page=${pageVO.endPage+1}&search_type=${pageVO.search_type}&search_keyword=${pageVO.search_keyword}" class="nextpage  pbtn"><img src="/resources/home/img/btn_nextpage.png" alt="다음 페이지로 이동"></a>
+				</c:if>
 			</div>
 			<!-- //페이징처리영역 -->
 			<p class="btn_line">
