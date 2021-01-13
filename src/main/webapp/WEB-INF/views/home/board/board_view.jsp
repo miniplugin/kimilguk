@@ -97,25 +97,15 @@
 	          <div class="timeline">
 	          	  <!-- .time-label의 before 위치 -->
 		          <div class="time-label">
-	                <span data-toggle="" class="bg-red btn" id="btn_reply_list">Reply List[${boardVO.reply_count}]&nbsp;&nbsp;</span>
+	                <span data-toggle="collapse" data-target="#div_reply" class="bg-red btn" id="btn_reply_list">Reply List[${boardVO.reply_count}]&nbsp;&nbsp;</span>
 	              </div>
-	              <div id="div_reply" class="timeline">
+	              <div id="div_reply" class="timeline collapse">
 	              
 		              <!-- 페이징처리 시작 -->
 			          <div class="pagination justify-content-center">
-			            	<ul class="pagination">
-			            	 <li class="paginate_button page-item previous disabled" id="example2_previous">
-			            	 <a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-			            	 </li>
-			            	 <!-- 위 이전게시물링크 -->
-			            	 <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-			            	 <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
-			            	 <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
-			            	 <!-- 아래 다음게시물링크 -->
-			            	 <li class="paginate_button page-item next" id="example2_next">
-			            	 <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-			            	 </li>
-			            	 </ul>
+			            	<ul class="pagination pageVO">
+			            	 
+			            	</ul>
 			          </div>
 				  	  <!-- 페이징처리 끝 -->
 	              
@@ -139,7 +129,7 @@ jstl을 사용하려면, jsp에서 @taglib uri=... 처럼 외부 core를 가져�
  <i class="fas fa-envelope bg-blue"></i>
  <div class="timeline-item">
    <h3 class="timeline-header">{{replyer}}</h3>
-   <div class="timeline-body">{{replytext}}</div>
+   <div class="timeline-body">{{reply_text}}</div>
    <div class="timeline-footer">
 	 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal">
   		수정
@@ -156,8 +146,24 @@ var printReplyList = function(data, target, templateObject) {
 	var template = Handlebars.compile(templateObject.html());//html태그로 변환
 	var html = template(data);//빅데이터를 리스트템플릿에 바인딩 결합시켜주는 역할. 변수html에 저장되었음.
 	$(".template-div").remove();//화면에 보이는 댓글리스트만 지우기.
-	target.before(html);//target은 .time-label 클래스영역을 가리킵니다.
+	target.prepend(html);//target은 .time-label 클래스영역을 가리킵니다.
 };
+</script>
+<!-- 댓글 페이징 재구현Representation하는 함수(아래) -->
+<script>
+var printPageVO = function(pageVO, target) {
+	 var paging = "";
+	 if(pageVO.prev){
+		 paging = paging + '<li class="paginate_button page-item previous disabled" id="example2_previous"><a href="'+(pageVO.startPage-1)+'" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>';
+	 }
+	 for(cnt=pageVO.startPage;cnt<=pageVO.endPage;cnt++){ var active = (cnt==pageVO.page)?"active":"";
+		 paging = paging + '<li class="paginate_button page-item '+active+'"><a href="'+cnt+'" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">'+cnt+'</a></li>';
+	 }
+	 if(pageVO.next){
+		 paging = paging + '<li class="paginate_button page-item next" id="example2_next"><a href="'+(pageVO.endPage+1)+'" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li>';
+	 }
+	 target.html(paging);
+}
 </script>
 <!-- 댓글 리스트 실행 하는 함수(아래) -->
 <script>
@@ -172,7 +178,8 @@ var replyList = function(){
 				$("#div_reply").empty();
 				alert("조회된 값이 없습니다.");
 			}else{
-				printReplyList(result.replyList,$("#div_reply"),$("#template"));//댓글리스트출력
+				printReplyList(result.replyList, $("#div_reply"),$("#template"));//댓글리스트출력
+				printPageVO(result.pageVO, $(".pageVO"));
 			}
 		},
 		error:function(){
@@ -180,6 +187,18 @@ var replyList = function(){
 		}
 	});
 }
+</script>
+<!-- 페이징의 번호 링크액션 함수(아래) -->
+<script>
+$(document).ready(function(){
+	$(".pageVO").on("click","li a",function(event){
+		event.preventDefault();//디폴트 액션 링크이동 방지
+		var page = $(this).attr("href");//겟GET
+		$("#reply_page").val(page);//셋SET 매개변수가 없으면 겟 GET $("#reply_page").val()
+		//alert("디버그" + page);
+		replyList();
+	});
+});
 </script>
 <!-- 댓글 리스트 버튼 클릭이벤트 처리(아래) -->
 <script>
