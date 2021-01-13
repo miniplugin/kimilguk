@@ -65,6 +65,39 @@
 - 사용자단, 유효성 검사 기능을 포함해서 마이페이지+회원가입 프로그램처리.
 - 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 실습.
 - 헤로쿠(URL)에 배포(HsqlDB로 배포, 메이븐 외부 라이브러리 추가필수 pom.xml수정)
+- 수업시작전 로그인 에러 자바스크립트 메세지 출력 추가 및 이미지파일미리보기 구형 버전에서 에러나는 문제 처리
+
+```
+login.jsp (아래)
+<script>
+if('${param.msg}' == "fail"){
+	alert('로그인에 실패했습니다.! 상세메세지 ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}');
+}
+</script>
+CommonController.java (아래)
+	/**
+	 * 게시물 첨부파일 이미지보기 메서드 구현(윈도7,윈도8 IE에서 지원가능)
+	 * 에러메시지 처리: getOutputStream() has already been called for this respons
+	 * @throws IOException 
+	 */
+	@RequestMapping(value = "/image_preview", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte[] getImageAsByteArray(@RequestParam("save_file_name") String save_file_name, HttpServletResponse response) throws IOException {
+		FileInputStream fis = null;
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		fis = new FileInputStream(uploadPath + "/" + save_file_name);
+		int readCount = 0;
+		byte[] buffer = new byte[1024];
+		byte[] fileArray = null;
+	while((readCount = fis.read(buffer)) != -1){
+		baos.write(buffer,0,readCount);
+	}
+	fileArray = baos.toByteArray();
+	fis.close();
+	baos.close();
+	return fileArray;
+	}
+```
 
 #### 20210112(화) 작업
 - 스프링 시큐리티 복습 순서
