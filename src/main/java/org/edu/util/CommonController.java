@@ -111,8 +111,8 @@ public class CommonController {
 		headers.setContentType(MediaType.parseMediaType("image/bmp"));break;
 	default:break;
 	}
+
 	return new ResponseEntity<byte[]>(fileArray, headers, HttpStatus.CREATED);
-	
 	}
 	
 	//파일 다운로드 구현한 메서드(아래)
