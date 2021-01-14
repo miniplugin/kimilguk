@@ -78,11 +78,11 @@
 	          <div class="card-header">
 	            <h5 class="card-title">Add New Reply</h5>
 	          </div>
-	          <form action="board_view.html" name="reply_form" method="post">
+	          <form action="#" name="reply_form" method="post">
 	          <div class="card-body">
 	          	<div class="form-group">
-                   <label for="writer">Writer</label>
-                   <input type="text" class="form-control" name="writer" id="writer" placeholder="작성자를 입력해 주세요." required>
+                   <label for="replyer">Writer</label>
+                   <input type="text" class="form-control" name="replyer" id="replyer" placeholder="작성자를 입력해 주세요." required>
                    <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
                    	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 writer 입니다. -->
                 </div>
@@ -97,7 +97,7 @@
 	          <div class="timeline">
 	          	  <!-- .time-label의 before 위치 -->
 		          <div class="time-label">
-	                <span data-toggle="collapse" data-target="#div_reply" class="bg-red btn" id="btn_reply_list">Reply List[${boardVO.reply_count}]&nbsp;&nbsp;</span>
+	                <span data-toggle="collapse" data-target="#div_reply" class="bg-red btn" id="btn_reply_list">Reply List[<span id="reply_count">${boardVO.reply_count}</span>]&nbsp;&nbsp;</span>
 	              </div>
 	              <div id="div_reply" class="timeline collapse">
 	              
@@ -213,23 +213,38 @@ $(document).ready(function(){
 <script>
 $(document).ready(function() {
 	$("#insertReplyBtn").on("click", function() {//댓글등록버튼을 클릭했을 때 구현내용(아래)
+		if("${session_enabled}" == "") {//버튼클릭시 비로그인시 로그인 화면으로 유도
+			alert("회원만 댓글 등록이 가능합니다.");
+			location.href("/login");//자바스크립트 내장함수(href:hyterTextReference:URL이동함수)
+			return false;
+		}
 		//alert("디버그");
 		//Ajax를 이용해서, 화면을 Representation (REST-API방식) 부분 화면을 재구현(아래)
+		var bno = "${boardVO.bno}";
+		var reply_text = $("#reply_text").val();//input type은 val()함수로 입력값을 가져올 수 있음.
+		var replyer = $("#replyer").val();
+		if(reply_text=="" || replyer=="") {
+			alert("댓글 내용, 작성자는 필수 입력 사항 입니다.");
+			return false;
+		}
 		$.ajax({//통신프로그램
 			//여기서부터는 프론트 엔드 개발자 영역
-			type:'get',//지금은 html이라서 get방식이지만, jsp로가면, post방식으로 바꿔야 합니다.
-			url:'board_view.html',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
-			dataType:'text',//ReplyController에서 받은 데이터의 형식은 text형식으로 받겠다고 명시.
+			type:'post',//지금은 html이라서 get방식이지만, jsp로가면, post방식으로 바꿔야 합니다.
+			url:'/reply/reply_write',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST"
+			},
+			data:JSON.stringify({
+				bno:bno,
+				reply_text:reply_text,
+				replyer:replyer
+			}),//RestAPI서버컨트롤러로 보내는 Json값
 			success:function(result) {//응답이 성공하면(상태값200)위경로에서 반환받은 result(json데이터)를 이용해서 화면을 재구현
-				//지금은 html이라서 result값을 이용할 수가 없어서 댓글 더미데이터를 만듭니다.(아래)
-				result = [
-					//{rno:댓글번호,bno:게시물번호,replytext:"첫번째 댓글",replyer:"admin",regdate:타임스탬프}
-					{rno:1,bno:15,replytext:"첫번째 댓글",replyer:"admin",regdate:1601234512345},//첫번째 댓글 데이터
-					{rno:2,bnt:15,replytext:"두번째 댓글",replyer:"admin",regdate:1601234512345}//두번째 댓글 데이터
-				];//위 URL이 공공데이터생각하면,위 데이터를 화면에 구현하면, 빅데이터의 시각화로 불리게 됩니다.
-				//printReplyList(빅데이터, 출력할 타켓위치, 빅데이터를 가지고 바인딩된-묶인 템플릿화면);
-				printReplyList(result, $(".time-label"), $("#template"));//화면에 출력하는 구현함수를 호출하면 실행.
-			} 
+				var reply_count = $("#reply_count").text();//겟Get
+				$("#reply_count").text(parseInt(reply_count)+1);//셋Set
+				replyList();
+			}
 		});
 	} );
 });
