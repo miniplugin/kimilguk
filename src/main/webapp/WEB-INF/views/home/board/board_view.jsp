@@ -218,6 +218,33 @@ $(document).ready(function(){
 			location.href("/login");
 			return false;
 		}
+		var reply_text = $("#replytext").val();//겟Get
+		var rno = $("#rno").val();//겟Get
+		$.ajax({
+			type:"patch",
+			url:"/reply/reply_update",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"PATCH"
+			},
+			data:JSON.stringify({
+				rno:rno,
+				reply_text:reply_text
+			}),
+			dataType:"text",
+			success:function(result){
+				if(result=="success"){
+					alert("댓글 수정 성공!");
+					$("#replyModal").modal("hide");
+					replyList();//수정 후 댓글리스트 재 호출(실행)
+				}else{
+					alert("댓글 수정 실패!");
+				}
+			},
+			error:function(result){
+				alert("RestAPI서버가 작동하지 않습니다.");
+			}
+		});
 	});
 });
 </script>
