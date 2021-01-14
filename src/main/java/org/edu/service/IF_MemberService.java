@@ -18,4 +18,6 @@ public interface IF_MemberService {
 	//업데이트 후 member_view.jsp 이동(아래)
 	public void updateMember(MemberVO memberVO) throws Exception;
 	public void insertMember(MemberVO memberVO) throws Exception;
+	//스프링스케줄모듈을 이용해서 실행 메서드생성(아래)
+	public void herokuJobMethod() throws Exception;
 }
