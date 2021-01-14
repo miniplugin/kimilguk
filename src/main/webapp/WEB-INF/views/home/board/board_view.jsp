@@ -168,7 +168,7 @@ var printPageVO = function(pageVO, target) {
 <!-- 댓글 리스트 실행 하는 함수(아래) -->
 <script>
 var replyList = function(){
-	var page = $("#reply_page").val();//현재 지정된 댓글 페이지 값 가져오기
+	var page = $("#reply_page").val();//현재 지정된 댓글 페이지 값 가져오기Get
 	$.ajax({
 		url:"/reply/reply_list/${boardVO.bno}/"+page,//쿼리스트링X, 패스베리어블로 보냅니다.
 		type:"post",//원래는 get인데, post로 보낼수 있음.
@@ -209,6 +209,50 @@ $(document).ready(function(){
 	});
 });
 </script>
+<!-- 댓글 수정 버튼 액션 처리(아래) -->
+<script>
+$(document).ready(function(){
+	$("#updateReplyBtn").on("click",function(){
+		if("${session_enabled}" == "") {
+			alert("회원만 댓글 수정이 가능합니다.");
+			location.href("/login");
+			return false;
+		}
+	});
+});
+</script>
+<!-- 댓글 삭제 버튼 액션 처리(아래) -->
+<script>
+$(document).ready(function(){
+	$("#deleteReplyBtn").on("click",function(){
+		if("${session_enabled}" == "") {
+			alert("회원만 댓글 삭제가 가능합니다.");
+			location.href("/login");
+			return false;
+		}
+		var rno = $("#rno").val();
+		$.ajax({
+			type:"delete",
+			url:"/reply/reply_delete/${boardVO.bno}/"+rno,
+			dataType:"text",
+			success:function(result){
+				if(result=="success") {
+					alert("댓글삭제 성공!");
+					var reply_count = $("#reply_count").text();//겟Get
+					$("#reply_count").text(parseInt(reply_count)-1);//셋Set
+					replyList();//삭제후 댓글 리스트 재실행.
+					$("#replyModal").modal("hide");//모달창을 닫는 JQuery내장함수
+				}else{
+					alert("댓글삭제 실패!");
+				}
+			},
+			error:function(result){
+				alert("RestAPI서버가 작동하지 않습니다.");
+			}
+		});
+	});
+});
+</script>
 <!-- 댓글 등록 버튼 액션 처리(아래) -->
 <script>
 $(document).ready(function() {
@@ -227,7 +271,9 @@ $(document).ready(function() {
 			alert("댓글 내용, 작성자는 필수 입력 사항 입니다.");
 			return false;
 		}
-		$.ajax({//통신프로그램
+		$.ajax({//통신프로그램: J쿼리에서 내장된 함수ajax({}); 비동기통신특징(HTTP동기통신-웹페이지의 단점을 해소 Ajax)
+		//최초로 상용화 적용되었던 곳이 파일 업로드/다운로드에 Ajax기능의 적용되었습니다.
+		//서버(RestAPI서버=컨트롤러)-클라이언트(PC브라우저ajax=jsp단-화면)
 			//여기서부터는 프론트 엔드 개발자 영역
 			type:'post',//지금은 html이라서 get방식이지만, jsp로가면, post방식으로 바꿔야 합니다.
 			url:'/reply/reply_write',//jsp로 가면, ReplyController 에서 지정한 url로 바꿔야 합니다.
@@ -243,7 +289,14 @@ $(document).ready(function() {
 			success:function(result) {//응답이 성공하면(상태값200)위경로에서 반환받은 result(json데이터)를 이용해서 화면을 재구현
 				var reply_count = $("#reply_count").text();//겟Get
 				$("#reply_count").text(parseInt(reply_count)+1);//셋Set
-				replyList();
+				//댓글 3페이지를 보고 있다가, 댓글 입력했어요, 본인 작성할 댓글 바로 확인 가능하도록 1page로 가도록 유도
+				$("#reply_page").val("1");//그래서 1페이지값으로 Set
+				replyList();//댓글입력 후 리스트 출력함수 호출(실행)
+				$("#replyer").val("");//input박스의 값 제거 
+				$("#reply_text").val("");
+			},
+			error:function(result) {
+				alert("RestAPI서버가 작동하지 않습니다.");
 			}
 		});
 	} );
@@ -279,8 +332,8 @@ $(document).ready(function() {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-        <button type="button" class="btn btn-primary">수정</button>
-        <button type="button" class="btn btn-danger">삭제</button>
+        <button type="button" class="btn btn-primary" id="updateReplyBtn">수정</button>
+        <button type="button" class="btn btn-danger" id="deleteReplyBtn">삭제</button>
       </div>
     </div>
   </div>
