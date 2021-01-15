@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
@@ -46,11 +47,21 @@ public class DataSourceTest {
 	MemberVO memberVO;//기존자바처럼 new MemberVO() 오브젝트를 생성하지않고, 주입해서사용. 
 	
 	public String memberPrimaryKey() {
-		//사용자 프라이머리키 생성하는 메서드 년월일시분처 + 밀리초
+		//사용자 프라이머리키 생성하는 메서드 년월일시분처 + 밀리초 대량더미데이터입력시Uniq에러발생-> Math.ramdom로 변경
+		/*
 		Date primaryKey = new Date();
 		SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 		System.out.println("프라이머리키 : " + newFormat.format(primaryKey));
 		return "dummy_" + newFormat.format(primaryKey);
+		*/
+		PageVO pageVO = new PageVO();
+		pageVO.setPage(1);
+		pageVO.setPerPageNum(8);//리스트하단에 보이는 페이징번호의 개수
+		pageVO.setQueryPerPageNum(10);//쿼리에서 1페이지당 보여줄 게시물수 10개로 입력 놓았습니다.
+		//검색된 전체 게시물수 구하기 서비스 호출
+		int countMember = 0;
+		countMember = 0;
+		return "dummy_";
 	}
 	
 	@Test
