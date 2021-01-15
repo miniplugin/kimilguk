@@ -79,6 +79,17 @@ public class HomeController {
 		return "home/board/board_view";
 	}
 	
+	@RequestMapping(value="/home/board/board_update",method=RequestMethod.GET)
+	public String board_update(Model model, @ModelAttribute("pageVO") PageVO pageVO, @RequestParam("bno") Integer bno) throws Exception {
+		BoardVO boardVO = boardService.readBoard(bno);
+		//콘텐츠 내용 시큐어 코딩 처리
+		String xssData = securityCode.unscript(boardVO.getContent());
+		boardVO.setContent(xssData);
+		//첨부파일처리는 다음주에...
+		model.addAttribute("boardVO", boardVO);
+		
+		return "home/board/board_update";
+	}
 	//사용자 홈페이지 게시판 쓰기 매핑(POST) 오버로드(매개변수의 개수또는 타입이 틀린)메서드이용
 	//jsp에서 board_write메서드를 호출합니다 -> 호출할때 폼의 필드값을 컨트롤러로 보냅니다.
 	//컨트롤러에서 받을때 사용하는 매개변수 BoardVO boardVO입니다.
