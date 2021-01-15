@@ -14,6 +14,13 @@
 - netstat -ano | findstr 8080 : 특정 포트로 검색
 - taskkill /F /PID 포트번호(위에서출력된 제일오른쪽번호 : PID를 통해 작동중인 프로그램 종료)
 
+#### Hsql 데이터베이스 사용 개선
+- jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db 이 내용이 사용된 부분에  ;hsqldb.lock_file=false를 추가하면, 사용시 lock이 걸리지 않고 톰캣과 Junit 동시 사용이 가능합니다.(아래 2가지 수정)
+- root-context.xml 과 
+- Junit 작업파일에서 oldQueryTest() 메서드 부분
+- 단, 기존에 만들었던 DB폴더에서 lock파일(hsql_file.lck)을 지우시면 다음부터는 생성되지 않기 때문에 톰캣실행과 JUnit및 다른 프로그램 작업도 가능합니다.
+![ex_screenshot](./git_img/hsql_lock_delete.jpg)
+
 ### 스프링 작업순서
 - 스프링 HelloWorld MVC 프로젝트 org.edu.controller 제작OK.
 - wamp(만세아이콘)으로 마리아DB(3306포트) 설치, 사용자암호 추가 및 한글처리OK.
