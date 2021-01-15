@@ -3,7 +3,9 @@ package org.edu.test;
 import static org.junit.Assert.*;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +14,9 @@ import java.util.UUID;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.edu.dao.IF_BoardDAO;
 import org.edu.dao.IF_MemberDAO;
+import org.edu.vo.BoardVO;
 import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
 import org.junit.Test;
@@ -42,6 +46,9 @@ public class DataSourceTest {
 	
 	@Inject
 	IF_MemberDAO memberDAO;
+	
+	@Inject
+	IF_BoardDAO boardDAO;
 	
 	@Inject//사용하면 않되는 이유: 클래스상단에 @Controller, @Service, @Repository, @Component 이런내용만 @Inject합니다.
 	MemberVO memberVO;//기존자바처럼 new MemberVO() 오브젝트를 생성하지않고, 주입해서사용. 
@@ -95,6 +102,18 @@ public class DataSourceTest {
 	}
 	
 	@Test
+	public void insertBoard() throws Exception {
+		BoardVO boardVO = new BoardVO();
+		boardVO.setTitle("더미게시물");
+		boardVO.setContent("더미 내용 입니다.");
+		boardVO.setWriter("일반사용자");
+		//boardVO.setBno(프라이머리키);
+		for(int cnt=0;cnt<=100;cnt++) {//더미게시물 100입력
+			boardDAO.insertBoard(boardVO);
+		}
+	}
+	
+	@Test
 	public void insertMember() throws Exception {
 		//CRUD 중 Create 테스트
 		//MemberVO memberVO = new MemberVO();
@@ -133,6 +152,24 @@ public class DataSourceTest {
 		System.out.println("회원리스트 테스트 입니다.");
 		System.out.println(memberList.toString());
 	}
+	@Test
+	public void oldSelectTest() throws Exception {
+		Connection connection = dataSource.getConnection();
+		//직접 쿼리를 날립니다.(아래)
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("select * from tbl_board");
+		System.out.println("제목\t\t내용\t\t작성자");
+		while(rs.next()) {
+			System.out.print(rs.getString("title"));
+			System.out.print(rs.getString("content"));
+			System.out.print(rs.getString("writer"));
+			System.out.println();
+		}
+		if(rs !=null)rs.close();
+		if(stmt !=null)stmt.close();
+		if(connection !=null)connection.close();
+	}
+	
 	@Test
 	public void dbConnectionTest() throws Exception {
 		try {//내부에서 {} 에러발생시 실행을 중지하고, catch{}구문이 실행 됩니다. 예외처리라고 합니다.
