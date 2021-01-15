@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 앱을 위한 홈페이지 요청(request)을 처리한다(아래).
@@ -83,9 +85,26 @@ public class HomeController {
 	//위에서 받은 boardVO 를 DAO에서 받아서 DB테이블에 쿼리명령으로 입력합니다.
 	//POST는 jsp폼에서 서밋할때 전송하는 방식(숨겨서 전송하는 방식)-GET으로하면 브라우저 URL에 노출되어서 전송.
 	@RequestMapping(value="/home/board/board_write",method=RequestMethod.POST)
-	public String board_write(BoardVO boardVO) throws Exception {
+	public String board_write(RedirectAttributes rdat, @RequestParam("file") MultipartFile[] files, BoardVO boardVO) throws Exception {
 		//위에서 받은 boardVO를 서비스로 보내기.
-		return "redirect:/home/board/board_view";
+		//첨부파일 저장할 배열변수 선언
+		String[] save_file_names = new String[files.length];
+		String[] real_file_names = new String[files.length];
+		int index = 0;
+		for(MultipartFile file:files) {
+			if(file.getOriginalFilename() != "") {
+			save_file_names[index] = commonController.fileUpload(file);//UUID 고유값
+			real_file_names[index] = file.getOriginalFilename();//예를 들면 한글파일명
+			}
+			index = index + 1;
+		}
+		boardVO.setSave_file_names(save_file_names);
+		boardVO.setReal_file_names(real_file_names);
+		
+		boardService.insertBoard(boardVO);//실제 DB에 인서트
+		rdat.addFlashAttribute("msg", "저장");
+		
+		return "redirect:/home/board/board_list";
 	}
 	//사용자 홈페이지 게시판 쓰기 매핑(GET) jsp폼에 접근하는 url방식(get) 폼만보여주는 역할
 	@RequestMapping(value="/home/board/board_write",method=RequestMethod.GET)

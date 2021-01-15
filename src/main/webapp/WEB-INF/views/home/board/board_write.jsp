@@ -34,7 +34,7 @@
 		<!-- 메인본문영역 -->
 		<div class="bodytext_area box_inner">
 			<!-- 폼영역 -->
-			<form method="POST" name="board_write" action="/home/board/board_write" class="appForm">
+			<form method="POST" name="board_write" action="/home/board/board_write" class="appForm" encType="multipart/form-data">
 				<fieldset>
 					<legend>상담문의 입력 양식</legend>
 					<p class="info_pilsoo pilsoo_item">필수입력</p>
@@ -49,19 +49,23 @@
 								<textarea name="content" id="content_lbl" class="w100p" placeholder="내용을 입력해주세요." required></textarea></div>
 						</li>
 						<li class="clear">
-							<label for="name_lbl" class="tit_lbl pilsoo_item">작성자명</label>
-							<div class="app_content"><input type="text" name="name" class="w100p" id="name_lbl" placeholder="이름을 입력해주세요" required/></div>
+							<label for="writer_lbl" class="tit_lbl pilsoo_item">작성자명</label>
+							<div class="app_content"><input type="text" name="writer" class="w100p" id="writer_lbl" placeholder="이름을 입력해주세요" required/></div>
 						</li>
 						<li class="clear">
 		                    <label for="file_lbl" class="tit_lbl">첨부파일</label>
-		                    <div class="custom-file" style="width:96%;margin:0 2%;">
-			                    <input type="file" name="file" class="custom-file-input" id="customFile">
-			                    <label class="custom-file-label" for="customFile" style="color:#999;">파일첨부</label>
-			                </div>
+		                    <c:forEach begin="0" end="1" var="index">
+		                    	<div class="custom-file" style="width:96%;margin:0 2%;">
+				                    <input type="file" name="file" class="custom-file-input" id="customFile_${index}">
+				                    <label class="custom-file-label" for="customFile" style="color:#999;">파일첨부${index}</label>
+				                </div>
+				                <div style="height:10px;"></div>
+		                    </c:forEach>
+		                    
 		                </li>
 					</ul>
 					<p class="btn_line">
-					<button class="btn_baseColor">등록</button>
+					<button type="submit" class="btn_baseColor">등록</button>
 					<a href="/home/board/board_list" class="btn_baseColor">목록</a>
 					</p>	
 				</fieldset>
