@@ -46,8 +46,8 @@ public class DataSourceTest {
 	@Inject//사용하면 않되는 이유: 클래스상단에 @Controller, @Service, @Repository, @Component 이런내용만 @Inject합니다.
 	MemberVO memberVO;//기존자바처럼 new MemberVO() 오브젝트를 생성하지않고, 주입해서사용. 
 	
-	public String memberPrimaryKey() {
-		//사용자 프라이머리키 생성하는 메서드 년월일시분처 + 밀리초 대량더미데이터입력시Uniq에러발생-> Math.ramdom로 변경
+	public String memberPrimaryKey() throws Exception {
+		//사용자 프라이머리키 생성하는 메서드 년월일시분처 + 밀리초 대량더미데이터입력시Uniq에러발생->countMember로 변경
 		/*
 		Date primaryKey = new Date();
 		SimpleDateFormat newFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS");
@@ -60,8 +60,8 @@ public class DataSourceTest {
 		pageVO.setQueryPerPageNum(10);//쿼리에서 1페이지당 보여줄 게시물수 10개로 입력 놓았습니다.
 		//검색된 전체 게시물수 구하기 서비스 호출
 		int countMember = 0;
-		countMember = 0;
-		return "dummy_";
+		countMember = memberDAO.countMember(pageVO);
+		return "dummy_" + (countMember+1);
 	}
 	
 	@Test
@@ -100,8 +100,8 @@ public class DataSourceTest {
 		//MemberVO memberVO = new MemberVO();
 		//사용자 생성 규칙: user_ 시작(prefix),suffix(접미사)는 년월일시분초 
 		//사용자 생성결과 예: user_20201215142132
-		String memberIdKey = memberPrimaryKey();
-		memberVO.setUser_id(memberIdKey);
+		//String memberIdKey = memberPrimaryKey();
+		
 		memberVO.setUser_name("사용자03");
 		//패스워드 암호화 처리(필수이지만, 스프링 시큐리티 엔코더처리 아래)
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -113,6 +113,7 @@ public class DataSourceTest {
 		Date reg_date = new Date();
 		memberVO.setReg_date(reg_date);//매퍼쿼리에서 처리로 대체
 		for(int cnt=0;cnt<=100;cnt++) {//더미사용자 100명 입력
+			memberVO.setUser_id(memberPrimaryKey());
 			memberDAO.insertMember(memberVO);
 		}		
 	}
