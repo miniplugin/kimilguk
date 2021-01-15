@@ -3,6 +3,7 @@
 .bbsListTbl a:hover, .pagination a:hover, .bbs_title a:hover {
 	color:#000 !important;
 }/*a태그의 가상선택자로 hover마우스 오버시 색상 검은색으로 변경*/
+
 /* 메인상단 위치표시영역 */
 .location_area {
 	height: 260px;
@@ -375,3 +376,17 @@ input:-ms-input-placeholder {
 /* //태블릿+PC용 게시판뷰 */
 }
 /* //게시판 글보기 영역 */
+
+/* 기본CSS: 기본은 모바일 작은버튼 스타일 */
+.btn_smallColor {
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-top:0px;
+    font-weight:normal;
+}
+/* 미디어쿼리:테이블릿기기 이상에서 적용CSS(아래) 작은버튼 스타일 */
+@media all and (min-width:801px) {
+	.btn_smallColor{width:70px;margin-top:10px;}
+}

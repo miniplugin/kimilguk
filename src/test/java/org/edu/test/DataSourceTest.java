@@ -158,6 +158,9 @@ public class DataSourceTest {
 		//Connection connection = dataSource.getConnection();//root-context사용
 		Connection connection = null;
 		connection = DriverManager.getConnection("jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db","sa","");
+		/* mysql(마리아DB)
+		 * .getConnection("jdbc:log4jdbc:mysql://127.0.0.1:3306/edu","root","apmsetup");
+		 */
 		//직접 쿼리를 날립니다.(아래)
 		Statement stmt = connection.createStatement();
 		/* 인서트 쿼리실행(아래) 
