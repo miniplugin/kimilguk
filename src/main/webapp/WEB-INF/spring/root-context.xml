@@ -94,7 +94,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	   
 	 	<property name="dataSource" ref="dataSource-${DbType}" />
 	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래 classpath경로 src/main/resources/쿼리xml) -->
-	 	 <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
+	 	 <property name="mapperLocations" value="classpath:mappers/**/${MapperType}/*Mapper.xml"></property>
 	</bean>
 	
 	<!-- 
