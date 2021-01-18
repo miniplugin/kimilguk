@@ -90,30 +90,33 @@ public class HomeController {
 		List<AttachVO> delFiles = boardService.readAttach(boardVO.getBno());
 		String[] save_file_names = new String[files.length];
 		String[] real_file_names = new String[files.length];
-		int cnt = 0;
+		int index = 0;
 		for(MultipartFile file:files) {//여기의 file은 신규 저장하는 파일
 			if(file.getOriginalFilename() != "") {
 				
 				int sun = 0;
 				for(AttachVO file_name:delFiles) {//실제 폴더에서 기존 첨부파일 삭제처리 
-					if(cnt==sun) {
+					if(index==sun) {
 						File target = new File(commonController.getUploadPath(),file_name.getSave_file_name());//삭제할 파일경로 지정
 						if(target.exists()) {
 							target.delete();//기존 첨부파일 폴더에서 지우기
+							boardDAO.deleteAttach(file_name.getSave_file_name());//DB에서 기존파일 지우기
 						}
-						boardDAO.deleteAttach(file_name.getSave_file_name());//DB에서 기존파일 지우기
 					}
 					sun = sun + 1;
 				}
 				//신규파일 폴더에 업로드 처리
-				save_file_names[cnt] = commonController.fileUpload(file);//신규파일 폴더에 업로드
-				real_file_names[cnt] = file.getOriginalFilename();//신규파일 한글파일명 저장
+				save_file_names[index] = commonController.fileUpload(file);//신규파일 폴더에 업로드
+				real_file_names[index] = file.getOriginalFilename();//신규파일 한글파일명 저장
+			}else{
+				save_file_names[index] = null;//신규파일 폴더에 업로드
+				real_file_names[index] = null;//신규파일 한글파일명 저장
 			}
-			cnt = cnt + 1; 
+			index = index + 1; 
 		}
 		boardVO.setSave_file_names(save_file_names);
 		boardVO.setReal_file_names(real_file_names);
-		boardService.insertBoard(boardVO);//DB에 신규파일 저장기능 호출
+		boardService.updateBoard(boardVO);//DB에 신규파일 저장기능 호출
 		//게시판 테이블 업데이트+첨부파일테이블 업데이트
 		rdat.addFlashAttribute("msg", "수정");
 		return "redirect:/home/board/board_view?bno="+boardVO.getBno()+"&page="+pageVO.getPage();
