@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*공통영역*/
-.bbsListTbl a:hover, .pagination a:hover, .bbs_title a:hover {
+.bbsListTbl a:hover, .pagination a:hover, .bbs_title a:hover, .tit_lbl a:hover {
 	color:#000 !important;
 }/*a태그의 가상선택자로 hover마우스 오버시 색상 검은색으로 변경*/
 
