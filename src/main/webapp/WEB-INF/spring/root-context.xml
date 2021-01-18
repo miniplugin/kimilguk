@@ -11,7 +11,20 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<!-- HSQLDB FILE기반 사용 헤로쿠에 올릴때 생성경로는 /tmp/embeded/hsql_file.db , 로컬PC일때 경로는 c:/egov/workspace/embeded/hsql_file.db -->   
+	<!-- 전역변수 설정 파일 불러오기 local용, prod용 propertyConfiguerer 클래스 사용 -->
+	<bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+            	<!-- 로컬 개발일때 사용(아래) -->
+                <value>classpath:/properties/local.properties</value>
+                <!-- 운영서버 배포일때 사용 -->
+                <!-- value>file:/properties/prod.properties</value -->
+            </list>
+        </property>
+    </bean>
+	
+	<!-- HSQLDB FILE기반 사용 헤로쿠에 올릴때 생성경로는 /tmp/embeded/hsql_file.db;hsqldb.lock_file=false , 로컬PC일때 경로는 c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false -->   
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
@@ -26,7 +39,7 @@
 		<jdbc:script location="classpath:/db/embeded_hsql_file.sql" /> 
 	</jdbc:initialize-database>
 	 -->
-	<!-- jdbc:hsqldb:mem:dataSource / jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db -->
+	<!-- jdbc:hsqldb:mem:dataSource / jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false -->
 	<!-- 테스트 실행용 DB매니저 실행:실제 사용시 아래 value - - 공백제거 하세요. -->
 	<!-- 
 	<bean depends-on="dataSource"
@@ -36,7 +49,7 @@
 	<property name="arguments">
 		<list>
 			<value>- -url</value>
-			<value>jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db</value>
+			<value>jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false</value>
 			<value>- -user</value>
 			<value>sa</value>
 			<value>- -password</value>
