@@ -23,12 +23,21 @@
             </list>
         </property>
     </bean>
-	
+	<!-- 알리아스(Alias)별칭인 dataSource을 만들어서 사용할 수도 있음.(지금 사용않함.) 
+	<alias name="dataSource-${DbType}" alias="dataSource" />
+	-->
 	<!-- HSQLDB FILE기반 사용 헤로쿠에 올릴때 생성경로는 /tmp/embeded/hsql_file.db;hsqldb.lock_file=false , 로컬PC일때 경로는 c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false -->   
 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+	<bean id="dataSource-hsql_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
 		<property name="url" value="jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false" />
+		<property name="username" value="sa" />
+		<property name="password" value="" />
+	</bean>
+	
+	<bean id="dataSource-hsql_prod" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="url" value="jdbc:hsqldb:file:/tmp/embeded/hsql_file.db;hsqldb.lock_file=false" />
 		<property name="username" value="sa" />
 		<property name="password" value="" />
 	</bean>
@@ -68,8 +77,8 @@
 	</bean> -->
 	
 	<!-- 로컬 mysql log4jdbc 설정후 -->
-	<!-- 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	
+	<bean id="dataSource-mysql_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" 
 				  value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url" 
@@ -77,13 +86,13 @@
 		<property name="username" value="root"></property>
 		<property name="password" value="apmsetup"></property>
 	</bean>
-	 -->
+	
 	<!--
 		DataSource 설정으로 JDBC 연결후, MyBatis와 MySql을 연동시킴. 
 		SqlSessionFactory : myBatis와 스프링의 Connection 생성후 쿼리 위치지정.
 	 -->		 		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	   
-	 	<property name="dataSource" ref="dataSource" />
+	 	<property name="dataSource" ref="dataSource-${DbType}" />
 	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래 classpath경로 src/main/resources/쿼리xml) -->
 	 	 <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"></property>
 	</bean>
@@ -107,7 +116,7 @@
 	<!-- 대표적으로 상세보기에도 추가, 게시판 입력 트랜잭션에서 이용 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dataSource-${DbType}"></property>
 	</bean>
 	
 	<!-- 배치작업 -->
@@ -130,6 +139,12 @@
 	        <!-- 앞에서 설정한 트리거를 등록합니다. 필요하면 여러개 만들어서 등록하면 됩니다. -->
 	        <list><ref bean="herokuJobTrigger" /></list>
 	    </property>
+	</bean>
+	
+	<!-- 업로드한 파일이 저장되는 위치: 로컬PC용 C:\\egov\\workspace\\upload -->
+	<!-- 헤로쿠용: /tmp --> 
+	<bean id="uploadPath" class="java.lang.String">
+	    <constructor-arg value="${UploadPath}" />
 	</bean>
 	
 </beans>

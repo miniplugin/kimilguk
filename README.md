@@ -75,6 +75,7 @@
 - 현재는 해당되는 xml 설정파일에서 개발용과 운영서버용 내용을 변경처리해서 작업합니다.
 - 현업1에서는 globals.properties파일을 만들어서 전역변수로 위 설정내용을 변수처리해서 사용.
 - 현업2에서는 local.properties, prod.properties
+- 용어: 프로퍼티즈(properties)-속성, 프로덕트(product)-운영서버, 로컬(local)-개발PC
 - Hsql데이터베이스에서는 JUnit으로 CRUD테스트시 톰캣을 종료하고 하셔야 합니다.
 - 사용자단 게시판 CRUD마무리 예정.
 - 헤로쿠 배포예정.

@@ -52,7 +52,7 @@
 	<!-- select username,authority from authorities where username = 'admin' 내장쿼리변경 authorities-by-username-query  -->
 		<security:authentication-provider>
 			<security:jdbc-user-service 
-				data-source-ref="dataSource"
+				data-source-ref="dataSource-${DbType}"
 				users-by-username-query="select user_id as no,user_pw as password, enabled from tbl_member where user_id = ?"
 				authorities-by-username-query="select user_id as no,levels as authority from tbl_member where user_id = ?"
 				/>
