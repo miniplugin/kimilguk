@@ -1,5 +1,6 @@
 package org.edu.controller;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import org.edu.dao.IF_BoardDAO;
 import org.edu.service.IF_BoardService;
 import org.edu.util.CommonController;
 import org.edu.util.SecurityCode;
@@ -35,6 +37,9 @@ public class HomeController {
 	//private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Inject
 	private IF_BoardService boardService;
+	
+	@Inject
+	private IF_BoardDAO boardDAO;
 	
 	@Inject
 	private SecurityCode securityCode;
@@ -77,6 +82,41 @@ public class HomeController {
 		//업로드 한 내용이 이미지인지 일반문서파일인지 구분하는 역할을 jsp로 보냅니다.(아래)
 		model.addAttribute("checkImgArray", commonController.getCheckImgArray());
 		return "home/board/board_view";
+	}
+	
+	@RequestMapping(value="/home/board/board_update",method=RequestMethod.POST)
+	public String board_update(RedirectAttributes rdat,@RequestParam("file") MultipartFile[] files, BoardVO boardVO, PageVO pageVO) throws Exception {
+		//첨부파일 업로드
+		List<AttachVO> delFiles = boardService.readAttach(boardVO.getBno());
+		String[] save_file_names = new String[files.length];
+		String[] real_file_names = new String[files.length];
+		int cnt = 0;
+		for(MultipartFile file:files) {//여기의 file은 신규 저장하는 파일
+			if(file.getOriginalFilename() != "") {
+				
+				int sun = 0;
+				for(AttachVO file_name:delFiles) {//실제 폴더에서 기존 첨부파일 삭제처리 
+					if(cnt==sun) {
+						File target = new File(commonController.getUploadPath(),file_name.getSave_file_name());//삭제할 파일경로 지정
+						if(target.exists()) {
+							target.delete();//기존 첨부파일 폴더에서 지우기
+						}
+						boardDAO.deleteAttach(file_name.getSave_file_name());//DB에서 기존파일 지우기
+					}
+					sun = sun + 1;
+				}
+				//신규파일 폴더에 업로드 처리
+				save_file_names[cnt] = commonController.fileUpload(file);//신규파일 폴더에 업로드
+				real_file_names[cnt] = file.getOriginalFilename();//신규파일 한글파일명 저장
+			}
+			cnt = cnt + 1; 
+		}
+		boardVO.setSave_file_names(save_file_names);
+		boardVO.setReal_file_names(real_file_names);
+		boardService.insertBoard(boardVO);//DB에 신규파일 저장기능 호출
+		//게시판 테이블 업데이트+첨부파일테이블 업데이트
+		rdat.addFlashAttribute("msg", "수정");
+		return "redirect:/home/board/board_view?bno="+boardVO.getBno()+"&page="+pageVO.getPage();
 	}
 	
 	@RequestMapping(value="/home/board/board_update",method=RequestMethod.GET)
