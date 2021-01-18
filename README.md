@@ -78,8 +78,9 @@
 - } ]
 - 위 데이터를 jsp에서 출력할때는 세로데이터로 나옵니다. foreach(items:'${attach_list}' var='file_name') {<li>file_name.save_file_name</li>}
 - 위 세로 데이터를 가로 데이터로 변경하면 출력은
-- save_file_names = "a.jpg,b.jpg,c.jpg";(가로데이터==변수데이터)
-- real_file_names = "슬라이드1.jpg,슬라이드2.jpg,슬라이드2.jpg";(가로데이터==변수데이터)
+- save_file_names = {"a.jpg","b.jpg","c.jpg"};(가로데이터==변수데이터)
+- real_file_names = {"슬라이드1.jpg","슬라이드2.jpg","슬라이드2.jpg"};(가로데이터==변수데이터)
+- 레포트툴을 사용하시면(학점출력, 고지서 금액출력, 증명서출력), 결과 확인이 가능합니다.
 - 지난주 헤로쿠 배포시 DB경로변경, 업로드경로변경 복잡한 절차를 개선시킨과정은 .properties파일로 전역변수 처리해서 OK.
 - 지금은 Hsql이나 Mysql이나 쿼리가 같습니다. 하지만, 만약 oracle쿼리는 AI가없기 때문에 많이 틀립니다. 그래서, 쿼리 경로도 전역변수로 처리합니다.
 - 로컬PC의 DB설정파일이 개발용 - 헤로쿠용 DB설정파일은 운영서버용
