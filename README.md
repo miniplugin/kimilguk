@@ -73,11 +73,16 @@
 - IoT(아두이노,라즈베리파이-C언어책3권) 2주
 - 안드로이드앱(클라이언트)-통신-자바:스프링웹프로젝트(API서버) 2주
 
-#### 20200119(화) 작업
-- 메인페이지 최근게시물 처리, 최근이미지 처리(1개의 게시판으로 처리OK)
-- 헤로쿠 배포OK.
+#### 20210120(수) 작업예정
+- 시작전, 마이페이지 .app_content input (board.css 246라인 부분 width:100% 에서 브라우저초기화 inherit로 변경필요
+- 시작전, 마이페이지 권한부분에서 ROLE_ADMIN추가 및 disabled 처리 및 input hidden 으로 값 지정.
+- 회원탈퇴 여부도 disabled처리 및 input hidden으로 값 지정.
 - 사용자단, 유효성 검사 기능을 포함해서 마이페이지+회원가입 프로그램처리.
 - 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 실습.
+
+#### 20210119(화) 작업
+- 메인페이지 최근게시물 처리, 최근이미지 처리(1개의 게시판으로 처리OK)
+- 헤로쿠 배포OK.
 - 수업전 어제 Update확인 및 Junit에서 properties파일 로딩해서 전역변수 사용하기 처리 추가.
 - @PropertySource("classpath:properties/local.properties") J유닛파일상단에 추가(전역변수 필요없음)
 - root-context.xml에서, dataSource-hslq_local 을 dataSource로 알리아스(별칭)를 만들어서 Junit DB작동 처리
