@@ -66,7 +66,7 @@ public class HomeController {
 				}
 			}
 		}
-		//DB에서 부모 게시판에 댓글이 있다면 댓글삭제처리 후 게시글 삭제처리(아래)
+		//DB에서 부모 게시판에 댓글이 있다면 댓글삭제처리 후 게시글 삭제처리-서비스에 있음(아래)
 		boardService.deleteBoard(bno);
 		rdat.addFlashAttribute("msg", "삭제");//msg변수값은 URL에 표시가 나오지 않게 숨겨서 board_list보낸다.
 		return "redirect:/home/board/board_list?page="+page;//쿼리스트링변수는 URL에 표시가 됩니다.
@@ -229,8 +229,14 @@ public class HomeController {
 	
 	//사용자 홈페이지 루트(최상위) 접근 매핑
 	@RequestMapping(value="/",method=RequestMethod.GET)
-	public String home() throws Exception{
-		
+	public String home(Model model) throws Exception{
+		PageVO pageVO = new PageVO();
+		pageVO.setPage(1);
+		pageVO.setPerPageNum(5);//하단페이징
+		pageVO.setQueryPerPageNum(5);
+		List<BoardVO> board_list = boardService.selectBoard(pageVO);
+		//System.out.println("디버그" + board_list);
+		model.addAttribute("board_list", board_list);
 		return "home/home";
 	}
 	

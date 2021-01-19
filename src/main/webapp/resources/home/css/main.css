@@ -10,7 +10,7 @@ body {
 	line-height: 1 !important;
 }
 dl, ol, ul { margin-bottom:0 !important;}
-
+#container a:hover {color:#000 !important;}
 /* : 가상선택자, :: 가상요소 */
 a:link {color: #444;}
 a:hover {color: #fff !important;}
