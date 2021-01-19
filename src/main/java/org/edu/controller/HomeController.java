@@ -135,6 +135,10 @@ public class HomeController {
 		}
 		boardVO.setSave_file_names(save_file_names);
 		boardVO.setReal_file_names(real_file_names);
+		//시큐어코딩 추가(아래)
+		String xssData = boardVO.getContent();
+		boardVO.setContent(securityCode.unscript(xssData));
+		
 		boardService.updateBoard(boardVO);//DB에 신규파일 저장기능 호출
 		//게시판 테이블 업데이트+첨부파일테이블 업데이트
 		rdat.addFlashAttribute("msg", "수정");
@@ -184,6 +188,9 @@ public class HomeController {
 		}
 		boardVO.setSave_file_names(save_file_names);
 		boardVO.setReal_file_names(real_file_names);
+		//보안코딩으로 script 제거(아래)
+		String xssData = boardVO.getContent();
+		boardVO.setContent(securityCode.unscript(xssData));
 		
 		boardService.insertBoard(boardVO);//실제 DB에 인서트
 		rdat.addFlashAttribute("msg", "저장");

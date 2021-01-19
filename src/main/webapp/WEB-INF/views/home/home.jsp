@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ include file="include/header.jsp" %>
-	
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 모바일+PC 공통슬라이드영역 -->
@@ -47,7 +45,14 @@
             </div>
         </div>
         <!-- //모바일+PC 공통슬라이드영역 -->
-	
+        <style>
+        	div.txt{
+        		height:100px;
+        		overflow:hidden;
+        		font-size: 12px !important;
+				line-height: 2.8em;
+        	}
+        </style>
 		<!-- 갤러리최근게시물영역 -->
 		<div class="about_area">
 			<h2>겔러리 최근 게시물 <b>TOP 3</b></h2>
@@ -58,9 +63,9 @@
 					<li><a href="/home/board/board_view?bno=${boardVO.bno}&page=1">
 							<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
 							<h3><c:out value="${boardVO.title}"></c:out></h3>
-							<p class="txt">
+							<div class="txt">
 								${boardVO.content}
-							</p>
+							</div>
 							<span class="view">VIEW</span>
 						</a>
 					</li>
