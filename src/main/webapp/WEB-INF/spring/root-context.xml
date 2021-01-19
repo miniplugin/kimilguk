@@ -17,13 +17,13 @@
         <property name="locations">
             <list>
             	<!-- 로컬 개발일때 사용(아래) -->
-                <!-- 
+                
                 <value>classpath:/properties/local.properties</value> 
-                -->
+               
                 <!-- 운영서버 배포일때 사용 -->
-                
+                <!-- 
                 <value>classpath:/properties/prod.properties</value>
-                
+                 -->
             </list>
         </property>
     </bean>
@@ -46,12 +46,12 @@
 		<property name="password" value="" />
 	</bean>
 	
-	<!-- CREATE TABLE 초기 1회만 실행 -->
-	
+	<!-- CREATE TABLE 초기 1회만 실행 단, 헤로쿠로 배포시 항상 주석 해제 후 배포합니다. -->
+	<!-- 
 	<jdbc:initialize-database data-source="dataSource" ignore-failures="DROPS"> 
 		<jdbc:script location="classpath:/db/embeded_hsql_file.sql" /> 
 	</jdbc:initialize-database>
-	
+	 -->
 	<!-- jdbc:hsqldb:mem:dataSource / jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false -->
 	<!-- 테스트 실행용 DB매니저 실행:실제 사용시 아래 value - - 공백제거 하세요. -->
 	<!-- 
