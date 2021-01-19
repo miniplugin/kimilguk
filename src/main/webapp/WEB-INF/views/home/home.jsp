@@ -17,6 +17,16 @@
 	    white-space: nowrap;/* 줄바꿈할때, 공백는 포함 않시키는 의미 */
     }
 </style>
+<script>
+$(document).ready(function(){
+	$(".opacity_hover img").on("mouseover",function(){
+		$(this).css("opacity","1.0");
+	});
+	$(".opacity_hover img").on("mouseout",function(){
+		$(this).css("opacity","0.8");
+	});
+});
+</script>
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 모바일+PC 공통슬라이드영역 -->
@@ -69,13 +79,16 @@
 				<ul class="place_list box_inner clear">
 				<c:forEach var="boardVO" items="${board_list}" varStatus="status">
 					<c:if test="${status.count<=3}">
-					<li><a href="/home/board/board_view?bno=${boardVO.bno}&page=1">
+					<li class="opacity_hover">
+						<a href="/home/board/board_view?bno=${boardVO.bno}&page=1">
+							<div style="height:270px;overflow:hidden">
 							<c:if test="${save_file_names[status.index] eq ''}">
 								<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
 							</c:if>
 							<c:if test="${save_file_names[status.index] ne '' }">
-								<img src="/image_preview?save_file_name=${save_file_names[status.index]}" >
+								<img src="/image_preview?save_file_name=${save_file_names[status.index]}" style="opacity:0.8;" >
 							</c:if>
+							</div>
 							<h3 class="length_limit"><c:out value="${boardVO.title}"></c:out></h3>
 							<div class="txt">
 								${boardVO.content}
