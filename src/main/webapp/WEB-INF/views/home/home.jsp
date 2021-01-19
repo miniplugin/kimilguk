@@ -1,6 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp" %>
+<style>
+    div.txt{
+   		height:100px;
+   		overflow:hidden;
+		line-height: 17px;
+		margin-top:10px;
+	}
+  	div.txt * { font-size: 14px !important;}
+  	.length_limit{
+  	    display: block;
+	    padding-left: 14px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    white-space: nowrap;/* 줄바꿈할때, 공백는 포함 않시키는 의미 */
+    }
+</style>
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 모바일+PC 공통슬라이드영역 -->
@@ -45,14 +61,7 @@
             </div>
         </div>
         <!-- //모바일+PC 공통슬라이드영역 -->
-        <style>
-        	div.txt{
-        		height:100px;
-        		overflow:hidden;
-        		font-size: 12px !important;
-				line-height: 2.8em;
-        	}
-        </style>
+        
 		<!-- 갤러리최근게시물영역 -->
 		<div class="about_area">
 			<h2>겔러리 최근 게시물 <b>TOP 3</b></h2>
@@ -61,8 +70,13 @@
 				<c:forEach var="boardVO" items="${board_list}" varStatus="status">
 					<c:if test="${status.count<=3}">
 					<li><a href="/home/board/board_view?bno=${boardVO.bno}&page=1">
-							<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
-							<h3><c:out value="${boardVO.title}"></c:out></h3>
+							<c:if test="${save_file_names[0] eq ''}">
+								<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
+							</c:if>
+							<c:if test="${save_file_names[0] ne '' }">
+								이미지가 있습니다.
+							</c:if>
+							<h3 class="length_limit"><c:out value="${boardVO.title}"></c:out></h3>
 							<div class="txt">
 								${boardVO.content}
 							</div>

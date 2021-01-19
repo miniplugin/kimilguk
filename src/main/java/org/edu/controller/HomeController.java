@@ -244,6 +244,31 @@ public class HomeController {
 		List<BoardVO> board_list = boardService.selectBoard(pageVO);
 		//System.out.println("디버그" + board_list);
 		model.addAttribute("board_list", board_list);
+		
+		//첨부파일 1개만 model클래스를 이용해서 jsp로 보냅니다.
+		String[] save_file_names = new String[board_list.size()];
+		int cnt = 0;
+		for(BoardVO boardVO:board_list) {//board_list변수에는 최대 5개의 레코드가 존재함.
+			List<AttachVO> file_list = boardService.readAttach(boardVO.getBno());
+			if(file_list == null) {
+				System.out.println("디버그[" + cnt + "]" + save_file_names[cnt]);
+				//continue;//커티뉴 아래는 실행 하지 않고 거너띔
+			} else {
+				for(AttachVO file_name:file_list) {
+					if(file_name == null) {
+						save_file_names[cnt] = "";
+						
+					} else {
+						save_file_names[cnt] = file_name.getSave_file_name();
+						System.out.println("디버그[" + cnt + "]" + save_file_names[cnt]);
+						break;//이중 반복문에서 현재 for문만 종료
+					}
+				}
+			}
+			cnt = cnt + 1;
+		}
+		
+		model.addAttribute("save_file_names", save_file_names);
 		return "home/home";
 	}
 	
