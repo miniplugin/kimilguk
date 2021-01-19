@@ -70,14 +70,14 @@
 - 시간이 여유가 되면, eGovFrame메뉴에서 Start > New TemplateProject 심플홈 템플릿 만들어서 커스터 마이징 예정.
 
 #### 20200119(화) 작업
-- 메인페이지 최근게시물 처리, 최근이미지 처리(1개의 게시판으로 처리예정)
+- 메인페이지 최근게시물 처리, 최근이미지 처리(1개의 게시판으로 처리OK)
 - 헤로쿠 배포예정.
 - 사용자단, 유효성 검사 기능을 포함해서 마이페이지+회원가입 프로그램처리.
 - 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 실습.
 - 수업전 어제 Update확인 및 Junit에서 properties파일 로딩해서 전역변수 사용하기 처리 추가.
 - @PropertySource("classpath:properties/local.properties") J유닛파일상단에 추가(전역변수 필요없음)
 - root-context.xml에서, dataSource-hslq_local 을 dataSource로 알리아스(별칭)를 만들어서 Junit DB작동 처리
-- 사용자단 게시판 CRUD마무리.(Delete작업)
+- 사용자단 게시판 CRUD마무리OK.(Delete작업)
 
 #### 20210118(월) 작업
 - 세로데이터 형식(DB에서 쿼리로 출력되는 원본데이터가 레코드데이터==세로데이터)

@@ -3,7 +3,7 @@
 <%@ include file="include/header.jsp" %>
 <style>
     div.txt{
-   		height:100px;
+   		max-height:100px;
    		overflow:hidden;
 		line-height: 17px;
 		margin-top:10px;
