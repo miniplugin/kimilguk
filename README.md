@@ -69,9 +69,10 @@
 - 웹프로젝트 소스를 스프링프레임워크 버전으로 5.2.5 마이그레이션(버전 업그레이드)
 - 시간이 여유가 되면, eGovFrame메뉴에서 Start > New TemplateProject 심플홈 템플릿 만들어서 커스터 마이징 예정.
 
-#### 20200119(화) 작업예정
+#### 20200119(화) 작업
 - 수업전 어제 Update확인 및 Junit에서 properties파일 로딩해서 전역변수 사용하기 처리 추가.
-- @PropertySource("classpath:properties/local.properties") J유닛파일상단에 추가
+- @PropertySource("classpath:properties/local.properties") J유닛파일상단에 추가(전역변수 필요없음)
+- root-context.xml에서, dataSource-hslq_local 을 dataSource로 알리아스(별칭)를 만들어서 Junit DB작동 처리
 - 사용자단 게시판 CRUD마무리 예정.(Delete작업예정)
 - 메인페이지 최근게시물 처리, 최근이미지 처리(1개의 게시판으로 처리예정)
 - 헤로쿠 배포예정.

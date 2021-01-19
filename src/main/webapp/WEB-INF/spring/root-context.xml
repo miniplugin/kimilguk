@@ -23,9 +23,9 @@
             </list>
         </property>
     </bean>
-	<!-- 알리아스(Alias)별칭인 dataSource을 만들어서 사용할 수도 있음.(지금 사용않함.) 
+	<!-- 알리아스(Alias)별칭인 dataSource을 만들어서 사용할 수도 있음.(junit테스트에서 dataSource변수사용가능하게 처리) -->
 	<alias name="dataSource-${DbType}" alias="dataSource" />
-	-->
+	
 	<!-- HSQLDB FILE기반 사용 헤로쿠에 올릴때 생성경로는 /tmp/embeded/hsql_file.db;hsqldb.lock_file=false , 로컬PC일때 경로는 c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false -->   
 	
 	<bean id="dataSource-hsql_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
@@ -92,7 +92,7 @@
 		SqlSessionFactory : myBatis와 스프링의 Connection 생성후 쿼리 위치지정.
 	 -->		 		
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	   
-	 	<property name="dataSource" ref="dataSource-${DbType}" />
+	 	<property name="dataSource" ref="dataSource" />
 	 	<!-- 매퍼 xml로만든 쿼리파일의 경로를 인식하게 함.(아래 classpath경로 src/main/resources/쿼리xml) -->
 	 	 <property name="mapperLocations" value="classpath:mappers/**/${MapperType}/*Mapper.xml"></property>
 	</bean>
@@ -116,7 +116,7 @@
 	<!-- 대표적으로 상세보기에도 추가, 게시판 입력 트랜잭션에서 이용 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource-${DbType}"></property>
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
 	<!-- 배치작업 -->
