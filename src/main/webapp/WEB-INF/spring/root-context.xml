@@ -17,9 +17,13 @@
         <property name="locations">
             <list>
             	<!-- 로컬 개발일때 사용(아래) -->
-                <!-- <value>classpath:/properties/local.properties</value> -->
+                <!-- 
+                <value>classpath:/properties/local.properties</value> 
+                -->
                 <!-- 운영서버 배포일때 사용 -->
-                <value>file:/properties/prod.properties</value>
+                
+                <value>classpath:/properties/prod.properties</value>
+                
             </list>
         </property>
     </bean>
