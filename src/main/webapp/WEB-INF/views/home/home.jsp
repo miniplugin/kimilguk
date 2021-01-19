@@ -70,11 +70,11 @@
 				<c:forEach var="boardVO" items="${board_list}" varStatus="status">
 					<c:if test="${status.count<=3}">
 					<li><a href="/home/board/board_view?bno=${boardVO.bno}&page=1">
-							<c:if test="${save_file_names[0] eq ''}">
+							<c:if test="${save_file_names[status.index] eq ''}">
 								<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
 							</c:if>
-							<c:if test="${save_file_names[0] ne '' }">
-								이미지가 있습니다.
+							<c:if test="${save_file_names[status.index] ne '' }">
+								<img src="/image_preview?save_file_name=${save_file_names[status.index]}" >
 							</c:if>
 							<h3 class="length_limit"><c:out value="${boardVO.title}"></c:out></h3>
 							<div class="txt">

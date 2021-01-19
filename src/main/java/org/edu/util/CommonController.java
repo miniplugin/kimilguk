@@ -98,7 +98,7 @@ public class CommonController {
 	
 	final HttpHeaders headers = new HttpHeaders();//크롬 개발자도구>네트워크>image_preview클릭>헤더탭확인
 	String ext = FilenameUtils.getExtension(save_file_name);//파일 확장자 구하기
-	switch(ext) {
+	switch(ext.toLowerCase()) {//확장자 소문자로 변경후 스위치 ~ 케이스문으로 분리
 	case "png":
 		headers.setContentType(MediaType.IMAGE_PNG);break;
 	case "jpg":

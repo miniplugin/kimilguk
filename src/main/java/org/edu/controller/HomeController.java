@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
+import org.apache.commons.io.FilenameUtils;
 import org.edu.dao.IF_BoardDAO;
 import org.edu.service.IF_BoardService;
 import org.edu.util.CommonController;
@@ -250,18 +251,23 @@ public class HomeController {
 		int cnt = 0;
 		for(BoardVO boardVO:board_list) {//board_list변수에는 최대 5개의 레코드가 존재함.
 			List<AttachVO> file_list = boardService.readAttach(boardVO.getBno());
-			if(file_list == null) {
-				System.out.println("디버그[" + cnt + "]" + save_file_names[cnt]);
-				//continue;//커티뉴 아래는 실행 하지 않고 거너띔
+			//System.out.println("디버그-file_list" + file_list);
+			if(file_list.size() == 0) {//첨부파일이 없을떄
+				save_file_names[cnt] = "";
+				System.out.println("디버그-[" + cnt + "]" + save_file_names[cnt]);
+				//continue;//컨티뉴 아래는 실행 하지 않고 거너띔
 			} else {
 				for(AttachVO file_name:file_list) {
-					if(file_name == null) {
-						save_file_names[cnt] = "";
-						
-					} else {
-						save_file_names[cnt] = file_name.getSave_file_name();
+					String save_file_name = file_name.getSave_file_name();
+					String extName = FilenameUtils.getExtension(save_file_name);
+					boolean imgCheck = commonController.getCheckImgArray().contains(extName.toLowerCase());
+					if(imgCheck) {//첨부파일이 이미지일때
+						save_file_names[cnt] = save_file_name;
 						System.out.println("디버그[" + cnt + "]" + save_file_names[cnt]);
 						break;//이중 반복문에서 현재 for문만 종료
+					} else {//첨부파일이 엑셀,한글같은 파일일때
+						save_file_names[cnt] = "";
+						System.out.println("디버그[" + cnt + "]" + save_file_names[cnt]);
 					}
 				}
 			}
