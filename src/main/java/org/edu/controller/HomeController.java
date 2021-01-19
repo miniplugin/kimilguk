@@ -58,8 +58,8 @@ public class HomeController {
 	public String board_delete(RedirectAttributes rdat, @RequestParam("bno") Integer bno, @RequestParam("page") Integer page) throws Exception {
 		//부모 게시판에 첨부파일이 있다면 첨부파일 삭제처리 후 게시글 삭제(아래)
 		List<AttachVO> delFiles = boardService.readAttach(bno);
-		if(!delFiles.isEmpty()) {
-			for(AttachVO file_name:delFiles) {
+		if(!delFiles.isEmpty()) { //for(변수-한개:레코드-여러개){}
+			for(AttachVO file_name:delFiles) {//향상된 for반복문 입니다. 요즘은 이게 기본입니다.
 				File target = new File(commonController.getUploadPath(),file_name.getSave_file_name());
 				if(target.exists()) {
 					target.delete();//실제 업로드된 파일 지우기
