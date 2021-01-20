@@ -74,6 +74,8 @@
 - 안드로이드앱(클라이언트)-통신-자바:스프링웹프로젝트(API서버) 2주
 
 #### 20210121(목) 작업예정
+- 시작전, /admin/member/member_update (AdminController클래스매핑)에서 조건변경
+- memberVO.getUser_pw() != null -> memberVO.getUser_pw() != ""
 - 회원가입 프로그램처리 결과확인.
 - 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 실습.
 
