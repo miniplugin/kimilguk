@@ -47,6 +47,18 @@ $(document).ready(function() {
 	});
 });
 </script>
+<script>
+//기존회원아이디가 존재하는지 Ajax확인 후(RestApi사용)
+//신규아이디일때만 [회원등록 버튼] 활성화시키기, 초기엔 비활성화 시키기
+jQuery(document).ready(function(){ 
+	//$대신에 jQuery를 사용하는 목적1: 자바변수$ 헷갈리는 것을 방지 효과.
+	//목적2. PHP기반(워드프레스나 카페24쇼핑몰같은 솔루션에서 제이쿼리를 사용할때) $사용하면 작동X, jQuery로 사용O.
+	//단점. $ 간단, jQuery 손이 힘드는 게 단점.
+	jQuery("#btn_join").attr("disabled","true");//초기에는 서밋버튼 비활성화.
+	jQuery("#btn_join").css("opacity","0.5");//#은 엘리먼트의 id를 선택시 사용, .은 엘리먼트의 class를 선택시 사용.
+	
+});
+</script>
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
 		<!-- 메인상단위치표시영역 -->
@@ -129,7 +141,7 @@ $(document).ready(function() {
 						</li>
 					</ul>
 					<p class="btn_line">
-					<button type="submit" class="btn_baseColor">회원등록</button>
+					<button type="submit" class="btn_baseColor" id="btn_join">회원등록</button>
 					</p>	
 				</fieldset>
 			</form>
