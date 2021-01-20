@@ -33,8 +33,8 @@
 $(document).ready(function() {
 	$(".appForm").validate({
 		rules: {
-			password: "required",
-			password_chk: {
+			//user_pw: "required",
+			user_pw_chk: {
 				equalTo: "#user_pw_lbl"
 			}
 		}
@@ -94,13 +94,13 @@ $(document).ready(function() {
 						<li class="clear">
 							<label for="user_pw_lbl" class="tit_lbl pilsoo_item">비밀번호</label>
 							<div class="app_content">
-							<input type="password" name="user_pw" class="w100p" id="user_pw_lbl" placeholder="비밀번호를 입력해주세요"/>
+							<input type="password" name="user_pw" class="w100p" id="user_pw_lbl" placeholder="비밀번호를 입력해주세요" />
 							</div>
 						</li>
 						<li class="clear">
 							<label for="user_pw_chk_lbl" class="tit_lbl pilsoo_item">비밀번호확인</label>
 							<div class="app_content">
-							<input type="password" name="user_pw_chk" class="w100p" id="user_pw_chk_lbl" placeholder="비밀번로를 다시 입력해주세요"/>
+							<input type="password" name="user_pw_chk" class="w100p" id="user_pw_chk_lbl" placeholder="비밀번로를 다시 입력해주세요" />
 							</div>
 						</li>
 						<li class="clear">

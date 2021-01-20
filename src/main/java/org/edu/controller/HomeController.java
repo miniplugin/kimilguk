@@ -23,6 +23,7 @@ import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -230,10 +231,18 @@ public class HomeController {
 	
 	//사용자 홈페이지 회원 마이페이지 수정 매핑
 	@RequestMapping(value="/member/mypage_update",method=RequestMethod.POST)
-	public String mypage_update(MemberVO memberVO,RedirectAttributes rdat) throws Exception {
+	public String mypage_update(HttpServletRequest request, MemberVO memberVO,RedirectAttributes rdat) throws Exception {
+		//스프링시큐리티에서 제공하는 passwordEncoder 암호화 처리(아래)
+		if(memberVO.getUser_pw() != "") {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			String user_pw_encode = passwordEncoder.encode(memberVO.getUser_pw());
+			memberVO.setUser_pw(user_pw_encode);
+		}
 		memberService.updateMember(memberVO);
+		HttpSession session = request.getSession();
+		session.setAttribute("session_username", memberVO.getUser_name());//기존세션 덮어쓰기.
 		rdat.addFlashAttribute("msg", "회원수정");//model로 값을 보내지 못하는 이유는 redirect 이기때문.
-		return "redirct:/member/mypage";
+		return "redirect:/member/mypage";
 	}
 	//사용자 홈페이지 회원 마이페이지 접근 매핑
 	@RequestMapping(value="/member/mypage",method=RequestMethod.GET)
