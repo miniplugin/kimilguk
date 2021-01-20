@@ -67,7 +67,7 @@ $(document).ready(function() {
 		<div class="bodytext_area box_inner">
 			<div class="myinfo">내 정보</div>
 			<!-- 폼영역 -->
-			<form method="POST" name="join_form" action="join.html" class="appForm">
+			<form method="POST" name="mypage_form" action="/member/mypage_update" class="appForm">
 				<fieldset>
 					<legend>회원가입폼</legend>
 					<p class="info_pilsoo pilsoo_item">필수입력</p>
@@ -113,8 +113,8 @@ $(document).ready(function() {
 							<label for="enabled_lbl" class="tit_lbl pilsoo_item">회원권한</label>
 							<div class="app_content radio_area">
 								<select disabled name="" class="gender">
-									<option value="ROLE_USER">일반사용자</option>
-									<option value="ROLE_ADMIN">관리자</option>
+									<option value="ROLE_USER" <c:out value="${(memberVO.levels eq 'ROLE_USER')?'selected':'' }" /> >일반사용자</option>
+									<option value="ROLE_ADMIN" <c:out value="${(memberVO.levels eq 'ROLE_ADMIN')?'selected':'' }" /> >관리자</option>
 								</select>
 								<input type="hidden" name="levels" value="${memberVO.levels}" readonly>
 							</div>
@@ -122,9 +122,9 @@ $(document).ready(function() {
 						<li class="clear">
 							<label for="enabled_lbl" class="tit_lbl pilsoo_item">탈퇴여부</label>
 							<div class="app_content radio_area">
-								<input disabled type="radio" readonly name="" class="css-radio" id="enabled_lbl" checked="" />
+								<input <c:out value="${(memberVO.enabled eq 'true')?'checked':''}" /> disabled type="radio" readonly name="" class="css-radio" id="enabled_lbl" />
 								<label for="enabled_lbl">회원사용</label>
-								<input disabled type="radio" readonly name="" class="css-radio" id="disabled_lbl" />
+								<input <c:out value="${(memberVO.enabled eq 'false')?'checked':''}" /> disabled type="radio" readonly name="" class="css-radio" id="disabled_lbl" />
 								<label for="disabled_lbl">회원탈퇴</label>
 								<input type="hidden" name="enabled" value="${memberVO.enabled}" readonly>
 							</div>
@@ -137,8 +137,8 @@ $(document).ready(function() {
 						</li>
 					</ul>
 					<p class="btn_line">
-					<button class="btn_baseColor">정보수정</button>
-					<button class="btn_baseColor">회원탈퇴</button>
+					<button type="submit" class="btn_baseColor">정보수정</button>
+					<button type="button" class="btn_baseColor">회원탈퇴</button>
 					</p>	
 				</fieldset>
 			</form>
