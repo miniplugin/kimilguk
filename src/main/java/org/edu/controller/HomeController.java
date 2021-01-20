@@ -254,6 +254,16 @@ public class HomeController {
 		return "home/member/mypage";
 	}
 	
+	//사용자 홈페이지 회원탈퇴 매핑
+	@RequestMapping(value="/member/member_disabled",method=RequestMethod.POST)
+	public String member_disabled(HttpServletRequest request, MemberVO memberVO, RedirectAttributes rdat) throws Exception {
+		memberService.updateMember(memberVO);
+		//세션값 invalidate() 삭제하기.
+		request.getSession().invalidate();
+		rdat.addFlashAttribute("msg", "회원탈퇴");
+		return "redirect:/";
+	}
+	
 	//사용자 홈페이지 회원가입 접근 매핑
 	@RequestMapping(value="/join",method=RequestMethod.GET)
 	public String join() throws Exception{
