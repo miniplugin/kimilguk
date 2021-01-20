@@ -54,10 +54,50 @@ jQuery(document).ready(function(){
 	//$대신에 jQuery를 사용하는 목적1: 자바변수$ 헷갈리는 것을 방지 효과.
 	//목적2. PHP기반(워드프레스나 카페24쇼핑몰같은 솔루션에서 제이쿼리를 사용할때) $사용하면 작동X, jQuery로 사용O.
 	//단점. $ 간단, jQuery 손이 힘드는 게 단점.
-	jQuery("#btn_join").attr("disabled","true");//초기에는 서밋버튼 비활성화.
+	jQuery("#btn_join").attr("disabled",true);//초기에는 서밋버튼 비활성화.
 	jQuery("#btn_join").css("opacity","0.5");//#은 엘리먼트의 id를 선택시 사용, .은 엘리먼트의 class를 선택시 사용.
-	
+	jQuery("input[name='user_id']").bind("blur",function(){
+		//블러 blur이벤트는 focus선택과는 반대이벤트=선택을 벗어났을때 이벤트
+		var user_id = jQuery(this).val();
+		if(user_id=="") {
+			alert("아이디 값은 필수 입력 입니다.");
+			return false;
+		}
+		jQuery.ajax({
+			method:"get",
+			url:"id_check?user_id="+user_id,
+			dataType:"text",
+			success:function(result){
+				if(result=='0'){
+					alert('사용가능한 아이디 입니다.');
+					jQuery("#btn_join").attr("disabled",false);
+					jQuery("#btn_join").css("opacity","1");
+				}
+				if(result=='1'){
+					alert('중복 아이디가 존재 합니다. 다시입력해 주세요');
+					jQuery("input[name='user_id']").focus();
+					jQuery("#btn_join").attr("disabled",true);
+					jQuery("#btn_join").css("opacity","0.5");
+				}
+			},
+			error:function(result){
+				alert("API서버가 작동하지 않습니다.");
+			}
+		});
+	});
 });
+</script>
+<script>
+//폼서밋전송시 인증 대기 상태를 disabled false상태로 전송하기(아래)
+/* 아래방식 대신에 다른 방식 선택
+jQuery(document).ready(function(){
+	jQuery("form[name='join_form']").on("submit",function(event){
+		event.preventDefault();//서밋이 발생시 기본전송 중지 아래내용 실행
+		jQuery("input[name='enabled']").attr("disabled",false);
+		jQuery(this).submit();
+	});
+});
+*/
 </script>
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
@@ -115,7 +155,7 @@ jQuery(document).ready(function(){
 						<li class="clear">
 							<label for="point_lbl" class="tit_lbl pilsoo_item">포인트</label>
 							<div class="app_content">
-							<input value="" type="digits" name="point" class="w100p" id="point_lbl" placeholder="숫자만 입력해주세요" required/>
+							<input readonly value="10" type="digits" name="point" class="w100p" id="point_lbl" placeholder="숫자만 입력해주세요" required/>
 							</div>
 						</li>
 						<li class="clear">
@@ -127,10 +167,11 @@ jQuery(document).ready(function(){
 							</div>
 						</li>
 						<li class="clear">
-							<label for="enabled_lbl" class="tit_lbl pilsoo_item">탈퇴여부</label>
+							<label for="enabled_lbl" class="tit_lbl pilsoo_item">대기여부</label>
 							<div class="app_content radio_area">
-								<input checked type="radio" name="enabled" class="css-radio" id="enabled_lbl" />
-								<label for="enabled_lbl">회원사용</label>
+								<input disabled checked type="radio" name="" class="css-radio" id="enabled_lbl" />
+								<label for="enabled_lbl">인증대기[관리자가 인증해야 로그인이 가능하십니다.]</label>
+								<input type="hidden" name="enabled" value="0" >
 							</div>
 						</li>
 						<li class="clear">
