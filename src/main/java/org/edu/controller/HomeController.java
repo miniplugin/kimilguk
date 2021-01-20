@@ -223,7 +223,8 @@ public class HomeController {
 	
 	//사용자 홈페이지 회원 마이페이지 접근 매핑
 	@RequestMapping(value="/member/mypage",method=RequestMethod.GET)
-	public String mypage() throws Exception{
+	public String mypage(Model model) throws Exception{
+		//마이페이지는 로그인 상태만 접근 가능하기 때문에, 로그인 세션변수중 로그인아이디변수 session_userid
 		
 		return "home/member/mypage";
 	}
