@@ -62,8 +62,8 @@
 - 스프링빈클래스작업: 로그인 구현 + 관리자 회원등록시 패스워드 암호화 추가 OK.
 - 사용자단 CRUD 구현(RestAPI 댓글포함)OK.
 - 헤로쿠 클라우드로 배포(Hsql데이터베이스사용).
----------------------- 작업중 ------------------------------
 - 이후 유효성검사(객체검증,마이페이지,회원가입-탈퇴), 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
+---------------------- 작업중 ------------------------------
 - 게시판분리(공지사항과 겔러리게시판): 부모테이블 또는 필드추가 를 이용해서 게시판 분리처리.
 --------------------------------------------------------------------
 - 오라클로 마이그레이션 작업.(책,2월3일에 시작하는 과목)
@@ -72,6 +72,27 @@
 - 파스타클라우드 제일 마직막 달에 2주 기간중 배포(스스로 재배포가능할 정도수준-mysql을사용)
 - IoT(아두이노,라즈베리파이-C언어책3권) 2주
 - 안드로이드앱(클라이언트)-통신-자바:스프링웹프로젝트(API서버) 2주
+
+#### 20210122(금) 작업예정
+- 시작전, sns용 전역변수 처리 후 헤로쿠에도 배포 후에도 로그인 확인
+
+```
+#sns로그인 접속정보: sns.properties 에 있는 내용
+SnsClientID=본인아이디
+SnsClientSecret=본인암호
+SnsCallbackUri=http://127.0.0.1:8080/login_callback
+```
+```
+@PropertySource("classpath:properties/sns.properties") 추가
+//설정파일에서 변수값으로 가져옴 sns.properties 에 있는 내용
+@Value("${SnsClientID}")
+private String CLIENT_ID;
+@Value("${SnsClientSecret}")
+private String CLIENT_SECRET;
+@Value("${SnsCallbackUri}")
+private String REDIRECT_URI;
+```
+- 관리자단에 게시판 생성 메뉴추가 후 작업진행 예정.
 
 #### 20210121(목) 작업
 - 인증(Authentication) - 스프링시큐리티에서 enalbed 가 인증체크
@@ -82,7 +103,7 @@
 - 시작전, /admin/member/member_update (AdminController클래스매핑)에서 조건변경
 - memberVO.getUser_pw() != null -> 추가 || memberVO.getUser_pw() != ""
 - 회원가입 프로그램처리 결과확인.(회원가입 후 바로 로그인X, 관리자가 enabled true로 변경 후 신규회원이 로그인 가능.)
-- 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 실습.
+- 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 실습OK.
 
 #### 20210120(수) 작업
 - 이론은 ch13~ch16 마무리OK.
