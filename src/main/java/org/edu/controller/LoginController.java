@@ -81,7 +81,8 @@ public class LoginController {
 			session.setAttribute("session_userid", useremail);
 			session.setAttribute("session_levels", "ROLE_USER");
 			session.setAttribute("session_username", username);
-			rdat.addFlashAttribute("msg", "네이버 아이디 로그인");
+			session.setAttribute("session_type", "sns");
+			rdat.addFlashAttribute("msg", "SNS 아이디 로그인");
 		} else {
 			rdat.addFlashAttribute("param.msg", "fail");//login.jsp전용 메세지
 			return "redirect:/login";
@@ -124,6 +125,7 @@ public class LoginController {
 			//하단부터는 비지니스 로직에 따라서 개발쪽에서 발생시키는 세션변수 시작
 			MemberVO memberVO = memberService.readMember(userid);
 			session.setAttribute("session_username", memberVO.getUser_name());
+			session.setAttribute("session_type", "normal");
 		}
 		rdat.addFlashAttribute("msg", "로그인");
 		return "redirect:/";

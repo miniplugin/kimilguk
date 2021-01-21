@@ -15,6 +15,7 @@ $(document).ready(function(){
 	$("input[name='user_id']").focus();//페이지로딩시 첫번째 입력위치로 이동
 });
 </script>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.2.js" charset="utf-8"></script>
 <%-- jsp에서 사용하는 자바주석 입니다. --%>
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
@@ -60,7 +61,7 @@ $(document).ready(function(){
 					<button type="submit" class="btn_baseColor">로그인</button>
 					</p>
 					<p class="btn_line">
-					<button type="button" class="btn_baseColor">네이버 아이디로 로그인</button>
+					<a href="${url}" class="btn_baseColor" style="width:230px;background-color:green;">네이버 아이디로 로그인</a>
 					</p>	
 				</fieldset>
 			</form>
