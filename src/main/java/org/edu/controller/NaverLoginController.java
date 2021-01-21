@@ -6,6 +6,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.edu.util.NaverLoginApi;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 
@@ -26,7 +28,7 @@ public class NaverLoginController {
 	 * state: 네이버App이 생성한 토큰(네트웍에서 전송되는 자료단위-인증정보)의 상태
 	 */
 	private final static String CLIENT_ID = "osgm3bqYygYV49c1QPWl";
-	private final static String CLIENT_SECRET = "1jYoDWu4_v";
+	private final static String CLIENT_SECRET = "--------";
 	private final static String REDIRECT_URI = "http://127.0.0.1:8080/login_callback";
 	private final static String SESSION_STATE = "oauth_state";
 	/* 프로필 조회 API URL - 사용자이름+사용자이메일 */
