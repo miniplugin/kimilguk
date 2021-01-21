@@ -304,7 +304,8 @@ public class AdminController {
 	@RequestMapping(value="/admin/member/member_update",method=RequestMethod.POST)
 	public String member_update(PageVO pageVO,@Valid MemberVO memberVO) throws Exception {
 		//POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호시킴
-		if(memberVO.getUser_pw() != null) {
+		if(memberVO.getUser_pw() == null || memberVO.getUser_pw() == "") {
+		} else {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String userPwEncoder = passwordEncoder.encode(memberVO.getUser_pw());
 			memberVO.setUser_pw(userPwEncoder);

@@ -73,10 +73,10 @@
 - IoT(아두이노,라즈베리파이-C언어책3권) 2주
 - 안드로이드앱(클라이언트)-통신-자바:스프링웹프로젝트(API서버) 2주
 
-#### 20210121(목) 작업예정
+#### 20210121(목) 작업
 - 시작전, /admin/member/member_update (AdminController클래스매핑)에서 조건변경
-- memberVO.getUser_pw() != null -> memberVO.getUser_pw() != ""
-- 회원가입 프로그램처리 결과확인.
+- memberVO.getUser_pw() != null -> 추가 || memberVO.getUser_pw() != ""
+- 회원가입 프로그램처리 결과확인.(회원가입 후 바로 로그인X, 관리자가 enabled true로 변경 후 신규회원이 로그인 가능.)
 - 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 실습.
 
 #### 20210120(수) 작업
