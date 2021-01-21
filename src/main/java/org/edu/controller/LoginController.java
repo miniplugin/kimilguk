@@ -1,7 +1,9 @@
 package org.edu.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -12,8 +14,10 @@ import org.edu.vo.MemberVO;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -42,7 +46,7 @@ public class LoginController {
 		
 		OAuth2AccessToken oauthToken;//토큰으로 시용할 변수 선언
 		//NaverLoginController 의 메서드 호출(아래)
-		oauthToken = naverLoginController.getAccessToken(session, code, state);
+		oauthToken = naverLoginController.getAccessToken(session, code, state);//인증결과
 		//네이버로 로그인 한 사용자 정보(profile)을 읽어온다(아래)
 		String apiResult = naverLoginController.getUserProfile(oauthToken);//이름,이메일 자료
 		//위 String형 apiResult 값을 json형태로 파싱 합니다.(아래)
@@ -59,9 +63,30 @@ public class LoginController {
 	    **/
 		//위 1차 데이터를 response 키로 분리한 값(아래)
 		JSONObject response_obj = (JSONObject) jsonObj.get("response");
-		//위 response_obj 파싱(분리) 아래
+		//위 response_obj 파싱(name, email 분리) 아래
+		String username = (String) response_obj.get("name");
+		String useremail = (String) response_obj.get("email");
+		String Status = (String) jsonObj.get("message");
+		//--여기까지가 네이버 인증 성공 후 개인프로필 뽑아서 변수로 생성한 처리 --
+		//우리 로직(스프링시큐리티의  ROLE_USER를 권한부여를 하는 로직 만듬)을 타게 합니다.(아래)
+		if(Status.equals("success")) {
+			//강제로 스프링 시큐리티 권한 처리를 하게함 ROLE_USER값 부여.(아래)
+			List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+			authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+			//강제로 스프링 시큐리티 인증 정보를 갖도록 함(아래) -> 결과적으론 enabled가 됩니다.
+			Authentication authentication = new UsernamePasswordAuthenticationToken(useremail, null, authorities);
+			SecurityContextHolder.getContext().setAuthentication(authentication);//인증정보 저장처리
+			//로그인 세션 변수 생성(아래)
+			session.setAttribute("session_enabled", true);
+			session.setAttribute("session_userid", useremail);
+			session.setAttribute("session_levels", "ROLE_USER");
+			session.setAttribute("session_username", username);
+			rdat.addFlashAttribute("msg", "네이버 아이디 로그인");
+		} else {
+			rdat.addFlashAttribute("param.msg", "fail");//login.jsp전용 메세지
+			return "redirect:/login";
+		}	
 		
-		rdat.addFlashAttribute("msg", "네이버 아이디 로그인");
 		return "redirect:/";
 	}
 	
