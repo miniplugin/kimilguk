@@ -25,7 +25,8 @@ public class LoginController {
 	private IF_MemberService memberService;
 	
 	//로그인 후 세션 처리 매핑 - 네이버 아이디 로그인 로직일때
-	@RequestMapping(value="/login_callback",method=RequestMethod.GET)
+	//session(인증토큰정보),state(유효성검증용UUID정보),code(response_type반환데이터형태)
+	@RequestMapping(value="/login_callback",method= {RequestMethod.GET, RequestMethod.POST})
 	public String login_callback() {
 		
 		return null;
