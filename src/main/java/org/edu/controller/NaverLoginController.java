@@ -27,7 +27,7 @@ public class NaverLoginController {
 	 */
 	private final static String CLIENT_ID = "osgm3bqYygYV49c1QPWl";
 	private final static String CLIENT_SECRET = "1jYoDWu4_v";
-	private final static String REDIRECT_URI = "http://127.0.0.1:8080/login";
+	private final static String REDIRECT_URI = "http://127.0.0.1:8080/login_callback";
 	private final static String SESSION_STATE = "oauth_state";
 	/* 프로필 조회 API URL - 사용자이름+사용자이메일 */
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";
@@ -89,7 +89,7 @@ public class NaverLoginController {
 				.apiKey(CLIENT_ID)
 				.apiSecret(CLIENT_SECRET)
 				.callback(REDIRECT_URI)
-				.build(NaverLoginApi.instance());
+				.build(NaverLoginApi.instance());//인스턴스 클래스=실행 클래스 생성
 		OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
 		oauthService.signRequest(oauthToken, request);
 		Response response = request.send();//Response 클래스는 Scribe외부모듈에서 임포트

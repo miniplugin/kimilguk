@@ -24,7 +24,14 @@ public class LoginController {
 	@Inject
 	private IF_MemberService memberService;
 	
-	//로그인 후 세션 처리 매핑
+	//로그인 후 세션 처리 매핑 - 네이버 아이디 로그인 로직일때
+	@RequestMapping(value="/login_callback",method=RequestMethod.GET)
+	public String login_callback() {
+		
+		return null;
+	}
+	
+	//로그인 후 세션 처리 매핑 - 스프링 시큐리티 로그인 로직일때
 	@RequestMapping(value="/login_success",method=RequestMethod.GET)
 	public String login_success(HttpServletRequest request, RedirectAttributes rdat) throws Exception {
 		//이미 인증이 마치고 진입한 메서드 그래서, 아래 authentication변수에는 인증정보가 들어 있습니다.
