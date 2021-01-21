@@ -131,14 +131,26 @@ public class LoginController {
 	
 	//사용자 홈페이지 로그인 접근 매핑
 	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public String login() throws Exception{
+	public String login(Model model, HttpSession session) throws Exception{
 		//BCrypt암호화 match 메서드으로 확인
+		/*
 		String rawPassword = "1234";
 		BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder(10);
 		String bcryptPassword = bcryptPasswordEncoder.encode("1234");//예, user02 -> 암호화 처리됨
 		System.out.println(bcryptPassword);//테스트시 이 암호를 DB회원테이블에 입력하시면 됩니다. 
 		System.out.println("2가지 스트링을 매칭 참,거짓: " + bcryptPasswordEncoder.matches(rawPassword, bcryptPassword));
-
+		*/
+		//네이버 아이디로 인증 URL을 생성하기 위해서 naverLoginController클래스의 
+		//getAuthorizationUrl메서드를 호출 인증URL결과를 login.jsp로 보내줌
+		String naverAuthUrl = naverLoginController.getAuthorizationUrl(session);
+		/* https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=sE***************&
+		redirect_uri=http%3A%2F%2F211.63.89.90%3A8090%2Flogin_project%2Fcallback&state=e68c269c-5ba9-4c31-85da-54c16c658125
+		*/
+		//네이버에 위 URL을 보내는 이유, 유효성 검증하기 위해서, state=UUID 네이버 이 값을보냅니다.
+		//반환할때, state값을 받아서, 우리 톰캣서버의 UUID값 비교해서 일치하면, 정상호출 인정 로그인 진행
+		//System.out.println("네이버:" + naverAuthUrl);
+		//매개변수 session의 용도는 인증Url메서드에서 setSettion을 사용하기 위해서 보내줌.
+		model.addAttribute("url", naverAuthUrl);//네이버 인증요청URL을 login.jsp 보내는 변수
 		return "home/login";
 	}
 }

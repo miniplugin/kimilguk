@@ -57,7 +57,10 @@ $(document).ready(function(){
 
 					</ul>
 					<p class="btn_line">
-					<button class="btn_baseColor">로그인</button>
+					<button type="submit" class="btn_baseColor">로그인</button>
+					</p>
+					<p class="btn_line">
+					<button type="button" class="btn_baseColor">네이버 아이디로 로그인</button>
 					</p>	
 				</fieldset>
 			</form>
