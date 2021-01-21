@@ -1,14 +1,19 @@
 package org.edu.controller;
 
+import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
 import org.edu.util.NaverLoginApi;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.github.scribejava.core.model.OAuthRequest;
+import com.github.scribejava.core.model.Response;
+import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
 
 @Controller
@@ -45,10 +50,21 @@ public class NaverLoginController {
 	}
 	
 	/* 네아로 Callback 처리 및 Access Token 구하기 메서드 */
-	public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) {
-		/* 콜백URL로 전달받은 세션검증용 난수값과 세션에 저장되어 있는 값이  일치하는지 확인 */
+	public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) throws IOException {
+		/* 콜백URL로 전달받은 세션검증용 난수값state와 세션에 저장되어 있는 값이  일치하는지 확인 */
 		String sessionState = getSession(session);
-		return null;
+		if(StringUtils.pathEquals(sessionState, state)) {
+			OAuth20Service oauthService = new ServiceBuilder()
+					.apiKey(CLIENT_ID)
+					.apiSecret(CLIENT_SECRET)
+					.callback(REDIRECT_URI)
+					.state(state)
+					.build(NaverLoginApi.instance());
+			/* Scribe외부모듈에서 제공하는 기능으로 네아로 AccessToken 을 획득 */
+			OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
+			return accessToken;//인증받은 토큰정보를 리턴반환.
+		}
+		return null;//인증을 받지 못하면, 널값을 반환
 	}
 
 	private String getSession(HttpSession session) {
@@ -64,5 +80,19 @@ public class NaverLoginController {
 	private String generateRandomString() {
 		// 세션 유효성 검증을 위한 난수 생성기
 		return UUID.randomUUID().toString();
+	}
+	
+	/* Access Token을 이용하여 네이버 사용자 프로필 API 호출 = 여기서 네이버 이름, 이메일을 반환 */
+	public String getUserProfile(OAuth2AccessToken oauthToken) throws IOException {
+		
+		OAuth20Service oauthService = new ServiceBuilder()
+				.apiKey(CLIENT_ID)
+				.apiSecret(CLIENT_SECRET)
+				.callback(REDIRECT_URI)
+				.build(NaverLoginApi.instance());
+		OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauthService);
+		oauthService.signRequest(oauthToken, request);
+		Response response = request.send();//Response 클래스는 Scribe외부모듈에서 임포트
+		return response.getBody();
 	}
 }
