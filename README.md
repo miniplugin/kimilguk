@@ -74,6 +74,8 @@
 - 안드로이드앱(클라이언트)-통신-자바:스프링웹프로젝트(API서버) 2주
 
 #### 20210121(목) 작업
+- 인증(Authentication) - 스프링시큐리티에서 enalbed 가 인증체크
+- 권한(Authorization) - 스프링시큐리티에서 ROLE_ADMIN, ROLE_USER 가 권한체크 
 - 콜백 URL: function() 콜백함수와 같은 기능처럼=자동실행되는 함수처럼 로그인 URL로 자동으로 이동하는 방법이 콜백URL
 - 로그인 후 이동할 URL == 콜백URL 과 같은 이야기
 - 네아로 서비스URL : http://localhost:8080 -> http://127.0.0.1:8080
