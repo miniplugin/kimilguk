@@ -64,7 +64,7 @@
 - 헤로쿠 클라우드로 배포(Hsql데이터베이스사용).
 - 이후 유효성검사(객체검증,마이페이지,회원가입-탈퇴), 네이버아이디 로그인(네이버에서 제공Rest-API백엔드단) 사용 등등. pom.xml 의존성 추가.
 ---------------------- 작업중 ------------------------------
-- 게시판분리(공지사항과 겔러리게시판): 부모테이블 또는 필드추가 를 이용해서 게시판 분리처리.
+- 게시판분리(공지사항과 겔러리게시판): 부모테이블과 필드추가 를 이용해서 다중게시판 생성처리.
 --------------------------------------------------------------------
 - 오라클로 마이그레이션 작업.(책,2월3일에 시작하는 과목)
 - 웹프로젝트 소스를 스프링프레임워크 버전으로 5.2.5 마이그레이션(버전 업그레이드)
@@ -75,7 +75,57 @@
 
 #### 20210125(월) 작업예정
 - 세션변수 session_board_type를 컨트롤러,서비스,DAO,매퍼 모두VO기준 get/set발생할때 세션 변수를 사용할 예정. AOP또는 Interceptor가로채기 클래스를 이용해서 구현예정.
-- 관리자단 게시판생성 CRUD 작업예정.
+- 기존 작업한 BoardVO 와 PageVO 2군데  주석처리 -> //this.board_type = "notice";//세션변수를 사용할 예정.
+(아래 DebugAdvice클래스의 AOP소스)
+
+```
+@Around("execution(* org.edu.controller.*Controller.*(..))")
+public Object sessionGetSet(ProceedingJoinPoint pjp) throws Throwable {
+	logger.info("AOP 세션GetSet 시작=========================");
+	HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+	PageVO pageVO = null;
+	BoardVO boardVO = null;
+	String board_type = null;
+    for(Object object:pjp.getArgs()){
+    	logger.info("디버그 파라미터 출력: " + object);
+        if(object instanceof String){
+            board_type = (String) object;
+        }else if(object instanceof PageVO){
+            pageVO = (PageVO) object;
+        }else if(object instanceof BoardVO){
+            boardVO = (BoardVO) object;
+        }
+    }
+    if(request != null){
+    	HttpSession session = request.getSession();
+    	if(board_type != null) {
+			session.setAttribute("session_board_type", board_type);
+		}
+    	if(session.getAttribute("session_board_type") != null ) {
+    		board_type = (String) session.getAttribute("session_board_type");
+    	}
+        if(pageVO != null){
+        	pageVO.setBoard_type(board_type);//다중게시판 쿼리때문에 추가
+        }
+        if(boardVO != null){
+        	boardVO.setBoard_type(board_type);//다중게시판 쿼리때문에 추가
+        }
+    }
+    Object returnObj = pjp.proceed();
+	logger.info("AOP GetSet 끝 ==========================");
+	return returnObj;
+}
+```
+- AdminController에서 작업한 board_list 메서드의 HttpServletRequest request, 부분은 제외 시킵니다.(AOP에서 구현했기 때문에)
+- 바로 아래 코드도 주석처리(AOP에서 구현했기 때문에)
+
+```
+HttpSession session = request.getSession();
+if(board_type != null) {
+	session.setAttribute("session_board_type", board_type);
+}
+```		
+- 관리자단 게시판생성 CRUD 작업예정.(다중게시판)
 - 사용자단 게시판생성에 영향을 받는 부분 작업예정.
 
 #### 20210122(금) 작업

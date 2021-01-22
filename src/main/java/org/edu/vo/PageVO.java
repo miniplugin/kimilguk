@@ -33,7 +33,7 @@ public class PageVO {
 	private String search_keyword;//검색어
 	
 	public String getBoard_type() {
-		this.board_type = "notice";//세션변수를 사용할 예정.
+		//this.board_type = "notice";//세션변수를 사용할 예정.
 		return board_type;
 	}
 

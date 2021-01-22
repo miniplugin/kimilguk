@@ -20,7 +20,7 @@ public class BoardVO {
 	private Integer reply_count;
 	
 	public String getBoard_type() {
-		this.board_type = "notice";//세션으로 저장된 값을 상용예정.
+		//this.board_type = "notice";//세션으로 저장된 값을 상용예정.
 		return board_type;
 	}
 	public void setBoard_type(String board_type) {

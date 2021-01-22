@@ -2,12 +2,19 @@ package org.edu.aop;
 
 import java.util.Arrays;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.edu.vo.BoardVO;
+import org.edu.vo.PageVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  * DebugAdvice클래스로서 디버그를 Advice라는 AOP기능을 사용해서 디버그를 실행하게 됩니다.
@@ -45,5 +52,42 @@ public class DebugAdvice {
 		logger.info(pjp.getSignature().getName() + "()메서드명 의 실행시간은:" + (double)(endTime-startTime)/1000 + "초 입니다.");
 		logger.info("AOP 디버그 끝 ==========================");
 		return result;
+	}
+	//기술참조https://whitelife.tistory.com/214
+	@Around("execution(* org.edu.controller.*Controller.*(..))")
+	public Object sessionGetSet(ProceedingJoinPoint pjp) throws Throwable {
+		logger.info("AOP 세션GetSet 시작=========================");
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+		PageVO pageVO = null;
+		BoardVO boardVO = null;
+		String board_type = null;
+        for(Object object:pjp.getArgs()){
+        	logger.info("디버그 파라미터 출력: " + object);
+            if(object instanceof String){
+                board_type = (String) object;
+            }else if(object instanceof PageVO){
+                pageVO = (PageVO) object;
+            }else if(object instanceof BoardVO){
+                boardVO = (BoardVO) object;
+            }
+        }
+        if(request != null){
+        	HttpSession session = request.getSession();
+        	if(board_type != null) {
+    			session.setAttribute("session_board_type", board_type);
+    		}
+        	if(session.getAttribute("session_board_type") != null ) {
+        		board_type = (String) session.getAttribute("session_board_type");
+        	}
+            if(pageVO != null){
+            	pageVO.setBoard_type(board_type);//다중게시판 쿼리때문에 추가
+            }
+            if(boardVO != null){
+            	boardVO.setBoard_type(board_type);//다중게시판 쿼리때문에 추가
+            }
+        }
+        Object returnObj = pjp.proceed();
+		logger.info("AOP GetSet 끝 ==========================");
+		return returnObj;
 	}
 }
