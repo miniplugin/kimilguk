@@ -241,6 +241,7 @@ public class AdminController {
 		if(board_type != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("session_board_type", board_type);
+			pageVO.setBoard_type(board_type);
 		}
 		//테스트용 더미 게시판 데이터 만들기(아래)
 		/*

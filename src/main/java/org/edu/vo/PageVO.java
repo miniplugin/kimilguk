@@ -12,6 +12,8 @@ package org.edu.vo;
  *
  */
 public class PageVO {
+	//다중게시판 추가 때문에 매퍼쿼리에 보낼 board_type변수가 필요
+	private String board_type;
 	//예를 들면 변수 중에 boolean(일반형테이터형변수) / boolean(대문자로시작-클래스형변수-Null로 입력되었을때 처리하는 로직이 들어 있습니다)
 	private int perPageNum;//리스트하단에 보이는 페이징번호의 개수값이 들어가는 변수
 	private int queryPerPageNum;//쿼리에서 사용하는 1페이지당 출력할 개수값 변수
@@ -145,6 +147,15 @@ public class PageVO {
 
 	public void setQueryPerPageNum(int queryPerPageNum) {
 		this.queryPerPageNum = queryPerPageNum;
+	}
+
+	public String getBoard_type() {
+		return board_type;
+	}
+
+	public void setBoard_type(String board_type) {
+		
+		this.board_type = board_type;
 	}
 	
 }
