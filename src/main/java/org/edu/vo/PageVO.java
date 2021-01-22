@@ -1,4 +1,5 @@
 package org.edu.vo;
+
 /**
  * PageVO클래스로서 회원,게시판 공통으로 사용됩니다.
  * 1페이지당 보여줄 개수를 이용해서 전체데이터를 분할해서 보여주는 역할
@@ -30,6 +31,15 @@ public class PageVO {
 	//검색에 필요한 변수 2개도 포함시켜서, 컨트롤러에서 매개변수 사용을 축소하게 됩니다.
 	private String search_type;//검색조건
 	private String search_keyword;//검색어
+	
+	public String getBoard_type() {
+		this.board_type = "notice";//세션변수를 사용할 예정.
+		return board_type;
+	}
+
+	public void setBoard_type(String board_type) {
+		this.board_type = board_type;
+	}
 	
 	//전체 클래스에서 [계산식]이 4개 필요합니다. 개발자가 만들어야 합니다.(아래)
 	//계산식4개로 반환되는 값은: startPage(11), endPage(20), prev(true), next(false)
@@ -147,15 +157,6 @@ public class PageVO {
 
 	public void setQueryPerPageNum(int queryPerPageNum) {
 		this.queryPerPageNum = queryPerPageNum;
-	}
-
-	public String getBoard_type() {
-		return board_type;
-	}
-
-	public void setBoard_type(String board_type) {
-		
-		this.board_type = board_type;
 	}
 	
 }
