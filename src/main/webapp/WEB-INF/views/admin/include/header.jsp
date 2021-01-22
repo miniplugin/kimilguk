@@ -121,6 +121,12 @@ if('${msg}' != '') {//자바의 EL표기법 = 달라{변수명}
                 </a>
               </li>
               <li class="nav-item">
+                <a href="/admin/bod/bod_type_list" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>게시판생성 관리</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="/admin/board/board_list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>게시물 관리</p>

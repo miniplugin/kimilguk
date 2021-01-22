@@ -95,6 +95,8 @@ private String REDIRECT_URI;
 - 관리자단에 게시판 생성 메뉴추가 후 작업진행 예정.
 
 #### 20210121(목) 작업
+- 기능추가: DB-erd수정 -> 물리DB싱크 -> VO클래스 추가/변경 -> 매퍼쿼리추가/수정 -> DAO/Service/Controller 추가/수정 -> JSP단 추가/수정
+- varchar -> int 순서정렬 : 문자일때 1, 10, 2, 3, 4 -> 숫자 1,2,3,4...10, 11
 - 인증(Authentication) - 스프링시큐리티에서 enalbed 가 인증체크
 - 권한(Authorization) - 스프링시큐리티에서 ROLE_ADMIN, ROLE_USER 가 권한체크 
 - 콜백 URL: function() 콜백함수와 같은 기능처럼=자동실행되는 함수처럼 로그인 URL로 자동으로 이동하는 방법이 콜백URL
