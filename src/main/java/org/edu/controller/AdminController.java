@@ -236,10 +236,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin/board/board_list",method=RequestMethod.GET)
-	public String board_list(HttpServletRequest request, @RequestParam("board_type") String board_type, @ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
+	public String board_list(HttpServletRequest request, @RequestParam(value="board_type",required=false) String board_type, @ModelAttribute("pageVO") PageVO pageVO, Model model) throws Exception {
 		//게시판 타입을 세션변수로 저장(아래)
-		HttpSession session = request.getSession();
-		session.setAttribute("session_board_type", board_type);
+		if(board_type != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("session_board_type", board_type);
+		}
 		//테스트용 더미 게시판 데이터 만들기(아래)
 		/*
 		 * BoardVO input_board = new BoardVO(); input_board.setBno(1);
