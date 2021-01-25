@@ -74,6 +74,12 @@
 - 안드로이드앱(클라이언트)-통신-자바:스프링웹프로젝트(API서버) 2주
 
 #### 20210125(월) 작업
+- #다중게시판: 게시판 생성기능이 포함됨.
+- @Aspect 기능으로 세션관리 : 1)DebugAdvice.java 에 sessionManager()메서드 생성
+- 게시판 타입세션을 사용. 스프링시큐리티를 사용하지 않았으면, 로그인인증체크 AOP세션으로도 처리.
+- @ControllAdvice 기능으로 @ModelAttribute List<BoardTypeVO>오브젝트반환후 jsp이용
+- 2)ControllerAdviceException.java 위 1),2)파일 오전에 작업한 주요파일.
+- ------------------------------------------------------------
 - AOP기능으로 세션관리 추가작업(아래)
 - 컨트롤러에서 PageVO또는 BoardVO가 Get/Set필요한 순간 항상 아래의 액션이 필요
 - pageVO.setBoard_type(session.getAttribute("session_board_type"));//페이지 진입시 항상필요
