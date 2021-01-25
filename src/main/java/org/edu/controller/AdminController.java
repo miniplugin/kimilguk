@@ -52,6 +52,12 @@ public class AdminController {
 	@Inject
 	IF_MemberService memberService;//멤버인터페이스를 주입받아서 memberService오브젝트 변수를 생성.
 	
+	//게시판생성관리 리스트 매핑
+	@RequestMapping(value="/admin/bbs_type/bbs_type_list",method=RequestMethod.GET)
+	public String bbs_type_list() throws Exception {
+		//여기는 model을 이용해서 jsp로 board_type_list오브젝트를 보낼필요X, ControllAdvice클래스에서 만들었기 때문에...
+		return "admin/bbs_type/bbs_type_list";
+	}
 	//GET은 URL전송방식(아무데서나 브라우저주소에 적으면 실행됨), POST는 폼전송방식(해당페이지에서만 작동가능)
 	@RequestMapping(value="/admin/board/board_delete",method=RequestMethod.POST)
 	public String board_delete(RedirectAttributes rdat,PageVO pageVO, @RequestParam("bno") Integer bno) throws Exception {
