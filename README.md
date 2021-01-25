@@ -82,7 +82,10 @@
 - -----------------------------------
 - 세션변수 session_board_type를 컨트롤러,서비스,DAO,매퍼 모두VO기준 get/set발생할때 세션 변수를 사용할 예정. AOP또는 Interceptor가로채기 클래스를 이용해서 구현예정.
 - AOP로는 : session_board_type변수를 생성관리
-- AdviceController로는 : board_type게시판타입 리스트(List<BoardTypeVO>)를 jsp 모델값으로 전송해주는 인터셉터 기능을 사용 메뉴관리.
+- ------------------------------------
+- ControllerAdvice로는 : board_type게시판타입 리스트(List<BoardTypeVO>)를 jsp 모델값으로 전송해주는 인터셉터 기능을 사용 메뉴관리.
+- DAO 에 boardTypeList를 가져올수 있는 메서드를 1개 만듭니다.
+
 - 기존 작업한 BoardVO 와 PageVO 2군데  주석처리 -> //this.board_type = "notice";//세션변수를 사용할 예정.
 (아래 DebugAdvice클래스의 AOP소스)
 

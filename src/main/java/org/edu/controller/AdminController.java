@@ -108,6 +108,8 @@ public class AdminController {
 		//boardVO.setContent(securityCode.unscript(xss_date));
 		//시큐어코딩 끝
 		model.addAttribute("boardVO", boardVO);
+		//model.addAttribute("board_type_list", "게시판타입 리스트 오브젝트");
+		//게시판타입리스트는 위처럼 개별 메서드에서 처리하지 않고, AdviceController클래스로 대체 합니다.
 		return "admin/board/board_update";//파일경로
 	}
 	@RequestMapping(value="/admin/board/board_update",method=RequestMethod.POST)
