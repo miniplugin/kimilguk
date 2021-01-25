@@ -42,6 +42,13 @@
               
                 <div class="card-body">
                   <div class="form-group">
+                    <label for="board_type">게시판타입</label>
+                    <select name="board_type" id="board_type" class="form-control">
+                       <option value="notice" <c:out value="${(session_board_type eq 'notice')?'selected':'' }" />>공지사항</option>
+                       <option value="gallery" <c:out value="${(session_board_type eq 'gallery')?'selected':'' }" />>겔러리</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
                     <label for="title">title</label>
                     <input type="text" value="${boardVO.title}" class="form-control" name="title" id="title" placeholder="제목을 입력해 주세요." required>
                     <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
