@@ -53,41 +53,12 @@ public class DebugAdvice {
 		logger.info("AOP 디버그 끝 ==========================");
 		return result;
 	}
-	//기술참조https://whitelife.tistory.com/214
+	
+	//현재 클래스명은 디버그용도의 AOP(스프링전용)을 사용했으나, 
+	//여기서 AOP는 예전 자바코딩의 인터셉터(AdviceController)와 같은 기능
+	//추가로 다중게시판용 세션관리도 AOP기능을 사용하게 됩니다. 코딩은 아래 와 같습니다.
+	//아래 컨트롤러 패키지 안에 있는 모든 메서드가 실행될때, 공통으로 필요한 세선관리코드를 넣습니다.
 	@Around("execution(* org.edu.controller.*Controller.*(..))")
-	public Object sessionGetSet(ProceedingJoinPoint pjp) throws Throwable {
-		logger.info("AOP 세션GetSet 시작=========================");
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-		PageVO pageVO = null;
-		BoardVO boardVO = null;
-		String board_type = null;
-        for(Object object:pjp.getArgs()){
-        	logger.info("디버그 파라미터 출력: " + object);
-            if(object instanceof String){
-                board_type = (String) object;
-            }else if(object instanceof PageVO){
-                pageVO = (PageVO) object;
-            }else if(object instanceof BoardVO){
-                boardVO = (BoardVO) object;
-            }
-        }
-        if(request != null){
-        	HttpSession session = request.getSession();
-        	if(board_type != null) {
-    			session.setAttribute("session_board_type", board_type);
-    		}
-        	if(session.getAttribute("session_board_type") != null ) {
-        		board_type = (String) session.getAttribute("session_board_type");
-        	}
-            if(pageVO != null){
-            	pageVO.setBoard_type(board_type);//다중게시판 쿼리때문에 추가
-            }
-            if(boardVO != null){
-            	boardVO.setBoard_type(board_type);//다중게시판 쿼리때문에 추가
-            }
-        }
-        Object returnObj = pjp.proceed();
-		logger.info("AOP GetSet 끝 ==========================");
-		return returnObj;
-	}
+	public Object 
+	
 }

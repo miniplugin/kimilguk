@@ -73,8 +73,16 @@
 - IoT(아두이노,라즈베리파이-C언어책3권) 2주
 - 안드로이드앱(클라이언트)-통신-자바:스프링웹프로젝트(API서버) 2주
 
-#### 20210125(월) 작업예정
+#### 20210125(월) 작업
+- AOP기능으로 세션관리 추가작업(아래)
+- 컨트롤러에서 PageVO또는 BoardVO가 Get/Set필요한 순간 항상 아래의 액션이 필요
+- pageVO.setBoard_type(session.getAttribute("session_board_type"));//페이지 진입시 항상필요
+- boardVO.setBoard_type(session.getAttribute("session_boartd_type"));//게시판CRUD시 항상필요
+- 위와 같이 MVC에서 항상 실행되는 부분을 뽑아내서 공통실행으로 만드는 과정을 AOP(관점지향프로그래밍)라고 합니다.
+- -----------------------------------
 - 세션변수 session_board_type를 컨트롤러,서비스,DAO,매퍼 모두VO기준 get/set발생할때 세션 변수를 사용할 예정. AOP또는 Interceptor가로채기 클래스를 이용해서 구현예정.
+- AOP로는 : session_board_type변수를 생성관리
+- AdviceController로는 : board_type게시판타입 리스트(List<BoardTypeVO>)를 jsp 모델값으로 전송해주는 인터셉터 기능을 사용 메뉴관리.
 - 기존 작업한 BoardVO 와 PageVO 2군데  주석처리 -> //this.board_type = "notice";//세션변수를 사용할 예정.
 (아래 DebugAdvice클래스의 AOP소스)
 
