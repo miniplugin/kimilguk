@@ -59,6 +59,43 @@ public class DebugAdvice {
 	//추가로 다중게시판용 세션관리도 AOP기능을 사용하게 됩니다. 코딩은 아래 와 같습니다.
 	//아래 컨트롤러 패키지 안에 있는 모든 메서드가 실행될때, 공통으로 필요한 세선관리코드를 넣습니다.
 	@Around("execution(* org.edu.controller.*Controller.*(..))")
-	public Object 
+	public Object sessionManager(ProceedingJoinPoint pjp) throws Throwable {
+		//AOP에서 RequestContextHolder클래스를 이용해서 HttpServletRequest 오브젝트를 사용하기(아래)
+		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+		//컨트롤러 클래스에서 매개변수로 받는 값 초기화
+		PageVO pageVO = null;
+		BoardVO boardVO = null;
+		String board_type = null;
+		//컨트롤러 클래스에서 실행되는 모든 메서드=*Controller.*(..) 의 매개변수 값을 꺼내오기(아래) 향상된 for문사용
+		for(Object object:pjp.getArgs()) {//예, board_update()메서드의 매개변수Arguments
+			logger.info("jsp를 통해서 호출된 컨트롤러의 메서드 매개변수 꺼내오기: " + object);
+			if(object instanceof PageVO) {//instanceof 객체타입를 비교하는 연산자
+				pageVO = (PageVO) object;
+				board_type = pageVO.getBoard_type();//세션변수로 사용할 값을 발생.jsp에서 발생한 notice,gallery값
+			}else if(object instanceof BoardVO) {
+				boardVO = (BoardVO) object;
+			}
+		}
+		
+		if(request != null) {//jsp에서 요청사항이 발생될때만 실행(아래)
+			HttpSession session = request.getSession();
+			if(board_type != null) {//최초로 세션발생
+				session.setAttribute("session_board_type", board_type);
+			}
+			//PageVO와 BoardVO에서 세션변수로 get/set 하기 때문에 
+			if(session.getAttribute("session_board_type") != null ) {
+				board_type = (String) session.getAttribute("session_board_type");
+			}
+			if(pageVO != null) {
+				pageVO.setBoard_type(board_type);//다중게시판 검색쿼리때문에 추가
+			}
+			if(boardVO != null) {
+				boardVO.setBoard_type(board_type);//다중게시판 인서트+업데이트 때문에 추가
+			}
+		}
+		
+		Object result = pjp.proceed();
+		return result;
+	}
 	
 }
