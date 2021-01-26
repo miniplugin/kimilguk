@@ -85,9 +85,15 @@ jQuery(document).ready(function() {
 	jQuery("#board_type").bind("blur",function(){
 		//자바오브젝트변수의 board_type 값과 jQuery(this).val()
 		var board_type_list = "${board_type_list}";//자바스크립트변수에 자바변수값을 넣기
-		alert(board_type_list);
-		if(board_type_list.indexOf(jQuery(this).val()) != -1 ) {//자바변수값과 input 게시판타입값 비교해서 있으면
-			//indexOf함수는 배열값으로서 해당값이 존재하면, 0보다 크거나 같게 됩니다. 왜냐하면, 배열은 0부터 시작 이기 때문에
+		board_type_list = board_type_list.replace(/\[/g,"");//특수문자 \[제거
+		board_type_list = board_type_list.replace(/\]/g,"");//특수문자 \]제거
+		board_type_list = board_type_list.replace(/\s/g,"");//특수문자 \s공백제거
+		var board_type_array = board_type_list.split(",");
+		//alert(board_type_array[0]);//디버그배열값 확인
+		//alert(jQuery(this).val());//디버그 input 게시판타입 확인
+		//var board_type_array = ["gallery","notice","test"];
+		if(jQuery.inArray(jQuery(this).val(),board_type_array) >= 0) {//자바변수값과 input 게시판타입값 비교해서 있으면
+			//inArray함수는 반환값이 인덱스값을 반환합니다. 0보다크면 인덱스가 존재 
 			alert("기존 게시판이 존재 합니다. 다시 입력해 주세요");
 			jQuery("#btn_insert").attr("disabled",true);
 		}else{
