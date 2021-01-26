@@ -61,7 +61,7 @@
           <!-- 버튼영역 시작 -->
             <div class="card-body">
             	<a href="/admin/bbs_type/bbs_type_list" class="btn btn-primary float-right mr-1">목록</a>
-              	<button type="submit" class="btn btn-danger float-right mr-1">등록</button>              	
+              	<button disabled id="btn_insert" type="submit" class="btn btn-danger float-right mr-1">등록</button>              	
               	<!-- a태그는 링크이동은 되지만, post값을 전송하지는 못합니다. 그래서, button태그를 사용. -->
             </div>
           <!-- 버튼영역 끝 -->
@@ -78,3 +78,23 @@
   <!-- /.content-wrapper -->
   
 <%@ include file="../include/footer.jsp" %>
+<!-- 현재 J쿼리코어파일이 footer.jsp에 있기 때문에, 아래jQuery실행은 코어 아래쪽에 있어야 함 -->
+<!-- 이렇게 상단부터 프로그램 내용을 해석-컴파일하는 과정의 언어를 인터프리터형 프로그램 언어입니다.  -->
+<script>
+jQuery(document).ready(function() {
+	jQuery("#board_type").bind("blur",function(){
+		//자바오브젝트변수의 board_type 값과 jQuery(this).val()
+		var board_type_list = "${board_type_list}";//자바스크립트변수에 자바변수값을 넣기
+		alert(board_type_list);
+		if(board_type_list.indexOf(jQuery(this).val()) != -1 ) {//자바변수값과 input 게시판타입값 비교해서 있으면
+			//indexOf함수는 배열값으로서 해당값이 존재하면, 0보다 크거나 같게 됩니다. 왜냐하면, 배열은 0부터 시작 이기 때문에
+			alert("기존 게시판이 존재 합니다. 다시 입력해 주세요");
+			jQuery("#btn_insert").attr("disabled",true);
+		}else{
+			alert("중복된 게시판이 존재하지 않습니다. 사용가능합니다.");
+			jQuery("#btn_insert").attr("disabled",false);
+		}
+		
+	});
+});
+</script>
