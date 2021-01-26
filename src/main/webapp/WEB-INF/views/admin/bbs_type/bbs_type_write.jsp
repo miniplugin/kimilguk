@@ -91,7 +91,6 @@ jQuery(document).ready(function() {
 		var board_type_array = board_type_list.split(",");
 		//alert(board_type_array[0]);//디버그배열값 확인
 		//alert(jQuery(this).val());//디버그 input 게시판타입 확인
-		//var board_type_array = ["gallery","notice","test"];
 		if(jQuery.inArray(jQuery(this).val(),board_type_array) >= 0) {//자바변수값과 input 게시판타입값 비교해서 있으면
 			//inArray함수는 반환값이 인덱스값을 반환합니다. 0보다크면 인덱스가 존재 
 			alert("기존 게시판이 존재 합니다. 다시 입력해 주세요");
