@@ -57,7 +57,23 @@ public class AdminController {
 	@Inject
 	private IF_BoardTypeService boardTypeService;
 	
-	//게시판생성관리 등록매칭(POST)
+	//게시판생성관리 삭제매핑(POST)
+	@RequestMapping(value="/admin/bbs_type/bbs_type_delete",method=RequestMethod.POST)
+	public String bbs_type_delete(BoardTypeVO boardTypeVO, RedirectAttributes rdat) throws Exception {
+		String board_type = boardTypeVO.getBoard_type();
+		PageVO pageVO = new PageVO();
+		pageVO.setBoard_type(board_type);
+		int board_count = boardService.countBoard(pageVO);
+		if(board_count > 0) {
+			rdat.addFlashAttribute("msg_fail", "해당게시판의 게시물내용이 존재합니다. 삭제");
+			return "redirect:/admin/bbs_type/bbs_type_update?board_type="+board_type;
+		}else {
+			boardTypeService.delete_board_type(board_type);
+			rdat.addFlashAttribute("msg", "삭제");
+		}
+		return "redirect:/admin/bbs_type/bbs_type_list";
+	}
+	//게시판생성관리 등록매핑(POST)
 	@RequestMapping(value="/admin/bbs_type/bbs_type_write",method=RequestMethod.POST)
 	public String bbs_type_wrtie(BoardTypeVO boardTypeVO, RedirectAttributes rdat) throws Exception {
 		//메서드명이 같고, 로드된 매개변수가 틀린방식을 오버로드

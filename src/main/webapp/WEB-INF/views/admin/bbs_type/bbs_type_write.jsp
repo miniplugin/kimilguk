@@ -83,23 +83,25 @@
 <script>
 jQuery(document).ready(function() {
 	jQuery("#board_type").bind("blur",function(){
-		//자바오브젝트변수의 board_type 값과 jQuery(this).val()
-		var board_type_list = "${board_type_list}";//자바스크립트변수에 자바변수값을 넣기
-		board_type_list = board_type_list.replace(/\[/g,"");//특수문자 \[제거
-		board_type_list = board_type_list.replace(/\]/g,"");//특수문자 \]제거
-		board_type_list = board_type_list.replace(/\s/g,"");//특수문자 \s공백제거
-		var board_type_array = board_type_list.split(",");
-		//alert(board_type_array[0]);//디버그배열값 확인
-		//alert(jQuery(this).val());//디버그 input 게시판타입 확인
-		if(jQuery.inArray(jQuery(this).val(),board_type_array) >= 0) {//자바변수값과 input 게시판타입값 비교해서 있으면
-			//inArray함수는 반환값이 인덱스값을 반환합니다. 0보다크면 인덱스가 존재 
-			alert("기존 게시판이 존재 합니다. 다시 입력해 주세요");
-			jQuery("#btn_insert").attr("disabled",true);
-		}else{
-			alert("중복된 게시판이 존재하지 않습니다. 사용가능합니다.");
-			jQuery("#btn_insert").attr("disabled",false);
+		if(jQuery(this).val() != "") {
+			//자바오브젝트변수의 board_type 값과 jQuery(this).val()
+			var board_type_list = "${board_type_list}";//자바스크립트변수에 자바변수값을 넣기
+			//정규식(정규표현식)을 이용해서 문자제거하기(아래)
+			board_type_list = board_type_list.replace(/\[/g,"");//특수문자 \[제거
+			board_type_list = board_type_list.replace(/\]/g,"");//특수문자 \]제거
+			board_type_list = board_type_list.replace(/\s/g,"");//특수문자 \s공백제거
+			var board_type_array = board_type_list.split(",");
+			//alert(board_type_array[0]);//디버그배열값 확인
+			//alert(jQuery(this).val());//디버그 input 게시판타입 확인
+			if(jQuery.inArray(jQuery(this).val(),board_type_array) >= 0) {//자바변수값과 input 게시판타입값 비교해서 있으면
+				//inArray함수는 반환값이 인덱스값을 반환합니다. 0보다크면 인덱스가 존재 
+				alert("기존 게시판이 존재 합니다. 다시 입력해 주세요");
+				jQuery("#btn_insert").attr("disabled",true);
+			}else{
+				alert("중복된 게시판이 존재하지 않습니다. 사용가능합니다.");
+				jQuery("#btn_insert").attr("disabled",false);
+			}
 		}
-		
 	});
 });
 </script>
