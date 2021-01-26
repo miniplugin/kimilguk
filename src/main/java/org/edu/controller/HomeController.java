@@ -290,9 +290,16 @@ public class HomeController {
 		pageVO.setPage(1);
 		pageVO.setPerPageNum(5);//하단페이징
 		pageVO.setQueryPerPageNum(5);
+		
+		//사용자홈 메인페이지에 출력할 게시판 지정, gallery 쿼리1
+		pageVO.setBoard_type("gallery");
 		List<BoardVO> board_list = boardService.selectBoard(pageVO);
+		//사용자홈 메인페이지에 출력할 게시판 지정, notice 쿼리2
+		pageVO.setBoard_type("notice");
+		List<BoardVO> notice_list = boardService.selectBoard(pageVO);
 		//System.out.println("디버그" + board_list);
 		model.addAttribute("board_list", board_list);
+		model.addAttribute("notice_list", notice_list);
 		
 		//첨부파일 1개만 model클래스를 이용해서 jsp로 보냅니다.
 		String[] save_file_names = new String[board_list.size()];

@@ -80,7 +80,7 @@ $(document).ready(function(){
 				<c:forEach var="boardVO" items="${board_list}" varStatus="status">
 					<c:if test="${status.count<=3}">
 					<li class="opacity_hover">
-						<a href="/home/board/board_view?bno=${boardVO.bno}&page=1">
+						<a href="/home/board/board_view?board_type=${boardVO.board_type}&bno=${boardVO.bno}&page=1">
 							<div style="height:270px;overflow:hidden">
 							<c:if test="${save_file_names[status.index] eq ''}">
 								<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
@@ -112,10 +112,10 @@ $(document).ready(function(){
 					<a href="javascript:;">전화 상담 신청</a>
 				</p>
 				<div class="bbs_line">
-					<h3><a href="/home/board/board_list">NOTICE</a></h3>
+					<h3><a href="/home/board/board_list?board_type=notice">NOTICE</a></h3>
 					<ul class="notice_recent">
-					<c:forEach var="boardVO" items="${board_list}">
-						<li><a href="/home/board/board_view?bno=${boardVO.bno}&page=1">
+					<c:forEach var="boardVO" items="${notice_list}">
+						<li><a href="/home/board/board_view?board_type=${boardVO.board_type}&bno=${boardVO.bno}&page=1">
 						<c:out value="${boardVO.title}"></c:out>
 						</a></li>
 					</c:forEach>

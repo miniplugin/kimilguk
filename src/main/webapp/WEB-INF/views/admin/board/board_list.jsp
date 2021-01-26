@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../include/header.jsp" %>
 
   <!-- 대시보드 본문 Content Wrapper. Contains page content -->
@@ -72,6 +73,9 @@
                     </tr>
                   </thead>
                   <tbody>
+                  <c:if test="${fn:length(board_list) == 0}">
+                  	<tr><td colspan="5" class="text-center">조회된 데이터가 없습니다.</td></tr>
+                  </c:if>
                   <!-- jstl core를 갖다쓰는 이유는 향상된 for반복문을 사용하기 위해서 지정(아래) -->
                   <c:forEach items="${board_list}" var="boardVO" varStatus="status">
                   	<tr>
