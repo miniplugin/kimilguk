@@ -41,7 +41,7 @@
 	
 	<bean id="dataSource-hsql_prod" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-		<property name="url" value="jdbc:hsqldb:file:/tmp/hsql_file.db;hsqldb.lock_file=false" />
+		<property name="url" value="jdbc:hsqldb:file:/tmp/embeded/hsql_file.db;hsqldb.lock_file=false" />
 		<property name="username" value="sa" />
 		<property name="password" value="" />
 	</bean>
