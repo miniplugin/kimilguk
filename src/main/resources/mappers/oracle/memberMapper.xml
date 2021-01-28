@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- 
+memberMapper.xml: 회원관리에대한 모든 쿼리를 모아서 관리하는 역할을 
+마이바티스 세션팩토리(Mybatis SessionFactory클래스)에서 쿼리를 생성 합니다. 
+이 쿼리를 호출할때 사용하는 이름이 namespace값이 됩니다.
+이름이 memberMapper안에 쿼리가 여러개 만들게 되는데, 여러개를 구분해서 호출할때 사용하는 id
+ -->
+<mapper namespace="memberMapper">
+<!-- 아래 반환값이 MemberVO클래스형이면, select * from 쿼리에서 결과값에 [자동바인딩]됩니다. 
+단, 멤버클래스의 멤버변수 값이 tbl_member 테이블의 필드명과 일치하게 만들어야 하는 조건.
+-->
+<!-- 
+ user_id = 'admin' where 조건에서 완전일치 = 이퀄입니다.
+ 일부분 일치는 라이크쿼리 like(LIKE) + 검색어% 사용합니다.
+ 앞뒤로 일치하는 LIKE쿼리를 사용할 때는 %검색어%
+ user_id like '%user_2020%'
+-->
+<!-- 공통사용하는 쿼리 모음 -->
+<sql id="sqlWhere">
+	<if test="search_type != '' and search_type !=null">
+		where
+		<if test="search_type == 'all'.toString()">
+				user_id like concat('%',#{search_keyword},'%')
+				or
+				user_name like concat('%',#{search_keyword},'%')
+		</if>
+		<if test="search_type == 'user_id'.toString()">
+	 			user_id like concat('%',#{search_keyword},'%')
+	 	</if>
+	 	<if test="search_type == 'user_name'.toString()">
+	 			user_name like concat('%',#{search_keyword},'%')
+	 	</if>
+	</if>
+</sql>
+<select id="countMember" resultType="int">
+select count(*) from tbl_member
+<include refid="sqlWhere"></include>
+</select>
+<select id="selectMember" resultType="org.edu.vo.MemberVO">
+select * from tbl_member
+<include refid="sqlWhere"></include>
+order by reg_date desc
+limit #{queryStartNo}, #{queryPerPageNum}
+</select>
+
+<insert id="insertMember">
+INSERT INTO tbl_member (
+	user_id,
+	user_pw,
+	user_name,
+	email,
+	point,
+	enabled,
+	levels,
+	reg_date
+	) VALUES (
+	#{user_id},
+	#{user_pw},
+	#{user_name},
+	#{email},
+	#{point},
+	#{enabled},
+	#{levels},
+	now()
+)
+</insert>
+<!-- jsp에서 변수표현 EL표기법 ${변수명}, 마이바티스에서는 변수표현을 #{변수명} -->
+<!-- 마이바티스의 장점, 쿼리안쪽에 조건을 달 수 가 있습니다. -->
+<update id="updateMember">
+UPDATE tbl_member 
+SET 
+    user_name = #{user_name},
+    <if test="user_pw !=''">
+    user_pw = #{user_pw},
+    </if>
+    email = #{email},
+    point = #{point},
+    enabled = #{enabled},
+    levels = #{levels},
+    update_date = now()
+WHERE
+    user_id = #{user_id}
+</update>
+
+<delete id="deleteMember">
+DELETE FROM tbl_member WHERE user_id=#{user_id}
+</delete>
+
+<select id="readMember" resultType="org.edu.vo.MemberVO">
+SELECT * FROM tbl_member WHERE user_id=#{user_id}
+</select>
+
+</mapper>
