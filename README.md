@@ -79,9 +79,53 @@
 - $("#div_reply").find("div").not(".pagination").empty();
 - 시작전:조회수 카운트도 필드값 null 때문에 증가가 않되는 부분 처리예정(NVL추가 아래).
 - 오라클 전용 수정할 쿼리: set view_count = NVL(view_count,0) + 1
-- 시작전:멤버 페이지 페이징 쿼리부분에서 ORDER BY 부분제거.
-- (또는 ROWNUM 아래 라인에 다음 코드 추가시도) ORDER BY rnum ASC: 않되면, 멤버에선 정렬제거
-- 시작전:게시판,댓글 페이징 부분은 정렬방식을 REG_DATE에서 BNO로 변경할 예정.
+- 시작전: 더미데이터 만드는 프로시저에 REG_DATE항목을 1초 단위로 증가될 수 있도록 수정한 후 다시 더미데이터 생성한다.
+
+```
+create or replace PROCEDURE      "PROC_MEMBER_INSERT" 
+(
+  P_COUNT IN NUMBER 
+) AS 
+BEGIN
+  -- TRUNCATE table TBL_MEMBER; 삭제시 자동커밋
+  -- 실행방법: CALL PROC_MEMBER_INSERT(100);
+  FOR i IN 1..P_COUNT LOOP
+       IF(i=P_COUNT) THEN
+            INSERT INTO TBL_MEMBER
+            (user_id,user_pw,user_name,enabled,levels,reg_date,update_date)
+            VALUES
+            ('admin','$2a$10$kIqR/PTloYan/MRNiEsy6uYO6OCHVmAKR4kflVKQkJ345nqTiuGeO'
+            ,'관리자',1,'ROLE_ADMIN',sysdate + (1/24/60/60)*i,sysdate + (1/24/60/60)*i);
+        ELSE
+            INSERT INTO TBL_MEMBER
+            (user_id,user_pw,user_name,enabled,levels,reg_date,update_date)
+            VALUES
+            (concat('user',i) ,'$2a$10$kIqR/PTloYan/MRNiEsy6uYO6OCHVmAKR4kflVKQkJ345nqTiuGeO'
+            ,'사용자',1,'ROLE_USER',sysdate + (1/24/60/60)*i,sysdate + (1/24/60/60)*i);
+        END IF;
+      END LOOP;
+  commit;
+END PROC_MEMBER_INSERT;
+
+create or replace PROCEDURE      "PROC_BOARD_INSERT" 
+(
+  P_BOARD_TYPE IN VARCHAR2 
+, P_COUNT IN NUMBER 
+) AS 
+BEGIN
+  -- TRUNCATE table TBL_REPLY; 삭제시 자동커밋
+  -- TRUNCATE table TBL_ATTACH; 삭제시 자동커밋
+  -- DELETE FROM TBL_BOARD WHERE 1 = 1; 삭제시 커밋 필요 + 시퀸스 초기화 필요(초기값만 1로 바꾸면됨)
+  -- 실행방법;쿼리에디터에서 CALL PROC_BOARD_INSERT('notice',50);
+  FOR i IN 1..P_COUNT LOOP
+        INSERT INTO TBL_BOARD
+        (bno,board_type,title,content,writer,reg_date,update_date) 
+        VALUES
+        (SEQ_BNO.nextval,P_BOARD_TYPE,'게시물테스트','게시물내용테스트','관리자',SYSDATE + (1/24/60/60)*i,SYSDATE + (1/24/60/60)*i);
+      END LOOP;
+commit;
+END PROC_BOARD_INSERT;
+```
 - oracle폴더의 memberMapper, replyMapper, boardTypeMapper 3개파일 마이그레이션
 - 수정1: now() -> sysdate (현재일시구하기)
 - 수정2: limit 사용된 페이징 쿼리 -> 제거 후 기능변경(ROWNUM 키워드 사용, concat() -> ||연결문자사용)
