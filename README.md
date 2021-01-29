@@ -75,7 +75,7 @@
 
 #### 작업예정
 - oracle폴더의 memberMapper, replyMapper, boardTypeMapper 3개파일 마이그레이션
-- 수정1: now() -> sysdata (현재일시구하기)
+- 수정1: now() -> sysdate (현재일시구하기)
 - 수정2: limit 사용된 페이징 쿼리 -> 제거 후 기능변경(ROWNUM 키워드 사용, concat() -> ||연결문자사용)
 - 수정3: limit 사용된 조회시 최근게시물 1개 뽑아낼때 -> 제거 후 기능변경(ROWNUM 예약어 사용)
 - 수정4: < 부등호가 들어가 있는 쿼리는 <![CDATA[ 부등호가 있는 쿼리 ]]> 이렇게 CDATA로 처리.
