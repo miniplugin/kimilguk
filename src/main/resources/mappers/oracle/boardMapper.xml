@@ -60,9 +60,13 @@ where bno = #{bno}
 <delete id="deleteBoard">
 delete from tbl_board where bno = #{bno}
 </delete>
+<!-- 게시물등록시 bno가 자동증가가 않되기 때문에 시퀸스를 사용한 값을 변수로 처리 후 사용합니다. -->
 <insert id="insertBoard">
-insert into tbl_board (board_type,title,content,writer,reg_date) 
-values(#{board_type},#{title},#{content},#{writer},sysdate)
+<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+	SELECT SEQ_BNO.nextval FROM DUAL
+</selectKey>
+insert into tbl_board (bno,board_type,title,content,writer,reg_date) 
+values(#{bno},#{board_type},#{title},#{content},#{writer},sysdate)
 </insert>
 <select id="readAttach" resultType="org.edu.vo.AttachVO">
 select * from tbl_attach where bno = #{bno} order by reg_date desc
