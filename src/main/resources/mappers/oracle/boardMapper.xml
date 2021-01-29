@@ -25,8 +25,8 @@
 예, 주민번호(PK)를 수정한다고 하는 것과 같은얘기로서 허용이 않됩니다. 그래서, 삭제후 insert태그를 사용합니다.
 -->
 <insert id="updateAttach">
-insert into tbl_attach (save_file_name,real_file_name,bno)
-values (#{save_file_name}, #{real_file_name}, #{bno})
+insert into tbl_attach (save_file_name,real_file_name,bno,reg_date)
+values (#{save_file_name}, #{real_file_name}, #{bno}, sysdate)
 </insert>
 <!-- 해당 게시물의 첨부파일 1개만 지우기(아래) PK프라이머리키=주키=기본키=>인덱스는 자동생성 -->
 <delete id="deleteAttach">
@@ -38,7 +38,7 @@ delete from tbl_attach where bno = #{bno}
 </delete>
 <!-- LAST_INSERT_ID() 마리아DB에서 작동X -->
 <insert id="insertAttach">
-insert into tbl_attach (save_file_name, real_file_name, bno) 
+insert into tbl_attach (save_file_name, real_file_name, bno, reg_date) 
 values (#{save_file_name}, #{real_file_name}, 
 (
 	SELECT TABLE_A.BNO FROM
@@ -46,7 +46,8 @@ values (#{save_file_name}, #{real_file_name},
 	SELECT BNO FROM TBL_BOARD ORDER BY BNO DESC
 	) TABLE_A
 	WHERE ROWNUM = 1
-)
+),
+sysdate
 )
 </insert>
 <update id="updateBoard">
@@ -60,11 +61,11 @@ where bno = #{bno}
 <delete id="deleteBoard">
 delete from tbl_board where bno = #{bno}
 </delete>
-<!-- 게시물등록시 bno가 자동증가가 않되기 때문에 시퀸스를 사용한 값을 변수로 처리 후 사용합니다. -->
+<!-- 게시물등록시 bno가 자동증가가 않되기 때문에 시퀸스를 사용한 값을 insert쿼리실행전에 PK값을 지정 후 사용합니다. -->
 <insert id="insertBoard">
-<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+	<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 	SELECT SEQ_BNO.nextval FROM DUAL
-</selectKey>
+	</selectKey>
 insert into tbl_board (bno,board_type,title,content,writer,reg_date) 
 values(#{bno},#{board_type},#{title},#{content},#{writer},sysdate)
 </insert>
