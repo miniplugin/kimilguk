@@ -75,8 +75,12 @@
 
 #### 20210201(월) 작업예정
 - 시작전:replyMapper 마무리: 댓글 1개등록 후 삭제 후 다시등록시 페이징이 사라지는 문제 처리필요.
-- 시작전:조회수 카운트도 필드값 null 때문에 증가가 않되는 부분 처리예정.
+- board_view.jsp의 삭제부분 $("#div_reply").empty(); 아래 코드로 수정.
+- $("#div_reply").find("div").not(".pagination").empty();
+- 시작전:조회수 카운트도 필드값 null 때문에 증가가 않되는 부분 처리예정(NVL추가 아래).
+- 오라클 전용 수정할 쿼리: set view_count = NVL(view_count,0) + 1
 - 시작전:멤버 페이지 페이징 쿼리부분에서 ORDER BY 부분제거.
+- (또는 ROWNUM 아래 라인에 다음 코드 추가시도) ORDER BY rnum ASC: 않되면, 멤버에선 정렬제거
 - 시작전:게시판,댓글 페이징 부분은 정렬방식을 REG_DATE에서 BNO로 변경할 예정.
 - oracle폴더의 memberMapper, replyMapper, boardTypeMapper 3개파일 마이그레이션
 - 수정1: now() -> sysdate (현재일시구하기)
