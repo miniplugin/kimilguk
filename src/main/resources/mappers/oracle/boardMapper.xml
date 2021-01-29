@@ -95,7 +95,7 @@ SELECT TABLE_B.* FROM
     (
     SELECT * FROM TBL_BOARD 
     <include refid="sqlWhere"></include>
-    <![CDATA[
+<![CDATA[
     order by reg_date desc
     ) TABLE_A
     WHERE ROWNUM <= (#{queryStartNo}/#{queryPerPageNum}+1)*#{queryPerPageNum}
