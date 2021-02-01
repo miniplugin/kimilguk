@@ -87,7 +87,7 @@
 - 쿼리널체크: Oracle=nvl(v1,v2), NVL(Null VaLue)체크 함수.
 - 시작전3:멤버 페이지 페이징 쿼리부분에서 ORDER BY 부분제거 취소 후 더미데이터의 reg_date 수정.
 - 시작전4:게시판,댓글 페이징 부분은 정렬방식을 REG_DATE에서 BNO로 변경 취소.
-- 위3,4번 처리하는 대신 더미데이터만드는 프로시저에서 reg_date 현재시간기준 1초씩 증가하도록 처리 order by 가 제대로 작동하도록 처리.
+- 위3,4번 처리하는 대신 더미데이터만드는 프로시저에서 reg_date 현재시간기준 1초씩 증가하도록 처리 order by 가 제대로 작동하도록 처리OK.
 - 시작전: 더미데이터 만드는 프로시저에 REG_DATE항목을 1초 단위로 증가될 수 있도록 수정한 후 다시 더미데이터 생성한다.
 
 ```
@@ -135,7 +135,7 @@ BEGIN
 commit;
 END PROC_BOARD_INSERT;
 ```
-- oracle폴더의 memberMapper, replyMapper, boardTypeMapper 3개파일 마이그레이션
+- oracle폴더의 memberMapper, replyMapper, boardTypeMapper 3개파일 마이그레이션 OK.
 - 수정1: now() -> sysdate (현재일시구하기)
 - 수정2: limit 사용된 페이징 쿼리 -> 제거 후 기능변경(ROWNUM 키워드 사용, concat() -> ||연결문자사용)
 - 수정3: limit 사용된 조회시 최근게시물 1개 뽑아낼때 -> 제거 후 기능변경(ROWNUM 예약어 사용)
