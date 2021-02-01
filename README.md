@@ -74,14 +74,20 @@
 - 안드로이드앱(클라이언트)-통신-자바:스프링웹프로젝트(API서버) 2주
 
 #### 20210201(월) 작업예정
-- 시작전:replyMapper 마무리: 댓글 1개등록 후 삭제 후 다시등록시 페이징이 사라지는 문제 처리필요.
+- 시작전1:replyMapper 마무리: 댓글 1개등록 후 삭제 후 다시등록시 페이징이 사라지는 문제 처리OK.
 - board_view.jsp의 삭제부분 $("#div_reply").empty(); 아래 코드로 수정.
-- $("#div_reply").find("div").not(".pagination").empty();
-- 시작전:조회수 카운트도 필드값 null 때문에 증가가 않되는 부분 처리예정(NVL추가 아래).
+- $("#div_reply").find("div").not(".pagination").empty(); ->대신에 아래처럼 해도됨
+
+```
+- $("#div_reply").html('<div class="pagination justify-content-center"><ul class="pagination pageVO"></ul></div>');
+```
+- 시작전2:조회수 카운트도 필드값 null 때문에 증가가 않되는 부분 처리OK(NVL추가 아래).
 - 오라클 전용 수정할 쿼리: set view_count = NVL(view_count,0) + 1
-- 시작전:멤버 페이지 페이징 쿼리부분에서 ORDER BY 부분제거.
-- (또는 ROWNUM 아래 라인에 다음 코드 추가시도) ORDER BY rnum ASC: 않되면, 멤버에선 정렬제거
-- 시작전:게시판,댓글 페이징 부분은 정렬방식을 REG_DATE에서 BNO로 변경할 예정.
+- 쿼리널체크: Mysql=ifnull(v1,v2),MSsql+Hsql=isnull(v1,v2)
+- 쿼리널체크: Oracle=nvl(v1,v2), NVL(Null VaLue)체크 함수.
+- 시작전3:멤버 페이지 페이징 쿼리부분에서 ORDER BY 부분제거 취소 후 더미데이터의 reg_date 수정.
+- 시작전4:게시판,댓글 페이징 부분은 정렬방식을 REG_DATE에서 BNO로 변경 취소.
+- 위3,4번 처리하는 대신 더미데이터만드는 프로시저에서 reg_date 현재시간기준 1초씩 증가하도록 처리 order by 가 제대로 작동하도록 처리.
 - oracle폴더의 memberMapper, replyMapper, boardTypeMapper 3개파일 마이그레이션
 - 수정1: now() -> sysdate (현재일시구하기)
 - 수정2: limit 사용된 페이징 쿼리 -> 제거 후 기능변경(ROWNUM 키워드 사용, concat() -> ||연결문자사용)

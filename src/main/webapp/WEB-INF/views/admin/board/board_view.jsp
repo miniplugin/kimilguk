@@ -256,6 +256,7 @@ var replyList = function() {
 			//alert("디버그" + result);
 			if(typeof result=="undefined" || result=="" || result==null) {
 				$("#div_reply").empty();//조회된 값이 없을때, 화면내용클리어.
+				$("#div_reply").html('<div class="pagination justify-content-center"><ul class="pagination pageVO"></ul></div>');
 				alert('조회된 값이 없습니다.');
 			}else{
 				//빵틀에 result데이터를 바인딩해서 출력합니다.
