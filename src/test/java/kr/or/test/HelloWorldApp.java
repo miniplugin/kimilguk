@@ -9,7 +9,6 @@ public class HelloWorldApp {
 	public static void main(String[] args) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd HHmmss");
 		Date reg_date = new Date();
-		//boardVO.setBno(프라이머리키);
 		for(int cnt=0;cnt<=10;cnt++) {//더미게시물 100입력
 			Calendar cal = Calendar.getInstance();//+
 			cal.setTime(reg_date);//+

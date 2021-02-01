@@ -17,13 +17,13 @@
         <property name="locations">
             <list>
             	<!-- 로컬 개발일때 사용(아래) -->
-                
-                <value>classpath:/properties/local.properties</value> 
-                
-                <!-- 운영서버 배포일때 사용 -->
                 <!-- 
-                <value>classpath:/properties/prod.properties</value>
+                <value>classpath:/properties/local.properties</value> 
                  -->
+                <!-- 운영서버 배포일때 사용 -->
+                
+                <value>classpath:/properties/prod.properties</value>
+                
                 
                 <!-- Junit실행시 에러나서 NaverLoginController놔두고 여기에도 위치 추가 -->
                 <value>classpath:/properties/sns.properties</value>
