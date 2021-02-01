@@ -135,7 +135,6 @@ BEGIN
 commit;
 END PROC_BOARD_INSERT;
 ```
->>>>>>> branch 'master' of https://github.com/miniplugin/kimilguk.git
 - oracle폴더의 memberMapper, replyMapper, boardTypeMapper 3개파일 마이그레이션
 - 수정1: now() -> sysdate (현재일시구하기)
 - 수정2: limit 사용된 페이징 쿼리 -> 제거 후 기능변경(ROWNUM 키워드 사용, concat() -> ||연결문자사용)
