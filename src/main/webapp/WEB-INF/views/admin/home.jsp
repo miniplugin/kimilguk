@@ -56,14 +56,7 @@
                     <tbody>
                     <!-- 대시보드 만들기 2번째 방법(아래) -->
                     <!-- 파일 import시 매개변수 board_type=${baordTypeVO.board_type} -->
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
-                    </tr>
+                    <c:import url="/admin/latest/latest_board?board_type=${boardTypeVO.board_type}" />
                     </tbody>
                   </table>
                 </div>
