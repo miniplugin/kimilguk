@@ -43,11 +43,17 @@
         <!-- /.card-header -->
         <div class="card-body p-0">
           <ul class="users-list clearfix">
+            <c:forEach items="${latest_member}" var="memberVO">
             <li>
-              <img src="/resources/dist/img/user1-128x128.jpg" alt="User Image">
-              <a class="users-list-name" href="#">아무개</a>
-              <span class="users-list-date">활성/비활성</span>
+              <img src="/resources/dist/img/default-150x150.png" alt="User Image">
+              <a class="users-list-name" href="/admin/member/member_view?page=1&user_id=${memberVO.user_id}">
+              ${memberVO.user_name}
+              </a>
+              <span class="users-list-date">
+              <c:out value="${(memberVO.enabled eq 'true')?'활성':'비활성'}" />
+              </span>
             </li>
+            </c:forEach>
           </ul>
           <!-- /.users-list -->
         </div>
