@@ -476,6 +476,7 @@ public class AdminController {
 	//bind:묶는다는 의미, /admin 요청URL경로와 admin/home.jsp를 묶는다는 의미.
 	@RequestMapping(value="/admin",method=RequestMethod.GET)
 	public String admin() throws Exception {
+		//대시보드 만들기 1번 방법: ModelMap<key:objcet>값을 만들어서 보내기
 		return "admin/home";//상대경로 파일위치
 	}
 	
