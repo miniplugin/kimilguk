@@ -489,6 +489,9 @@ public class AdminController {
 		pageVO.setQueryPerPageNum(5);
 		List<BoardVO> latest_list = boardService.selectBoard(pageVO);
 		model.addAttribute("latest_list", latest_list);
+		
+		List<MemberVO> latest_member = memberService.selectMember(pageVO);
+		model.addAttribute("latest_member", latest_member);
 		return "admin/latest/latest_board";
 	}
 	

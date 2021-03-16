@@ -26,7 +26,40 @@
     <!-- 본문내용 Main content -->
     <section class="content">
       <div class="container-fluid">
+      
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">최근등록한 회원목록</h3>
+
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse">
+              <i class="fas fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-tool" data-card-widget="remove">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+          <ul class="users-list clearfix">
+            <li>
+              <img src="/resources/dist/img/user1-128x128.jpg" alt="User Image">
+              <a class="users-list-name" href="#">아무개</a>
+              <span class="users-list-date">활성/비활성</span>
+            </li>
+          </ul>
+          <!-- /.users-list -->
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer text-center">
+          <a href="/admin/member/member_list">View All Users</a>
+        </div>
+        <!-- /.card-footer -->
+      </div>
+
       <c:forEach items="${board_type_list}" var="boardTypeVO">
+
       	<!-- 관리자에서 생성한 게시판 개수만큼 반복문실행 -->
         <div class="card">
               <div class="card-header border-transparent">
@@ -68,7 +101,9 @@
               </div>
               <!-- /.card-footer -->
             </div>
-      </c:forEach>  
+            
+      </c:forEach>
+      
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
