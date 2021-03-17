@@ -20,7 +20,7 @@
 		<!-- 메인본문영역 -->
 		<div class="bodytext_area box_inner">			
 			<ul class="bbsview_list">
-				<li class="bbs_title"><c:out value="${boardVO.title}" /></li>
+				<li class="bbs_title"><c:out value="${boardVO.title}" /> [작성자] : <span>${boardVO.writer}</li>
 				<!-- c:out태그는 jstl자바스탠다드태그라이브러리의 명령으로서 자바의 System.out.println() -->
 				<li class="bbs_hit">작성일 : <span><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${boardVO.reg_date}" /></span></li>
 				<li class="bbs_date">조회수 : <span>${boardVO.view_count}</span></li>
