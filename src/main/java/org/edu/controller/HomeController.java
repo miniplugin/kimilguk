@@ -155,7 +155,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/home/board/board_update",method=RequestMethod.GET)
-	public String board_update(Model model, @ModelAttribute("pageVO") PageVO pageVO, @RequestParam("bno") Integer bno) throws Exception {
+	public String board_update(HttpServletRequest request, Model model, @ModelAttribute("pageVO") PageVO pageVO, @RequestParam("bno") Integer bno) throws Exception {
+		String session_userid = (String) request.getSession().getAttribute("session_userid");
 		BoardVO boardVO = boardService.readBoard(bno);
 		//첨부파일처리(아래)
 		List<AttachVO> files = boardService.readAttach(bno);
