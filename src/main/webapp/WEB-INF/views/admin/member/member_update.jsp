@@ -48,7 +48,7 @@
                   </div>
                   <div class="form-group">
                   	<label>프로필 이미지
-                  	<img class="img-circle" style="width:50px;height:50px;" src="/resources/profile/${memberVO.user_id}.jpg" />
+                  	<img onerror="this.src='/resources/dist/img/default-150x150.png'" class="img-circle" style="width:50px;height:50px;" src="/resources/profile/${memberVO.user_id}.jpg" />
                   	</label>
 	                <div class="custom-file">
 	                  <input accept=".jpg" type="file" name="file" class="custom-file-input" id="customFile_0">

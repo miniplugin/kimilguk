@@ -45,16 +45,18 @@
           <ul class="users-list clearfix">
             <c:forEach items="${latest_member}" var="memberVO">
             <li>
+            <a class="users-list-name" href="/admin/member/member_view?page=1&user_id=${memberVO.user_id}">
               <!-- 
               <img src="/resources/dist/img/default-150x150.png" alt="User Image">
                -->
-              <img src="/resources/profile/${memberVO.user_id}.jpg" alt="사용자프로필" style="width:120px;height:120px;" />
-              <a class="users-list-name" href="/admin/member/member_view?page=1&user_id=${memberVO.user_id}">
-              ${memberVO.user_name}
-              </a>
-              <span class="users-list-date">
-              <c:out value="${(memberVO.enabled eq 'true')?'활성':'비활성'}" />
-              </span>
+              <img onerror="this.src='/resources/dist/img/default-150x150.png'" src="/resources/profile/${memberVO.user_id}.jpg" alt="사용자프로필" style="width:120px;height:120px;" />
+              <div>
+	              ${memberVO.user_name}
+	              <span class="users-list-date">
+	              <c:out value="${(memberVO.enabled eq 'true')?'활성':'비활성'}" />
+	              </span>
+              </div>
+            </a>
             </li>
             </c:forEach>
           </ul>
