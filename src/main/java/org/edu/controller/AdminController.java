@@ -381,22 +381,10 @@ public class AdminController {
 	//첨부파일처리는 MultipartFile(첨부파일 태그name 1개일때) , MultipartServletRequest(첨부파일 태그name이 여러개일때) 
 	@RequestMapping(value="/admin/member/member_update",method=RequestMethod.POST)
 	public String member_update(HttpServletRequest request,MultipartFile file,PageVO pageVO,@Valid MemberVO memberVO) throws Exception {
-		//프로필 첨부파일 처리(아래)
-		//직접접근이 가능한 경로에 프로필업로드 폴더를 생성(서버용 경로이기 때문에 / 사용)
-		String folderPath = request.getServletContext().getRealPath("/resources/profile");
-		File makeFolder = new File(folderPath);
-		if(!makeFolder.exists()) {
-			//프로필폴더가 존재하지 않으면...
-			makeFolder.mkdir();//프로필 폴더가 생성됨
-		}
+		//프로필 첨부파일 처리
 		if(file.getOriginalFilename() != null) {
-			//jsp에서 전송받은 파일이 null 이 아니라면...
-			byte[] in = file.getBytes();
-			String uploadFile = folderPath+"/"+memberVO.getUser_id()+"."+ StringUtils.getFilenameExtension(file.getOriginalFilename());
-			File out = new File(uploadFile);
-			FileCopyUtils.copy(in, out);//중복파일명(확장자포함)은 덮어쓰는 메서드.
+			commonController.profile_upload(memberVO.getUser_id(), request, file);
 		}
-		
 		//POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호시킴
 		//if(memberVO.getUser_pw() == null || memberVO.getUser_pw() == "") {
 		if(memberVO.getUser_pw().isEmpty()) {

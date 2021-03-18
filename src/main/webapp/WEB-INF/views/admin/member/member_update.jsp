@@ -48,11 +48,11 @@
                   </div>
                   <div class="form-group">
                   	<label>프로필 이미지
-                  	<img class="img-circle elevation-2" src="/resources/profile/${memberVO.user_id}.png" />
+                  	<img class="img-circle" style="width:50px;height:50px;" src="/resources/profile/${memberVO.user_id}.jpg" />
                   	</label>
 	                <div class="custom-file">
-	                  <input type="file" name="file" class="custom-file-input" id="customFile_0">
-	                  <label class="custom-file-label" for="customFile_0" style="color:#999;">프로필이미지</label>
+	                  <input accept=".jpg" type="file" name="file" class="custom-file-input" id="customFile_0">
+	                  <label class="custom-file-label" for="customFile_0" style="color:#999;">jpg형식만 지원합니다.</label>
 		            </div>
 	              </div>
                   <div class="form-group">
