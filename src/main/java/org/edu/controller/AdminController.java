@@ -28,6 +28,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -381,16 +382,19 @@ public class AdminController {
 	@RequestMapping(value="/admin/member/member_update",method=RequestMethod.POST)
 	public String member_update(HttpServletRequest request,MultipartFile file,PageVO pageVO,@Valid MemberVO memberVO) throws Exception {
 		//프로필 첨부파일 처리(아래)
-		//직접접근이 가능한 경로에 프로필업로드 폴더를 생성
-		String folderPath = request.getServletContext().getRealPath("resources/profile");
+		//직접접근이 가능한 경로에 프로필업로드 폴더를 생성(서버용 경로이기 때문에 / 사용)
+		String folderPath = request.getServletContext().getRealPath("/resources/profile");
 		File makeFolder = new File(folderPath);
 		if(!makeFolder.exists()) {
 			//프로필폴더가 존재하지 않으면...
-			makeFolder.mkdir();
+			makeFolder.mkdir();//프로필 폴더가 생성됨
 		}
 		if(file.getOriginalFilename() != null) {
 			//jsp에서 전송받은 파일이 null 이 아니라면...
-			FileCopyUtils.copy(folderPath + );
+			byte[] in = file.getBytes();
+			String uploadFile = folderPath+"/"+memberVO.getUser_id()+"."+ StringUtils.getFilenameExtension(file.getOriginalFilename());
+			File out = new File(uploadFile);
+			FileCopyUtils.copy(in, out);//중복파일명(확장자포함)은 덮어쓰는 메서드.
 		}
 		
 		//POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호시킴
