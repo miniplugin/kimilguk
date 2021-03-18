@@ -31,7 +31,7 @@
           <div class="col-12"><!-- 그리드시스템중 12가로칼럼 width:100% -->
           
           <!-- form start -->
-          <form name="update_form" action="/admin/member/member_update" method="post">
+          <form encType="multipart/form-data" name="update_form" action="/admin/member/member_update" method="post">
           
           <div class="card card-primary">
               <div class="card-header">
@@ -46,6 +46,13 @@
                     <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
                     	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 user_id 입니다. -->
                   </div>
+                  <div class="form-group">
+                  	<label>프로필 이미지</label>
+	                <div class="custom-file">
+	                  <input type="file" name="file" class="custom-file-input" id="customFile_0">
+	                  <label class="custom-file-label" for="customFile_0" style="color:#999;">프로필이미지</label>
+		            </div>
+	              </div>
                   <div class="form-group">
                     <label for="user_pw">Password</label>
                     <!-- html5에서 지원되는 유효성검사 maxlength,minlength,required,type="email" -->

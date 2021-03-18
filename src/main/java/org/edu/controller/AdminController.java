@@ -27,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -376,9 +377,22 @@ public class AdminController {
 		model.addAttribute("memberVO", memberVO);
 		return "admin/member/member_update";
 	}
-	
+	//첨부파일처리는 MultipartFile(첨부파일 태그name 1개일때) , MultipartServletRequest(첨부파일 태그name이 여러개일때) 
 	@RequestMapping(value="/admin/member/member_update",method=RequestMethod.POST)
-	public String member_update(PageVO pageVO,@Valid MemberVO memberVO) throws Exception {
+	public String member_update(HttpServletRequest request,MultipartFile file,PageVO pageVO,@Valid MemberVO memberVO) throws Exception {
+		//프로필 첨부파일 처리(아래)
+		//직접접근이 가능한 경로에 프로필업로드 폴더를 생성
+		String folderPath = request.getServletContext().getRealPath("resources/profile");
+		File makeFolder = new File(folderPath);
+		if(!makeFolder.exists()) {
+			//프로필폴더가 존재하지 않으면...
+			makeFolder.mkdir();
+		}
+		if(file.getOriginalFilename() != null) {
+			//jsp에서 전송받은 파일이 null 이 아니라면...
+			FileCopyUtils.copy(folderPath + );
+		}
+		
 		//POST방식으로 넘어온 user_pw값을 BCryptPasswordEncoder클래스로 암호시킴
 		//if(memberVO.getUser_pw() == null || memberVO.getUser_pw() == "") {
 		if(memberVO.getUser_pw().isEmpty()) {
