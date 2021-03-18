@@ -30,7 +30,7 @@
           <div class="col-12"><!-- 그리드시스템중 12가로칼럼 width:100% -->
           
           <!-- form start -->
-          <form name="write_form" action="/admin/member/member_write" method="post">
+          <form encType="multipart/form-data" name="write_form" action="/admin/member/member_write" method="post">
           
           <div class="card card-primary">
               <div class="card-header">
@@ -45,7 +45,14 @@
                     <!-- 폼에서 input같은 입력태그에는 name속성이 반드시 필요, 이유는 DB에 입력할때,
                     	 값을 전송하게 되는데, 전송값을 담아두는 이름이 name가 되고, 위에서는 user_id 입니다. -->
                   </div>
-                  
+                  <div class="form-group">
+                  	<label>프로필 이미지
+                  	</label>
+	                <div class="custom-file">
+	                  <input accept=".jpg" type="file" name="file" class="custom-file-input" id="customFile_0">
+	                  <label class="custom-file-label" for="customFile_0" style="color:#999;">jpg형식만 지원합니다.</label>
+		            </div>
+	              </div>
                   <div class="form-group">
                     <label for="user_pw">Password</label>
                     <input type="password" class="form-control" name="user_pw" id="user_pw" placeholder="암호를 입력해 주세요." required>
@@ -103,6 +110,14 @@
   <!-- /.content-wrapper -->
 
 <%@ include file="../include/footer.jsp" %>
+<!-- 첨부파일 부트스트랩 디자인 JS -->
+<script src="/resources/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+<!-- 첨부파일 선택한 내용 출력 실행 -->
+<script>
+$(document).ready(function () {
+  bsCustomFileInput.init();
+});
+</script>
 <script>
 $(document).ready(function() {
 	$("#user_id").bind("blur", function() {
