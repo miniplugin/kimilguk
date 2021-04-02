@@ -1,9 +1,12 @@
 package org.edu.controller;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.edu.dao.IF_MemberDAO;
 import org.edu.vo.MemberVO;
+import org.edu.vo.PageVO;
 import org.hsqldb.lib.SimpleLog;
 import org.jboss.logging.Logger;
 import org.springframework.http.HttpStatus;
@@ -40,5 +43,21 @@ public class JsonDataController {
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;//json 데이터(Key:Value,)로 반환값 리턴
+	}
+	
+	//RestAPI서버 회원목록을 출력 기능(아래)
+	@RequestMapping(value="/android/list", method=RequestMethod.POST)
+	public ResponseEntity<List<MemberVO>> androidMember() {
+		ResponseEntity<List<MemberVO>> entity = null;
+		PageVO pageVO = new PageVO();
+		pageVO.setPage(1);
+		pageVO.setPerPageNum(10);
+		pageVO.setQueryPerPageNum(1000);//1회 쿼리에서 1000명 허용
+		try {
+			entity = new ResponseEntity<>(memberDAO.selectMember(pageVO),HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;		
 	}
 }
