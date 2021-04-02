@@ -20,7 +20,7 @@ public class JsonDataController {
 	private IF_MemberDAO memberDAO;
 	private Logger logger = Logger.getLogger(SimpleLog.class);
 	
-	//RestAPI서버 : 안드로이드앱에서 로그인에 사용됨(아래)
+	//RestAPI인증서버 : 안드로이드앱에서 로그인에 사용됨(아래)
 	@RequestMapping(value="/android/login", method=RequestMethod.POST)
 	public ResponseEntity<MemberVO> androidLogin(@RequestParam("txtUsername") String user_id, @RequestParam("txtPassword") String user_pw) {
 		ResponseEntity<MemberVO> entity = null;
@@ -34,9 +34,10 @@ public class JsonDataController {
 				entity = new ResponseEntity<>(memberVO, HttpStatus.OK);//200
 			} else {
 				logger.debug("계정정보 불일치");
+				entity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 		} catch (Exception e) {
-			
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		return entity;//json 데이터(Key:Value,)로 반환값 리턴
 	}
