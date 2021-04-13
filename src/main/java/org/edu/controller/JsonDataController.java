@@ -12,6 +12,7 @@ import org.jboss.logging.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,19 @@ public class JsonDataController {
 	@Inject
 	private IF_MemberDAO memberDAO;
 	private Logger logger = Logger.getLogger(SimpleLog.class);
+	
+	//RestAPI인증서버 : 안드로이드앱에서 회원목록중 선택한 id 삭제.
+	@RequestMapping(value="/android/delete/{user_id}", method=RequestMethod.POST)
+	public ResponseEntity<String> androidDelete(@PathVariable("user_id") String user_id) {
+		ResponseEntity<String> entity = null;
+		try {
+			memberDAO.deleteMember(user_id);
+			
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//400 
+		}
+		return entity;
+	}
 	
 	//RestAPI인증서버 : 안드로이드앱에서 로그인에 사용됨(아래)
 	@RequestMapping(value="/android/login", method=RequestMethod.POST)

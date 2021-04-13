@@ -69,9 +69,13 @@
 - 스프링프레임워크를 사용하는 이유: IoC, DI, AOP 3가지 기능을 사용가능.
 - 노드js개선: userList를 개선OK.(res.write방식 -> userlist.ejs뷰템플릿방식 추가) -> 구름IDE에 배포 후 마무리OK.
 - 4교시 임베디드 애플리케이션 구현 과제물 제출예정.
+- IaaS(Infra as A Service=AWS,GCP=대지), PaaS(Platform as A Service=파스타,헤로쿠=건물), SaaS(Softwear as A Service=스프링프로젝트,egov프로젝트=방)
 - 안드로이드 앱(화요일 5교시 16과목시작- 시작전, 스프링프로젝트 JsonDataController 확인 및 android.delete추가)-부메랑에서 확인.
 - 네트워크 프로그래밍 구현: 비동기 통신 위주(요청하고 응답을 무한정기다리지않고, 다른작업이 가능)
 - 안드로이드앱(AsyncTask클래스)-스프링앱(RestController클래스)-뷰단댓글jsp(Ajax)
+- @RequestMapping로 변수값을 받는 방법 2가지,
+- 1. @RequestParam 클래스사용(값을 보내올때 ?변수명1=값1)
+- 2. @PathVariable 클래스사용(값을 보내올때 /변수값1/변수값2) 트렌드(구글검색에서 콘텐츠 노출에 효과적)
 
 #### 20210412(월) 작업
 - 노드js CRUD중 C,U,D 작업OK.
