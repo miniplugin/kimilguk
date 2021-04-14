@@ -24,7 +24,7 @@ public class JsonDataController {
 	private IF_MemberDAO memberDAO;
 	private Logger logger = Logger.getLogger(SimpleLog.class);
 	
-	//RestAPI인증서버 : 안드로이드앱에서 회원목록중 선택한 id 삭제.
+	//RestAPI서버 : 안드로이드앱에서 회원목록중 선택한 id 삭제.
 	@RequestMapping(value="/android/delete/{user_id}", method=RequestMethod.POST)
 	public ResponseEntity<String> androidDelete(@PathVariable("user_id") String user_id) {
 		ResponseEntity<String> entity = null;
@@ -51,10 +51,10 @@ public class JsonDataController {
 				entity = new ResponseEntity<>(memberVO, HttpStatus.OK);//200
 			} else {
 				logger.debug("계정정보 불일치");
-				entity = new ResponseEntity<>(HttpStatus.NO_CONTENT);
+				entity = new ResponseEntity<>(HttpStatus.NO_CONTENT);//204
 			}
 		} catch (Exception e) {
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//400
 		}
 		return entity;//json 데이터(Key:Value,)로 반환값 리턴
 	}
