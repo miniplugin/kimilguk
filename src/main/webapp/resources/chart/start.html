@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>오픈챠트 시작</title>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js"></script>
 </head>
 <body>
@@ -59,8 +60,31 @@ var btnVote = document.getElementById('btnVote');
 var selVote = document.getElementById('selVote');
 btnVote.onclick = function() {
 	var voteIdx = document.getElementById('selVote').options.selectedIndex;
-	alert(selVote[voteIdx].value);
+	//alert(selVote[voteIdx].value);
+	//alert(jsonData);
+	jsonData[voteIdx] += 1;//누적시킵니다.
+	//alert(jsonData);
+	myChart.data.datasets[0].data = jsonData;
+	myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 }
+</script>
+<script>
+$(document).ready(function() {
+	//alert('제이쿼리 작동확인');아래 ajax는 무조건실행
+	$.ajax({
+		type:'get',
+		url:'/resources/chart/start.html',//RestAPI생성후변경
+		dataType:'text',//RestAPI에서 받는 데이터 형식 -> 아래 result
+		success:function(result){
+			jsonData = [0,0,0,0,0,0];
+			myChart.data.datasets[0].data = jsonData;
+			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+		},
+		error:function(result){
+			alert('RestAPI서버에 문제가 있습니다.');
+		}
+	});
+});
 </script>
 </body>
 </html>
