@@ -63,8 +63,14 @@
 김기명, 신숙정, 이찬홍, 이규혁, 정도영, 남가인, 이희탁, 이시은, 임송하, 정동규,
 
 #### 20210415(목) 작업예정.
-- 스프링RestAPI와 안드로이드앱과 비동기 통신 하단 회원목록 마무리+과제물 문서작업.
-- 안드로이드 스튜디오 기능 확인(과제물에 포함)
+- 스프링RestAPI와 안드로이드앱과 비동기 통신 하단 회원목록 마무리(회원메일보내기)OK.
+- 안드로이드 스튜디오 기능 확인(과제물 작업OK.)
+- 챠트소스URL: https://www.chartjs.org/
+- 라이센스정보: https://www.chartjs.org/docs/latest/notes/license.html (MIT라이센스)
+- 막대챠트: https://www.chartjs.org/docs/latest/charts/bar.html
+- 레이다챠트 : https://www.chartjs.org/docs/latest/charts/radar.html
+- 오픈소스 중 챠트기능 사용하기예정.(막대챠트,레이터챠트)
+- 스프링프로젝트에 resources폴더에 chart.html만들어서 테스트예정.
 
 #### 20210414(수) 작업.
 - SSO인증전용서버별도: Single Sign On (트렌드 기술, 한번의 사용자 인증 으로 여러 사이트 이용가능)
