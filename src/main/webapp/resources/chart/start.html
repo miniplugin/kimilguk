@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>오픈챠트 시작</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.0/dist/chart.min.js"></script>
+</head>
+<body>
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+var jsonData = [12, 19, 3, 5, 2, 3];
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '본인이 좋아하는 색상 설문조사',
+            data: jsonData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+<select id="selVote">
+	<option value="Red">Red</option>
+	<option value="Blue">Blue</option>
+	<option value="Yellow">Yellow</option>
+	<option value="Green">Green</option>
+	<option value="Purple">Purple</option>
+	<option value="Orange">Orange</option>
+</select>
+<button id="btnVote">투표하기</button>
+<script>
+var btnVote = document.getElementById('btnVote');
+var selVote = document.getElementById('selVote');
+btnVote.onclick = function() {
+	var voteIdx = document.getElementById('selVote').options.selectedIndex;
+	alert(selVote[voteIdx].value);
+}
+</script>
+</body>
+</html>

@@ -71,6 +71,7 @@
 - 레이다챠트 : https://www.chartjs.org/docs/latest/charts/radar.html
 - 오픈소스 중 챠트기능 사용하기예정.(막대챠트,레이터챠트)
 - 스프링프로젝트에 resources폴더에 chart.html만들어서 테스트예정.
+- AdminLTE(부트스트랩UI템플릿), 서머노트(웹에디터), 마리아DB(오픈소스), 오픈챠트(대시보드)
 
 #### 20210414(수) 작업.
 - SSO인증전용서버별도: Single Sign On (트렌드 기술, 한번의 사용자 인증 으로 여러 사이트 이용가능)
