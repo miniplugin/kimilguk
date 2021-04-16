@@ -62,10 +62,10 @@ var myChart = new Chart(ctx, {
     },
     options: options_line_bar
 });
-
+//myChart2 시작, jsonData에러발생- 일반배열로 변경
 var datasets_radar = [{
     label: '본인이 좋아하는 색상 설문조사',
-    data: jsonData,
+    data: [12, 19, 3, 5, 2, 3],
     fill: true,
     backgroundColor: 'rgba(255, 99, 132, 0.2)',
     borderColor: 'rgb(255, 99, 132)',
@@ -73,24 +73,21 @@ var datasets_radar = [{
     pointBorderColor: '#fff',
     pointHoverBackgroundColor: '#fff',
     pointHoverBorderColor: 'rgb(255, 99, 132)'
-  }, {
-    label: '본인이 좋아하는 색상 설문조사',
-    data: jsonData,
-    fill: true,
-    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-    borderColor: 'rgb(54, 162, 235)',
-    pointBackgroundColor: 'rgb(54, 162, 235)',
-    pointBorderColor: '#fff',
-    pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: 'rgb(54, 162, 235)'
   }];
+var options_radar = {
+	    elements: {
+	        line: {
+	          borderWidth: 3
+	        }
+	      }
+	    };
 var myChart2 = new Chart(ctx2, {
-	type: 'line',
+	type: 'radar',
 	data: {
         labels: [],
         datasets: datasets_radar
     },
-	options: options_line_bar
+	options: options_radar
 });
 </script>
 
@@ -113,7 +110,7 @@ $("#btnVoteDel").on("click", function(){
 					jsonData = {"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};//jsonData 초기화
 					myChart.data.datasets[0].data = jsonData;
 					myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
-					myChart2.data.datasets[0].data = jsonData;
+					myChart2.data.datasets[0].data = [12, 19, 3, 5, 2, 3];
 					myChart2.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 				}
 			},
@@ -203,7 +200,7 @@ var voteIdx = document.getElementById('selVote').options.selectedIndex;
 		success:function(result) {
 			myChart.data.datasets[0].data = jsonData;
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
-			myChart2.data.datasets[0].data = jsonData;
+			myChart2.data.datasets[0].data = [12, 19, 3, 5, 2, 3];
 			myChart2.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 		},
 		error:function(result) {
@@ -243,7 +240,7 @@ $(document).ready(function() {
 			myChart.data.datasets[0].data = jsonData;//결과적으로 json데이터를 만들어야함.
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 			//두번째 챠트 출력하기
-			myChart2.data.datasets[0].data = jsonData;
+			myChart2.data.datasets[0].data = [12, 19, 3, 5, 2, 3];
 			myChart2.update();
 		},
 		error:function(result){
