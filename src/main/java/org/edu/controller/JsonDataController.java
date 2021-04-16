@@ -27,7 +27,7 @@ public class JsonDataController {
 	private Logger logger = Logger.getLogger(SimpleLog.class);
 	
 	//RestAPI서버 : 오픈챠트jsp에 투표한 값을 삭제
-	@RequestMapping(value="/char/deldata", method=RequestMethod.POST)
+	@RequestMapping(value="/chart/deldata", method=RequestMethod.POST)
 	public ResponseEntity<String> delData() {
 		ResponseEntity<String> entity = null;
 		try {

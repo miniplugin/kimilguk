@@ -34,6 +34,9 @@ memberMapper.xml: 회원관리에대한 모든 쿼리를 모아서 관리하는 
 	</if>
 </sql>
 
+<delete id="delData">
+delete from tbl_chart where 1 = 1
+</delete>
 <insert id="insertData">
 insert into tbl_chart(red,blue,yellow,green,purple,orange)values(
 #{red},#{blue},#{yellow},#{green},#{purple},#{orange}

@@ -72,10 +72,12 @@ $("#btnVoteDel").on("click", function(){
 				"X-HTTP-Method-Override":"POST"
 			},
 			success:function(result) {
-				alert("모든 투표자료가 삭제 되었습니다.");
-				jsonData = {"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};//jsonData 초기화
-				myChart.data.datasets[0].data = jsonData;
-				myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴				
+				if(result=="success"){
+					alert("모든 투표자료가 삭제 되었습니다.");
+					jsonData = {"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};//jsonData 초기화
+					myChart.data.datasets[0].data = jsonData;
+					myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+				}
 			},
 			error:function(result) {
 				alert("API서버를 사용할 수 없습니다.");
