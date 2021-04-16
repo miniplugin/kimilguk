@@ -61,35 +61,72 @@ var myChart = new Chart(ctx, {
 var btnVote = document.getElementById('btnVote');
 var selVote = document.getElementById('selVote');
 btnVote.onclick = function() {
-	var voteIdx = document.getElementById('selVote').options.selectedIndex;
+var voteIdx = document.getElementById('selVote').options.selectedIndex;
 	//alert(selVote[voteIdx].value);
 	//jsonData[voteIdx] += 1;//누적시킵니다. 자바스크립트의 배열방식
 	//alert(Object.keys(jsonData).length);//Json데이터의 길이구할때
+	//투표버튼을 클릭했을때 해당 버튼의 값만 +1 하는 스위치문
+	switch(voteIdx) {
+	case 0:
+		jsonData.red += 1;//Json데이터 방식 = jsonData.blue
+		break;
+	case 1:
+		jsonData.blue += 1;
+		break;
+	case 2:
+		jsonData.yellow += 1;
+		break;
+	case 3:
+		jsonData.green += 1;
+		break;
+	case 4:
+		jsonData.purple += 1;
+		break;
+	case 5:
+		jsonData.orange += 1;
+		break;
+	}
+	//기존 값과, 변경된 값 변수로 지정
+	for(var i=0;i<Object.keys(jsonData).length;i++){
+		switch(selVote[i].value) {
+		case "red":
+			var red = jsonData.red;
+			break;
+		case "blue":
+			var blue = jsonData.blue;
+			break;
+		case "yellow":
+			var yellow = jsonData.yellow;
+			break;
+		case "green":
+			var green = jsonData.green;
+			break;
+		case "purple":
+			var purple = jsonData.purple;
+			break;
+		case "orange":
+			var orange = jsonData.orange;
+			break;
+		}
+	}
+	
 	$.ajax({
 		type:'post',
 		url:'/chart/setdata',
 		dataType:'text',
+		headers:{
+			"Content-Type":"application/json",
+			"X-HTTP-Method-Override":"POST"
+		},
+		data:JSON.stringify({//json데이터를 post전송할 text로 변경.
+			"red":red,
+			"blue":blue,
+			"yellow":yellow,
+			"green":green,
+			"purple":purple,
+			"orange":orange
+		}),
 		success:function(result) {
-			switch(voteIdx) {
-			case 0:
-				jsonData.red += 1;//Json데이터 방식 = jsonData.blue
-				break;
-			case 1:
-				jsonData.blue += 1;
-				break;
-			case 2:
-				jsonData.yellow += 1;
-				break;
-			case 3:
-				jsonData.green += 1;
-				break;
-			case 4:
-				jsonData.purple += 1;
-				break;
-			case 5:
-				jsonData.orange += 1;
-				break;
-			}
 			myChart.data.datasets[0].data = jsonData;
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 		},
