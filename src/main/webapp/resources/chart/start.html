@@ -66,6 +66,12 @@ var voteIdx = document.getElementById('selVote').options.selectedIndex;
 	//jsonData[voteIdx] += 1;//누적시킵니다. 자바스크립트의 배열방식
 	//alert(Object.keys(jsonData).length);//Json데이터의 길이구할때
 	//투표버튼을 클릭했을때 해당 버튼의 값만 +1 하는 스위치문
+	if(jsonData.red=="") { jsonData.red=0; }
+	if(jsonData.blue=="") { jsonData.blue=0; }
+	if(jsonData.yellow=="") { jsonData.yellow=0; }
+	if(jsonData.green=="") { jsonData.green=0; }
+	if(jsonData.purple=="") { jsonData.purple=0; }
+	if(jsonData.orange=="") { jsonData.orange=0; }
 	switch(voteIdx) {
 	case 0:
 		jsonData.red += 1;//Json데이터 방식 = jsonData.blue
@@ -87,6 +93,7 @@ var voteIdx = document.getElementById('selVote').options.selectedIndex;
 		break;
 	}
 	//기존 값과, 변경된 값 변수로 지정
+	//alert(selVote[0].value)
 	for(var i=0;i<Object.keys(jsonData).length;i++){
 		switch(selVote[i].value) {
 		case "red":
@@ -162,8 +169,8 @@ $(document).ready(function() {
 			//alert(result);
 			//json 데이터로 파싱하는 작업(아래2줄)
 			//jsonData = JSON.stringify(result);//Json데이터형식을 text로 변경
-			//jsonData = JSON.parse(result);//text데이터를 Json데이터로 변경
-			jsonData = result;//text데이터를 Json데이터로 변경
+			jsonData = JSON.parse(result);//text데이터를 Json데이터로 변경
+			//jsonData = result;//text데이터를 Json데이터로 변경
 			myChart.data.datasets[0].data = jsonData;
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 		},

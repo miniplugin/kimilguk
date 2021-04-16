@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +28,7 @@ public class JsonDataController {
 	
 	//RestAPI서버 : 오픈챠트js에 투표한 값을 저장(업데이트 합니다.)
 	@RequestMapping(value="/chart/setdata", method=RequestMethod.POST)
-	public ResponseEntity<String> setData(ChartVO chartVO) {
+	public ResponseEntity<String> setData(@RequestBody ChartVO chartVO) {
 		ResponseEntity<String> entity = null;
 		try {
 			logger.debug("전송값 확인"+chartVO.toString());
