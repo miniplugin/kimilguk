@@ -26,30 +26,27 @@ var jsonData = {"red":12,"blue":19,"yellow":3,"green":5,"purple":2,"orange":3};
 //var jsonData = [12, 19, 3, 5, 2, 3];//자바스크립트의 배열값
 var ctx = document.getElementById('myChart').getContext('2d');
 var ctx2 = document.getElementById('myChart2').getContext('2d');
-var data_line_bar = {
-        labels: [],
-        datasets: [{
-            label: '본인이 좋아하는 색상 설문조사',
-            data: jsonData,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    };
+var datasets_line_bar = [{
+    label: '본인이 좋아하는 색상 설문조사',
+    data: jsonData,
+    backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+    ],
+    borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+    ],
+    borderWidth: 1
+}];
 var options_line_bar = {
         scales: {
             y: {
@@ -59,13 +56,40 @@ var options_line_bar = {
     };
 var myChart = new Chart(ctx, {
     type: 'bar',//radar, doughnut, pie, polar, bubble, scatter, area
-    data: data_line_bar,
+    data: {
+        labels: [],
+        datasets: datasets_line_bar
+    },
     options: options_line_bar
 });
 
+var datasets_radar = [{
+    label: '본인이 좋아하는 색상 설문조사',
+    data: jsonData,
+    fill: true,
+    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+    borderColor: 'rgb(255, 99, 132)',
+    pointBackgroundColor: 'rgb(255, 99, 132)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(255, 99, 132)'
+  }, {
+    label: '본인이 좋아하는 색상 설문조사',
+    data: jsonData,
+    fill: true,
+    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+    borderColor: 'rgb(54, 162, 235)',
+    pointBackgroundColor: 'rgb(54, 162, 235)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(54, 162, 235)'
+  }];
 var myChart2 = new Chart(ctx2, {
 	type: 'line',
-	data: data_line_bar,
+	data: {
+        labels: [],
+        datasets: datasets_radar
+    },
 	options: options_line_bar
 });
 </script>
