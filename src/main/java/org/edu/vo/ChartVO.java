@@ -3,6 +3,12 @@ package org.edu.vo;
 public class ChartVO {
 	Integer red, blue, yellow, green, purple, orange;
 
+	@Override
+	public String toString() {
+		return "ChartVO [red=" + red + ", blue=" + blue + ", yellow=" + yellow + ", green=" + green + ", purple="
+				+ purple + ", orange=" + orange + "]";
+	}
+
 	public Integer getRed() {
 		return red;
 	}

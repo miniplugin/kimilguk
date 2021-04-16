@@ -109,7 +109,7 @@ var voteIdx = document.getElementById('selVote').options.selectedIndex;
 			break;
 		}
 	}
-	
+	//alert(red+blue+yellow+green+purple+orange);
 	$.ajax({
 		type:'post',
 		url:'/chart/setdata',
@@ -159,9 +159,11 @@ $(document).ready(function() {
 			if(result == "") {
 				result={"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};
 			}
+			//alert(result);
 			//json 데이터로 파싱하는 작업(아래2줄)
 			//jsonData = JSON.stringify(result);//Json데이터형식을 text로 변경
-			jsonData = JSON.parse(result);//text데이터를 Json데이터로 변경
+			//jsonData = JSON.parse(result);//text데이터를 Json데이터로 변경
+			jsonData = result;//text데이터를 Json데이터로 변경
 			myChart.data.datasets[0].data = jsonData;
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 		},

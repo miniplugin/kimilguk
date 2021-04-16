@@ -29,7 +29,13 @@ public class JsonDataController {
 	@RequestMapping(value="/chart/setdata", method=RequestMethod.POST)
 	public ResponseEntity<String> setData(ChartVO chartVO) {
 		ResponseEntity<String> entity = null;
-		memberDAO.setData(chartVO);
+		try {
+			logger.debug("전송값 확인"+chartVO.toString());
+			memberDAO.setData(chartVO);
+			entity = new ResponseEntity<>("success", HttpStatus.OK);
+		}catch(Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		return entity;
 	}
 	//RestAPI서버 : 오픈챠트js에서 기존 투표한 자료 가져오기

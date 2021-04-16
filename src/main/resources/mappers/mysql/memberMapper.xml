@@ -44,7 +44,7 @@ orange = #{orange}
 where 1 = 1
 </update>
 <select id="getData" resultType="org.edu.vo.ChartVO">
-select * from tbl_chart
+select red,blue,yellow,green,purple,orange from tbl_chart
 </select>
 <select id="countMember" resultType="int">
 select count(*) from tbl_member
