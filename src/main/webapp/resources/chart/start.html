@@ -8,14 +8,25 @@
 </head>
 <body>
 <canvas id="myChart" width="400" height="400"></canvas>
+<select id="selVote">
+	<option value="red">Red</option>
+	<option value="blue">Blue</option>
+	<option value="yellow">Yellow</option>
+	<option value="green">Green</option>
+	<option value="purple">Purple</option>
+	<option value="orange">Orange</option>
+</select>
+<button id="btnVote">투표하기</button>
+<button id="btnVoteDel">초기화하기</button>
+<canvas id="myChart2" width="400" height="400"></canvas>
+
 <script>
 var jsonData = {"red":12,"blue":19,"yellow":3,"green":5,"purple":2,"orange":3};
 //alert(jsonData.Blue);//디버그
 //var jsonData = [12, 19, 3, 5, 2, 3];//자바스크립트의 배열값
 var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var data_line_bar = {
         labels: [],
         datasets: [{
             label: '본인이 좋아하는 색상 설문조사',
@@ -38,26 +49,27 @@ var myChart = new Chart(ctx, {
             ],
             borderWidth: 1
         }]
-    },
-    options: {
+    };
+var options_line_bar = {
         scales: {
             y: {
                 beginAtZero: true
             }
         }
-    }
+    };
+var myChart = new Chart(ctx, {
+    type: 'bar',//radar, doughnut, pie, polar, bubble, scatter, area
+    data: data_line_bar,
+    options: options_line_bar
+});
+
+var myChart2 = new Chart(ctx2, {
+	type: 'line',
+	data: data_line_bar,
+	options: options_line_bar
 });
 </script>
-<select id="selVote">
-	<option value="red">Red</option>
-	<option value="blue">Blue</option>
-	<option value="yellow">Yellow</option>
-	<option value="green">Green</option>
-	<option value="purple">Purple</option>
-	<option value="orange">Orange</option>
-</select>
-<button id="btnVote">투표하기</button>
-<button id="btnVoteDel">초기화하기</button>
+
 <script>
 var btnVote = document.getElementById('btnVote');
 var selVote = document.getElementById('selVote');
@@ -77,6 +89,8 @@ $("#btnVoteDel").on("click", function(){
 					jsonData = {"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};//jsonData 초기화
 					myChart.data.datasets[0].data = jsonData;
 					myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+					myChart2.data.datasets[0].data = jsonData;
+					myChart2.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 				}
 			},
 			error:function(result) {
@@ -165,6 +179,8 @@ var voteIdx = document.getElementById('selVote').options.selectedIndex;
 		success:function(result) {
 			myChart.data.datasets[0].data = jsonData;
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+			myChart2.data.datasets[0].data = jsonData;
+			myChart2.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 		},
 		error:function(result) {
 			alert("API서버가 작동하지 않습니다. 다음에 이용해 주세요");
@@ -202,6 +218,9 @@ $(document).ready(function() {
 			}
 			myChart.data.datasets[0].data = jsonData;//결과적으로 json데이터를 만들어야함.
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+			//두번째 챠트 출력하기
+			myChart2.data.datasets[0].data = jsonData;
+			myChart2.update();
 		},
 		error:function(result){
 			alert('RestAPI서버에 문제가 있습니다.');
