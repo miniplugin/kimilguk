@@ -57,21 +57,48 @@ var myChart = new Chart(ctx, {
 	<option value="orange">Orange</option>
 </select>
 <button id="btnVote">투표하기</button>
+<button id="btnVoteDel">초기화하기</button>
 <script>
 var btnVote = document.getElementById('btnVote');
 var selVote = document.getElementById('selVote');
+$("#btnVoteDel").on("click", function(){
+	if(confirm("정말로 초기화 하시겠습니까, 투표한 DB자료가 삭제됩니다.")) {
+		$.ajax({
+			type:"post",
+			url:"/chart/delData",
+			data:"text",
+			headers:{
+				"Content-Type":"application/json",
+				"X-HTTP-Method-Override":"POST"
+			},
+			success:function(result) {
+				alert("모든 투표자료가 삭제 되었습니다.");
+				jsonData = {"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};//jsonData 초기화
+				myChart.data.datasets[0].data = jsonData;
+				myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴				
+			},
+			error:function(result) {
+				alert("API서버를 사용할 수 없습니다.");
+			}
+		});
+	}
+});
 btnVote.onclick = function() {
 var voteIdx = document.getElementById('selVote').options.selectedIndex;
 	//alert(selVote[voteIdx].value);
 	//jsonData[voteIdx] += 1;//누적시킵니다. 자바스크립트의 배열방식
 	//alert(Object.keys(jsonData).length);//Json데이터의 길이구할때
-	//투표버튼을 클릭했을때 해당 버튼의 값만 +1 하는 스위치문
+	
+	//DB초기값이 없을 경우 초기값을 0으로 강제로 지정.
 	if(jsonData.red=="") { jsonData.red=0; }
 	if(jsonData.blue=="") { jsonData.blue=0; }
 	if(jsonData.yellow=="") { jsonData.yellow=0; }
 	if(jsonData.green=="") { jsonData.green=0; }
 	if(jsonData.purple=="") { jsonData.purple=0; }
 	if(jsonData.orange=="") { jsonData.orange=0; }
+	
+	//화면의 select태그를 선택한 인덱스 번호에 해당하는 값을 누적합니다.(아래)
+	//투표버튼을 클릭했을때 해당 버튼의 값만 +1 하는 스위치문
 	switch(voteIdx) {
 	case 0:
 		jsonData.red += 1;//Json데이터 방식 = jsonData.blue
@@ -92,7 +119,7 @@ var voteIdx = document.getElementById('selVote').options.selectedIndex;
 		jsonData.orange += 1;
 		break;
 	}
-	//기존 값과, 변경된 값 변수로 지정
+	//기존 값과, 변경된 값 변수로 지정, DB입력을 위한 변수 값을 jsonData값으로 채워넣는 로직(아래).
 	//alert(selVote[0].value)
 	for(var i=0;i<Object.keys(jsonData).length;i++){
 		switch(selVote[i].value) {
