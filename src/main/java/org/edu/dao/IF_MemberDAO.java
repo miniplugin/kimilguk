@@ -24,4 +24,5 @@ public interface IF_MemberDAO {
 	public ChartVO getData();//챠트테스트용 RestAPI
 	public void insertData(ChartVO chartVO);
 	public void updateData(ChartVO chartVO);
+	public void delData();
 }

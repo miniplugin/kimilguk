@@ -65,7 +65,7 @@ $("#btnVoteDel").on("click", function(){
 	if(confirm("정말로 초기화 하시겠습니까, 투표한 DB자료가 삭제됩니다.")) {
 		$.ajax({
 			type:"post",
-			url:"/chart/delData",
+			url:"/chart/deldata",
 			data:"text",
 			headers:{
 				"Content-Type":"application/json",
