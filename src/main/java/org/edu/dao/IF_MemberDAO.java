@@ -22,5 +22,6 @@ public interface IF_MemberDAO {
 	public MemberVO readMember(String user_id) throws Exception;
 	public void updateMember(MemberVO memberVO) throws Exception;
 	public ChartVO getData();//챠트테스트용 RestAPI
-	public void setData(ChartVO chartVO);
+	public void insertData(ChartVO chartVO);
+	public void updateData(ChartVO chartVO);
 }

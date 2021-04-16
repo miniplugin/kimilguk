@@ -32,7 +32,12 @@ public class JsonDataController {
 		ResponseEntity<String> entity = null;
 		try {
 			logger.debug("전송값 확인"+chartVO.toString());
-			memberDAO.setData(chartVO);
+			ChartVO countVO = memberDAO.getData();
+			if(countVO == null) {
+				memberDAO.insertData(chartVO);
+			}else {
+				memberDAO.updateData(chartVO);
+			}
 			entity = new ResponseEntity<>("success", HttpStatus.OK);
 		}catch(Exception e) {
 			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);

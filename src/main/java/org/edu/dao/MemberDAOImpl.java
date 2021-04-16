@@ -70,9 +70,15 @@ public class MemberDAOImpl implements IF_MemberDAO {
 	}
 
 	@Override
-	public void setData(ChartVO chartVO) {
+	public void insertData(ChartVO chartVO) {
 		// mapper.xml에 접근하는 방법(아래)
-		sqlSession.update("memberMapper.setData", chartVO);
+		sqlSession.update("memberMapper.insertData", chartVO);
+	}
+	
+	@Override
+	public void updateData(ChartVO chartVO) {
+		// mapper.xml에 접근하는 방법(아래)
+		sqlSession.update("memberMapper.updateData", chartVO);
 	}
 
 }

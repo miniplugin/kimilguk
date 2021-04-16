@@ -163,15 +163,15 @@ $(document).ready(function() {
 		dataType:'text',//RestAPI에서 받는 데이터 형식 -> 아래 result
 		success:function(result){
 			//jsonData = [0,0,0,0,0,0];//자바스크립트 배열일때
-			if(result == "") {
+			if(result == "") {//result값이 없으면 jsonData강제로 생성
+				//alert(result);
 				result={"red":0,"blue":0,"yellow":0,"green":0,"purple":0,"orange":0};
+				jsonData = result;
+			}else{//result값이 있으면, text로 받기 때문에 json파싱이 필요
+				//jsonData = JSON.stringify(result);//Json데이터형식을 text로 변경
+				jsonData = JSON.parse(result);//text데이터를 Json데이터로 변경
 			}
-			//alert(result);
-			//json 데이터로 파싱하는 작업(아래2줄)
-			//jsonData = JSON.stringify(result);//Json데이터형식을 text로 변경
-			jsonData = JSON.parse(result);//text데이터를 Json데이터로 변경
-			//jsonData = result;//text데이터를 Json데이터로 변경
-			myChart.data.datasets[0].data = jsonData;
+			myChart.data.datasets[0].data = jsonData;//결과적으로 json데이터를 만들어야함.
 			myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 		},
 		error:function(result){
