@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.edu.dao.IF_MemberDAO;
+import org.edu.vo.ChartVO;
 import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
 import org.hsqldb.lib.SimpleLog;
@@ -25,8 +26,12 @@ public class JsonDataController {
 	private Logger logger = Logger.getLogger(SimpleLog.class);
 	
 	//RestAPI서버 : 오픈챠트js에서 기존 투표한 자료 가져오기
-	//@RequestMapping(value="/vote/list", method=RequestMethod.GET)
-	//public ResponseEntity<String>
+	@RequestMapping(value="/chart/getdata", method=RequestMethod.GET)
+	public ResponseEntity<ChartVO> getData() {
+		ResponseEntity<ChartVO> entity = null;
+		entity = memberDAO.getData();
+		return entity;
+	}
 	
 	//RestAPI서버 : 안드로이드앱에서 회원목록중 선택한 id 삭제.
 	@RequestMapping(value="/android/delete/{user_id}", method=RequestMethod.POST)

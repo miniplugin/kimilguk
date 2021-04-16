@@ -7,8 +7,10 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.edu.vo.ChartVO;
 import org.edu.vo.MemberVO;
 import org.edu.vo.PageVO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -59,6 +61,12 @@ public class MemberDAOImpl implements IF_MemberDAO {
 	public int countMember(PageVO pageVO) throws Exception {
 		// mapper.xml에 접근하는 방법(아래)
 		return sqlSession.selectOne("memberMapper.countMember", pageVO);
+	}
+
+	@Override
+	public ResponseEntity<ChartVO> getData() {
+		// mapper.xml에 접근하는 방법(아래)
+		return null;
 	}
 
 }

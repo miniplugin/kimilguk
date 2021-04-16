@@ -89,13 +89,24 @@ btnVote.onclick = function() {
 	myChart.data.datasets[0].data = jsonData;
 	myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
 }
+//예전에 실시간 대시보드를 구현했던 방법(푸시-카카오톡알림처럼)
+/*
+var i=1;
+var interval = setInterval(function(){
+	var jsonData = {Red:i,Blue:19,Yellow:3,Green:5,Purple:2,Orange:3};
+	myChart.data.datasets[0].data = jsonData;
+	myChart.update();//Char.js에 내장된 함수로 그래프를 재생 시킴
+	i++;
+	console.log("자동으로 "+i+" 초 실행");
+},1000);//1초마다 DB에 접근해서 새로운 데이터를 받았습니다.
+*/
 </script>
 <script>
 $(document).ready(function() {
 	//alert('제이쿼리 작동확인');아래 ajax는 무조건실행
 	$.ajax({
 		type:'get',
-		url:'/resources/chart/start.html',//RestAPI생성후변경
+		url:'/chart/getdata',//RestAPI생성후변경
 		dataType:'text',//RestAPI에서 받는 데이터 형식 -> 아래 result
 		success:function(result){
 			//jsonData = [0,0,0,0,0,0];//자바스크립트 배열일때
