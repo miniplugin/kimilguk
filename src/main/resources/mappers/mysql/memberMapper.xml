@@ -33,6 +33,19 @@ memberMapper.xml: 회원관리에대한 모든 쿼리를 모아서 관리하는 
 	 	</if>
 	</if>
 </sql>
+<update id="setData">
+update tbl_chart set 
+red = #{red},
+blue = #{blue},
+yellow = #{yellow},
+green = #{green},
+purple = #{purple},
+orange = #{orange}
+where 1 = 1
+</update>
+<select id="getData" resultType="org.edu.vo.ChartVO">
+select * from tbl_chart
+</select>
 <select id="countMember" resultType="int">
 select count(*) from tbl_member
 <include refid="sqlWhere"></include>

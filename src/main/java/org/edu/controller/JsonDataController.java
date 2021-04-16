@@ -25,11 +25,23 @@ public class JsonDataController {
 	private IF_MemberDAO memberDAO;
 	private Logger logger = Logger.getLogger(SimpleLog.class);
 	
+	//RestAPI서버 : 오픈챠트js에 투표한 값을 저장(업데이트 합니다.)
+	@RequestMapping(value="/chart/setdata", method=RequestMethod.POST)
+	public ResponseEntity<String> setData(ChartVO chartVO) {
+		ResponseEntity<String> entity = null;
+		memberDAO.setData(chartVO);
+		return entity;
+	}
 	//RestAPI서버 : 오픈챠트js에서 기존 투표한 자료 가져오기
 	@RequestMapping(value="/chart/getdata", method=RequestMethod.GET)
 	public ResponseEntity<ChartVO> getData() {
 		ResponseEntity<ChartVO> entity = null;
-		entity = memberDAO.getData();
+		try {
+			ChartVO chartVO = memberDAO.getData();
+			entity = new ResponseEntity<>(chartVO, HttpStatus.OK);//200
+		}catch(Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);//400
+		}
 		return entity;
 	}
 	

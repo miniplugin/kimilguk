@@ -64,9 +64,15 @@ public class MemberDAOImpl implements IF_MemberDAO {
 	}
 
 	@Override
-	public ResponseEntity<ChartVO> getData() {
+	public ChartVO getData() {
 		// mapper.xml에 접근하는 방법(아래)
-		return null;
+		return sqlSession.selectOne("memberMapper.getData");
+	}
+
+	@Override
+	public void setData(ChartVO chartVO) {
+		// mapper.xml에 접근하는 방법(아래)
+		sqlSession.update("memberMapper.setData", chartVO);
 	}
 
 }

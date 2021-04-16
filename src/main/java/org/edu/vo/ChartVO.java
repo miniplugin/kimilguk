@@ -1,54 +1,54 @@
 package org.edu.vo;
 
 public class ChartVO {
-	Integer Red, Blue, Yellow, Green, Purple, Orange;
+	Integer red, blue, yellow, green, purple, orange;
 
 	public Integer getRed() {
-		return Red;
+		return red;
 	}
 
 	public void setRed(Integer red) {
-		Red = red;
+		this.red = red;
 	}
 
 	public Integer getBlue() {
-		return Blue;
+		return blue;
 	}
 
 	public void setBlue(Integer blue) {
-		Blue = blue;
+		this.blue = blue;
 	}
 
 	public Integer getYellow() {
-		return Yellow;
+		return yellow;
 	}
 
 	public void setYellow(Integer yellow) {
-		Yellow = yellow;
+		this.yellow = yellow;
 	}
 
 	public Integer getGreen() {
-		return Green;
+		return green;
 	}
 
 	public void setGreen(Integer green) {
-		Green = green;
+		this.green = green;
 	}
 
 	public Integer getPurple() {
-		return Purple;
+		return purple;
 	}
 
 	public void setPurple(Integer purple) {
-		Purple = purple;
+		this.purple = purple;
 	}
 
 	public Integer getOrange() {
-		return Orange;
+		return orange;
 	}
 
 	public void setOrange(Integer orange) {
-		Orange = orange;
+		this.orange = orange;
 	}
 	
 }
