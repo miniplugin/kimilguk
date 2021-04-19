@@ -12,7 +12,7 @@
   <td>${latestVO.writer}</td>
   <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${latestVO.reg_date}" /></td>
   <td><span class="badge badge-success">
-  <c:out value="${ (empty latestVO.view_count)?0:latestVO.view_count }">
+  <c:out value="${ (empty latestVO.view_count)?0:latestVO.view_count }" />
   </span></td>
 </tr>
 </c:forEach>
