@@ -93,6 +93,7 @@
 - 스프링 MVC프로젝트 시작은 : 이클립스에서 -> 레거시 스프링프로젝트 -> MVC선택
 - 참고: 범위기준 설명 https://poiemaweb.com/nodejs-socketio
 - io는 접속한 모든 사용자: io.on(all대기) > io.emit(all전송)
+- io 객체의 안쪽에서 사용자의 접속/해제/메세지전송은 client별(소켓기준)로 작동.
 - socket은 접속한 1명의 사용자: socket.on(one대기) > io.emit(all전송)
 
 #### 20210416(금) 작업
