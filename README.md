@@ -85,6 +85,12 @@
 - 수업전: 레이더 챠트로 변경 작업예정.
 - 오픈챠트의 실시간 대시보드 구현: 푸시기능(카카오 알림, 실시간 대시보드, SNS댓글좋아요) - 소켓으로 구현
 - 구름IDE에서 노드js컨테이너 열어서 소켓을 구현할 예정 변경 -> 헤로쿠로 항상 살아 있게 구현예정.
+- 노드js프로젝트 신규로 1개 만들어서, 헤로쿠에 배포하는 과정이 필요.
+- NodejsTest는 구름에서 노드js컨테이너를 생성하면, 자동으로 생성.
+- 1.) 노드js프로젝트 시작 - express템플릿으로 초기앱 시작 -> 개발자작업 후 -> 배포.
+- 2.) 초기앱 실행 : npm install(package.json모듈다운로드) -> node index.js
+- 3.) 초기앱 실행: npm install -> npm start (헤로쿠추천방식)
+- 스프링 MVC프로젝트 시작은 : 이클립스에서 -> 레거시 스프링프로젝트 -> MVC선택
 - 참고: 범위기준 설명 https://poiemaweb.com/nodejs-socketio
 - io는 접속한 모든 사용자: io.on(all대기) > io.emit(all전송)
 - socket은 접속한 1명의 사용자: socket.on(one대기) > io.emit(all전송)

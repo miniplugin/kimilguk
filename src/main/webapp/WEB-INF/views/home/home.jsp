@@ -2,30 +2,41 @@
     pageEncoding="UTF-8"%>
 <%@ include file="include/header.jsp" %>
 <style>
-    div.txt{
-   		max-height:100px;
-   		overflow:hidden;
-		line-height: 17px;
-		margin-top:10px;
+/* 미디어쿼리 all(print,screen,등등), min-width:가로크기 태블릿 이상일경우만 적용 */
+@media all and (min-width: 801px) {
+	.fix_height {
+		height:440px;
+		overflow:hidden;
+		line-height:440px;
 	}
-  	div.txt * { font-size: 14px !important;}
-  	.length_limit{
-  	    display: block;
-	    padding-left: 14px;
-	    overflow: hidden;
-	    text-overflow: ellipsis;
-	    white-space: nowrap;/* 줄바꿈할때, 공백는 포함 않시키는 의미 */
-    }
+}
+.img_topplace { opacity:0.7; }
+.img_topplace:hover {/*가상선택자 :, 가성요소 ::*/
+	opacity:1.0;
+}
 </style>
 <script>
-$(document).ready(function(){
-	$(".opacity_hover img").on("mouseover",function(){
-		$(this).css("opacity","1.0");
-	});
-	$(".opacity_hover img").on("mouseout",function(){
-		$(this).css("opacity","0.8");
+$(function(){
+	//var w = JQuery(window).width();
+	//페이지 로딩시 1회만 실행
+	var w = $(window).width();
+	if(w>801) {
+		$(".fix_height").css({"height":(w/3)+"px","line-height":(w/3)+"px"});
+	}
+	//창 리사이징 이벤트가 발생시 아래 반응형 코딩 추가(사용자 창크기를 마음대로 조정시 height값을 자동조정되게)
+	$(window).resize(function(){
+		var w = $(window).width();
+		console.log("디버그: "+w);
+		if(w>801) {
+			$(".fix_height").css({"height":(w/3)+"px","line-height":(w/3)+"px"});
+		}else{
+			$(".fix_height").css({"height":"inherit","line-height":"inherit"});
+		}
 	});
 });
+//JQuery(function($){
+//$(function(){});
+//$(document).ready(function(){});
 </script>
 	<!-- 메인콘텐츠영역 -->
 	<div id="container">
@@ -81,7 +92,7 @@ $(document).ready(function(){
 					<c:if test="${status.count<=3}">
 					<li class="opacity_hover">
 						<a href="/home/board/board_view?board_type=${boardVO.board_type}&bno=${boardVO.bno}&page=1">
-							<div style="height:270px;overflow:hidden">
+							<div class="fix_height">
 							<c:if test="${save_file_names[status.index] eq ''}">
 								<img class="img_topplace" src="/resources/home/img/no_image.png" alt="OOOO OOOOO" style="opacity:0.7;"/>
 							</c:if>
