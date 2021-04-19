@@ -72,7 +72,7 @@ if('${msg}' != '') {//자바의 EL표기법 = 달라{변수명}
                             </ul>
                         </div>
 					</li>
-					<li><a href="/sample" class="openAll1">RestAPI서비스</a>
+					<li><a href="/resources/chart/start.html" class="openAll2">RestAPI서비스</a>
 
                         <div class="gnb_depth gnb_depth2_2">
                             <ul class="submenu_list">
@@ -86,7 +86,7 @@ if('${msg}' != '') {//자바의 EL표기법 = 달라{변수명}
 						<c:set var="first_board_type" value="${boardTypeVO.board_type}" />
 						</c:if>
 					</c:forEach>
-					<li><a href="/home/board/board_list?board_type=${first_board_type}" class="openAll2">커뮤니티</a>
+					<li><a href="/home/board/board_list?board_type=${first_board_type}" class="openAll3">커뮤니티</a>
 				        <div class="gnb_depth gnb_depth2_3">
                             <ul class="submenu_list">
                             <c:forEach items="${board_type_list}" var="boardTypeVO">
