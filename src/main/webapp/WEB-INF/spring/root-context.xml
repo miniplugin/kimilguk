@@ -17,13 +17,13 @@
         <property name="locations">
             <list>
             	<!-- 로컬 개발일때 사용(아래) -->
-                
-                <value>classpath:/properties/local.properties</value> 
-                
-                <!-- 운영서버 배포일때 사용 -->
                 <!-- 
-                <value>classpath:/properties/prod.properties</value>
+                <value>classpath:/properties/local.properties</value> 
                  -->
+                <!-- 운영서버 배포일때 사용 -->
+                
+                <value>classpath:/properties/prod.properties</value>
+                
                 
                 <!-- Junit실행시 에러나서 NaverLoginController놔두고 여기에도 위치 추가 -->
                 <value>classpath:/properties/sns.properties</value>
@@ -36,7 +36,7 @@
 	<!-- HSQLDB FILE기반 사용 헤로쿠에 올릴때 생성경로는 /tmp/embeded/hsql_file.db;hsqldb.lock_file=false , 로컬PC일때 경로는 c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false -->   
 	
 	<bean id="dataSource-hsql_local" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
-		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
 		<property name="url" value="jdbc:hsqldb:file:c:/egov/workspace/embeded/hsql_file.db;hsqldb.lock_file=false" />
 		<property name="username" value="sa" />
 		<property name="password" value="" />

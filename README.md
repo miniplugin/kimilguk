@@ -71,6 +71,10 @@
 - -> 그래서 나온 해결책 : 자체개발(DevOps트렌드 : 개발해서 운영까지 하겠다)
 - DevOps = FullStack개발자 트렌드용어
 
+#### 20211212(일): CVE-2021-44228 취약점 보안패치ㅣlog4j-1.2.15에서 log4j2로
+- pom.xml 변경: org.apache.logging.log4j 2.15.0 버전으로 마이그레이션
+- log4j2.xml 생성
+
 #### 20211101(월): HelloTest.java
 - 안드로이드 시작전, 자바 기초테스트로 사용.
 
